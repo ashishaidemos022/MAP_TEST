@@ -11,13 +11,13 @@ import { registerTools } from './_lib/mcp/tools/index.js';
 import { McpError } from './_lib/mcp/errors.js';
 
 async function dispatch(req: Request): Promise<Response> {
-  // 1. Origin check (DNS rebinding guard)
+  console.log('[mcp] step 1: origin check');
   const origin = req.headers.get('origin');
   if (!isAllowedOrigin(origin)) {
     return new Response('forbidden origin', { status: 403 });
   }
 
-  // 2. Auth
+  console.log('[mcp] step 2: auth');
   let ctx;
   try {
     ctx = await resolveContextOrThrow(req);
@@ -31,8 +31,9 @@ async function dispatch(req: Request): Promise<Response> {
     }
     throw err;
   }
+  console.log('[mcp] step 2 done. token_id=', ctx.token_id);
 
-  // 3. Rate limit
+  console.log('[mcp] step 3: rate limit');
   try {
     enforceRateLimit(ctx.token_id);
   } catch (err) {
@@ -43,21 +44,26 @@ async function dispatch(req: Request): Promise<Response> {
     throw err;
   }
 
-  // 4. Bump last_used_at (await; ~20-50ms)
+  console.log('[mcp] step 4: bumpLastUsedAt');
   await bumpLastUsedAt(ctx);
+  console.log('[mcp] step 4 done.');
 
-  // 5. Per-request server with tools bound to ctx
+  console.log('[mcp] step 5: build server + register tools');
   const server = new McpServer(
     { name: 'map-practice-family', version: '1.0.0' },
     { capabilities: { tools: {} } },
   );
   registerTools(server, ctx);
 
+  console.log('[mcp] step 6: build transport + server.connect');
   const transport = new WebStandardStreamableHTTPServerTransport({
     sessionIdGenerator: () => randomUUID(),
   });
   await server.connect(transport);
-  return transport.handleRequest(req);
+  console.log('[mcp] step 7: transport.handleRequest');
+  const res = await transport.handleRequest(req);
+  console.log('[mcp] step 7 done. status=', res.status);
+  return res;
 }
 
 // @vercel/node passes Node IncomingMessage/ServerResponse, not a Web Request.
@@ -81,20 +87,26 @@ async function nodeToWebRequest(req: IncomingMessage): Promise<Request> {
 }
 
 async function writeWebResponseToNode(webRes: Response, nodeRes: ServerResponse): Promise<void> {
+  console.log('[mcp] write: status', webRes.status, 'has-body', !!webRes.body);
   nodeRes.statusCode = webRes.status;
   webRes.headers.forEach((value, key) => {
     nodeRes.setHeader(key, value);
   });
   if (!webRes.body) {
+    console.log('[mcp] write: no body, ending');
     nodeRes.end();
     return;
   }
+  console.log('[mcp] write: reading body stream');
   const reader = webRes.body.getReader();
+  let chunkCount = 0;
   while (true) {
     const { done, value } = await reader.read();
     if (done) break;
+    chunkCount++;
     nodeRes.write(value);
   }
+  console.log('[mcp] write: stream done after', chunkCount, 'chunks');
   nodeRes.end();
 }
 
