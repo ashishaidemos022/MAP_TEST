@@ -48,7 +48,7 @@ CREATE INDEX IF NOT EXISTS map_mcp_tokens_hash_idx
 CREATE TABLE IF NOT EXISTS public.map_mcp_audit (
   id            bigserial PRIMARY KEY,
   token_id      uuid REFERENCES public.map_mcp_tokens(id) ON DELETE SET NULL,
-  family_id     uuid,
+  family_id     uuid NOT NULL REFERENCES public.map_families(id) ON DELETE CASCADE,  -- denormalized; survives token revocation, cascades on family delete
   tool_name     text NOT NULL,
   tool_args     jsonb,
   status        text NOT NULL,
@@ -57,6 +57,24 @@ CREATE TABLE IF NOT EXISTS public.map_mcp_audit (
 );
 COMMENT ON TABLE public.map_mcp_audit IS
   'Append-only log of MCP tool calls. Args are redacted at write time; result payloads are never logged.';
+
+-- Idempotent ALTERs for instances where the table already existed without these constraints.
+-- Safe because the table is empty in any environment that has the prior shape.
+ALTER TABLE public.map_mcp_audit ALTER COLUMN family_id SET NOT NULL;
+
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE table_schema = 'public'
+      AND table_name = 'map_mcp_audit'
+      AND constraint_name = 'map_mcp_audit_family_id_fkey'
+  ) THEN
+    ALTER TABLE public.map_mcp_audit
+      ADD CONSTRAINT map_mcp_audit_family_id_fkey
+      FOREIGN KEY (family_id) REFERENCES public.map_families(id) ON DELETE CASCADE;
+  END IF;
+END $$;
 
 CREATE INDEX IF NOT EXISTS map_mcp_audit_family_idx
   ON public.map_mcp_audit (family_id, created_at DESC);
@@ -83,6 +101,7 @@ CREATE POLICY map_mcp_tokens_insert
   );
 
 DROP POLICY IF EXISTS map_mcp_tokens_update ON public.map_mcp_tokens;
+-- UPDATE permitted to support last_used_at writes; sensitive mutations go through SECURITY DEFINER RPCs.
 CREATE POLICY map_mcp_tokens_update
   ON public.map_mcp_tokens FOR UPDATE
   USING (family_id = public.map_current_family_id())
@@ -126,7 +145,10 @@ BEGIN
     RAISE EXCEPTION 'expires_days must be between 1 and 365';
   END IF;
 
-  IF char_length(coalesce(p_label, '')) NOT BETWEEN 1 AND 50 THEN
+  IF p_label IS NULL THEN
+    RAISE EXCEPTION 'label must not be null';
+  END IF;
+  IF char_length(p_label) NOT BETWEEN 1 AND 50 THEN
     RAISE EXCEPTION 'label must be 1-50 chars';
   END IF;
 
