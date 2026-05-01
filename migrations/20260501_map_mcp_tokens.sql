@@ -150,6 +150,7 @@ END
 $$;
 
 REVOKE EXECUTE ON FUNCTION public.map_create_mcp_token(text, int) FROM PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.map_create_mcp_token(text, int) FROM anon;
 GRANT EXECUTE ON FUNCTION public.map_create_mcp_token(text, int) TO authenticated;
 
 -- -------------------------------------------------------------------------
@@ -174,6 +175,7 @@ END
 $$;
 
 REVOKE EXECUTE ON FUNCTION public.map_revoke_mcp_token(uuid) FROM PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.map_revoke_mcp_token(uuid) FROM anon;
 GRANT EXECUTE ON FUNCTION public.map_revoke_mcp_token(uuid) TO authenticated;
 
 COMMIT;
