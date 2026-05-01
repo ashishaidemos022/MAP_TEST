@@ -1,0 +1,4802 @@
+[
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2B.vi",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which word has three syllables?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Ad-ven-ture has three syllables. The other words have one syllable.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "adventure",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "plain",
+        "is_correct": false,
+        "misconception": "Counted letters instead of spoken syllables.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "stream",
+        "is_correct": false,
+        "misconception": "Counted letters instead of spoken syllables.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "bright",
+        "is_correct": false,
+        "misconception": "Counted letters instead of spoken syllables.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2B.vi",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which division shows the syllables in careful?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Careful divides into care-ful. Each part has a vowel sound.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "caref-ul",
+        "is_correct": false,
+        "misconception": "Split the word without listening for vowel sounds.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "care-ful",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "ca-reful",
+        "is_correct": false,
+        "misconception": "Split the word without listening for vowel sounds.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "car-eful",
+        "is_correct": false,
+        "misconception": "Split the word without listening for vowel sounds.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2B.vi",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word has a final stable syllable?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The -ble ending in table is a final stable syllable.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "trail",
+        "is_correct": false,
+        "misconception": "Missed the final stable syllable pattern.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "team",
+        "is_correct": false,
+        "misconception": "Missed the final stable syllable pattern.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "table",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "tape",
+        "is_correct": false,
+        "misconception": "Missed the final stable syllable pattern.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2B.vi",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which syllable type is the first syllable in robot?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Ro is open because it ends with a vowel sound.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "closed syllable",
+        "is_correct": false,
+        "misconception": "Confused an open syllable with another syllable type.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "vowel team",
+        "is_correct": false,
+        "misconception": "Confused an open syllable with another syllable type.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "r-controlled",
+        "is_correct": false,
+        "misconception": "Confused an open syllable with another syllable type.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "open syllable",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.i",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which word is spelled correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Important is the correct spelling.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "important",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "importent",
+        "is_correct": false,
+        "misconception": "Chose a spelling that leaves out or changes a syllable.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "imporant",
+        "is_correct": false,
+        "misconception": "Chose a spelling that leaves out or changes a syllable.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "impartant",
+        "is_correct": false,
+        "misconception": "Chose a spelling that leaves out or changes a syllable.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word is spelled correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Different is spelled with diff-er-ent.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "differnt",
+        "is_correct": false,
+        "misconception": "Dropped a letter from a multisyllabic spelling pattern.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "different",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "diffrent",
+        "is_correct": false,
+        "misconception": "Dropped a letter from a multisyllabic spelling pattern.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "diferent",
+        "is_correct": false,
+        "misconception": "Dropped a letter from a multisyllabic spelling pattern.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word is spelled correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Favorite is the standard spelling.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "favorit",
+        "is_correct": false,
+        "misconception": "Used a common pronunciation-based misspelling.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "faverite",
+        "is_correct": false,
+        "misconception": "Used a common pronunciation-based misspelling.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "favorite",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "favrite",
+        "is_correct": false,
+        "misconception": "Used a common pronunciation-based misspelling.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.i",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence has the correctly spelled word?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Museum, exhibit, and interesting are all spelled correctly.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The museam exhibit was interesting.",
+        "is_correct": false,
+        "misconception": "Misspelled a multisyllabic word by sound.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The museum exzibit was interesting.",
+        "is_correct": false,
+        "misconception": "Misspelled a multisyllabic word by sound.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The museum exhibit was intresting.",
+        "is_correct": false,
+        "misconception": "Misspelled a multisyllabic word by sound.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The museum exhibit was interesting.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.ii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which word is formed correctly from hope + ful?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Hopeful keeps the e and adds -ful.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "hopeful",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "hopefull",
+        "is_correct": false,
+        "misconception": "Applied the wrong suffix spelling rule.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "hopful",
+        "is_correct": false,
+        "misconception": "Applied the wrong suffix spelling rule.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "hopeeful",
+        "is_correct": false,
+        "misconception": "Applied the wrong suffix spelling rule.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word is formed correctly from happy + ness?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Change y to i before adding -ness: happiness.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "hapiness",
+        "is_correct": false,
+        "misconception": "Forgot to change y to i before adding a suffix.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "happiness",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "happyness",
+        "is_correct": false,
+        "misconception": "Forgot to change y to i before adding a suffix.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "happyiness",
+        "is_correct": false,
+        "misconception": "Forgot to change y to i before adding a suffix.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word is formed correctly from stop + ing?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Double the final consonant before -ing: stopping.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "stoppping",
+        "is_correct": false,
+        "misconception": "Forgot or overused the doubling rule.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "stopening",
+        "is_correct": false,
+        "misconception": "Forgot or overused the doubling rule.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "stopping",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "stoping",
+        "is_correct": false,
+        "misconception": "Forgot or overused the doubling rule.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.ii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which word is formed correctly from create + ive?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Drop the final e before adding -ive: creative.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "createive",
+        "is_correct": false,
+        "misconception": "Did not drop the final e before a vowel suffix.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "creativ",
+        "is_correct": false,
+        "misconception": "Did not drop the final e before a vowel suffix.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "creatitive",
+        "is_correct": false,
+        "misconception": "Did not drop the final e before a vowel suffix.",
+        "misconception_tag": "spelling_pattern_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "creative",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.iii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Choose the correct word: ___ going to the library.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "They're means they are.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "They're",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Their",
+        "is_correct": false,
+        "misconception": "Confused homophones with the same sound.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "There",
+        "is_correct": false,
+        "misconception": "Confused homophones with the same sound.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Thair",
+        "is_correct": false,
+        "misconception": "Confused homophones with the same sound.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.iii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the correct word: Maya put ___ backpack by the door.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Her shows whose backpack it is.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "she",
+        "is_correct": false,
+        "misconception": "Chose a sound-alike or wrong pronoun.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "her",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "hear",
+        "is_correct": false,
+        "misconception": "Chose a sound-alike or wrong pronoun.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "here",
+        "is_correct": false,
+        "misconception": "Chose a sound-alike or wrong pronoun.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.iii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the correct word: We have ___ tickets for the show.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Two names the number.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "too",
+        "is_correct": false,
+        "misconception": "Confused to, too, and two.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "tow",
+        "is_correct": false,
+        "misconception": "Confused to, too, and two.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "two",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "to",
+        "is_correct": false,
+        "misconception": "Confused to, too, and two.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.2C.iii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Choose the correct word: The team won ___ game yesterday.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Its shows possession. It's means it is.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "it's",
+        "is_correct": false,
+        "misconception": "Confused possessive its with the contraction it's.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "its'",
+        "is_correct": false,
+        "misconception": "Confused possessive its with the contraction it's.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "it",
+        "is_correct": false,
+        "misconception": "Confused possessive its with the contraction it's.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "its",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.i",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which sentence is correct?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Plural dogs takes bark.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The dogs bark at the gate.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The dogs barks at the gate.",
+        "is_correct": false,
+        "misconception": "Matched the verb to the wrong number.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The dog bark at the gate.",
+        "is_correct": false,
+        "misconception": "Matched the verb to the wrong number.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The dogs is bark at the gate.",
+        "is_correct": false,
+        "misconception": "Matched the verb to the wrong number.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses correct subject-verb agreement?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Each is singular, so use has.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Each student are a notebook.",
+        "is_correct": false,
+        "misconception": "Treated each as plural.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Each student has a notebook.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Each student have a notebook.",
+        "is_correct": false,
+        "misconception": "Treated each as plural.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Each students has a notebook.",
+        "is_correct": false,
+        "misconception": "Treated each as plural.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence is correct?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Class is a collective noun used as one group, so use is.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The class visit the museum yesterday.",
+        "is_correct": false,
+        "misconception": "Treated a collective noun as plural.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The class were visiting the museum.",
+        "is_correct": false,
+        "misconception": "Treated a collective noun as plural.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The class is visiting the museum.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The class are visiting the museum.",
+        "is_correct": false,
+        "misconception": "Treated a collective noun as plural.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.i",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence is correct?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Neither is singular, so use is.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Neither of the answers are correct.",
+        "is_correct": false,
+        "misconception": "Matched the verb to answers instead of neither.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Neither of the answers be correct.",
+        "is_correct": false,
+        "misconception": "Matched the verb to answers instead of neither.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Neither of the answers were correct.",
+        "is_correct": false,
+        "misconception": "Matched the verb to answers instead of neither.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Neither of the answers is correct.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.i",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which revision fixes the agreement error?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The subject is list, which is singular, so use is.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The list of supplies is on the desk.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The list of supplies are on the desk.",
+        "is_correct": false,
+        "misconception": "Matched the verb to the object of the preposition.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The supplies of list is on the desk.",
+        "is_correct": false,
+        "misconception": "Matched the verb to the object of the preposition.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The list of supplies were on the desk.",
+        "is_correct": false,
+        "misconception": "Matched the verb to the object of the preposition.",
+        "misconception_tag": "subject_verb_agreement",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Choose the verb that completes the sentence: Yesterday, Liam ___ a poem.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Yesterday signals past tense, so wrote is correct.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "write",
+        "is_correct": false,
+        "misconception": "Used present or future tense with a past-time clue.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "wrote",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "writes",
+        "is_correct": false,
+        "misconception": "Used present or future tense with a past-time clue.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "will write",
+        "is_correct": false,
+        "misconception": "Used present or future tense with a past-time clue.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the verb: Tomorrow, Priya ___ her project.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Tomorrow signals future tense.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "has presented",
+        "is_correct": false,
+        "misconception": "Ignored the future-time clue.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "presents yesterday",
+        "is_correct": false,
+        "misconception": "Ignored the future-time clue.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "will present",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "presented",
+        "is_correct": false,
+        "misconception": "Ignored the future-time clue.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses present perfect tense?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Has finished is present perfect tense.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Ava finished the chapter.",
+        "is_correct": false,
+        "misconception": "Confused simple tense with perfect tense.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Ava will finish the chapter.",
+        "is_correct": false,
+        "misconception": "Confused simple tense with perfect tense.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Ava finishes the chapter.",
+        "is_correct": false,
+        "misconception": "Confused simple tense with perfect tense.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Ava has finished the chapter.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which revision keeps the tense consistent?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Packed and walked are both past tense.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Hana packed lunch and walked to school.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Hana packed lunch and walks to school.",
+        "is_correct": false,
+        "misconception": "Mixed verb tenses in one sentence.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Hana packs lunch and walked to school.",
+        "is_correct": false,
+        "misconception": "Mixed verb tenses in one sentence.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Hana will pack lunch and walked to school.",
+        "is_correct": false,
+        "misconception": "Mixed verb tenses in one sentence.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ii",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which sentence correctly uses past perfect?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Had stopped shows an action completed before a past time.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "By noon, the rain stops.",
+        "is_correct": false,
+        "misconception": "Used the wrong perfect tense.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "By noon, the rain had stopped.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "By noon, the rain has stopped.",
+        "is_correct": false,
+        "misconception": "Used the wrong perfect tense.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "By noon, the rain will stop.",
+        "is_correct": false,
+        "misconception": "Used the wrong perfect tense.",
+        "misconception_tag": "verb_tense_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which sentence uses a possessive noun correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Maya's shows the pencil belongs to Maya.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Maya pencil's rolled away.",
+        "is_correct": false,
+        "misconception": "Put the apostrophe in the wrong place.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Mayas' pencil rolled away.",
+        "is_correct": false,
+        "misconception": "Put the apostrophe in the wrong place.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Maya's pencil rolled away.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Mayas pencil rolled away.",
+        "is_correct": false,
+        "misconception": "Put the apostrophe in the wrong place.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the correct plural: The ___ flew over the pond.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Geese is the plural of goose.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "gooses",
+        "is_correct": false,
+        "misconception": "Used a regular plural for an irregular noun.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "goose",
+        "is_correct": false,
+        "misconception": "Used a regular plural for an irregular noun.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "geeses",
+        "is_correct": false,
+        "misconception": "Used a regular plural for an irregular noun.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "geese",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word is a proper noun?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Texas names a specific place, so it is proper.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Texas",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "river",
+        "is_correct": false,
+        "misconception": "Confused common and proper nouns.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "teacher",
+        "is_correct": false,
+        "misconception": "Confused common and proper nouns.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "museum",
+        "is_correct": false,
+        "misconception": "Confused common and proper nouns.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence uses a plural possessive correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Teachers' shows the lounge belongs to more than one teacher.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The teacher lounge's is quiet.",
+        "is_correct": false,
+        "misconception": "Confused singular and plural possessive forms.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The teachers' lounge is quiet.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The teacher's lounge are quiet.",
+        "is_correct": false,
+        "misconception": "Confused singular and plural possessive forms.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The teachers lounge is quiet.",
+        "is_correct": false,
+        "misconception": "Confused singular and plural possessive forms.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iii",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which revision fixes the noun error?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Children is already plural, so use children's.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The childrens' coats hung by the door.",
+        "is_correct": false,
+        "misconception": "Added plural possessive rules to an irregular plural incorrectly.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The childrenses coats hung by the door.",
+        "is_correct": false,
+        "misconception": "Added plural possessive rules to an irregular plural incorrectly.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The children's coats hung by the door.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The childrens coats hung by the door.",
+        "is_correct": false,
+        "misconception": "Added plural possessive rules to an irregular plural incorrectly.",
+        "misconception_tag": "plural_form_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iv",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Choose the correct article: Hana saw ___ owl in the tree.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Use an before a vowel sound.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "a",
+        "is_correct": false,
+        "misconception": "Chose the wrong article for the beginning sound.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "thee",
+        "is_correct": false,
+        "misconception": "Chose the wrong article for the beginning sound.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "some an",
+        "is_correct": false,
+        "misconception": "Chose the wrong article for the beginning sound.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "an",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iv",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses a comparative adjective correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Use steeper to compare two things.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "This trail is steeper than that one.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "This trail is steepest than that one.",
+        "is_correct": false,
+        "misconception": "Used a superlative or double comparison.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "This trail is more steeper than that one.",
+        "is_correct": false,
+        "misconception": "Used a superlative or double comparison.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "This trail is most steep than that one.",
+        "is_correct": false,
+        "misconception": "Used a superlative or double comparison.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iv",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the best adjective: The ___ answer explained every step.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Clear describes the noun answer.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "clearerly",
+        "is_correct": false,
+        "misconception": "Chose an adverb or noun form instead of an adjective.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "clear",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "clearly",
+        "is_correct": false,
+        "misconception": "Chose an adverb or noun form instead of an adjective.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "clearness",
+        "is_correct": false,
+        "misconception": "Chose an adverb or noun form instead of an adjective.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.iv",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence uses a superlative correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Brightest compares one poster with all the others.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Of all the posters, Zoe's is more brightest.",
+        "is_correct": false,
+        "misconception": "Used comparative form for more than two things.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Of all the posters, Zoe's is bright than.",
+        "is_correct": false,
+        "misconception": "Used comparative form for more than two things.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Of all the posters, Zoe's is the brightest.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Of all the posters, Zoe's is brighter.",
+        "is_correct": false,
+        "misconception": "Used comparative form for more than two things.",
+        "misconception_tag": "article_a_an_misuse",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.v",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which word is an adverb?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Quickly tells how an action is done.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "quick",
+        "is_correct": false,
+        "misconception": "Confused adjective and adverb forms.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "quicker",
+        "is_correct": false,
+        "misconception": "Confused adjective and adverb forms.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "quickness",
+        "is_correct": false,
+        "misconception": "Confused adjective and adverb forms.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "quickly",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.v",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the adverb: Imani ___ checks her work before turning it in.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Always tells how often Imani checks her work.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "always",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "bright",
+        "is_correct": false,
+        "misconception": "Chose a word that does not tell frequency.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "careful",
+        "is_correct": false,
+        "misconception": "Chose a word that does not tell frequency.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "silent",
+        "is_correct": false,
+        "misconception": "Chose a word that does not tell frequency.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.v",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses an adverb of manner?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Softly tells how Theo spoke.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Theo liked softness.",
+        "is_correct": false,
+        "misconception": "Confused an adjective or noun with an adverb.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Theo spoke softly to the kitten.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Theo held the soft kitten.",
+        "is_correct": false,
+        "misconception": "Confused an adjective or noun with an adverb.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Theo chose a softer blanket.",
+        "is_correct": false,
+        "misconception": "Confused an adjective or noun with an adverb.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.v",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which revision uses the adverb correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Carefully describes how he answered.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Aarav careful answered the question.",
+        "is_correct": false,
+        "misconception": "Placed or formed the adverb incorrectly.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Aarav answered the carefully question.",
+        "is_correct": false,
+        "misconception": "Placed or formed the adverb incorrectly.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Aarav answered the question carefully.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Aarav answered the question careful.",
+        "is_correct": false,
+        "misconception": "Placed or formed the adverb incorrectly.",
+        "misconception_tag": "part_of_speech_confusion",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vi",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Choose the preposition: The book is ___ the desk.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Under shows where the book is.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "quickly",
+        "is_correct": false,
+        "misconception": "Chose a word that is not a preposition.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "blue",
+        "is_correct": false,
+        "misconception": "Chose a word that is not a preposition.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "because",
+        "is_correct": false,
+        "misconception": "Chose a word that is not a preposition.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "under",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vi",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the phrase that tells where: Priya waited ___ the gym.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Beside the gym is a prepositional phrase telling where.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "beside",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "often",
+        "is_correct": false,
+        "misconception": "Confused an adverb or adjective with a prepositional phrase.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "carefully",
+        "is_correct": false,
+        "misconception": "Confused an adverb or adjective with a prepositional phrase.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "happy",
+        "is_correct": false,
+        "misconception": "Confused an adverb or adjective with a prepositional phrase.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vi",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses a prepositional phrase correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Inside the folder is a prepositional phrase.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The note blue the folder is mine.",
+        "is_correct": false,
+        "misconception": "Did not recognize a complete prepositional phrase.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The note inside the folder is mine.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The note carefully is mine.",
+        "is_correct": false,
+        "misconception": "Did not recognize a complete prepositional phrase.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The note because the folder is mine.",
+        "is_correct": false,
+        "misconception": "Did not recognize a complete prepositional phrase.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vi",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which phrase completes the sentence best? The trail curved ___ the river.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Along the river shows direction and location.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "without",
+        "is_correct": false,
+        "misconception": "Chose a preposition that does not fit the meaning.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "except",
+        "is_correct": false,
+        "misconception": "Chose a preposition that does not fit the meaning.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "along",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "during",
+        "is_correct": false,
+        "misconception": "Chose a preposition that does not fit the meaning.",
+        "misconception_tag": "preposition_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Choose the correct pronoun: Ava and I packed ___ lunches.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Our shows the lunches belong to Ava and me.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "us",
+        "is_correct": false,
+        "misconception": "Chose the wrong pronoun type.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "we",
+        "is_correct": false,
+        "misconception": "Chose the wrong pronoun type.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "ourselves",
+        "is_correct": false,
+        "misconception": "Chose the wrong pronoun type.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "our",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the correct pronoun: The teacher gave the forms to Maya and ___.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Use object pronoun me after to.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "me",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "I",
+        "is_correct": false,
+        "misconception": "Used a subject or reflexive pronoun as an object.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "myself",
+        "is_correct": false,
+        "misconception": "Used a subject or reflexive pronoun as an object.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "mine",
+        "is_correct": false,
+        "misconception": "Used a subject or reflexive pronoun as an object.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses a reflexive pronoun correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Himself is the correct reflexive pronoun.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Diego made the model his.",
+        "is_correct": false,
+        "misconception": "Used a nonstandard or wrong pronoun form.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Diego made the model himself.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Diego made the model hisself.",
+        "is_correct": false,
+        "misconception": "Used a nonstandard or wrong pronoun form.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Diego made the model him.",
+        "is_correct": false,
+        "misconception": "Used a nonstandard or wrong pronoun form.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which revision fixes the pronoun error?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "She is a subject pronoun.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Nia and hers will lead the game.",
+        "is_correct": false,
+        "misconception": "Used an object or reflexive pronoun as a subject.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Nia and herself will lead the game.",
+        "is_correct": false,
+        "misconception": "Used an object or reflexive pronoun as a subject.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Nia and she will lead the game.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Nia and her will lead the game.",
+        "is_correct": false,
+        "misconception": "Used an object or reflexive pronoun as a subject.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.vii",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Choose the sentence with a clear pronoun reference.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Repeating Zoe makes it clear who waved.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "When Zoe saw Hana, she waved.",
+        "is_correct": false,
+        "misconception": "Used an unclear pronoun reference.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Zoe saw Hana, and it waved.",
+        "is_correct": false,
+        "misconception": "Used an unclear pronoun reference.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "She saw Zoe when Hana waved.",
+        "is_correct": false,
+        "misconception": "Used an unclear pronoun reference.",
+        "misconception_tag": "pronoun_mismatch",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "When Zoe saw Hana, Zoe waved.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.viii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Choose the conjunction: I wanted to play, ___ it started raining.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "But connects contrasting ideas.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "but",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "under",
+        "is_correct": false,
+        "misconception": "Chose a word that does not connect clauses correctly.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "quickly",
+        "is_correct": false,
+        "misconception": "Chose a word that does not connect clauses correctly.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "because of",
+        "is_correct": false,
+        "misconception": "Chose a word that does not connect clauses correctly.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.viii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the best conjunction: We stayed inside ___ the storm passed.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Until shows when the staying ended.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "but",
+        "is_correct": false,
+        "misconception": "Chose a conjunction that changes the time relationship.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "until",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "and",
+        "is_correct": false,
+        "misconception": "Chose a conjunction that changes the time relationship.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "or",
+        "is_correct": false,
+        "misconception": "Chose a conjunction that changes the time relationship.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.viii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses a coordinating conjunction correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "And correctly joins two complete thoughts.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Maya packed a snack, under Liam filled the bottles.",
+        "is_correct": false,
+        "misconception": "Used the wrong conjunction for a compound sentence.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Maya packed a snack, although and Liam filled the bottles.",
+        "is_correct": false,
+        "misconception": "Used the wrong conjunction for a compound sentence.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Maya packed a snack, and Liam filled the bottles.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Maya packed a snack, because Liam filled the bottles.",
+        "is_correct": false,
+        "misconception": "Used the wrong conjunction for a compound sentence.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.viii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Choose the best subordinating conjunction: ___ it was late, we finished reading.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Although introduces a contrast in a dependent clause.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "And",
+        "is_correct": false,
+        "misconception": "Used a coordinating conjunction where a subordinating one is needed.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Or",
+        "is_correct": false,
+        "misconception": "Used a coordinating conjunction where a subordinating one is needed.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "But",
+        "is_correct": false,
+        "misconception": "Used a coordinating conjunction where a subordinating one is needed.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Although",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ix",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which sentence uses capitalization correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Texas Capitol is a proper noun and the sentence begins with a capital.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "We visited the Texas Capitol.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "We visited the texas Capitol.",
+        "is_correct": false,
+        "misconception": "Missed capitalization of a proper noun or sentence beginning.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "We visited the Texas capitol.",
+        "is_correct": false,
+        "misconception": "Missed capitalization of a proper noun or sentence beginning.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "we visited the Texas Capitol.",
+        "is_correct": false,
+        "misconception": "Missed capitalization of a proper noun or sentence beginning.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ix",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which title is capitalized correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Capitalize important words and proper nouns in a title.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The History Of The Alamo",
+        "is_correct": false,
+        "misconception": "Capitalized too much or too little.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The History of the Alamo",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "the History of the Alamo",
+        "is_correct": false,
+        "misconception": "Capitalized too much or too little.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The history of the alamo",
+        "is_correct": false,
+        "misconception": "Capitalized too much or too little.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ix",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the correct sentence.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Languages and names are capitalized.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Hana speaks English and spanish.",
+        "is_correct": false,
+        "misconception": "Did not capitalize languages or names.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "hana speaks English and Spanish.",
+        "is_correct": false,
+        "misconception": "Did not capitalize languages or names.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Hana speaks English and Spanish.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Hana speaks english and Spanish.",
+        "is_correct": false,
+        "misconception": "Did not capitalize languages or names.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ix",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence uses capitalization correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Historical documents and sentence beginnings need capitals.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The class read the declaration of Independence.",
+        "is_correct": false,
+        "misconception": "Missed capitalization in a historical document title.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The class read the Declaration of independence.",
+        "is_correct": false,
+        "misconception": "Missed capitalization in a historical document title.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "the class read the Declaration of Independence.",
+        "is_correct": false,
+        "misconception": "Missed capitalization in a historical document title.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The class read the Declaration of Independence.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.ix",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which revision fixes all capitalization errors?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Months and historical events are capitalized.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "In April, we studied the Battle of San Jacinto.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "In april, we studied the Battle of san Jacinto.",
+        "is_correct": false,
+        "misconception": "Did not capitalize a month or historical event.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "in April, we studied the battle of San Jacinto.",
+        "is_correct": false,
+        "misconception": "Did not capitalize a month or historical event.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "In April, we studied the battle of san jacinto.",
+        "is_correct": false,
+        "misconception": "Did not capitalize a month or historical event.",
+        "misconception_tag": "capitalization_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.x",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which sentence uses quotation marks correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Quotation marks go around the exact words spoken.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "\"Maya said, I found it.\"",
+        "is_correct": false,
+        "misconception": "Placed quotation marks incorrectly or omitted them.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Maya said, \"I found it.\"",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Maya said, I found it.",
+        "is_correct": false,
+        "misconception": "Placed quotation marks incorrectly or omitted them.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Maya said, \"I found it.",
+        "is_correct": false,
+        "misconception": "Placed quotation marks incorrectly or omitted them.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.x",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the sentence with commas in a series.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Commas separate items in a series.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "We packed pencils, paper and, markers.",
+        "is_correct": false,
+        "misconception": "Misplaced commas in a list.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "We packed, pencils paper and markers.",
+        "is_correct": false,
+        "misconception": "Misplaced commas in a list.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "We packed pencils, paper, and markers.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "We packed pencils paper, and markers.",
+        "is_correct": false,
+        "misconception": "Misplaced commas in a list.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.x",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses an apostrophe correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Girl's shows one girl owns the bike.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The girls bike is red.",
+        "is_correct": false,
+        "misconception": "Confused possessive apostrophe placement.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The girls's bike is red.",
+        "is_correct": false,
+        "misconception": "Confused possessive apostrophe placement.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The girl bike's is red.",
+        "is_correct": false,
+        "misconception": "Confused possessive apostrophe placement.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The girl's bike is red.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.x",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence is punctuated correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Use a comma before but when joining two complete thoughts.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "I wanted to stay, but the library closed.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "I wanted to stay but, the library closed.",
+        "is_correct": false,
+        "misconception": "Missed or misplaced the comma in a compound sentence.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "I wanted to stay but the library closed.",
+        "is_correct": false,
+        "misconception": "Missed or misplaced the comma in a compound sentence.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "I wanted, to stay but the library closed.",
+        "is_correct": false,
+        "misconception": "Missed or misplaced the comma in a compound sentence.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.x",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which dialogue sentence is correct?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Commas and quotation marks correctly divide the dialogue tag.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "\"Please wait,\" said Theo \"for the next bus\".",
+        "is_correct": false,
+        "misconception": "Misplaced punctuation around dialogue.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "\"Please wait,\" said Theo, \"for the next bus.\"",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "\"Please wait\" said Theo \"for the next bus.\"",
+        "is_correct": false,
+        "misconception": "Misplaced punctuation around dialogue.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Please wait,\" said Theo, \"for the next bus.\"",
+        "is_correct": false,
+        "misconception": "Misplaced punctuation around dialogue.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.x",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence uses commas correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "A comma follows the introductory phrase after lunch.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "After, lunch we visited the science lab.",
+        "is_correct": false,
+        "misconception": "Misplaced the comma after an introductory phrase.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "After lunch we visited, the science lab.",
+        "is_correct": false,
+        "misconception": "Misplaced the comma after an introductory phrase.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "After lunch, we visited the science lab.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "After lunch we, visited the science lab.",
+        "is_correct": false,
+        "misconception": "Misplaced the comma after an introductory phrase.",
+        "misconception_tag": "punctuation_rules",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.xi",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which word is spelled correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Because is the correct spelling.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "becuase",
+        "is_correct": false,
+        "misconception": "Did not recognize the high-frequency spelling.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "becase",
+        "is_correct": false,
+        "misconception": "Did not recognize the high-frequency spelling.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "beacuse",
+        "is_correct": false,
+        "misconception": "Did not recognize the high-frequency spelling.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "because",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.xi",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence has no spelling errors?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Their, favorite, and place are spelled correctly.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Their favorite place is the library.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Thier favorite place is the library.",
+        "is_correct": false,
+        "misconception": "Missed a common spelling error.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Their favrite place is the library.",
+        "is_correct": false,
+        "misconception": "Missed a common spelling error.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Their favorite plase is the library.",
+        "is_correct": false,
+        "misconception": "Missed a common spelling error.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.xi",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word is spelled correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Usually has two l letters.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "usuely",
+        "is_correct": false,
+        "misconception": "Chose a common misspelling of a frequent word.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "usually",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "usualy",
+        "is_correct": false,
+        "misconception": "Chose a common misspelling of a frequent word.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "useually",
+        "is_correct": false,
+        "misconception": "Chose a common misspelling of a frequent word.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11D.xi",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence is spelled correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Believe, answer, and correct are all spelled correctly.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "I believe the anser is correct.",
+        "is_correct": false,
+        "misconception": "Failed to spot the misspelled high-frequency word.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "I believe the answer is corect.",
+        "is_correct": false,
+        "misconception": "Failed to spot the misspelled high-frequency word.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "I believe the answer is correct.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "I beleive the answer is correct.",
+        "is_correct": false,
+        "misconception": "Failed to spot the misspelled high-frequency word.",
+        "misconception_tag": "spelling_recognition",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.i",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which combines the sentences best? Nia drew a map. Zoe labeled it.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Use comma and and to join two complete sentences.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Nia drew a map Zoe labeled it.",
+        "is_correct": false,
+        "misconception": "Created a run-on or fragment while combining.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Nia drew a map, Zoe labeled it.",
+        "is_correct": false,
+        "misconception": "Created a run-on or fragment while combining.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Nia drew a map and. Zoe labeled it.",
+        "is_correct": false,
+        "misconception": "Created a run-on or fragment while combining.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Nia drew a map, and Zoe labeled it.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which is the best compound sentence?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "But joins two complete contrasting ideas.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Aarav practiced the song, but he still felt nervous.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Aarav practiced the song but still nervous.",
+        "is_correct": false,
+        "misconception": "Combined sentences without a proper conjunction.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Aarav practiced the song, he still felt nervous.",
+        "is_correct": false,
+        "misconception": "Combined sentences without a proper conjunction.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "But Aarav practiced the song, he still felt nervous.",
+        "is_correct": false,
+        "misconception": "Combined sentences without a proper conjunction.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the best way to combine: The rain stopped. We went outside.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "So shows the result and joins the complete thoughts.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The rain stopped so. We went outside.",
+        "is_correct": false,
+        "misconception": "Made a comma splice or fragment.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The rain stopped, so we went outside.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The rain stopped we went outside.",
+        "is_correct": false,
+        "misconception": "Made a comma splice or fragment.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The rain stopped, we went outside.",
+        "is_correct": false,
+        "misconception": "Made a comma splice or fragment.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.i",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which sentence combines ideas without changing meaning?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "And correctly shows both actions happened.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Imani studied the chart, Theo wrote the summary.",
+        "is_correct": false,
+        "misconception": "Used punctuation or conjunction that changes the relationship.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Imani studied the chart, because Theo wrote the summary.",
+        "is_correct": false,
+        "misconception": "Used punctuation or conjunction that changes the relationship.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Imani studied the chart, and Theo wrote the summary.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Imani studied the chart Theo wrote the summary.",
+        "is_correct": false,
+        "misconception": "Used punctuation or conjunction that changes the relationship.",
+        "misconception_tag": "conjunction_use",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.ii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which is a complete sentence?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "A complete sentence has a subject and complete predicate.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Because the bus arrived early.",
+        "is_correct": false,
+        "misconception": "Chose a fragment.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The bus arriving early.",
+        "is_correct": false,
+        "misconception": "Chose a fragment.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "When the bus arrived early.",
+        "is_correct": false,
+        "misconception": "Chose a fragment.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The bus arrived early.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which revision fixes the run-on?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Use a comma and conjunction to join complete thoughts.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "We missed the turn, so we checked the map.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "We missed the turn we checked the map.",
+        "is_correct": false,
+        "misconception": "Left a run-on or comma splice.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "We missed the turn, we checked the map.",
+        "is_correct": false,
+        "misconception": "Left a run-on or comma splice.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "We missed, the turn we checked the map.",
+        "is_correct": false,
+        "misconception": "Left a run-on or comma splice.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which group of words is a fragment?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "After the game ended is incomplete by itself.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Families walked to their cars.",
+        "is_correct": false,
+        "misconception": "Did not notice the dependent word after.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "After the game ended.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The game ended late.",
+        "is_correct": false,
+        "misconception": "Did not notice the dependent word after.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "We packed the chairs.",
+        "is_correct": false,
+        "misconception": "Did not notice the dependent word after.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.ii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which revision makes the fragment complete?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Add an independent clause to complete the idea.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Because muddy trail we turned.",
+        "is_correct": false,
+        "misconception": "Left a dependent clause as a sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The trail because was muddy.",
+        "is_correct": false,
+        "misconception": "Left a dependent clause as a sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Because the trail was muddy, we turned back.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Because the trail was muddy.",
+        "is_correct": false,
+        "misconception": "Left a dependent clause as a sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.ii",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which sentence fixes the comma splice?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Use a conjunction after the comma to join two sentences.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The speaker finished, the audience clapped.",
+        "is_correct": false,
+        "misconception": "Used a comma splice or run-on.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The speaker finished the audience clapped.",
+        "is_correct": false,
+        "misconception": "Used a comma splice or run-on.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The speaker, finished the audience clapped.",
+        "is_correct": false,
+        "misconception": "Used a comma splice or run-on.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The speaker finished, and the audience clapped.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.iii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which is a complete simple sentence?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The sentence has a subject and predicate.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Diego carried the box.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Carried the box.",
+        "is_correct": false,
+        "misconception": "Chose an incomplete sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Diego carrying.",
+        "is_correct": false,
+        "misconception": "Chose an incomplete sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Because Diego carried.",
+        "is_correct": false,
+        "misconception": "Chose an incomplete sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.iii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which is a complete compound sentence?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Both sides of the conjunction are complete thoughts.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Maya read the poem Ava drew.",
+        "is_correct": false,
+        "misconception": "Chose a sentence missing a subject or predicate.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Maya read the poem, and Ava drew a picture.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Maya read the poem and Ava.",
+        "is_correct": false,
+        "misconception": "Chose a sentence missing a subject or predicate.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Maya read, and drew a picture.",
+        "is_correct": false,
+        "misconception": "Chose a sentence missing a subject or predicate.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.iii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence is complete and correct?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Both clauses are complete and agreement is correct.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The students quiet, but the hallway noisy.",
+        "is_correct": false,
+        "misconception": "Missed agreement or sentence completeness.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The students were quiet but.",
+        "is_correct": false,
+        "misconception": "Missed agreement or sentence completeness.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The students were quiet, but the hallway was noisy.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The students was quiet, but the hallway were noisy.",
+        "is_correct": false,
+        "misconception": "Missed agreement or sentence completeness.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.iii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which revision creates a complete sentence?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The revision adds a predicate to the subject.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The book on the table.",
+        "is_correct": false,
+        "misconception": "Mistook a phrase for a complete sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "On the table belongs to Theo.",
+        "is_correct": false,
+        "misconception": "Mistook a phrase for a complete sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The book, belongs, to Theo.",
+        "is_correct": false,
+        "misconception": "Mistook a phrase for a complete sentence.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The book on the table belongs to Theo.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11C.iii",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which sentence is complete and avoids a run-on?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "A comma and conjunction correctly join the two complete thoughts.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The hikers stopped, and the guide checked the map.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The hikers stopped the guide checked the map.",
+        "is_correct": false,
+        "misconception": "Created a run-on or comma splice.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The hikers stopped, the guide checked the map.",
+        "is_correct": false,
+        "misconception": "Created a run-on or comma splice.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The hikers, stopped and the guide, checked the map.",
+        "is_correct": false,
+        "misconception": "Created a run-on or comma splice.",
+        "misconception_tag": "sentence_completeness",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.i",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which sentence would make the best introduction?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "An introduction states the main idea.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "In conclusion, gardens are helpful.",
+        "is_correct": false,
+        "misconception": "Chose a detail or conclusion instead of an introduction.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "School gardens help students learn in many ways.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "That is why gardens are useful.",
+        "is_correct": false,
+        "misconception": "Chose a detail or conclusion instead of an introduction.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "First, water the plants.",
+        "is_correct": false,
+        "misconception": "Chose a detail or conclusion instead of an introduction.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which transition best begins a final paragraph?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "In conclusion signals the ending paragraph.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Next,",
+        "is_correct": false,
+        "misconception": "Chose a transition for a detail or sequence step.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "At first,",
+        "is_correct": false,
+        "misconception": "Chose a transition for a detail or sequence step.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "In conclusion,",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "For example,",
+        "is_correct": false,
+        "misconception": "Chose a transition for a detail or sequence step.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.i",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence belongs in a conclusion?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "A conclusion restates the main idea and wraps up reasons.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "One reason is that students need computers.",
+        "is_correct": false,
+        "misconception": "Chose a supporting detail instead of a closing idea.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "For example, Priya used the printer.",
+        "is_correct": false,
+        "misconception": "Chose a supporting detail instead of a closing idea.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The library opens at nine.",
+        "is_correct": false,
+        "misconception": "Chose a supporting detail instead of a closing idea.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "These reasons show why the library should stay open later.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.i",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which order is best for an essay?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "A clear essay begins, develops, and ends.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "introduction, reasons, conclusion",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "reasons, conclusion, introduction",
+        "is_correct": false,
+        "misconception": "Put essay parts in an illogical order.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "conclusion, introduction, reasons",
+        "is_correct": false,
+        "misconception": "Put essay parts in an illogical order.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "introduction, conclusion, reasons",
+        "is_correct": false,
+        "misconception": "Put essay parts in an illogical order.",
+        "misconception_tag": "sequence_wrong_step",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.ii",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which detail best supports: Exercise helps students focus?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The detail directly supports focus after exercise.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The hallway has lockers.",
+        "is_correct": false,
+        "misconception": "Picked an unrelated detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "After running, our class listened carefully.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "My shoes are blue.",
+        "is_correct": false,
+        "misconception": "Picked an unrelated detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Lunch was pizza.",
+        "is_correct": false,
+        "misconception": "Picked an unrelated detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which sentence adds the most specific detail?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Specific details name what, where, and how long.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "It was nice.",
+        "is_correct": false,
+        "misconception": "Chose a vague detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The thing happened outside.",
+        "is_correct": false,
+        "misconception": "Chose a vague detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The butterfly rested on a milkweed leaf for ten minutes.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The butterfly was there.",
+        "is_correct": false,
+        "misconception": "Chose a vague detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.ii",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which detail does not belong in a paragraph about recycling?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The cousin sentence is off topic.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "Glass bottles can be reused.",
+        "is_correct": false,
+        "misconception": "Did not identify the unrelated detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "Paper can be sorted into bins.",
+        "is_correct": false,
+        "misconception": "Did not identify the unrelated detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Recycling keeps some trash out of landfills.",
+        "is_correct": false,
+        "misconception": "Did not identify the unrelated detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "My cousin plays soccer after school.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.ii",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which revision develops the idea best?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The best revision explains why the aquifer matters.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The aquifer matters because cities use its water during dry months.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The aquifer matters a lot.",
+        "is_correct": false,
+        "misconception": "Chose a vague or underdeveloped detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Water is good.",
+        "is_correct": false,
+        "misconception": "Chose a vague or underdeveloped detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The aquifer is a thing underground.",
+        "is_correct": false,
+        "misconception": "Chose a vague or underdeveloped detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.11B.ii",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which detail best supports an essay about safe biking?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "The helmet detail directly supports the idea of safe biking.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The park has many trees.",
+        "is_correct": false,
+        "misconception": "Picked an interesting but weak or off-topic detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "A helmet can protect a rider during a fall.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "My bike is green and shiny.",
+        "is_correct": false,
+        "misconception": "Picked an interesting but weak or off-topic detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "I like riding after dinner.",
+        "is_correct": false,
+        "misconception": "Picked an interesting but weak or off-topic detail.",
+        "misconception_tag": "response_off_topic_or_vague",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3D",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which sentence uses right correctly?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Right can mean the opposite of left.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The right barked loudly.",
+        "is_correct": false,
+        "misconception": "Chose a sentence where the homograph meaning does not fit.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "She ate a right apple.",
+        "is_correct": false,
+        "misconception": "Chose a sentence where the homograph meaning does not fit.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "Turn right at the corner.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "I will right my bike to school.",
+        "is_correct": false,
+        "misconception": "Chose a sentence where the homograph meaning does not fit.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3D",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the meaning of bat in: The bat flew at dusk.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "At dusk and flew show bat means the animal.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "a wooden sports tool",
+        "is_correct": false,
+        "misconception": "Ignored context clues for a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "to blink",
+        "is_correct": false,
+        "misconception": "Ignored context clues for a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "a flat board",
+        "is_correct": false,
+        "misconception": "Ignored context clues for a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "a flying mammal",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3D",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Choose the correct word: Please ___ your name clearly.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Write means to form words.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "write",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "right",
+        "is_correct": false,
+        "misconception": "Confused homophones.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "rite",
+        "is_correct": false,
+        "misconception": "Confused homophones.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "wright",
+        "is_correct": false,
+        "misconception": "Confused homophones.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3D",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Choose the meaning of present: The present speaker is Dr. Lee.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Present describes the speaker who is here now.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "the past tense",
+        "is_correct": false,
+        "misconception": "Used the wrong meaning of a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "currently here",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "a gift",
+        "is_correct": false,
+        "misconception": "Used the wrong meaning of a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "to give formally",
+        "is_correct": false,
+        "misconception": "Used the wrong meaning of a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3D",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which sentence uses close as an adjective?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Close describes distance, so it is an adjective here.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "They close the store at six.",
+        "is_correct": false,
+        "misconception": "Confused verb and adjective meanings of a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "We will close the meeting now.",
+        "is_correct": false,
+        "misconception": "Confused verb and adjective meanings of a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The store is close to my house.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "Please close the door.",
+        "is_correct": false,
+        "misconception": "Confused verb and adjective meanings of a homograph.",
+        "misconception_tag": "vocab_skipped_context_clues",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3E",
+    "rit_band": "191_200",
+    "difficulty": "easy",
+    "stem": "Which word is the best synonym for happy?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Joyful has a similar meaning to happy.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "angry",
+        "is_correct": false,
+        "misconception": "Chose an antonym or unrelated word.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "tired",
+        "is_correct": false,
+        "misconception": "Chose an antonym or unrelated word.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "silent",
+        "is_correct": false,
+        "misconception": "Chose an antonym or unrelated word.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "joyful",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3E",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "Which word could replace tiny?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Small is a synonym for tiny.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "small",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "huge",
+        "is_correct": false,
+        "misconception": "Confused synonym with antonym or unrelated word.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "heavy",
+        "is_correct": false,
+        "misconception": "Confused synonym with antonym or unrelated word.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "late",
+        "is_correct": false,
+        "misconception": "Confused synonym with antonym or unrelated word.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3E",
+    "rit_band": "201_210",
+    "difficulty": "medium",
+    "stem": "A thesaurus would help you find ___.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "A thesaurus lists synonyms and related words.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "the capital of Texas",
+        "is_correct": false,
+        "misconception": "Confused a thesaurus with other reference tools.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "a stronger word for said",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "the page number of a chapter",
+        "is_correct": false,
+        "misconception": "Confused a thesaurus with other reference tools.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "the pronunciation of a word",
+        "is_correct": false,
+        "misconception": "Confused a thesaurus with other reference tools.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3E",
+    "rit_band": "211_220",
+    "difficulty": "hard",
+    "stem": "Which word best replaces walked in: Hana walked quietly into the room?",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Tiptoed gives a more exact quiet way of walking.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "shouted",
+        "is_correct": false,
+        "misconception": "Chose a word that changes the meaning.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "dropped",
+        "is_correct": false,
+        "misconception": "Chose a word that changes the meaning.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "tiptoed",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "sprinted",
+        "is_correct": false,
+        "misconception": "Chose a word that changes the meaning.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "subject": "language",
+    "grade": 4,
+    "teks_code": "4.3E",
+    "rit_band": "221_230",
+    "difficulty": "hard",
+    "stem": "Which replacement keeps the meaning but improves precision? The storm was big.",
+    "stem_image_svg": null,
+    "audio_supported": true,
+    "explanation": "Enormous is a more precise synonym for big.",
+    "source_note": "Original Grade 4 language usage seed: 2026-04-30",
+    "is_active": true,
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "The storm was tiny.",
+        "is_correct": false,
+        "misconception": "Chose an antonym or nonsensical replacement.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 1
+      },
+      {
+        "label": "B",
+        "body": "The storm was cheerful.",
+        "is_correct": false,
+        "misconception": "Chose an antonym or nonsensical replacement.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 2
+      },
+      {
+        "label": "C",
+        "body": "The storm was wooden.",
+        "is_correct": false,
+        "misconception": "Chose an antonym or nonsensical replacement.",
+        "misconception_tag": "confused_synonym_with_antonym",
+        "sort_order": 3
+      },
+      {
+        "label": "D",
+        "body": "The storm was enormous.",
+        "is_correct": true,
+        "misconception": null,
+        "misconception_tag": null,
+        "sort_order": 4
+      }
+    ]
+  }
+]

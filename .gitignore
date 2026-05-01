@@ -1,0 +1,16 @@
+node_modules
+dist
+.DS_Store
+
+# Env files — only .env.example is committed.
+.env
+.env.local
+.env.*.local
+.env.migration
+
+# Vite/TS build artifacts
+*.tsbuildinfo
+
+# Editor
+.vscode
+.idea

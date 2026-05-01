@@ -1,0 +1,8 @@
+<svg viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="160" fill="white"/>
+  <image href="../public/assets/dollarbill.jpg" x="20" y="38" width="175" height="75" preserveAspectRatio="xMidYMid meet"/>
+  <image href="../public/assets/quarter.jpeg" x="225" y="46" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
+  <image href="../public/assets/dime.jpg" x="300" y="50" width="48" height="48" preserveAspectRatio="xMidYMid meet"/>
+  <image href="../public/assets/nickel.webp" x="365" y="48" width="52" height="52" preserveAspectRatio="xMidYMid meet"/>
+  <image href="../public/assets/penny.jpg" x="435" y="52" width="44" height="44" preserveAspectRatio="xMidYMid meet"/>
+</svg>

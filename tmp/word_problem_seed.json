@@ -1,0 +1,4602 @@
+[
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "161_170",
+    "difficulty": "easy",
+    "stem": "Maya had 8 stickers, got 5, then used 3. How many?",
+    "stem_image_svg": null,
+    "explanation": "8 + 5 = 13. Then 13 - 3 = 10.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "10",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "161_170",
+    "difficulty": "easy",
+    "stem": "Ethan had 7 shells, got 6, then used 4. How many?",
+    "stem_image_svg": null,
+    "explanation": "7 + 6 = 13. Then 13 - 4 = 9.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "17",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "9",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "161_170",
+    "difficulty": "easy",
+    "stem": "Priya had 9 blocks, got 4, then used 5. How many?",
+    "stem_image_svg": null,
+    "explanation": "9 + 4 = 13. Then 13 - 5 = 8.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "161_170",
+    "difficulty": "easy",
+    "stem": "Liam had 6 cards, got 8, then used 2. How many?",
+    "stem_image_svg": null,
+    "explanation": "6 + 8 = 14. Then 14 - 2 = 12.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "12",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "14",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "11",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "161_170",
+    "difficulty": "easy",
+    "stem": "Ava had 10 crayons, got 3, then used 6. How many?",
+    "stem_image_svg": null,
+    "explanation": "10 + 3 = 13. Then 13 - 6 = 7.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "7",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "19",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Aarav had 5 marbles, got 9, then used 4. How many?",
+    "stem_image_svg": null,
+    "explanation": "5 + 9 = 14. Then 14 - 4 = 10.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "14",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "10",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Zoe had 11 beads, got 2, then used 5. How many?",
+    "stem_image_svg": null,
+    "explanation": "11 + 2 = 13. Then 13 - 5 = 8.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Mia had 4 books, got 8, then used 3. How many?",
+    "stem_image_svg": null,
+    "explanation": "4 + 8 = 12. Then 12 - 3 = 9.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "9",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "12",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Noah had 12 pencils, got 5, then used 7. How many?",
+    "stem_image_svg": null,
+    "explanation": "12 + 5 = 17. Then 17 - 7 = 10.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "17",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "10",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Leo had 6 stars, got 7, then used 5. How many?",
+    "stem_image_svg": null,
+    "explanation": "6 + 7 = 13. Then 13 - 5 = 8.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Isla had 3 stickers, got 9, then used 4. How many?",
+    "stem_image_svg": null,
+    "explanation": "3 + 9 = 12. Then 12 - 4 = 8.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "12",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Nina had 8 shells, got 6, then used 7. How many?",
+    "stem_image_svg": null,
+    "explanation": "8 + 6 = 14. Then 14 - 7 = 7.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "7",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "14",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "21",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Omar had 5 blocks, got 8, then used 6. How many?",
+    "stem_image_svg": null,
+    "explanation": "5 + 8 = 13. Then 13 - 6 = 7.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "7",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "19",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Riya had 9 cards, got 7, then used 4. How many?",
+    "stem_image_svg": null,
+    "explanation": "9 + 7 = 16. Then 16 - 4 = 12.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "20",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "12",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "11",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.3B",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Sam had 10 crayons, got 6, then used 8. How many?",
+    "stem_image_svg": null,
+    "explanation": "10 + 6 = 16. Then 16 - 8 = 8.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Aarav has 6 cards. How many more make 14?",
+    "stem_image_svg": null,
+    "explanation": "14 - 6 = 8. Aarav needs 8 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "C",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "20",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Zoe has 8 crayons. How many more make 17?",
+    "stem_image_svg": null,
+    "explanation": "17 - 8 = 9. Zoe needs 9 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "B",
+        "body": "9",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "25",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Mia has 9 marbles. How many more make 15?",
+    "stem_image_svg": null,
+    "explanation": "15 - 9 = 6. Mia needs 6 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "5",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "B",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "C",
+        "body": "6",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Noah has 7 beads. How many more make 16?",
+    "stem_image_svg": null,
+    "explanation": "16 - 7 = 9. Noah needs 9 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "B",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "C",
+        "body": "23",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "9",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Leo has 5 books. How many more make 13?",
+    "stem_image_svg": null,
+    "explanation": "13 - 5 = 8. Leo needs 8 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "C",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Isla has 11 pencils. How many more make 18?",
+    "stem_image_svg": null,
+    "explanation": "18 - 11 = 7. Isla needs 7 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "B",
+        "body": "7",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "29",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Nina has 4 stars. How many more make 12?",
+    "stem_image_svg": null,
+    "explanation": "12 - 4 = 8. Nina needs 8 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "B",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "C",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Omar has 10 stickers. How many more make 19?",
+    "stem_image_svg": null,
+    "explanation": "19 - 10 = 9. Omar needs 9 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "B",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "C",
+        "body": "29",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "9",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Riya has 3 shells. How many more make 11?",
+    "stem_image_svg": null,
+    "explanation": "11 - 3 = 8. Riya needs 8 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "C",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "14",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5F",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Sam has 6 blocks. How many more make 15?",
+    "stem_image_svg": null,
+    "explanation": "15 - 6 = 9. Sam needs 9 more.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "B",
+        "body": "9",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      },
+      {
+        "label": "D",
+        "body": "21",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Missed the inverse relationship in the story problem.",
+        "misconception_tag": "addition_subtraction_inverse_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Which sentence matches? Maya saw 7 birds. 5 flew away.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 7 - 5 = 2.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "7 + 5 = 12",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "5 - 2 = 3",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "7 - 5 = 2",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "7 + 2 = 9",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Which sentence matches? Ethan had 6 cars. He got 8 more.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 6 + 8 = 14.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8 - 6 = 2",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "6 + 6 = 12",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "14 - 8 = 6",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "6 + 8 = 14",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Which sentence matches? Priya read 9 pages, then 4 more.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 9 + 4 = 13.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "9 + 4 = 13",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "9 - 4 = 5",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "13 + 4 = 17",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "4 + 4 = 8",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Which sentence matches? Liam had 15 grapes. He ate 6.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 15 - 6 = 9.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "15 + 6 = 21",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "15 - 6 = 9",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "9 - 6 = 3",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "6 + 6 = 12",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Which sentence matches? Ava had 12 beads. She gave away 5.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 12 - 5 = 7.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "12 + 5 = 17",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "7 - 5 = 2",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "12 - 5 = 7",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "5 + 5 = 10",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Which sentence matches? Zoe found 8 rocks and 7 shells.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 8 + 7 = 15.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "8 - 7 = 1",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "15 - 8 = 7",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "7 + 7 = 14",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "8 + 7 = 15",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Which sentence matches? Mia had 16 cards. She lost 9.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 16 - 9 = 7.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "16 - 9 = 7",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "16 + 9 = 25",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "9 - 7 = 2",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "16 - 7 = 9",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Which sentence matches? Noah has 5 red and 6 blue blocks.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 5 + 6 = 11.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "6 - 5 = 1",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "5 + 6 = 11",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "5 + 5 = 10",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "11 - 6 = 5",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Which sentence matches? Leo had 18 pennies. He spent 8.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 18 - 8 = 10.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "18 + 8 = 26",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "10 - 8 = 2",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "18 - 8 = 10",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "8 + 8 = 16",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5D",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Which sentence matches? Isla has 3 books and gets 9 more.",
+    "stem_image_svg": null,
+    "explanation": "The story matches 3 + 9 = 12.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "9 - 3 = 6",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "B",
+        "body": "3 + 3 = 6",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "C",
+        "body": "12 - 9 = 3",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Chose a number sentence with the wrong operation or wrong total.",
+        "misconception_tag": "operation_swap_add_subtract"
+      },
+      {
+        "label": "D",
+        "body": "3 + 9 = 12",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5G",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Maya adds 6, 4, and 3. What is the sum?",
+    "stem_image_svg": null,
+    "explanation": "6 + 4 = 10. Then add 3 to get 13.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "12",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "B",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "C",
+        "body": "13",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5G",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Ethan adds 7, 3, and 5. What is the sum?",
+    "stem_image_svg": null,
+    "explanation": "7 + 3 = 10. Then add 5 to get 15.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "14",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "B",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "C",
+        "body": "17",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "D",
+        "body": "15",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5G",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Priya adds 8, 2, and 6. What is the sum?",
+    "stem_image_svg": null,
+    "explanation": "8 + 2 = 10. Then add 6 to get 16.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "16",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "C",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "D",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5G",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Liam adds 5, 5, and 4. What is the sum?",
+    "stem_image_svg": null,
+    "explanation": "5 + 5 = 10. Then add 4 to get 14.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "B",
+        "body": "14",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "D",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5G",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Ava adds 9, 1, and 7. What is the sum?",
+    "stem_image_svg": null,
+    "explanation": "9 + 1 = 10. Then add 7 to get 17.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "B",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      },
+      {
+        "label": "C",
+        "body": "17",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "19",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong operation or skipped one step.",
+        "misconception_tag": "make_a_ten_strategy_missed"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5C",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Isla has 34. What is 10 more?",
+    "stem_image_svg": null,
+    "explanation": "10 more changes the tens. The answer is 44.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "35",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "B",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "C",
+        "body": "54",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "D",
+        "body": "44",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5C",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Nina has 58. What is 10 less?",
+    "stem_image_svg": null,
+    "explanation": "10 less changes the tens. The answer is 48.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "48",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "57",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "C",
+        "body": "68",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "D",
+        "body": "58",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5C",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Omar has 76. What is 10 more?",
+    "stem_image_svg": null,
+    "explanation": "10 more changes the tens. The answer is 86.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "77",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "B",
+        "body": "86",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "66",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "D",
+        "body": "96",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5C",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Riya has 90. What is 10 less?",
+    "stem_image_svg": null,
+    "explanation": "10 less changes the tens. The answer is 80.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "89",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "B",
+        "body": "100",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "C",
+        "body": "80",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "90",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.5C",
+    "rit_band": "171_180",
+    "difficulty": "medium",
+    "stem": "Sam has 47. What is 10 more?",
+    "stem_image_svg": null,
+    "explanation": "10 more changes the tens. The answer is 57.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "48",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "B",
+        "body": "37",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "C",
+        "body": "67",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Changed tens instead of ones, or ones instead of tens.",
+        "misconception_tag": "place_value_misread_column"
+      },
+      {
+        "label": "D",
+        "body": "57",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.4C",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Priya has 2 dimes, 1 nickels, 1 pennies. How many cents?",
+    "stem_image_svg": null,
+    "explanation": "2 dimes, 1 nickels, and 1 pennies make 26 cents.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "26",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "31",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "25",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "4",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.4C",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Liam has 1 dimes, 2 nickels, 3 pennies. How many cents?",
+    "stem_image_svg": null,
+    "explanation": "1 dimes, 2 nickels, and 3 pennies make 23 cents.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "28",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "23",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "22",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.4C",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Ava has 3 dimes, 0 nickels, 2 pennies. How many cents?",
+    "stem_image_svg": null,
+    "explanation": "3 dimes, 0 nickels, and 2 pennies make 32 cents.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "37",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "31",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "32",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "5",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.4C",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Aarav has 0 dimes, 4 nickels, 5 pennies. How many cents?",
+    "stem_image_svg": null,
+    "explanation": "0 dimes, 4 nickels, and 5 pennies make 25 cents.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "30",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "25",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 1,
+    "subject": "math",
+    "teks": "1.4C",
+    "rit_band": "181_190",
+    "difficulty": "hard",
+    "stem": "Zoe has 1 dimes, 1 nickels, 4 pennies. How many cents?",
+    "stem_image_svg": null,
+    "explanation": "1 dimes, 1 nickels, and 4 pennies make 19 cents.",
+    "source_note": "Original Grade 1 complex word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "19",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Miscounted the coin values in the story.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Maya had 146 tickets, got 87 more, then used 54. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "146 + 87 = 233. Then 233 - 54 = 179.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "233",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "179",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "189",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "92",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Ethan had 238 tickets, got 126 more, then used 79. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "238 + 126 = 364. Then 364 - 79 = 285.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "364",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "B",
+        "body": "295",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "C",
+        "body": "285",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "159",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Priya had 315 tickets, got 204 more, then used 186. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "315 + 204 = 519. Then 519 - 186 = 333.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "519",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "343",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "C",
+        "body": "129",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "333",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Liam had 428 tickets, got 97 more, then used 265. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "428 + 97 = 525. Then 525 - 265 = 260.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "260",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "525",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "C",
+        "body": "270",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "D",
+        "body": "163",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Ava had 512 tickets, got 143 more, then used 298. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "512 + 143 = 655. Then 655 - 298 = 357.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "655",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "357",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "367",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "214",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Aarav had 275 tickets, got 166 more, then used 88. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "275 + 166 = 441. Then 441 - 88 = 353.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "441",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "B",
+        "body": "363",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "C",
+        "body": "353",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "187",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Zoe had 609 tickets, got 121 more, then used 344. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "609 + 121 = 730. Then 730 - 344 = 386.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "730",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "396",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "C",
+        "body": "265",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "386",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "Mia had 354 tickets, got 287 more, then used 198. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "354 + 287 = 641. Then 641 - 198 = 443.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "443",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "641",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "C",
+        "body": "453",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "D",
+        "body": "156",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Noah had 441 tickets, got 239 more, then used 375. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "441 + 239 = 680. Then 680 - 375 = 305.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "680",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "305",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "315",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "66",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Leo had 530 tickets, got 218 more, then used 406. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "530 + 218 = 748. Then 748 - 406 = 342.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "748",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "B",
+        "body": "352",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "C",
+        "body": "342",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "124",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Isla had 188 tickets, got 276 more, then used 145. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "188 + 276 = 464. Then 464 - 145 = 319.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "464",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "329",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "C",
+        "body": "43",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "319",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Nina had 367 tickets, got 154 more, then used 289. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "367 + 154 = 521. Then 521 - 289 = 232.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "232",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "521",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "C",
+        "body": "242",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "D",
+        "body": "78",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Omar had 492 tickets, got 306 more, then used 271. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "492 + 306 = 798. Then 798 - 271 = 527.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "798",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "527",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "537",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "221",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Riya had 621 tickets, got 135 more, then used 407. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "621 + 135 = 756. Then 756 - 407 = 349.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "756",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "B",
+        "body": "359",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      },
+      {
+        "label": "C",
+        "body": "349",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "214",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Made a regrouping error while subtracting.",
+        "misconception_tag": "regrouping_borrow_error"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.4C",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Sam had 254 tickets, got 398 more, then used 322. How many remain?",
+    "stem_image_svg": null,
+    "explanation": "254 + 398 = 652. Then 652 - 322 = 330.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "652",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "B",
+        "body": "340",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "C",
+        "body": "68",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Made a regrouping error while adding.",
+        "misconception_tag": "regrouping_forgot_carry"
+      },
+      {
+        "label": "D",
+        "body": "330",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Maya had $1.25 and got $0.75. After spending $1.60, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 125 + 75 = 200 cents. Subtract 160 cents to get 40 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "40",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "50",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "30",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "200",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Ethan had $3.00 and got $0.45. After spending $2.75, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 300 + 45 = 345 cents. Subtract 275 cents to get 70 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "80",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "70",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "60",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "345",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Priya had $2.25 and got $0.50. After spending $2.40, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 225 + 50 = 275 cents. Subtract 240 cents to get 35 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "45",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "25",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "35",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "275",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Liam had $4.10 and got $0.90. After spending $3.75, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 410 + 90 = 500 cents. Subtract 375 cents to get 125 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "135",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "115",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "500",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "125",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Ava had $1.80 and got $0.65. After spending $2.00, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 180 + 65 = 245 cents. Subtract 200 cents to get 45 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "45",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "55",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "35",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "245",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Aarav had $2.75 and got $1.25. After spending $3.50, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 275 + 125 = 400 cents. Subtract 350 cents to get 50 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "60",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "50",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "40",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "400",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Zoe had $0.95 and got $0.80. After spending $1.50, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 95 + 80 = 175 cents. Subtract 150 cents to get 25 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "35",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "25",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "175",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Mia had $5.00 and got $0.75. After spending $5.25, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 500 + 75 = 575 cents. Subtract 525 cents to get 50 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "60",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "40",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "575",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "50",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Noah had $2.60 and got $0.40. After spending $2.25, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 260 + 40 = 300 cents. Subtract 225 cents to get 75 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "75",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "85",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "C",
+        "body": "65",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "300",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.5B",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Leo had $1.50 and got $1.50. After spending $2.60, cents left?",
+    "stem_image_svg": null,
+    "explanation": "Add the money first: 150 + 150 = 300 cents. Subtract 260 cents to get 40 cents.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "50",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "B",
+        "body": "40",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "30",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      },
+      {
+        "label": "D",
+        "body": "300",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread money notation or coin values.",
+        "misconception_tag": "money_value_or_notation"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 12 cats and 8 dogs. 6 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 12 + 8 = 20. Then 20 - 6 = 14.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "20",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "14",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "4",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 15 cats and 9 dogs. 7 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 15 + 9 = 24. Then 24 - 7 = 17.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "D",
+        "body": "17",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 18 cats and 5 dogs. 11 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 18 + 5 = 23. Then 23 - 11 = 12.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "12",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "23",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "D",
+        "body": "14",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 20 cats and 12 dogs. 9 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 20 + 12 = 32. Then 32 - 9 = 23.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "32",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "23",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "24",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 17 cats and 13 dogs. 8 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 17 + 13 = 30. Then 30 - 8 = 22.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "30",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "23",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "22",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "4",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 22 cats and 6 dogs. 14 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 22 + 6 = 28. Then 28 - 14 = 14.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "28",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "D",
+        "body": "14",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 16 cats and 10 dogs. 9 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 16 + 10 = 26. Then 26 - 9 = 17.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "17",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "26",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "D",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 25 cats and 8 dogs. 12 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 25 + 8 = 33. Then 33 - 12 = 21.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "33",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "21",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "22",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "D",
+        "body": "17",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 19 cats and 7 dogs. 10 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 19 + 7 = 26. Then 26 - 10 = 16.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "26",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "17",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "16",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "12",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.10C",
+    "rit_band": "181_190",
+    "difficulty": "medium",
+    "stem": "A graph shows 24 cats and 11 dogs. 13 pets leave. How many stay?",
+    "stem_image_svg": null,
+    "explanation": "The graph total is 24 + 11 = 35. Then 35 - 13 = 22.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "35",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "B",
+        "body": "23",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "C",
+        "body": "13",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Used the wrong value from the data.",
+        "misconception_tag": "graph_or_table_misread"
+      },
+      {
+        "label": "D",
+        "body": "22",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.9G",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Practice starts at 8:25 and lasts 35 minutes. What time ends?",
+    "stem_image_svg": null,
+    "explanation": "Add 35 minutes to 8:25. The ending time is 9:00.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "9:00",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "8:00",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "C",
+        "body": "9:25",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "D",
+        "body": "10:00",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.9G",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Practice starts at 9:10 and lasts 50 minutes. What time ends?",
+    "stem_image_svg": null,
+    "explanation": "Add 50 minutes to 9:10. The ending time is 10:00.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "9:00",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "B",
+        "body": "10:00",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "10:10",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "D",
+        "body": "11:00",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.9G",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Practice starts at 10:15 and lasts 40 minutes. What time ends?",
+    "stem_image_svg": null,
+    "explanation": "Add 40 minutes to 10:15. The ending time is 10:55.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "10:55",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "B",
+        "body": "10:15",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "C",
+        "body": "10:55",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "11:55",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.9G",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Practice starts at 11:30 and lasts 20 minutes. What time ends?",
+    "stem_image_svg": null,
+    "explanation": "Add 20 minutes to 11:30. The ending time is 11:50.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "11:50",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "B",
+        "body": "11:30",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "C",
+        "body": "12:50",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "D",
+        "body": "11:50",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.9G",
+    "rit_band": "191_200",
+    "difficulty": "hard",
+    "stem": "Practice starts at 12:05 and lasts 55 minutes. What time ends?",
+    "stem_image_svg": null,
+    "explanation": "Add 55 minutes to 12:05. The ending time is 13:00.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "13:00",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "12:00",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "C",
+        "body": "13:05",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      },
+      {
+        "label": "D",
+        "body": "14:00",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Misread elapsed time or the minutes on the clock.",
+        "misconception_tag": "time_clock_reading"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6A",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Zoe made 4 bags with 5 beads each, then gave away 3. How many?",
+    "stem_image_svg": null,
+    "explanation": "4 groups of 5 is 20. Then 20 - 3 = 17.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "17",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "C",
+        "body": "20",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "19",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6A",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Mia made 3 bags with 6 beads each, then gave away 4. How many?",
+    "stem_image_svg": null,
+    "explanation": "3 groups of 6 is 18. Then 18 - 4 = 14.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "5",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "B",
+        "body": "14",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6A",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Noah made 5 bags with 4 beads each, then gave away 7. How many?",
+    "stem_image_svg": null,
+    "explanation": "5 groups of 4 is 20. Then 20 - 7 = 13.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "2",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "B",
+        "body": "20",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "C",
+        "body": "13",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6A",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Leo made 6 bags with 3 beads each, then gave away 5. How many?",
+    "stem_image_svg": null,
+    "explanation": "6 groups of 3 is 18. Then 18 - 5 = 13.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "4",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "B",
+        "body": "18",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "C",
+        "body": "15",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "13",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6A",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Isla made 2 bags with 8 beads each, then gave away 6. How many?",
+    "stem_image_svg": null,
+    "explanation": "2 groups of 8 is 16. Then 16 - 6 = 10.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "10",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "4",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "C",
+        "body": "16",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "12",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6B",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Isla shares 24 shells among 4 friends. Each finds 3 more. How many each?",
+    "stem_image_svg": null,
+    "explanation": "24 shared by 4 is 6 each. Then 6 + 3 = 9.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "B",
+        "body": "9",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "10",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "27",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6B",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Nina shares 30 shells among 5 friends. Each finds 4 more. How many each?",
+    "stem_image_svg": null,
+    "explanation": "30 shared by 5 is 6 each. Then 6 + 4 = 10.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "B",
+        "body": "11",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "C",
+        "body": "10",
+        "is_correct": true,
+        "sort_order": 3,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "D",
+        "body": "34",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6B",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Omar shares 18 shells among 3 friends. Each finds 2 more. How many each?",
+    "stem_image_svg": null,
+    "explanation": "18 shared by 3 is 6 each. Then 6 + 2 = 8.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "B",
+        "body": "9",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "C",
+        "body": "20",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "8",
+        "is_correct": true,
+        "sort_order": 4,
+        "misconception": null,
+        "misconception_tag": null
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6B",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Riya shares 36 shells among 6 friends. Each finds 5 more. How many each?",
+    "stem_image_svg": null,
+    "explanation": "36 shared by 6 is 6 each. Then 6 + 5 = 11.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "11",
+        "is_correct": true,
+        "sort_order": 1,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "B",
+        "body": "6",
+        "is_correct": false,
+        "sort_order": 2,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "C",
+        "body": "12",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "41",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  },
+  {
+    "grade": 2,
+    "subject": "math",
+    "teks": "2.6B",
+    "rit_band": "201_210",
+    "difficulty": "hard",
+    "stem": "Sam shares 28 shells among 4 friends. Each finds 6 more. How many each?",
+    "stem_image_svg": null,
+    "explanation": "28 shared by 4 is 7 each. Then 7 + 6 = 13.",
+    "source_note": "Original Grade 2 multi-step word problems seed: 2026-04-30",
+    "question_format": "mcq",
+    "choices": [
+      {
+        "label": "A",
+        "body": "7",
+        "is_correct": false,
+        "sort_order": 1,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "B",
+        "body": "13",
+        "is_correct": true,
+        "sort_order": 2,
+        "misconception": null,
+        "misconception_tag": null
+      },
+      {
+        "label": "C",
+        "body": "14",
+        "is_correct": false,
+        "sort_order": 3,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      },
+      {
+        "label": "D",
+        "body": "34",
+        "is_correct": false,
+        "sort_order": 4,
+        "misconception": "Counted groups or equal shares incorrectly.",
+        "misconception_tag": "equal_groups_or_array_count"
+      }
+    ]
+  }
+]

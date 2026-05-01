@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade 1 Math - 50 Question Fixed Preview</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5b6470;
+    --line: #d8dde3;
+    --soft: #f5f7fa;
+    --accent: #1f4e8a;
+    --correct: #1f7a3a;
+    --tag: #6b3a99;
+    --warn: #b8501f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--ink);
+    background: #fff;
+    line-height: 1.55;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 28px 80px;
+  }
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 14px; margin-bottom: 22px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); font-size: 14px; margin: 0; }
+  .banner {
+    margin: 18px 0 28px;
+    padding: 12px 16px;
+    background: #fff7e6;
+    border-left: 4px solid var(--warn);
+    font-size: 13.5px;
+    color: #4a3a1f;
+  }
+  .banner strong { color: var(--warn); }
+  nav.toc {
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+  nav.toc h3 { margin: 0 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+  nav.toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 28px; }
+  nav.toc a { color: var(--accent); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+  section.set {
+    margin-top: 36px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  section.set h2 {
+    font-size: 17px;
+    margin: 0 0 4px;
+    color: var(--accent);
+  }
+  section.set .meta {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 0 0 18px;
+    font-style: italic;
+  }
+  article.question {
+    margin: 22px 0 26px;
+    padding-left: 38px;
+    position: relative;
+  }
+  .qnum {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  .qmeta {
+    color: var(--muted);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 4px;
+  }
+  .stem { font-size: 15.5px; margin-bottom: 10px; }
+  .figure {
+    margin: 8px 0 12px;
+    padding: 8px;
+    background: var(--soft);
+    display: inline-block;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    max-width: 100%;
+  }
+  .figure img {
+    display: block;
+    max-width: min(100%, 560px);
+    min-width: 180px;
+    height: auto;
+  }
+  ol.choices {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0;
+  }
+  ol.choices li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+    font-size: 15px;
+  }
+  ol.choices li .lbl {
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+  #answer-key {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 3px double var(--ink);
+  }
+  #answer-key h2 { font-size: 20px; }
+  .ak {
+    margin: 12px 0;
+    padding: 10px 14px;
+    background: var(--soft);
+    border-left: 3px solid var(--correct);
+    font-size: 14px;
+  }
+  .ak .ak-num { font-weight: bold; color: var(--correct); margin-right: 6px; }
+  .ak .ak-letter { font-weight: bold; }
+  .ak .ak-explain { display: block; margin-top: 4px; color: #333; }
+  .ak .tags { display: block; margin-top: 4px; font-size: 12px; color: var(--tag); }
+  .ak .tags code {
+    background: #ede7f5;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11.5px;
+    margin-right: 4px;
+  }
+  @media print {
+    body { max-width: none; padding: 14px; font-size: 12px; }
+    nav.toc { break-after: page; }
+    section.set, article.question { break-inside: avoid-page; }
+    .banner { background: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Grade 1 Math - 50-Question Review Preview</h1>
+  <p class="subtitle">Original Grade 1 MAP-style math questions modeled on the supplied TestingMom Advanced and Proficient references. This is for review only; nothing here has been seeded.</p>
+</header>
+
+<div class="banner">
+  <strong>Review note:</strong> fixed rendering preview with separate local figure files. </div>
+
+<nav class="toc">
+  <h3>Question Sets</h3>
+  <ol>
+    <li><a href="#set-1">Number Sense &amp; Place Value</a> (Q1-10)</li>
+    <li><a href="#set-2">Addition, Subtraction &amp; Equations</a> (Q11-20)</li>
+    <li><a href="#set-3">Money</a> (Q21-25)</li>
+    <li><a href="#set-4">Geometry &amp; Fractions</a> (Q26-35)</li>
+    <li><a href="#set-5">Measurement &amp; Time</a> (Q36-43)</li>
+    <li><a href="#set-6">Data &amp; Mixed Review</a> (Q44-50)</li>
+    <li><a href="#answer-key">Answer Key &amp; Tags</a></li>
+  </ol>
+</nav>
+
+<main id="questions"><section class="set" id="set-1"><h2>Number Sense & Place Value</h2><p class="meta">TEKS 1.2A-1.2G / 1.5B-1.5C</p><article class="question" id="q1">
+    <span class="qnum">1.</span>
+    <div class="qmeta">TEKS 1.2A · RIT 161_170</div>
+    <div class="stem">How many dots are shown?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-01.svg" alt="Question figure 1"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 7</li><li><span class="lbl">B.</span> 8</li><li><span class="lbl">C.</span> 9</li><li><span class="lbl">D.</span> 10</li></ol>
+  </article><article class="question" id="q2">
+    <span class="qnum">2.</span>
+    <div class="qmeta">TEKS 1.2A · RIT 171_180</div>
+    <div class="stem">How many dots are shown?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-02.svg" alt="Question figure 2"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 12</li><li><span class="lbl">B.</span> 13</li><li><span class="lbl">C.</span> 14</li><li><span class="lbl">D.</span> 15</li></ol>
+  </article><article class="question" id="q3">
+    <span class="qnum">3.</span>
+    <div class="qmeta">TEKS 1.2C · RIT 171_180</div>
+    <div class="stem">What number is shown?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-03.svg" alt="Question figure 3"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 34</li><li><span class="lbl">B.</span> 43</li><li><span class="lbl">C.</span> 47</li><li><span class="lbl">D.</span> 40</li></ol>
+  </article><article class="question" id="q4">
+    <span class="qnum">4.</span>
+    <div class="qmeta">TEKS 1.2B · RIT 161_170</div>
+    <div class="stem">Five tens and six ones make what number?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-04.svg" alt="Question figure 4"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 56</li><li><span class="lbl">B.</span> 65</li><li><span class="lbl">C.</span> 11</li><li><span class="lbl">D.</span> 50</li></ol>
+  </article><article class="question" id="q5">
+    <span class="qnum">5.</span>
+    <div class="qmeta">TEKS 1.2F · RIT 171_180</div>
+    <div class="stem">What number is at the arrow?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-05.svg" alt="Question figure 5"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 25</li><li><span class="lbl">B.</span> 26</li><li><span class="lbl">C.</span> 27</li><li><span class="lbl">D.</span> 29</li></ol>
+  </article><article class="question" id="q6">
+    <span class="qnum">6.</span>
+    <div class="qmeta">TEKS 1.2G · RIT 171_180</div>
+    <div class="stem">Which symbol goes in the blank? 58 __ 85</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> &lt;</li><li><span class="lbl">B.</span> &gt;</li><li><span class="lbl">C.</span> =</li><li><span class="lbl">D.</span> +</li></ol>
+  </article><article class="question" id="q7">
+    <span class="qnum">7.</span>
+    <div class="qmeta">TEKS 1.2E · RIT 181_190</div>
+    <div class="stem">Which list is least to greatest?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 18, 42, 27, 9</li><li><span class="lbl">B.</span> 9, 18, 27, 42</li><li><span class="lbl">C.</span> 42, 27, 18, 9</li><li><span class="lbl">D.</span> 9, 27, 18, 42</li></ol>
+  </article><article class="question" id="q8">
+    <span class="qnum">8.</span>
+    <div class="qmeta">TEKS 1.5C · RIT 171_180</div>
+    <div class="stem">What is 10 more than 47?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 37</li><li><span class="lbl">B.</span> 48</li><li><span class="lbl">C.</span> 57</li><li><span class="lbl">D.</span> 67</li></ol>
+  </article><article class="question" id="q9">
+    <span class="qnum">9.</span>
+    <div class="qmeta">TEKS 1.5C · RIT 181_190</div>
+    <div class="stem">What is 10 less than 90?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 80</li><li><span class="lbl">B.</span> 89</li><li><span class="lbl">C.</span> 100</li><li><span class="lbl">D.</span> 70</li></ol>
+  </article><article class="question" id="q10">
+    <span class="qnum">10.</span>
+    <div class="qmeta">TEKS 1.5B · RIT 161_170</div>
+    <div class="stem">What is the missing number? 20, 30, __, 50</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 31</li><li><span class="lbl">B.</span> 35</li><li><span class="lbl">C.</span> 40</li><li><span class="lbl">D.</span> 60</li></ol>
+  </article></section><section class="set" id="set-2"><h2>Addition, Subtraction & Equations</h2><p class="meta">TEKS 1.3A-1.3F / 1.5D-1.5G</p><article class="question" id="q11">
+    <span class="qnum">11.</span>
+    <div class="qmeta">TEKS 1.3D · RIT 171_180</div>
+    <div class="stem">What is 8 + 5?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-06.svg" alt="Question figure 6"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 12</li><li><span class="lbl">B.</span> 13</li><li><span class="lbl">C.</span> 14</li><li><span class="lbl">D.</span> 15</li></ol>
+  </article><article class="question" id="q12">
+    <span class="qnum">12.</span>
+    <div class="qmeta">TEKS 1.3D · RIT 171_180</div>
+    <div class="stem">What is 17 - 9?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 6</li><li><span class="lbl">B.</span> 7</li><li><span class="lbl">C.</span> 8</li><li><span class="lbl">D.</span> 9</li></ol>
+  </article><article class="question" id="q13">
+    <span class="qnum">13.</span>
+    <div class="qmeta">TEKS 1.3B · RIT 161_170</div>
+    <div class="stem">Zoe has 9 shells. She finds 6 more. How many?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 13</li><li><span class="lbl">B.</span> 14</li><li><span class="lbl">C.</span> 15</li><li><span class="lbl">D.</span> 16</li></ol>
+  </article><article class="question" id="q14">
+    <span class="qnum">14.</span>
+    <div class="qmeta">TEKS 1.3B · RIT 161_170</div>
+    <div class="stem">Liam has 18 blocks. He uses 7. How many are left?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 10</li><li><span class="lbl">B.</span> 11</li><li><span class="lbl">C.</span> 12</li><li><span class="lbl">D.</span> 25</li></ol>
+  </article><article class="question" id="q15">
+    <span class="qnum">15.</span>
+    <div class="qmeta">TEKS 1.5G · RIT 171_180</div>
+    <div class="stem">Add. 6 + 4 + 3 = __</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 10</li><li><span class="lbl">B.</span> 12</li><li><span class="lbl">C.</span> 13</li><li><span class="lbl">D.</span> 14</li></ol>
+  </article><article class="question" id="q16">
+    <span class="qnum">16.</span>
+    <div class="qmeta">TEKS 1.5F · RIT 171_180</div>
+    <div class="stem">What number makes this true? 12 = 7 + __</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 4</li><li><span class="lbl">B.</span> 5</li><li><span class="lbl">C.</span> 6</li><li><span class="lbl">D.</span> 19</li></ol>
+  </article><article class="question" id="q17">
+    <span class="qnum">17.</span>
+    <div class="qmeta">TEKS 1.5E · RIT 181_190</div>
+    <div class="stem">What number makes this true? 9 + 3 = 10 + __</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 1</li><li><span class="lbl">B.</span> 2</li><li><span class="lbl">C.</span> 3</li><li><span class="lbl">D.</span> 12</li></ol>
+  </article><article class="question" id="q18">
+    <span class="qnum">18.</span>
+    <div class="qmeta">TEKS 1.3F · RIT 181_190</div>
+    <div class="stem">Which sentence matches the number line?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-07.svg" alt="Question figure 7"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 5 + 4 + 3 = 12</li><li><span class="lbl">B.</span> 5 + 3 = 8</li><li><span class="lbl">C.</span> 12 - 4 = 8</li><li><span class="lbl">D.</span> 4 + 3 = 7</li></ol>
+  </article><article class="question" id="q19">
+    <span class="qnum">19.</span>
+    <div class="qmeta">TEKS 1.5F · RIT 181_190</div>
+    <div class="stem">What number makes this true? 43 + __ = 50</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 5</li><li><span class="lbl">B.</span> 6</li><li><span class="lbl">C.</span> 7</li><li><span class="lbl">D.</span> 17</li></ol>
+  </article><article class="question" id="q20">
+    <span class="qnum">20.</span>
+    <div class="qmeta">TEKS 1.5D · RIT 171_180</div>
+    <div class="stem">Ava had 16 apples. She ate 6. Which sentence matches?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 16 + 6 = 22</li><li><span class="lbl">B.</span> 16 - 6 = 10</li><li><span class="lbl">C.</span> 10 - 6 = 4</li><li><span class="lbl">D.</span> 6 + 6 = 12</li></ol>
+  </article></section><section class="set" id="set-3"><h2>Money</h2><p class="meta">TEKS 1.4A-1.4C</p><article class="question" id="q21">
+    <span class="qnum">21.</span>
+    <div class="qmeta">TEKS 1.4B · RIT below_161</div>
+    <div class="stem">What is this coin worth?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-08.svg" alt="Question figure 8"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 1 cent</li><li><span class="lbl">B.</span> 5 cents</li><li><span class="lbl">C.</span> 10 cents</li><li><span class="lbl">D.</span> 25 cents</li></ol>
+  </article><article class="question" id="q22">
+    <span class="qnum">22.</span>
+    <div class="qmeta">TEKS 1.4C · RIT 171_180</div>
+    <div class="stem">How much money is shown?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-09.svg" alt="Question figure 9"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 35 cents</li><li><span class="lbl">B.</span> 40 cents</li><li><span class="lbl">C.</span> 45 cents</li><li><span class="lbl">D.</span> 30 cents</li></ol>
+  </article><article class="question" id="q23">
+    <span class="qnum">23.</span>
+    <div class="qmeta">TEKS 1.4A · RIT below_161</div>
+    <div class="stem">Which coin has the least value?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-10.svg" alt="Question figure 10"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> C</li><li><span class="lbl">D.</span> D</li></ol>
+  </article><article class="question" id="q24">
+    <span class="qnum">24.</span>
+    <div class="qmeta">TEKS 1.4C · RIT 161_170</div>
+    <div class="stem">How much are three nickels worth?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-11.svg" alt="Question figure 11"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 10 cents</li><li><span class="lbl">B.</span> 15 cents</li><li><span class="lbl">C.</span> 20 cents</li><li><span class="lbl">D.</span> 30 cents</li></ol>
+  </article><article class="question" id="q25">
+    <span class="qnum">25.</span>
+    <div class="qmeta">TEKS 1.4C · RIT 181_190</div>
+    <div class="stem">The toy costs 55 cents. Is there enough money?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-12.svg" alt="Question figure 12"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> Yes, 60 cents</li><li><span class="lbl">B.</span> Yes, 50 cents</li><li><span class="lbl">C.</span> No, 45 cents</li><li><span class="lbl">D.</span> No, 55 cents</li></ol>
+  </article></section><section class="set" id="set-4"><h2>Geometry & Fractions</h2><p class="meta">TEKS 1.6A-1.6H</p><article class="question" id="q26">
+    <span class="qnum">26.</span>
+    <div class="qmeta">TEKS 1.6D · RIT 161_170</div>
+    <div class="stem">Which shape has 6 sides?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-13.svg" alt="Question figure 13"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> C</li><li><span class="lbl">D.</span> D</li></ol>
+  </article><article class="question" id="q27">
+    <span class="qnum">27.</span>
+    <div class="qmeta">TEKS 1.6E · RIT 161_170</div>
+    <div class="stem">Which solid is a cube?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-14.svg" alt="Question figure 14"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> C</li><li><span class="lbl">D.</span> D</li></ol>
+  </article><article class="question" id="q28">
+    <span class="qnum">28.</span>
+    <div class="qmeta">TEKS 1.6E · RIT 171_180</div>
+    <div class="stem">Which solid can roll and stack?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-15.svg" alt="Question figure 15"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> C</li><li><span class="lbl">D.</span> D</li></ol>
+  </article><article class="question" id="q29">
+    <span class="qnum">29.</span>
+    <div class="qmeta">TEKS 1.6G · RIT 161_170</div>
+    <div class="stem">What fraction is shaded?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-16.svg" alt="Question figure 16"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> one half</li><li><span class="lbl">B.</span> one fourth</li><li><span class="lbl">C.</span> two wholes</li><li><span class="lbl">D.</span> four halves</li></ol>
+  </article><article class="question" id="q30">
+    <span class="qnum">30.</span>
+    <div class="qmeta">TEKS 1.6H · RIT 171_180</div>
+    <div class="stem">Which shape shows fourths?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-17.svg" alt="Question figure 17"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> C</li><li><span class="lbl">D.</span> D</li></ol>
+  </article><article class="question" id="q31">
+    <span class="qnum">31.</span>
+    <div class="qmeta">TEKS 1.6G · RIT 171_180</div>
+    <div class="stem">What fraction is shaded?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-18.svg" alt="Question figure 18"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> one half</li><li><span class="lbl">B.</span> one fourth</li><li><span class="lbl">C.</span> three fourths</li><li><span class="lbl">D.</span> one whole</li></ol>
+  </article><article class="question" id="q32">
+    <span class="qnum">32.</span>
+    <div class="qmeta">TEKS 1.6B · RIT 181_190</div>
+    <div class="stem">Which attribute tells a triangle from a circle?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> color</li><li><span class="lbl">B.</span> size</li><li><span class="lbl">C.</span> three sides</li><li><span class="lbl">D.</span> where it sits</li></ol>
+  </article><article class="question" id="q33">
+    <span class="qnum">33.</span>
+    <div class="qmeta">TEKS 1.6A · RIT 161_170</div>
+    <div class="stem">Which group has only rectangles?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-19.svg" alt="Question figure 19"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> C</li><li><span class="lbl">D.</span> D</li></ol>
+  </article><article class="question" id="q34">
+    <span class="qnum">34.</span>
+    <div class="qmeta">TEKS 1.6F · RIT 181_190</div>
+    <div class="stem">Which two shapes can make a rectangle?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-20.svg" alt="Question figure 20"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> both</li><li><span class="lbl">D.</span> neither</li></ol>
+  </article><article class="question" id="q35">
+    <span class="qnum">35.</span>
+    <div class="qmeta">TEKS 1.6D · RIT below_161</div>
+    <div class="stem">What is the name of this shape?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-21.svg" alt="Question figure 21"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> circle</li><li><span class="lbl">B.</span> triangle</li><li><span class="lbl">C.</span> rectangle</li><li><span class="lbl">D.</span> hexagon</li></ol>
+  </article></section><section class="set" id="set-5"><h2>Measurement & Time</h2><p class="meta">TEKS 1.7A-1.7E</p><article class="question" id="q36">
+    <span class="qnum">36.</span>
+    <div class="qmeta">TEKS 1.7A · RIT 171_180</div>
+    <div class="stem">How long is the pencil?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-22.svg" alt="Question figure 22"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 4 inches</li><li><span class="lbl">B.</span> 5 inches</li><li><span class="lbl">C.</span> 6 inches</li><li><span class="lbl">D.</span> 7 inches</li></ol>
+  </article><article class="question" id="q37">
+    <span class="qnum">37.</span>
+    <div class="qmeta">TEKS 1.7D · RIT 161_170</div>
+    <div class="stem">How long is the cucumber?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-23.svg" alt="Question figure 23"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 5 inches</li><li><span class="lbl">B.</span> 6 inches</li><li><span class="lbl">C.</span> 7 inches</li><li><span class="lbl">D.</span> 8 inches</li></ol>
+  </article><article class="question" id="q38">
+    <span class="qnum">38.</span>
+    <div class="qmeta">TEKS 1.7B · RIT 161_170</div>
+    <div class="stem">How many paper clips long is the crayon?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-24.svg" alt="Question figure 24"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 5</li><li><span class="lbl">B.</span> 6</li><li><span class="lbl">C.</span> 7</li><li><span class="lbl">D.</span> 8</li></ol>
+  </article><article class="question" id="q39">
+    <span class="qnum">39.</span>
+    <div class="qmeta">TEKS 1.7C · RIT 181_190</div>
+    <div class="stem">Which unit count should be larger?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> small cubes</li><li><span class="lbl">B.</span> long sticks</li><li><span class="lbl">C.</span> both same</li><li><span class="lbl">D.</span> neither</li></ol>
+  </article><article class="question" id="q40">
+    <span class="qnum">40.</span>
+    <div class="qmeta">TEKS 1.7E · RIT 161_170</div>
+    <div class="stem">What time does the clock show?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-25.svg" alt="Question figure 25"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 3:00</li><li><span class="lbl">B.</span> 12:03</li><li><span class="lbl">C.</span> 3:30</li><li><span class="lbl">D.</span> 6:00</li></ol>
+  </article><article class="question" id="q41">
+    <span class="qnum">41.</span>
+    <div class="qmeta">TEKS 1.7E · RIT 171_180</div>
+    <div class="stem">What time does the clock show?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-26.svg" alt="Question figure 26"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 10:00</li><li><span class="lbl">B.</span> 10:30</li><li><span class="lbl">C.</span> 6:10</li><li><span class="lbl">D.</span> 11:30</li></ol>
+  </article><article class="question" id="q42">
+    <span class="qnum">42.</span>
+    <div class="qmeta">TEKS 1.7E · RIT 181_190</div>
+    <div class="stem">It is 8:00. What time is 3 hours later?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-27.svg" alt="Question figure 27"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 10:00</li><li><span class="lbl">B.</span> 11:00</li><li><span class="lbl">C.</span> 12:00</li><li><span class="lbl">D.</span> 5:00</li></ol>
+  </article><article class="question" id="q43">
+    <span class="qnum">43.</span>
+    <div class="qmeta">TEKS 1.7E · RIT 181_190</div>
+    <div class="stem">It is 6:30. What time was 1 hour before?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-28.svg" alt="Question figure 28"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 5:30</li><li><span class="lbl">B.</span> 6:00</li><li><span class="lbl">C.</span> 7:30</li><li><span class="lbl">D.</span> 5:00</li></ol>
+  </article></section><section class="set" id="set-6"><h2>Data & Mixed Review</h2><p class="meta">TEKS 1.8A-1.8C plus review</p><article class="question" id="q44">
+    <span class="qnum">44.</span>
+    <div class="qmeta">TEKS 1.8C · RIT 171_180</div>
+    <div class="stem">Which snack got the fewest votes?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-29.svg" alt="Question figure 29"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> Fruit</li><li><span class="lbl">B.</span> Crackers</li><li><span class="lbl">C.</span> Cheese</li><li><span class="lbl">D.</span> Fruit and cheese</li></ol>
+  </article><article class="question" id="q45">
+    <span class="qnum">45.</span>
+    <div class="qmeta">TEKS 1.8C · RIT 181_190</div>
+    <div class="stem">How many more chose fruit than crackers?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-30.svg" alt="Question figure 30"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 2</li><li><span class="lbl">B.</span> 3</li><li><span class="lbl">C.</span> 4</li><li><span class="lbl">D.</span> 11</li></ol>
+  </article><article class="question" id="q46">
+    <span class="qnum">46.</span>
+    <div class="qmeta">TEKS 1.8A · RIT 161_170</div>
+    <div class="stem">Which color has 6 dots?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-31.svg" alt="Question figure 31"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> red</li><li><span class="lbl">B.</span> blue</li><li><span class="lbl">C.</span> green</li><li><span class="lbl">D.</span> yellow</li></ol>
+  </article><article class="question" id="q47">
+    <span class="qnum">47.</span>
+    <div class="qmeta">TEKS 1.8C · RIT 171_180</div>
+    <div class="stem">How many dots are in all?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-32.svg" alt="Question figure 32"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 10</li><li><span class="lbl">B.</span> 11</li><li><span class="lbl">C.</span> 13</li><li><span class="lbl">D.</span> 15</li></ol>
+  </article><article class="question" id="q48">
+    <span class="qnum">48.</span>
+    <div class="qmeta">TEKS 1.8A · RIT 161_170</div>
+    <div class="stem">Which group has 8 things?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-33.svg" alt="Question figure 33"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> A</li><li><span class="lbl">B.</span> B</li><li><span class="lbl">C.</span> C</li><li><span class="lbl">D.</span> D</li></ol>
+  </article><article class="question" id="q49">
+    <span class="qnum">49.</span>
+    <div class="qmeta">TEKS 1.3A · RIT 171_180</div>
+    <div class="stem">What is 50 + 7?</div>
+    <div class="figure"><img src="grade1-math-50-preview-assets/figure-34.svg" alt="Question figure 34"></div>
+    <ol class="choices"><li><span class="lbl">A.</span> 57</li><li><span class="lbl">B.</span> 75</li><li><span class="lbl">C.</span> 50</li><li><span class="lbl">D.</span> 67</li></ol>
+  </article><article class="question" id="q50">
+    <span class="qnum">50.</span>
+    <div class="qmeta">TEKS 1.3B · RIT 181_190</div>
+    <div class="stem">Priya has 14 cards. Maya has 8. How many more?</div>
+    
+    <ol class="choices"><li><span class="lbl">A.</span> 4</li><li><span class="lbl">B.</span> 5</li><li><span class="lbl">C.</span> 6</li><li><span class="lbl">D.</span> 22</li></ol>
+  </article></section></main><section id="answer-key"><h2>Answer Key &amp; Misconception Tags</h2><div class="ak">
+    <span class="ak-num">1.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">There are 5 dots on the top row and 3 more. 5 + 3 = 8.</span>
+    <span class="tags"><code>off_by_one_count</code></span>
+  </div><div class="ak">
+    <span class="ak-num">2.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">One full ten-frame is 10. The second frame has 4 dots. 10 + 4 = 14.</span>
+    <span class="tags"><code>cardinality_count_to_total</code><code>teen_number_reversal</code></span>
+  </div><div class="ak">
+    <span class="ak-num">3.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">There are 4 tens and 3 ones. That makes 43.</span>
+    <span class="tags"><code>place_value_misread_column</code><code>place_value_concatenated_digits</code></span>
+  </div><div class="ak">
+    <span class="ak-num">4.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">Five tens is 50. Add 6 ones to get 56.</span>
+    <span class="tags"><code>place_value_misread_column</code></span>
+  </div><div class="ak">
+    <span class="ak-num">5.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">The arrow points to the tick labeled 26.</span>
+    <span class="tags"><code>number_line_position</code></span>
+  </div><div class="ak">
+    <span class="ak-num">6.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">58 is less than 85, so the correct symbol is <.</span>
+    <span class="tags"><code>comparison_ordering_misread</code></span>
+  </div><div class="ak">
+    <span class="ak-num">7.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Least to greatest means smallest to largest: 9, 18, 27, 42.</span>
+    <span class="tags"><code>comparison_ordering_misread</code></span>
+  </div><div class="ak">
+    <span class="ak-num">8.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">10 more adds one ten. 47 becomes 57.</span>
+    <span class="tags"><code>place_value_misread_column</code></span>
+  </div><div class="ak">
+    <span class="ak-num">9.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">10 less takes away one ten. 90 becomes 80.</span>
+    <span class="tags"><code>place_value_misread_column</code></span>
+  </div><div class="ak">
+    <span class="ak-num">10.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">The pattern counts by tens: 20, 30, 40, 50.</span>
+    <span class="tags"><code>skip_count_wrong_amount</code></span>
+  </div><div class="ak">
+    <span class="ak-num">11.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Make 10: 8 needs 2 from the 5. Then 10 + 3 = 13.</span>
+    <span class="tags"><code>make_a_ten_strategy_missed</code></span>
+  </div><div class="ak">
+    <span class="ak-num">12.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">17 - 7 = 10, and 2 more makes 9. 10 - 2 = 8.</span>
+    <span class="tags"><code>make_a_ten_strategy_missed</code><code>off_by_one_count</code></span>
+  </div><div class="ak">
+    <span class="ak-num">13.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">This is joining. 9 + 6 = 15.</span>
+    <span class="tags"><code>operation_swap_add_subtract</code><code>off_by_one_count</code></span>
+  </div><div class="ak">
+    <span class="ak-num">14.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">This is separating. 18 - 7 = 11.</span>
+    <span class="tags"><code>operation_swap_add_subtract</code></span>
+  </div><div class="ak">
+    <span class="ak-num">15.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">Add 6 + 4 first to make 10. Then 10 + 3 = 13.</span>
+    <span class="tags"><code>make_a_ten_strategy_missed</code></span>
+  </div><div class="ak">
+    <span class="ak-num">16.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">7 needs 5 more to make 12.</span>
+    <span class="tags"><code>addition_subtraction_inverse_missed</code></span>
+  </div><div class="ak">
+    <span class="ak-num">17.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">9 + 3 = 12. So 10 + 2 also equals 12.</span>
+    <span class="tags"><code>addition_subtraction_inverse_missed</code><code>make_a_ten_strategy_missed</code></span>
+  </div><div class="ak">
+    <span class="ak-num">18.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">The jumps start at 5, then add 4, then add 3. The total is 12.</span>
+    <span class="tags"><code>number_line_position</code><code>operation_swap_add_subtract</code></span>
+  </div><div class="ak">
+    <span class="ak-num">19.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">Count from 43 to 50: 44, 45, 46, 47, 48, 49, 50. That is 7.</span>
+    <span class="tags"><code>addition_subtraction_inverse_missed</code></span>
+  </div><div class="ak">
+    <span class="ak-num">20.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Eating apples means subtracting. 16 - 6 = 10.</span>
+    <span class="tags"><code>operation_swap_add_subtract</code></span>
+  </div><div class="ak">
+    <span class="ak-num">21.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">The coin shown is a dime. A dime is worth 10 cents.</span>
+    <span class="tags"><code>money_value_or_notation</code></span>
+  </div><div class="ak">
+    <span class="ak-num">22.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">A quarter is 25 cents, a dime is 10, and a nickel is 5. 25 + 10 + 5 = 40.</span>
+    <span class="tags"><code>money_value_or_notation</code></span>
+  </div><div class="ak">
+    <span class="ak-num">23.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">The penny has the least value. It is worth 1 cent.</span>
+    <span class="tags"><code>money_value_or_notation</code></span>
+  </div><div class="ak">
+    <span class="ak-num">24.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Each nickel is 5 cents. 5, 10, 15 means three nickels are 15 cents.</span>
+    <span class="tags"><code>money_value_or_notation</code><code>skip_count_wrong_amount</code></span>
+  </div><div class="ak">
+    <span class="ak-num">25.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">The money shown is 25 + 25 + 10 = 60 cents. 60 cents is enough for 55 cents.</span>
+    <span class="tags"><code>money_value_or_notation</code><code>comparison_ordering_misread</code></span>
+  </div><div class="ak">
+    <span class="ak-num">26.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">Shape C is a hexagon. A hexagon has 6 sides.</span>
+    <span class="tags"><code>shape_attribute_partial_match</code></span>
+  </div><div class="ak">
+    <span class="ak-num">27.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">Shape A is a cube. It has flat square faces.</span>
+    <span class="tags"><code>shape_attribute_partial_match</code></span>
+  </div><div class="ak">
+    <span class="ak-num">28.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">A cylinder can roll on its curved side and stack on its flat faces.</span>
+    <span class="tags"><code>shape_attribute_partial_match</code></span>
+  </div><div class="ak">
+    <span class="ak-num">29.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">The rectangle has 2 equal parts, and 1 part is shaded. That is one half.</span>
+    <span class="tags"><code>fraction_equal_parts_or_size</code></span>
+  </div><div class="ak">
+    <span class="ak-num">30.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Fourths are 4 equal parts. Shape B has 4 equal parts.</span>
+    <span class="tags"><code>fraction_equal_parts_or_size</code></span>
+  </div><div class="ak">
+    <span class="ak-num">31.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">The shape has 4 equal parts. One part is shaded, so it is one fourth.</span>
+    <span class="tags"><code>fraction_equal_parts_or_size</code></span>
+  </div><div class="ak">
+    <span class="ak-num">32.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">A triangle is defined by having three sides. Color and size can change.</span>
+    <span class="tags"><code>shape_attribute_partial_match</code></span>
+  </div><div class="ak">
+    <span class="ak-num">33.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Group B has two rectangles. The other groups include a circle or triangle.</span>
+    <span class="tags"><code>shape_attribute_partial_match</code></span>
+  </div><div class="ak">
+    <span class="ak-num">34.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">The two triangles in A join along the slanted side to make a rectangle.</span>
+    <span class="tags"><code>shape_attribute_partial_match</code></span>
+  </div><div class="ak">
+    <span class="ak-num">35.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">A circle is round and has no straight sides.</span>
+    <span class="tags"><code>shape_attribute_partial_match</code></span>
+  </div><div class="ak">
+    <span class="ak-num">36.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">The pencil starts at 0 and ends at 6 on the ruler. It is 6 inches long.</span>
+    <span class="tags"><code>measurement_unit_size</code></span>
+  </div><div class="ak">
+    <span class="ak-num">37.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">The cucumber reaches about the 7-inch mark.</span>
+    <span class="tags"><code>measurement_unit_size</code></span>
+  </div><div class="ak">
+    <span class="ak-num">38.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Six same-size paper clips fit end to end under the crayon.</span>
+    <span class="tags"><code>measurement_unit_size</code><code>off_by_one_count</code></span>
+  </div><div class="ak">
+    <span class="ak-num">39.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">Smaller units take more pieces to measure the same object.</span>
+    <span class="tags"><code>measurement_unit_size</code></span>
+  </div><div class="ak">
+    <span class="ak-num">40.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">The short hand points to 3. The long hand points to 12, so it is 3:00.</span>
+    <span class="tags"><code>time_clock_reading</code></span>
+  </div><div class="ak">
+    <span class="ak-num">41.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">The long hand points to 6, which means 30 minutes. The hour hand is between 10 and 11.</span>
+    <span class="tags"><code>time_clock_reading</code></span>
+  </div><div class="ak">
+    <span class="ak-num">42.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Count 3 hours after 8:00: 9:00, 10:00, 11:00.</span>
+    <span class="tags"><code>time_clock_reading</code><code>off_by_one_count</code></span>
+  </div><div class="ak">
+    <span class="ak-num">43.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">One hour before 6:30 is 5:30.</span>
+    <span class="tags"><code>time_clock_reading</code></span>
+  </div><div class="ak">
+    <span class="ak-num">44.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">The crackers bar is the shortest. It shows 4 votes.</span>
+    <span class="tags"><code>graph_or_table_misread</code></span>
+  </div><div class="ak">
+    <span class="ak-num">45.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Fruit has 7 votes and crackers has 4. 7 - 4 = 3.</span>
+    <span class="tags"><code>graph_or_table_misread</code><code>operation_swap_add_subtract</code></span>
+  </div><div class="ak">
+    <span class="ak-num">46.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">The blue row has 6 dots.</span>
+    <span class="tags"><code>graph_or_table_misread</code><code>cardinality_count_to_total</code></span>
+  </div><div class="ak">
+    <span class="ak-num">47.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">Red has 4, blue has 6, and green has 3. 4 + 6 + 3 = 13.</span>
+    <span class="tags"><code>graph_or_table_misread</code><code>make_a_ten_strategy_missed</code></span>
+  </div><div class="ak">
+    <span class="ak-num">48.</span>
+    <span class="ak-letter">B</span>
+    <span class="ak-explain">Group B has 8 squares.</span>
+    <span class="tags"><code>cardinality_count_to_total</code><code>off_by_one_count</code></span>
+  </div><div class="ak">
+    <span class="ak-num">49.</span>
+    <span class="ak-letter">A</span>
+    <span class="ak-explain">50 is 5 tens. Add 7 ones to get 57.</span>
+    <span class="tags"><code>place_value_misread_column</code><code>place_value_concatenated_digits</code></span>
+  </div><div class="ak">
+    <span class="ak-num">50.</span>
+    <span class="ak-letter">C</span>
+    <span class="ak-explain">Compare by subtracting. 14 - 8 = 6, so Priya has 6 more cards.</span>
+    <span class="tags"><code>operation_swap_add_subtract</code><code>addition_subtraction_inverse_missed</code></span>
+  </div></section>
+</body>
+</html>

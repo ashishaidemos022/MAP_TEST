@@ -1,0 +1,6 @@
+<svg viewBox="0 0 360 160" xmlns="http://www.w3.org/2000/svg">
+    <text x="20" y="36" font-family="sans-serif" font-size="17">Red</text><text x="20" y="78" font-family="sans-serif" font-size="17">Blue</text><text x="20" y="120" font-family="sans-serif" font-size="17">Green</text>
+    <circle cx="95" cy="30" r="12" fill="#dc2626"/><circle cx="131" cy="30" r="12" fill="#dc2626"/><circle cx="167" cy="30" r="12" fill="#dc2626"/><circle cx="203" cy="30" r="12" fill="#dc2626"/>
+    <circle cx="95" cy="72" r="12" fill="#2563eb"/><circle cx="131" cy="72" r="12" fill="#2563eb"/><circle cx="167" cy="72" r="12" fill="#2563eb"/><circle cx="203" cy="72" r="12" fill="#2563eb"/><circle cx="239" cy="72" r="12" fill="#2563eb"/><circle cx="275" cy="72" r="12" fill="#2563eb"/>
+    <circle cx="95" cy="114" r="12" fill="#16a34a"/><circle cx="131" cy="114" r="12" fill="#16a34a"/><circle cx="167" cy="114" r="12" fill="#16a34a"/>
+  </svg>

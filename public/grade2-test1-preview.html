@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grade 2 Test 1 — Question Drafts (Preview Before Seeding)</title>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 2rem auto; padding: 1rem 2rem; color: #1f2937; line-height: 1.5; background: #f9fafb; }
+  h1 { color: #4338ca; border-bottom: 3px solid #4338ca; padding-bottom: 0.5em; }
+  .preamble { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1em 1.5em; border-radius: 6px; margin-bottom: 2em; }
+  h2.group { font-size: 1.4em; color: #4338ca; margin-top: 2.5em; padding: 0.6em 0.9em; background: #e0e7ff; border-radius: 8px; }
+  .question { border: 1px solid #d1d5db; border-radius: 12px; padding: 1.4em 1.6em; margin: 1em 0 1.5em; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .qhead { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; margin-bottom: 0.6em; }
+  .qnum { font-size: 1.2em; font-weight: 700; color: #4338ca; }
+  .skill { background: #ddd6fe; color: #5b21b6; padding: 0.2em 0.7em; border-radius: 999px; font-size: 0.78em; font-weight: 600; }
+  .stem { font-size: 1.1em; margin: 0.7em 0; font-weight: 500; }
+  .figure { background: #fafafa; border: 1px dashed #d1d5db; padding: 0.8em; border-radius: 8px; margin: 0.8em 0; text-align: center; }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4em; margin-top: 0.8em; }
+  .choice { padding: 0.55em 0.9em; border: 1px solid #e5e7eb; border-radius: 6px; background: #f9fafb; font-size: 0.95em; }
+  .choice.correct { background: #d1fae5; border-color: #10b981; font-weight: 600; }
+  .choice.correct::before { content: "✓ "; color: #059669; }
+  .explainer { font-size: 0.85em; color: #6b7280; margin-top: 0.5em; padding: 0.5em 0.8em; background: #f3f4f6; border-radius: 4px; }
+  svg { max-width: 100%; }
+</style>
+</head>
+<body>
+
+<h1>Grade 2 Test 1 — Question Drafts</h1>
+<div class="preamble">
+  <strong>Review these before seeding.</strong> 30+ original questions covering the skill domains from Test 1 Advanced + Proficient. Each visual figure shows the exact SVG that will be stored in <code>stem_image_svg</code>. Mark up issues, then I'll insert into the Grade 2 catalog with <code>map_questions</code> rows.
+  <br><br>
+  Skill labels = TEKS code I'll seed against. Correct answer is highlighted green with ✓.
+</div>
+
+<!-- =============== NUMBER SENSE =============== -->
+<h2 class="group">Number Sense — Place Value, Rounding, Patterns</h2>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">1</span><span class="skill">2.7.B  Skip count</span></div>
+  <div class="stem">Skip count by 25. Fill in the blank: <strong>50, 75, ___, 125, 150</strong></div>
+  <div class="choices">
+    <div class="choice correct">A) 100</div>
+    <div class="choice">B) 110</div>
+    <div class="choice">C) 90</div>
+    <div class="choice">D) 95</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">2</span><span class="skill">2.2.D  Round to 10</span></div>
+  <div class="stem">Round 367 to the nearest 10.</div>
+  <div class="choices">
+    <div class="choice">A) 360</div>
+    <div class="choice correct">B) 370</div>
+    <div class="choice">C) 400</div>
+    <div class="choice">D) 367</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">3</span><span class="skill">2.2.D  Round + compare</span></div>
+  <div class="stem">Maya rounds 256 to the nearest 10. Liam rounds 263 to the nearest 10. Are the rounded numbers the same?</div>
+  <div class="choices">
+    <div class="choice correct">A) Yes — both round to 260</div>
+    <div class="choice">B) No — Maya's is bigger</div>
+    <div class="choice">C) No — Liam's is bigger</div>
+    <div class="choice">D) Cannot tell</div>
+  </div>
+  <div class="explainer">256 → 260 (5 rounds up). 263 → 260 (3 rounds down). Both equal 260.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">4</span><span class="skill">2.2.D  Round to 100</span></div>
+  <div class="stem">Round 549 to the nearest 100.</div>
+  <div class="choices">
+    <div class="choice">A) 500</div>
+    <div class="choice correct">B) 600</div>
+    <div class="choice">C) 540</div>
+    <div class="choice">D) 549</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">5</span><span class="skill">2.2.D  Compare</span></div>
+  <div class="stem">Compare: 632 ___ 620 + 12</div>
+  <div class="choices">
+    <div class="choice">A) Greater than (&gt;)</div>
+    <div class="choice">B) Less than (&lt;)</div>
+    <div class="choice correct">C) Equal to (=)</div>
+    <div class="choice">D) Cannot tell</div>
+  </div>
+  <div class="explainer">620 + 12 = 632. So 632 = 632.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">6</span><span class="skill">2.2.B  Expanded form</span></div>
+  <div class="stem">What number does 700 + 30 + 5 represent?</div>
+  <div class="choices">
+    <div class="choice correct">A) 735</div>
+    <div class="choice">B) 7305</div>
+    <div class="choice">C) 7035</div>
+    <div class="choice">D) 753</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">7</span><span class="skill">2.2.B  Expanded form (fill blank)</span></div>
+  <div class="stem">Fill the blank: 5 × 100 + ___ × 10 + 4 × 1 = 564</div>
+  <div class="choices">
+    <div class="choice">A) 5</div>
+    <div class="choice correct">B) 6</div>
+    <div class="choice">C) 60</div>
+    <div class="choice">D) 4</div>
+  </div>
+  <div class="explainer">500 + 60 + 4 = 564. The tens digit is 6.</div>
+</div>
+
+<!-- =============== MONEY =============== -->
+<h2 class="group">Money — Count and Word Problems</h2>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">8</span><span class="skill">2.5.A  Count money</span></div>
+  <div class="stem">How much money is shown?</div>
+  <div class="figure">
+    <svg viewBox="0 0 540 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width:540px;width:100%">
+      <image xlink:href="/assets/dollarbill.jpg" href="/assets/dollarbill.jpg" x="0" y="0" width="160" height="80"/>
+      <image xlink:href="/assets/dollarbill.jpg" href="/assets/dollarbill.jpg" x="170" y="0" width="160" height="80"/>
+      <image xlink:href="/assets/quarter.jpeg" href="/assets/quarter.jpeg" x="345" y="0" width="60" height="60"/>
+      <image xlink:href="/assets/quarter.jpeg" href="/assets/quarter.jpeg" x="410" y="0" width="60" height="60"/>
+      <image xlink:href="/assets/dime.jpg" href="/assets/dime.jpg" x="475" y="0" width="60" height="60"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) $2.60</div>
+    <div class="choice">B) $2.50</div>
+    <div class="choice">C) $2.75</div>
+    <div class="choice">D) $2.35</div>
+  </div>
+  <div class="explainer">$1 + $1 + 25¢ + 25¢ + 10¢ = $2.60</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">9</span><span class="skill">2.5.A  Count money — bills only</span></div>
+  <div class="stem">How much money is shown?</div>
+  <div class="figure">
+    <svg viewBox="0 0 510 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width:510px;width:100%">
+      <image xlink:href="/assets/five_dollar_bill.jpg" href="/assets/five_dollar_bill.jpg" x="0" y="0" width="160" height="80"/>
+      <image xlink:href="/assets/dollarbill.jpg" href="/assets/dollarbill.jpg" x="175" y="0" width="160" height="80"/>
+      <image xlink:href="/assets/dollarbill.jpg" href="/assets/dollarbill.jpg" x="350" y="0" width="160" height="80"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) $3.00</div>
+    <div class="choice correct">B) $7.00</div>
+    <div class="choice">C) $11.00</div>
+    <div class="choice">D) $15.00</div>
+  </div>
+  <div class="explainer">$5 + $1 + $1 = $7</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">10</span><span class="skill">2.5.B  Money word problem</span></div>
+  <div class="stem">Priya saved 1 ten-dollar bill and 4 dimes. She bought a notebook for $7.80. How much does she have left?</div>
+  <div class="choices">
+    <div class="choice">A) $2.20</div>
+    <div class="choice correct">B) $2.60</div>
+    <div class="choice">C) $3.20</div>
+    <div class="choice">D) $1.60</div>
+  </div>
+  <div class="explainer">$10.40 − $7.80 = $2.60</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">11</span><span class="skill">2.5.B  Money — combine and compare</span></div>
+  <div class="stem">Aarav has $13.45. Mia has $8.70. How much more money does Aarav have?</div>
+  <div class="choices">
+    <div class="choice">A) $4.25</div>
+    <div class="choice correct">B) $4.75</div>
+    <div class="choice">C) $22.15</div>
+    <div class="choice">D) $5.25</div>
+  </div>
+  <div class="explainer">$13.45 − $8.70 = $4.75</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">12</span><span class="skill">2.5.B  Money — three people total</span></div>
+  <div class="stem">Noah has $14.20. Zoe has $9.85. Leo has $6.30. They want to buy a $35 game. Do they have enough?</div>
+  <div class="choices">
+    <div class="choice correct">A) No — they need 65¢ more</div>
+    <div class="choice">B) Yes — they have $1.35 left</div>
+    <div class="choice">C) No — they need $5 more</div>
+    <div class="choice">D) Yes — they have exactly enough</div>
+  </div>
+  <div class="explainer">$14.20 + $9.85 + $6.30 = $30.35. $35 − $30.35 = $4.65 short.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">13</span><span class="skill">2.5.B  Two-step money</span></div>
+  <div class="stem">Ethan had $9. He earned $4 raking leaves, then spent $7.50 on a book. How much does he have now?</div>
+  <div class="choices">
+    <div class="choice">A) $5.00</div>
+    <div class="choice correct">B) $5.50</div>
+    <div class="choice">C) $6.00</div>
+    <div class="choice">D) $1.50</div>
+  </div>
+  <div class="explainer">$9 + $4 = $13. $13 − $7.50 = $5.50.</div>
+</div>
+
+<!-- =============== ARITHMETIC =============== -->
+<h2 class="group">Arithmetic — Add, Subtract, Multi-Step</h2>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">14</span><span class="skill">2.4.B  3-addend addition</span></div>
+  <div class="stem">Add: 27 + 14 + 38</div>
+  <div class="choices">
+    <div class="choice">A) 69</div>
+    <div class="choice correct">B) 79</div>
+    <div class="choice">C) 89</div>
+    <div class="choice">D) 71</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">15</span><span class="skill">2.4.C  3-digit subtraction (regroup)</span></div>
+  <div class="stem">500 − 287 = ?</div>
+  <div class="choices">
+    <div class="choice correct">A) 213</div>
+    <div class="choice">B) 287</div>
+    <div class="choice">C) 313</div>
+    <div class="choice">D) 223</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">16</span><span class="skill">2.4.C  2-digit subtraction (regroup)</span></div>
+  <div class="stem">73 − 18 = ?</div>
+  <div class="choices">
+    <div class="choice">A) 65</div>
+    <div class="choice correct">B) 55</div>
+    <div class="choice">C) 45</div>
+    <div class="choice">D) 91</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">17</span><span class="skill">2.4.C  3-digit subtraction (no regroup)</span></div>
+  <div class="stem">956 − 432 = ?</div>
+  <div class="choices">
+    <div class="choice correct">A) 524</div>
+    <div class="choice">B) 514</div>
+    <div class="choice">C) 1388</div>
+    <div class="choice">D) 624</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">18</span><span class="skill">2.4.D  Multi-step word problem</span></div>
+  <div class="stem">Ava had 87 marbles. She gave 16 to Mia. Then she bought 25 more. How many does Ava have now?</div>
+  <div class="choices">
+    <div class="choice correct">A) 96</div>
+    <div class="choice">B) 76</div>
+    <div class="choice">C) 128</div>
+    <div class="choice">D) 46</div>
+  </div>
+  <div class="explainer">87 − 16 = 71. 71 + 25 = 96.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">19</span><span class="skill">2.4.D  Multi-step word problem</span></div>
+  <div class="stem">There were 124 ducks at a pond. 38 flew away and 19 new ones arrived. How many ducks are at the pond now?</div>
+  <div class="choices">
+    <div class="choice">A) 67</div>
+    <div class="choice correct">B) 105</div>
+    <div class="choice">C) 143</div>
+    <div class="choice">D) 86</div>
+  </div>
+  <div class="explainer">124 − 38 = 86. 86 + 19 = 105.</div>
+</div>
+
+<!-- =============== ARRAYS / EQUAL GROUPS =============== -->
+<h2 class="group">Arrays &amp; Equal Groups (TEKS 2.6)</h2>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">20</span><span class="skill">2.6.A  Array number sentence</span></div>
+  <div class="stem">Which number sentence shows the array?</div>
+  <div class="figure">
+    <svg viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" style="max-width:240px">
+      <g fill="#3b82f6">
+        <circle cx="30" cy="25" r="11"/><circle cx="65" cy="25" r="11"/><circle cx="100" cy="25" r="11"/><circle cx="135" cy="25" r="11"/><circle cx="170" cy="25" r="11"/><circle cx="205" cy="25" r="11"/>
+        <circle cx="30" cy="60" r="11"/><circle cx="65" cy="60" r="11"/><circle cx="100" cy="60" r="11"/><circle cx="135" cy="60" r="11"/><circle cx="170" cy="60" r="11"/><circle cx="205" cy="60" r="11"/>
+        <circle cx="30" cy="95" r="11"/><circle cx="65" cy="95" r="11"/><circle cx="100" cy="95" r="11"/><circle cx="135" cy="95" r="11"/><circle cx="170" cy="95" r="11"/><circle cx="205" cy="95" r="11"/>
+      </g>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) 3 × 6 = 18</div>
+    <div class="choice">B) 6 × 6 = 36</div>
+    <div class="choice">C) 3 + 6 = 9</div>
+    <div class="choice">D) 6 × 2 = 12</div>
+  </div>
+  <div class="explainer">3 rows of 6 dots each = 18 total.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">21</span><span class="skill">2.6.A  Rows-of statement</span></div>
+  <div class="stem">Fill in the blanks for the array.</div>
+  <div class="figure">
+    <svg viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg" style="max-width:240px">
+      <g fill="#22c55e">
+        <rect x="20" y="20" width="20" height="20"/><rect x="50" y="20" width="20" height="20"/><rect x="80" y="20" width="20" height="20"/><rect x="110" y="20" width="20" height="20"/><rect x="140" y="20" width="20" height="20"/>
+        <rect x="20" y="50" width="20" height="20"/><rect x="50" y="50" width="20" height="20"/><rect x="80" y="50" width="20" height="20"/><rect x="110" y="50" width="20" height="20"/><rect x="140" y="50" width="20" height="20"/>
+      </g>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) 2 rows of 5</div>
+    <div class="choice">B) 5 rows of 2</div>
+    <div class="choice">C) 5 rows of 5</div>
+    <div class="choice">D) 2 rows of 10</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">22</span><span class="skill">2.6.B  Equal groups word problem</span></div>
+  <div class="stem">There are 4 vases. Each vase has 5 flowers. How many flowers in all?</div>
+  <div class="choices">
+    <div class="choice">A) 9</div>
+    <div class="choice correct">B) 20</div>
+    <div class="choice">C) 25</div>
+    <div class="choice">D) 45</div>
+  </div>
+  <div class="explainer">4 groups of 5 = 4 × 5 = 20.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">23</span><span class="skill">2.6.B  Equal groups — repeated addition</span></div>
+  <div class="stem">A spider has 8 legs. How many legs do 3 spiders have?</div>
+  <div class="choices">
+    <div class="choice">A) 11</div>
+    <div class="choice correct">B) 24</div>
+    <div class="choice">C) 16</div>
+    <div class="choice">D) 18</div>
+  </div>
+  <div class="explainer">8 + 8 + 8 = 24, or 3 × 8 = 24.</div>
+</div>
+
+<!-- =============== GEOMETRY / MEASUREMENT =============== -->
+<h2 class="group">Geometry &amp; Measurement</h2>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">24</span><span class="skill">2.9.D  Perimeter of triangle</span></div>
+  <div class="stem">What is the perimeter of this triangle?</div>
+  <div class="figure">
+    <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" style="max-width:280px">
+      <polygon points="40,130 180,130 110,30" fill="#fef3c7" stroke="#92400e" stroke-width="2.5"/>
+      <text x="62" y="80" font-size="14" fill="#1f2937" transform="rotate(-55 62 80)">9 ft</text>
+      <text x="155" y="80" font-size="14" fill="#1f2937" transform="rotate(55 155 80)">9 ft</text>
+      <text x="110" y="148" font-size="14" fill="#1f2937" text-anchor="middle">14 ft</text>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 23 ft</div>
+    <div class="choice correct">B) 32 ft</div>
+    <div class="choice">C) 41 ft</div>
+    <div class="choice">D) 18 ft</div>
+  </div>
+  <div class="explainer">9 + 9 + 14 = 32 ft.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">25</span><span class="skill">2.9.D  Perimeter of square</span></div>
+  <div class="stem">What is the perimeter of this square?</div>
+  <div class="figure">
+    <svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="max-width:240px">
+      <rect x="50" y="30" width="120" height="120" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2.5"/>
+      <text x="110" y="22" font-size="14" text-anchor="middle">7 cm</text>
+      <text x="110" y="170" font-size="14" text-anchor="middle">7 cm</text>
+      <text x="42" y="95" font-size="14" text-anchor="end">7 cm</text>
+      <text x="178" y="95" font-size="14">7 cm</text>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 14 cm</div>
+    <div class="choice">B) 21 cm</div>
+    <div class="choice correct">C) 28 cm</div>
+    <div class="choice">D) 49 cm</div>
+  </div>
+  <div class="explainer">7 + 7 + 7 + 7 = 28 cm.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">26</span><span class="skill">2.9.D  Perimeter of rectangle</span></div>
+  <div class="stem">What is the perimeter of this rectangle?</div>
+  <div class="figure">
+    <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="max-width:320px">
+      <rect x="40" y="50" width="200" height="80" fill="#a7f3d0" stroke="#064e3b" stroke-width="2.5"/>
+      <text x="140" y="42" font-size="14" text-anchor="middle">11 in</text>
+      <text x="140" y="150" font-size="14" text-anchor="middle">11 in</text>
+      <text x="32" y="95" font-size="14" text-anchor="end">5 in</text>
+      <text x="248" y="95" font-size="14">5 in</text>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 16 in</div>
+    <div class="choice correct">B) 32 in</div>
+    <div class="choice">C) 55 in</div>
+    <div class="choice">D) 22 in</div>
+  </div>
+  <div class="explainer">11 + 5 + 11 + 5 = 32 in.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">27</span><span class="skill">2.9.D  Perimeter of L-shape (count units)</span></div>
+  <div class="stem">What is the perimeter of this shape? Each square = 1 unit.</div>
+  <div class="figure">
+    <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg" style="max-width:280px">
+      <!-- L-shape on grid: 5 wide top, 2 wide bottom, 4 tall total -->
+      <g stroke="#d1d5db" stroke-width="0.5" fill="white">
+        <rect x="20" y="30" width="30" height="30"/><rect x="50" y="30" width="30" height="30"/><rect x="80" y="30" width="30" height="30"/><rect x="110" y="30" width="30" height="30"/><rect x="140" y="30" width="30" height="30"/><rect x="170" y="30" width="30" height="30"/>
+        <rect x="20" y="60" width="30" height="30"/><rect x="50" y="60" width="30" height="30"/><rect x="80" y="60" width="30" height="30"/><rect x="110" y="60" width="30" height="30"/><rect x="140" y="60" width="30" height="30"/><rect x="170" y="60" width="30" height="30"/>
+        <rect x="20" y="90" width="30" height="30"/><rect x="50" y="90" width="30" height="30"/><rect x="80" y="90" width="30" height="30"/>
+        <rect x="20" y="120" width="30" height="30"/><rect x="50" y="120" width="30" height="30"/><rect x="80" y="120" width="30" height="30"/>
+      </g>
+      <!-- Filled L -->
+      <path d="M 20 30 L 200 30 L 200 90 L 110 90 L 110 150 L 20 150 Z" fill="#fbbf24" fill-opacity="0.65" stroke="#92400e" stroke-width="2.5"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 16 units</div>
+    <div class="choice correct">B) 22 units</div>
+    <div class="choice">C) 18 units</div>
+    <div class="choice">D) 24 units</div>
+  </div>
+  <div class="explainer">Going around: 6 + 2 + 3 + 2 + 3 + 4 + 2 = 22 units. (top 6, right 2, in 3, down 2, in 3, down 2, bottom 3, left 4 — careful tracing)</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">28</span><span class="skill">2.9.F  Area on grid</span></div>
+  <div class="stem">What is the area of the shaded rectangle? Each square = 1 square unit.</div>
+  <div class="figure">
+    <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="max-width:300px">
+      <!-- Grid background 8 wide x 5 tall, cells 30px -->
+      <g stroke="#d1d5db" stroke-width="0.5" fill="none">
+        <rect x="20" y="20" width="240" height="150" fill="white"/>
+        <line x1="50" y1="20" x2="50" y2="170"/><line x1="80" y1="20" x2="80" y2="170"/><line x1="110" y1="20" x2="110" y2="170"/><line x1="140" y1="20" x2="140" y2="170"/><line x1="170" y1="20" x2="170" y2="170"/><line x1="200" y1="20" x2="200" y2="170"/><line x1="230" y1="20" x2="230" y2="170"/>
+        <line x1="20" y1="50" x2="260" y2="50"/><line x1="20" y1="80" x2="260" y2="80"/><line x1="20" y1="110" x2="260" y2="110"/><line x1="20" y1="140" x2="260" y2="140"/>
+      </g>
+      <!-- Shaded rectangle: 5 cols × 3 rows = 15 sq units -->
+      <rect x="50" y="50" width="150" height="90" fill="#a78bfa" fill-opacity="0.65" stroke="#5b21b6" stroke-width="2.5"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) 15 square units</div>
+    <div class="choice">B) 16 square units</div>
+    <div class="choice">C) 8 square units</div>
+    <div class="choice">D) 30 square units</div>
+  </div>
+  <div class="explainer">5 columns × 3 rows = 15 unit squares.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">29</span><span class="skill">2.9.D  Read ruler</span></div>
+  <div class="stem">What measurement does the arrow show?</div>
+  <div class="figure">
+    <svg viewBox="0 0 420 110" xmlns="http://www.w3.org/2000/svg" style="max-width:480px">
+      <!-- Ruler body -->
+      <rect x="20" y="40" width="380" height="40" fill="#fde68a" stroke="#854d0e" stroke-width="1.5"/>
+      <!-- Major ticks every 60px = 1 inch, from 3 to 9 -->
+      <g stroke="#1f2937" stroke-width="1.5">
+        <line x1="50" y1="45" x2="50" y2="80"/>
+        <line x1="110" y1="45" x2="110" y2="80"/>
+        <line x1="170" y1="45" x2="170" y2="80"/>
+        <line x1="230" y1="45" x2="230" y2="80"/>
+        <line x1="290" y1="45" x2="290" y2="80"/>
+        <line x1="350" y1="45" x2="350" y2="80"/>
+      </g>
+      <!-- Half ticks -->
+      <g stroke="#1f2937" stroke-width="1">
+        <line x1="80" y1="55" x2="80" y2="80"/>
+        <line x1="140" y1="55" x2="140" y2="80"/>
+        <line x1="200" y1="55" x2="200" y2="80"/>
+        <line x1="260" y1="55" x2="260" y2="80"/>
+        <line x1="320" y1="55" x2="320" y2="80"/>
+      </g>
+      <!-- Number labels -->
+      <g font-size="14" font-weight="600" fill="#1f2937">
+        <text x="50" y="70" text-anchor="middle">3</text>
+        <text x="110" y="70" text-anchor="middle">4</text>
+        <text x="170" y="70" text-anchor="middle">5</text>
+        <text x="230" y="70" text-anchor="middle">6</text>
+        <text x="290" y="70" text-anchor="middle">7</text>
+        <text x="350" y="70" text-anchor="middle">8</text>
+      </g>
+      <!-- Arrow at 5.5 inches (between 5 and 6, position x=200) -->
+      <polygon points="200,15 192,32 208,32" fill="#dc2626"/>
+      <line x1="200" y1="32" x2="200" y2="42" stroke="#dc2626" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 5 inches</div>
+    <div class="choice correct">B) 5½ inches</div>
+    <div class="choice">C) 6 inches</div>
+    <div class="choice">D) 4½ inches</div>
+  </div>
+  <div class="explainer">Arrow is on the half-tick between 5 and 6 → 5½.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">30</span><span class="skill">2.9.A  Choose unit</span></div>
+  <div class="stem">Which unit best measures the length of a school bus?</div>
+  <div class="choices">
+    <div class="choice">A) inches</div>
+    <div class="choice correct">B) feet</div>
+    <div class="choice">C) miles</div>
+    <div class="choice">D) centimeters</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">31</span><span class="skill">2.9.D  Compare lengths</span></div>
+  <div class="stem">Mia was 43 inches tall last year. She is 48 inches tall now. How many inches did she grow?</div>
+  <div class="choices">
+    <div class="choice correct">A) 5 inches</div>
+    <div class="choice">B) 6 inches</div>
+    <div class="choice">C) 91 inches</div>
+    <div class="choice">D) 4 inches</div>
+  </div>
+  <div class="explainer">48 − 43 = 5 inches.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">32</span><span class="skill">2.9.G  Tell time</span></div>
+  <div class="stem">What time is shown?</div>
+  <div class="figure">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="max-width:200px">
+      <circle cx="100" cy="100" r="90" fill="white" stroke="#374151" stroke-width="3"/>
+      <g font-size="18" font-weight="600" fill="#1f2937" text-anchor="middle">
+        <text x="100" y="32">12</text>
+        <text x="170" y="106">3</text>
+        <text x="100" y="180">6</text>
+        <text x="30" y="106">9</text>
+      </g>
+      <!-- Hour hand pointing to 4 (short, thick) -->
+      <line x1="100" y1="100" x2="148" y2="128" stroke="#374151" stroke-width="6" stroke-linecap="round"/>
+      <!-- Minute hand pointing to 3 (15 minutes), long -->
+      <line x1="100" y1="100" x2="160" y2="100" stroke="#374151" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="100" cy="100" r="5" fill="#374151"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 3:20</div>
+    <div class="choice correct">B) 4:15</div>
+    <div class="choice">C) 4:20</div>
+    <div class="choice">D) 3:15</div>
+  </div>
+  <div class="explainer">Short hand (hour) past 4. Long hand (minute) on 3 = 15 minutes.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">33</span><span class="skill">2.9.A  Compare weights (balance)</span></div>
+  <div class="stem">Which side is heavier?</div>
+  <div class="figure">
+    <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" style="max-width:300px">
+      <!-- Tilted bar: left side down -->
+      <line x1="40" y1="105" x2="240" y2="65" stroke="#92400e" stroke-width="6" stroke-linecap="round"/>
+      <!-- Triangle base (fulcrum) -->
+      <polygon points="120,90 160,90 140,140" fill="#dc2626"/>
+      <line x1="100" y1="140" x2="180" y2="140" stroke="#1f2937" stroke-width="3"/>
+      <!-- Left tray (down) -->
+      <line x1="40" y1="105" x2="40" y2="115" stroke="#1f2937" stroke-width="2"/>
+      <line x1="20" y1="115" x2="60" y2="115" stroke="#1f2937" stroke-width="3"/>
+      <text x="40" y="100" text-anchor="middle" font-size="32">📚</text>
+      <!-- Right tray (up) -->
+      <line x1="240" y1="65" x2="240" y2="75" stroke="#1f2937" stroke-width="2"/>
+      <line x1="220" y1="75" x2="260" y2="75" stroke="#1f2937" stroke-width="3"/>
+      <text x="240" y="60" text-anchor="middle" font-size="28">🍎</text>
+      <text x="40" y="170" text-anchor="middle" font-size="13" font-weight="600">A: books</text>
+      <text x="240" y="170" text-anchor="middle" font-size="13" font-weight="600">B: apple</text>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) Books are heavier</div>
+    <div class="choice">B) Apple is heavier</div>
+    <div class="choice">C) They weigh the same</div>
+    <div class="choice">D) Cannot tell</div>
+  </div>
+  <div class="explainer">Lower side = heavier side. Books are lower.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">34</span><span class="skill">2.8.E  3D faces</span></div>
+  <div class="stem">How many faces does a cube have?</div>
+  <div class="figure">
+    <svg viewBox="0 0 180 160" xmlns="http://www.w3.org/2000/svg" style="max-width:180px">
+      <polygon points="40,130 110,130 130,110 60,110" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
+      <polygon points="110,130 130,110 130,40 110,60" fill="#93c5fd" stroke="#1e3a8a" stroke-width="2"/>
+      <rect x="40" y="60" width="70" height="70" fill="#dbeafe" stroke="#1e3a8a" stroke-width="2"/>
+      <polygon points="40,60 110,60 130,40 60,40" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 4</div>
+    <div class="choice correct">B) 6</div>
+    <div class="choice">C) 8</div>
+    <div class="choice">D) 12</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">35</span><span class="skill">2.8.E  3D vertices</span></div>
+  <div class="stem">How many vertices does this cone have?</div>
+  <div class="figure">
+    <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style="max-width:160px">
+      <ellipse cx="80" cy="130" rx="55" ry="14" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+      <path d="M 25 130 L 80 30 L 135 130" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+      <path d="M 25 130 A 55 14 0 0 0 135 130" fill="none" stroke="#92400e" stroke-width="2" stroke-dasharray="3,3"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) 1</div>
+    <div class="choice">B) 0</div>
+    <div class="choice">C) 2</div>
+    <div class="choice">D) 4</div>
+  </div>
+  <div class="explainer">A cone has 1 vertex (the point on top).</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">36</span><span class="skill">2.8.E  Identify 3D shape</span></div>
+  <div class="stem">A soccer ball is most like which 3D shape?</div>
+  <div class="choices">
+    <div class="choice">A) Cube</div>
+    <div class="choice">B) Cylinder</div>
+    <div class="choice correct">C) Sphere</div>
+    <div class="choice">D) Cone</div>
+  </div>
+</div>
+
+<!-- =============== FRACTIONS =============== -->
+<h2 class="group">Fractions</h2>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">37</span><span class="skill">2.3.D  Compare fractions</span></div>
+  <div class="stem">Which fraction is the greatest?</div>
+  <div class="figure">
+    <svg viewBox="0 0 360 140" xmlns="http://www.w3.org/2000/svg" style="max-width:380px">
+      <!-- Circle 1: 1/2 (half shaded) -->
+      <circle cx="60" cy="55" r="40" fill="white" stroke="#374151" stroke-width="2"/>
+      <path d="M 60 55 L 60 15 A 40 40 0 0 1 60 95 Z" fill="#3b82f6"/>
+      <line x1="20" y1="55" x2="100" y2="55" stroke="#374151" stroke-width="1.5"/>
+      <text x="60" y="125" text-anchor="middle" font-size="14" font-weight="600">1/2</text>
+      <!-- Circle 2: 1/4 (one quarter shaded) -->
+      <circle cx="180" cy="55" r="40" fill="white" stroke="#374151" stroke-width="2"/>
+      <path d="M 180 55 L 180 15 A 40 40 0 0 1 220 55 Z" fill="#3b82f6"/>
+      <line x1="140" y1="55" x2="220" y2="55" stroke="#374151" stroke-width="1.5"/>
+      <line x1="180" y1="15" x2="180" y2="95" stroke="#374151" stroke-width="1.5"/>
+      <text x="180" y="125" text-anchor="middle" font-size="14" font-weight="600">1/4</text>
+      <!-- Circle 3: 1/3 (one-third shaded) -->
+      <circle cx="300" cy="55" r="40" fill="white" stroke="#374151" stroke-width="2"/>
+      <path d="M 300 55 L 300 15 A 40 40 0 0 1 334.6 75 Z" fill="#3b82f6"/>
+      <line x1="300" y1="15" x2="300" y2="55" stroke="#374151" stroke-width="1.5"/>
+      <line x1="300" y1="55" x2="334.6" y2="75" stroke="#374151" stroke-width="1.5"/>
+      <line x1="300" y1="55" x2="265.4" y2="75" stroke="#374151" stroke-width="1.5"/>
+      <text x="300" y="125" text-anchor="middle" font-size="14" font-weight="600">1/3</text>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) 1/2</div>
+    <div class="choice">B) 1/3</div>
+    <div class="choice">C) 1/4</div>
+    <div class="choice">D) All equal</div>
+  </div>
+  <div class="explainer">Same whole, fewer pieces = bigger pieces. Halves &gt; thirds &gt; quarters.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">38</span><span class="skill">2.3.D  Compare like-denominator</span></div>
+  <div class="stem">Which fraction is less? Same-size pizza, different slices shaded.</div>
+  <div class="figure">
+    <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" style="max-width:280px">
+      <!-- Circle 1: 5/8 -->
+      <circle cx="60" cy="55" r="40" fill="white" stroke="#374151" stroke-width="2"/>
+      <g stroke="#374151" stroke-width="1.5">
+        <line x1="60" y1="15" x2="60" y2="95"/>
+        <line x1="20" y1="55" x2="100" y2="55"/>
+        <line x1="31.7" y1="26.7" x2="88.3" y2="83.3"/>
+        <line x1="88.3" y1="26.7" x2="31.7" y2="83.3"/>
+      </g>
+      <!-- Shade 5 of 8 wedges (top + right + bottom-right + bottom-left + left) -->
+      <path d="M 60 55 L 60 15 A 40 40 0 0 1 88.3 26.7 Z" fill="#22c55e"/>
+      <path d="M 60 55 L 88.3 26.7 A 40 40 0 0 1 100 55 Z" fill="#22c55e"/>
+      <path d="M 60 55 L 100 55 A 40 40 0 0 1 88.3 83.3 Z" fill="#22c55e"/>
+      <path d="M 60 55 L 88.3 83.3 A 40 40 0 0 1 60 95 Z" fill="#22c55e"/>
+      <path d="M 60 55 L 60 95 A 40 40 0 0 1 31.7 83.3 Z" fill="#22c55e"/>
+      <text x="60" y="125" text-anchor="middle" font-size="14" font-weight="600">5/8</text>
+      <!-- Circle 2: 3/8 -->
+      <circle cx="180" cy="55" r="40" fill="white" stroke="#374151" stroke-width="2"/>
+      <g stroke="#374151" stroke-width="1.5">
+        <line x1="180" y1="15" x2="180" y2="95"/>
+        <line x1="140" y1="55" x2="220" y2="55"/>
+        <line x1="151.7" y1="26.7" x2="208.3" y2="83.3"/>
+        <line x1="208.3" y1="26.7" x2="151.7" y2="83.3"/>
+      </g>
+      <path d="M 180 55 L 180 15 A 40 40 0 0 1 208.3 26.7 Z" fill="#22c55e"/>
+      <path d="M 180 55 L 208.3 26.7 A 40 40 0 0 1 220 55 Z" fill="#22c55e"/>
+      <path d="M 180 55 L 220 55 A 40 40 0 0 1 208.3 83.3 Z" fill="#22c55e"/>
+      <text x="180" y="125" text-anchor="middle" font-size="14" font-weight="600">3/8</text>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 5/8</div>
+    <div class="choice correct">B) 3/8</div>
+    <div class="choice">C) Equal</div>
+    <div class="choice">D) Cannot tell</div>
+  </div>
+  <div class="explainer">Same size pieces (eighths). Fewer shaded = less.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">39</span><span class="skill">2.3.A  Fraction of a set</span></div>
+  <div class="stem">What fraction of the shapes are circles?</div>
+  <div class="figure">
+    <svg viewBox="0 0 360 80" xmlns="http://www.w3.org/2000/svg" style="max-width:380px">
+      <circle cx="40" cy="40" r="20" fill="#ef4444" stroke="#7f1d1d"/>
+      <circle cx="100" cy="40" r="20" fill="#ef4444" stroke="#7f1d1d"/>
+      <circle cx="160" cy="40" r="20" fill="#ef4444" stroke="#7f1d1d"/>
+      <rect x="200" y="20" width="40" height="40" fill="#3b82f6" stroke="#1e3a8a"/>
+      <rect x="260" y="20" width="40" height="40" fill="#3b82f6" stroke="#1e3a8a"/>
+      <rect x="320" y="20" width="40" height="40" fill="#3b82f6" stroke="#1e3a8a"/>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice correct">A) 3/6</div>
+    <div class="choice">B) 6/3</div>
+    <div class="choice">C) 3/3</div>
+    <div class="choice">D) 6/6</div>
+  </div>
+  <div class="explainer">3 circles out of 6 total shapes.</div>
+</div>
+
+<!-- =============== DATA =============== -->
+<h2 class="group">Data Analysis — Bar Graphs &amp; Line Plots</h2>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">40</span><span class="skill">2.10.B  Bar graph — find max</span></div>
+  <div class="stem">Which sport got the most votes?</div>
+  <div class="figure">
+    <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="max-width:400px">
+      <g font-size="12" text-anchor="end" fill="#1e3a8a"><text x="50" y="174">0</text><text x="50" y="144">2</text><text x="50" y="114">4</text><text x="50" y="84">6</text><text x="50" y="54">8</text><text x="50" y="24">10</text></g>
+      <g stroke="#1e3a8a" stroke-width="1"><line x1="55" y1="170" x2="60" y2="170"/><line x1="55" y1="140" x2="60" y2="140"/><line x1="55" y1="110" x2="60" y2="110"/><line x1="55" y1="80" x2="60" y2="80"/><line x1="55" y1="50" x2="60" y2="50"/><line x1="55" y1="20" x2="60" y2="20"/></g>
+      <line x1="60" y1="15" x2="60" y2="170" stroke="#1e3a8a" stroke-width="2"/>
+      <line x1="60" y1="170" x2="340" y2="170" stroke="#1e3a8a" stroke-width="2"/>
+      <rect x="80" y="80" width="50" height="90" fill="#86efac" stroke="#14532d" stroke-width="1.5"/>
+      <rect x="170" y="35" width="50" height="135" fill="#fbbf24" stroke="#92400e" stroke-width="1.5"/>
+      <rect x="260" y="125" width="50" height="45" fill="#7dd3fc" stroke="#075985" stroke-width="1.5"/>
+      <g font-size="14" text-anchor="middle" fill="#1e3a8a"><text x="105" y="190">Soccer</text><text x="195" y="190">Cricket</text><text x="285" y="190">Tennis</text></g>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) Soccer (6)</div>
+    <div class="choice correct">B) Cricket (9)</div>
+    <div class="choice">C) Tennis (3)</div>
+    <div class="choice">D) All equal</div>
+  </div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">41</span><span class="skill">2.10.B  Bar graph — sum across</span></div>
+  <div class="stem">How many tickets were sold across all four days?</div>
+  <div class="figure">
+    <svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg" style="max-width:420px">
+      <g font-size="12" text-anchor="end" fill="#1e3a8a"><text x="50" y="174">0</text><text x="50" y="144">2</text><text x="50" y="114">4</text><text x="50" y="84">6</text><text x="50" y="54">8</text><text x="50" y="24">10</text></g>
+      <g stroke="#1e3a8a" stroke-width="1"><line x1="55" y1="170" x2="60" y2="170"/><line x1="55" y1="140" x2="60" y2="140"/><line x1="55" y1="110" x2="60" y2="110"/><line x1="55" y1="80" x2="60" y2="80"/><line x1="55" y1="50" x2="60" y2="50"/><line x1="55" y1="20" x2="60" y2="20"/></g>
+      <line x1="60" y1="15" x2="60" y2="170" stroke="#1e3a8a" stroke-width="2"/>
+      <line x1="60" y1="170" x2="360" y2="170" stroke="#1e3a8a" stroke-width="2"/>
+      <rect x="75" y="125" width="50" height="45" fill="#fca5a5" stroke="#7f1d1d" stroke-width="1.5"/>
+      <rect x="145" y="80" width="50" height="90" fill="#86efac" stroke="#14532d" stroke-width="1.5"/>
+      <rect x="215" y="50" width="50" height="120" fill="#fbbf24" stroke="#92400e" stroke-width="1.5"/>
+      <rect x="285" y="110" width="50" height="60" fill="#7dd3fc" stroke="#075985" stroke-width="1.5"/>
+      <g font-size="13" text-anchor="middle" fill="#1e3a8a"><text x="100" y="190">Mon</text><text x="170" y="190">Tue</text><text x="240" y="190">Wed</text><text x="310" y="190">Thu</text></g>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) 18</div>
+    <div class="choice correct">B) 21</div>
+    <div class="choice">C) 24</div>
+    <div class="choice">D) 8</div>
+  </div>
+  <div class="explainer">3 + 6 + 8 + 4 = 21 tickets.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">42</span><span class="skill">2.10.D  Line plot — find max</span></div>
+  <div class="stem">On which day did the team score the most goals?</div>
+  <div class="figure">
+    <svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" style="max-width:400px">
+      <!-- Line plot: 5 days, X marks vertical stacks -->
+      <line x1="40" y1="170" x2="320" y2="170" stroke="#1f2937" stroke-width="2"/>
+      <g font-family="monospace" font-size="18" font-weight="700" fill="#dc2626" text-anchor="middle">
+        <!-- Day 1: 2 -->
+        <text x="80" y="160">x</text><text x="80" y="140">x</text>
+        <!-- Day 2: 4 -->
+        <text x="140" y="160">x</text><text x="140" y="140">x</text><text x="140" y="120">x</text><text x="140" y="100">x</text>
+        <!-- Day 3: 1 -->
+        <text x="200" y="160">x</text>
+        <!-- Day 4: 5 -->
+        <text x="260" y="160">x</text><text x="260" y="140">x</text><text x="260" y="120">x</text><text x="260" y="100">x</text><text x="260" y="80">x</text>
+        <!-- Day 5: 3 -->
+        <text x="320" y="160">x</text><text x="320" y="140">x</text><text x="320" y="120">x</text>
+      </g>
+      <g font-size="12" text-anchor="middle" fill="#1f2937" font-weight="600">
+        <text x="80" y="190">Mon</text><text x="140" y="190">Tue</text><text x="200" y="190">Wed</text><text x="260" y="190">Thu</text><text x="320" y="190">Fri</text>
+      </g>
+      <text x="20" y="100" font-size="12" fill="#1f2937" transform="rotate(-90 20 100)">Each x = 1 goal</text>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) Tue</div>
+    <div class="choice">B) Wed</div>
+    <div class="choice correct">C) Thu</div>
+    <div class="choice">D) Fri</div>
+  </div>
+  <div class="explainer">Thu has 5 X's — the tallest stack.</div>
+</div>
+
+<div class="question">
+  <div class="qhead"><span class="qnum">43</span><span class="skill">2.10.D  Line plot — combine</span></div>
+  <div class="stem">Which fruit got the same votes as apples and oranges combined?</div>
+  <div class="figure">
+    <svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" style="max-width:400px">
+      <line x1="40" y1="150" x2="320" y2="150" stroke="#1f2937" stroke-width="2"/>
+      <g font-family="monospace" font-size="18" font-weight="700" fill="#dc2626" text-anchor="middle">
+        <!-- Apples: 2 -->
+        <text x="80" y="140">x</text><text x="80" y="120">x</text>
+        <!-- Bananas: 5 -->
+        <text x="160" y="140">x</text><text x="160" y="120">x</text><text x="160" y="100">x</text><text x="160" y="80">x</text><text x="160" y="60">x</text>
+        <!-- Oranges: 3 -->
+        <text x="240" y="140">x</text><text x="240" y="120">x</text><text x="240" y="100">x</text>
+        <!-- Pears: 4 -->
+        <text x="320" y="140">x</text><text x="320" y="120">x</text><text x="320" y="100">x</text><text x="320" y="80">x</text>
+      </g>
+      <g font-size="12" text-anchor="middle" fill="#1f2937" font-weight="600">
+        <text x="80" y="170">Apples</text><text x="160" y="170">Bananas</text><text x="240" y="170">Oranges</text><text x="320" y="170">Pears</text>
+      </g>
+    </svg>
+  </div>
+  <div class="choices">
+    <div class="choice">A) Apples</div>
+    <div class="choice correct">B) Bananas</div>
+    <div class="choice">C) Oranges</div>
+    <div class="choice">D) Pears</div>
+  </div>
+  <div class="explainer">Apples (2) + Oranges (3) = 5. Bananas has 5 votes.</div>
+</div>
+
+<div style="margin-top:3em;padding:1.5em;background:#dbeafe;border-radius:8px;text-align:center;">
+  <strong>End of preview — 43 questions.</strong><br>
+  Reply with: edits per Q (e.g., "Q24 swap distractor B"), green-light to insert all, or partial approval (Qs 1–30 looks good, redo Qs 31–43).
+</div>
+
+</body>
+</html>

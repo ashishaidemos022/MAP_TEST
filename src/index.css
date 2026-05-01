@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 90% -10%, #FFE8B5 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #C7E2FF 0%, transparent 60%),
+    #FFF8EE;
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Reusable components */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-display font-semibold tracking-wide transition active:translate-y-[2px] active:shadow-press;
+  }
+  .btn-primary {
+    @apply btn bg-sun text-ink shadow-card hover:shadow-cardHover;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-ink shadow-card hover:shadow-cardHover ring-1 ring-cloud;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink hover:bg-white/60;
+  }
+  .card {
+    @apply rounded-3xl bg-white shadow-card ring-1 ring-cloud/70;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1 rounded-full bg-cream px-3 py-1 text-xs font-semibold text-ink ring-1 ring-cloud;
+  }
+  .choice {
+    @apply flex w-full items-center gap-4 rounded-2xl bg-white p-4 text-left shadow-card ring-1 ring-cloud transition hover:shadow-cardHover focus:outline-none focus-visible:ring-2 focus-visible:ring-sky;
+    min-height: 64px;
+  }
+  .choice-letter {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream font-display text-lg font-bold text-ink ring-1 ring-cloud;
+  }
+}

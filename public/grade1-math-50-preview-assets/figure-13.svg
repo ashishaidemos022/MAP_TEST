@@ -1,0 +1,6 @@
+<svg viewBox="0 0 420 130" xmlns="http://www.w3.org/2000/svg">
+    <rect x="25" y="28" width="55" height="55" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/><text x="52" y="112" text-anchor="middle" font-family="sans-serif" font-size="18">A</text>
+    <polygon points="150,25 185,84 115,84" fill="#fde68a" stroke="#1e3a8a" stroke-width="2"/><text x="150" y="112" text-anchor="middle" font-family="sans-serif" font-size="18">B</text>
+    <polygon points="265,25 300,45 300,78 265,98 230,78 230,45" fill="#bbf7d0" stroke="#1e3a8a" stroke-width="2"/><text x="265" y="112" text-anchor="middle" font-family="sans-serif" font-size="18">C</text>
+    <circle cx="365" cy="57" r="32" fill="#fecaca" stroke="#1e3a8a" stroke-width="2"/><text x="365" y="112" text-anchor="middle" font-family="sans-serif" font-size="18">D</text>
+  </svg>
