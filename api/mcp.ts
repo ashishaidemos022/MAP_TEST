@@ -3,7 +3,6 @@ export const config = { runtime: 'nodejs', maxDuration: 30 } as const;
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
-import { randomUUID } from 'node:crypto';
 import { isAllowedOrigin } from './_lib/mcp/origin.js';
 import { resolveContextOrThrow, bumpLastUsedAt, buildUnauthorizedResponse } from './_lib/mcp/auth.js';
 import { enforceRateLimit, buildRateLimitedResponse } from './_lib/mcp/rate-limit.js';
@@ -56,8 +55,11 @@ async function dispatch(req: Request): Promise<Response> {
   registerTools(server, ctx);
 
   console.log('[mcp] step 6: build transport + server.connect');
+  // Stateless mode: omit sessionIdGenerator. Each request is self-contained
+  // (a serverless function instance can't reliably persist sessions across
+  // requests anyway). enableJsonResponse returns plain JSON, not SSE.
   const transport = new WebStandardStreamableHTTPServerTransport({
-    sessionIdGenerator: () => randomUUID(),
+    enableJsonResponse: true,
   });
   await server.connect(transport);
   console.log('[mcp] step 7: transport.handleRequest');
