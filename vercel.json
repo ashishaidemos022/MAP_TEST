@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/mcp.ts": {
+      "runtime": "@vercel/node@5",
+      "maxDuration": 30
+    }
+  }
+}
