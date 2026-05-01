@@ -997,7 +997,7 @@ git commit -m "feat(mcp): zod input schemas for all 9 tools"
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getFamilyStudents } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -1006,7 +1006,7 @@ import { ListKidsInput } from '../schemas.js';
 export const LIST_KIDS_DESCRIPTION =
   'List the children in this family. Returns at most 10. Use this first if the user mentions a kid by name and you do not yet know their student_id.';
 
-export function registerListKids(server: Server, ctx: McpContext): void {
+export function registerListKids(server: McpServer, ctx: McpContext): void {
   server.tool(
     'list_kids',
     LIST_KIDS_DESCRIPTION,
@@ -1051,11 +1051,11 @@ git commit -m "feat(mcp): list_kids tool"
 - [ ] **Step 1: Write the dispatcher**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { registerListKids } from './list-kids.js';
 
-export function registerTools(server: Server, ctx: McpContext): void {
+export function registerTools(server: McpServer, ctx: McpContext): void {
   registerListKids(server, ctx);
   // Subsequent tools are registered here in Phase D.
 }
@@ -1080,8 +1080,8 @@ git commit -m "feat(mcp): tool dispatcher (list_kids only initially)"
 ```ts
 export const config = { runtime: 'nodejs', maxDuration: 30 } as const;
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
 import { randomUUID } from 'node:crypto';
 import { isAllowedOrigin } from './_lib/mcp/origin.js';
 import { resolveContextOrThrow, bumpLastUsedAt, buildUnauthorizedResponse } from './_lib/mcp/auth.js';
@@ -1126,13 +1126,13 @@ async function dispatch(req: Request): Promise<Response> {
   await bumpLastUsedAt(ctx);
 
   // 5. Per-request server with tools bound to ctx
-  const server = new Server(
+  const server = new McpServer(
     { name: 'map-practice-family', version: '1.0.0' },
     { capabilities: { tools: {} } },
   );
   registerTools(server, ctx);
 
-  const transport = new StreamableHTTPServerTransport({
+  const transport = new WebStandardStreamableHTTPServerTransport({
     sessionIdGenerator: () => randomUUID(),
   });
   await server.connect(transport);
@@ -1386,7 +1386,7 @@ Each tool follows the same pattern as `list_kids`: a file under `api/_lib/mcp/to
 
 ```ts
 // api/_lib/mcp/tools/get-kid-overview.ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getStudentInFamily } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -1395,7 +1395,7 @@ import { GetKidOverviewInput } from '../schemas.js';
 export const DESC =
   'High-level snapshot for one child: total practice time, total questions, accuracy by subject (math, reading, language), last-active date. Useful as the first call when the parent asks "how is X doing?"';
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('get_kid_overview', DESC, GetKidOverviewInput.shape, async (raw) => {
     const args = GetKidOverviewInput.parse(raw ?? {});
     try {
@@ -1510,7 +1510,7 @@ The "A cannot read B-student via get_kid_overview" check should now pass with `s
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getStudentInFamily } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -1519,7 +1519,7 @@ import { ListRecentSessionsInput } from '../schemas.js';
 export const DESC =
   "List the child's recent practice sessions, newest first. Each session is one sitting with N questions on one subject.";
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('list_recent_sessions', DESC, ListRecentSessionsInput.shape, async (raw) => {
     const args = ListRecentSessionsInput.parse(raw ?? {});
     try {
@@ -1608,7 +1608,7 @@ git commit -m "feat(mcp): list_recent_sessions tool"
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getStudentInFamily } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -1617,7 +1617,7 @@ import { GetRecentWrongAnswersInput } from '../schemas.js';
 export const DESC =
   "The most useful single tool. Returns the child's recent incorrect attempts with full context: question stem, what they picked, what was correct, the standard, and the misconception tag.";
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('get_recent_wrong_answers', DESC, GetRecentWrongAnswersInput.shape, async (raw) => {
     const args = GetRecentWrongAnswersInput.parse(raw ?? {});
     try {
@@ -1730,7 +1730,7 @@ git commit -m "feat(mcp): get_recent_wrong_answers tool"
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getStudentInFamily } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -1739,7 +1739,7 @@ import { GetAccuracyByStandardInput } from '../schemas.js';
 export const DESC =
   "Group the child's accuracy by Texas TEKS standard. Returns standards practiced with question count and accuracy each. Sorted by lowest accuracy first so weak spots surface naturally.";
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('get_accuracy_by_standard', DESC, GetAccuracyByStandardInput.shape, async (raw) => {
     const args = GetAccuracyByStandardInput.parse(raw ?? {});
     try {
@@ -1816,7 +1816,7 @@ git commit -m "feat(mcp): get_accuracy_by_standard tool"
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getStudentInFamily } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -1825,7 +1825,7 @@ import { GetTopMisconceptionsInput } from '../schemas.js';
 export const DESC =
   "Most-frequent error patterns the child has triggered, drawn from misconception_tag on wrong-answer choices. Sorted by frequency. Each row includes a sample wrong question.";
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('get_top_misconceptions', DESC, GetTopMisconceptionsInput.shape, async (raw) => {
     const args = GetTopMisconceptionsInput.parse(raw ?? {});
     try {
@@ -1949,7 +1949,7 @@ git commit -m "feat(mcp): get_top_misconceptions tool"
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getSessionInFamily } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -1958,7 +1958,7 @@ import { GetSessionDetailsInput } from '../schemas.js';
 export const DESC =
   'Question-by-question breakdown of one session, including stems, the child\'s answer, the correct answer, time taken, and any misconception tag triggered.';
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('get_session_details', DESC, GetSessionDetailsInput.shape, async (raw) => {
     const args = GetSessionDetailsInput.parse(raw ?? {});
     try {
@@ -2059,7 +2059,7 @@ The "A cannot read B-session via get_session_details" check should now pass with
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getStudentInFamily } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -2068,7 +2068,7 @@ import { GetActivityCalendarInput } from '../schemas.js';
 export const DESC =
   "Per-day question counts for the last N days. Use this when the parent asks about consistency, streaks, or whether the child practiced this week.";
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('get_activity_calendar', DESC, GetActivityCalendarInput.shape, async (raw) => {
     const args = GetActivityCalendarInput.parse(raw ?? {});
     try {
@@ -2160,7 +2160,7 @@ git commit -m "feat(mcp): get_activity_calendar tool"
 - [ ] **Step 1: Write the tool**
 
 ```ts
-import type { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { getFamilyStudents } from '../db.js';
 import { logToolCall } from '../audit.js';
@@ -2169,7 +2169,7 @@ import { CompareKidsInput } from '../schemas.js';
 export const DESC =
   "Side-by-side snapshot for all kids in the family on one subject. Same-shape rows for each child so they're directly comparable.";
 
-export function register(server: Server, ctx: McpContext): void {
+export function register(server: McpServer, ctx: McpContext): void {
   server.tool('compare_kids', DESC, CompareKidsInput.shape, async (raw) => {
     const args = CompareKidsInput.parse(raw ?? {});
     try {
