@@ -1,6 +1,12 @@
 import type { McpContext } from './auth.js';
 import { McpError } from './errors.js';
 
+function assertFamilyIdPresent(ctx: McpContext): void {
+  if (!ctx.family_id) {
+    throw new McpError('internal', 'family_id missing from auth context', 500);
+  }
+}
+
 export type StudentRow = {
   id: string;
   display_name: string;
@@ -11,6 +17,7 @@ export type StudentRow = {
 };
 
 export async function getStudentInFamily(ctx: McpContext, studentId: string): Promise<StudentRow> {
+  assertFamilyIdPresent(ctx);
   const { data, error } = await ctx.supabase
     .from('map_students')
     .select('id, display_name, grade, avatar_emoji, created_at, family_id')
@@ -23,6 +30,7 @@ export async function getStudentInFamily(ctx: McpContext, studentId: string): Pr
 }
 
 export async function getFamilyStudents(ctx: McpContext): Promise<StudentRow[]> {
+  assertFamilyIdPresent(ctx);
   const { data, error } = await ctx.supabase
     .from('map_students')
     .select('id, display_name, grade, avatar_emoji, created_at, family_id')
@@ -50,6 +58,7 @@ export type SessionRow = {
 };
 
 export async function getSessionInFamily(ctx: McpContext, sessionId: string): Promise<SessionRow> {
+  assertFamilyIdPresent(ctx);
   // Single query: join through map_students to enforce family_id.
   const { data, error } = await ctx.supabase
     .from('map_test_sessions')
