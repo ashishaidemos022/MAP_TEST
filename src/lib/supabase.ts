@@ -57,10 +57,9 @@ export async function fetchStudentDefaultTestLength(studentId: string): Promise<
 // Recommended default for a given grade. Used at student creation and to show
 // a hint next to the length selector.
 export function recommendedTestLengthForGrade(grade: number): number {
-  if (grade <= 1) return 10
-  if (grade === 2) return 15
-  if (grade === 3) return 20
-  return 25
+  if (grade <= 1) return 15
+  if (grade === 2) return 25
+  return 40
 }
 
 export const TEST_LENGTH_OPTIONS = [10, 15, 20, 25, 40, 50] as const

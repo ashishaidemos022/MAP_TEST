@@ -168,7 +168,8 @@ export default function ParentDashboard() {
                   <p className="mt-1 text-xs leading-snug">{s.teks_title}</p>
                   {row?.mastery_score != null && (
                     <p className="mt-2 font-mono text-[11px] text-ink/70">
-                      {(row.mastery_score * 100).toFixed(0)}% over {row.attempts} attempts
+                      {(row.mastery_score * 100).toFixed(0)}% over {row.attempts} question
+                      {row.attempts === 1 ? '' : 's'} attempted
                     </p>
                   )}
                 </div>
@@ -222,15 +223,15 @@ export default function ParentDashboard() {
           <h2 className="font-display text-xl">This week</h2>
           {weekStats ? (
             <div className="mt-3 grid grid-cols-3 gap-2 text-center">
-              <Stat label="Attempts" value={weekStats.attempts} />
+              <Stat label="Questions Attempted" value={weekStats.attempts} />
               <Stat label="Days active" value={weekStats.daysActive} />
               <Stat label="Streak" value={`${weekStats.streakDays}d`} />
             </div>
           ) : (
-            <p className="mt-2 text-sm text-ink/60">No attempts yet.</p>
+            <p className="mt-2 text-sm text-ink/60">No questions attempted yet.</p>
           )}
           <p className="mt-3 text-xs text-ink/50">
-            Streak counts consecutive days back from today with at least one attempt.
+            Streak counts consecutive days back from today with at least one question attempted.
           </p>
         </div>
 

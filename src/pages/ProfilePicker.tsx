@@ -92,6 +92,48 @@ export default function ProfilePicker() {
         </Link>
       </div>
 
+      <section className="mt-10 rounded-2xl bg-cream/60 p-5 ring-1 ring-cloud">
+        <p className="font-display text-xs uppercase tracking-widest text-smoke">For parents</p>
+        <p className="mt-1 text-sm text-ink/80">
+          Tap{' '}
+          <span className="font-semibold">🔒 Parent</span> above (PIN required) to manage how your
+          kid practices.
+        </p>
+        <ul className="mt-3 grid gap-2 text-sm text-ink/70 md:grid-cols-2">
+          <li className="flex items-start gap-2">
+            <span aria-hidden>🎚️</span>
+            <span>
+              <span className="font-semibold text-ink">Set test length & grade level.</span> Pick
+              5–50 questions; drop a grade for review or step up for a stretch — progress is kept
+              either way.
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span aria-hidden>📈</span>
+            <span>
+              <span className="font-semibold text-ink">Tests are adaptive.</span> Each question
+              calibrates to your kid&apos;s level — they get questions that meet them where they
+              are, then stretch.
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span aria-hidden>🗺️</span>
+            <span>
+              <span className="font-semibold text-ink">Topic mastery heatmap.</span> See exactly
+              which topics are strong, which are growing, and which need attention.
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span aria-hidden>🎯</span>
+            <span>
+              <span className="font-semibold text-ink">Custom tests.</span> Once you spot a weak
+              spot, build a one-off test from the exact topics you want to drill — across any
+              grades.
+            </span>
+          </li>
+        </ul>
+      </section>
+
       <div className="mt-10 text-center">
         <button type="button" onClick={() => void signOut()} className="btn-ghost text-sm">
           Sign out
