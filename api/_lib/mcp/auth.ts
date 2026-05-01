@@ -12,8 +12,11 @@ export type McpContext = {
 
 const TOKEN_PREFIX = 'mcp_';
 
-function sha256Hex(input: string): Buffer {
-  return createHash('sha256').update(input, 'utf8').digest();
+// Returns the hash as PostgREST's bytea input format ("\xHEX"). The bytea
+// column requires this exact form on the wire — passing a Buffer to .eq()
+// gets serialized as a JS toString() which doesn't match.
+function sha256ByteaHex(input: string): string {
+  return '\\x' + createHash('sha256').update(input, 'utf8').digest('hex');
 }
 
 function parseBearer(req: Request): string {
@@ -30,7 +33,7 @@ function parseBearer(req: Request): string {
 
 export async function resolveContextOrThrow(req: Request): Promise<McpContext> {
   const token = parseBearer(req);
-  const hash = sha256Hex(token);
+  const hash = sha256ByteaHex(token);
 
   const supabase = getServiceClient();
   const { data, error } = await supabase
