@@ -10,14 +10,17 @@
     "typecheck": "tsc -b --noEmit"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@supabase/supabase-js": "^2.45.0",
     "canvas-confetti": "^1.9.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.0"
+    "react-router-dom": "^6.26.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/canvas-confetti": "^1.6.4",
+    "@types/node": "^20.19.39",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

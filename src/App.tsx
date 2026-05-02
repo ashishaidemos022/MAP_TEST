@@ -9,6 +9,7 @@ import ProfilePicker from './pages/ProfilePicker'
 import Results from './pages/Results'
 import Signup from './pages/Signup'
 import TestRunner from './pages/TestRunner'
+import ConnectAi from './pages/parent/ConnectAi'
 import CustomTestBuilder from './pages/parent/CustomTestBuilder'
 import Parent from './pages/parent/Parent'
 import { RequireActiveStudent } from './lib/activeStudent'
@@ -154,6 +155,16 @@ export default function App() {
                     <CustomTestBuilder />
                   </RequireParentPin>
                 </RequireActiveStudent>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/parent/connect-ai"
+            element={
+              <RequireAuth>
+                <RequireParentPin>
+                  <ConnectAi />
+                </RequireParentPin>
               </RequireAuth>
             }
           />

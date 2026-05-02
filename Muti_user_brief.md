@@ -343,6 +343,7 @@ Standard Supabase password reset flow. Configure the email template in the Supab
 | `/parent/unlock`       | yes           | no                      | no                    | PIN entry                                      |
 | `/parent`              | yes           | no                      | yes                   | Parent dashboard                               |
 | `/parent/account`      | yes           | no                      | yes                   | Email/password, delete account, export data   |
+| `/parent/connect-ai`   | yes           | no                      | yes                   | Generate/revoke MCP tokens; view AI activity   |
 
 Implement three route guards: `<RequireAuth>`, `<RequireActiveStudent>`, `<RequireParentUnlock>`. Compose them.
 

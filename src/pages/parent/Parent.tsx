@@ -13,9 +13,14 @@ export default function Parent() {
           </p>
           <h1 className="font-display text-4xl">Mastery dashboard</h1>
         </div>
-        <Link to="/" className="btn-ghost text-sm">
-          Back to app
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link to="/parent/connect-ai" className="btn-secondary text-sm">
+            Connect AI
+          </Link>
+          <Link to="/" className="btn-ghost text-sm">
+            Back to app
+          </Link>
+        </div>
       </header>
       <ParentSettings />
       <CustomTestList />
