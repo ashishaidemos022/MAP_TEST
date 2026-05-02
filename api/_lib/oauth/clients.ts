@@ -1,4 +1,5 @@
-import { createHash } from 'node:crypto';
+import { timingSafeEqual } from 'node:crypto';
+import { sha256ByteaHex } from './hashing.js';
 import { getServiceClient } from '../mcp/env.js';
 import { OAuthError } from './errors.js';
 import { getAllowedDcrHosts } from './env.js';
@@ -49,8 +50,10 @@ export async function authenticateClient(client_id: string, client_secret: strin
     return c;
   }
   if (!client_secret) throw new OAuthError('invalid_client', 'client_secret required', 401);
-  const presented = '\\x' + createHash('sha256').update(client_secret, 'utf8').digest('hex');
-  if (presented !== c.client_secret_hash) {
+  const presented = sha256ByteaHex(client_secret);
+  const a = Buffer.from(presented, 'utf8');
+  const b = Buffer.from(c.client_secret_hash, 'utf8');
+  if (a.length !== b.length || !timingSafeEqual(a, b)) {
     throw new OAuthError('invalid_client', 'client_secret mismatch', 401);
   }
   return c;
