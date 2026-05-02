@@ -474,3 +474,70 @@ Generate in batches of **5 questions per `(standard, band)` cell** — never bul
 - Khan Academy Grade 3 Reading: https://www.khanacademy.org/ela/cc-3rd-reading-vocab
 - NWEA RIT reference (3–5 norms): https://cdn.nwea.org/docs/RIT+Reference+Brochure_July19_CC.pdf
 
+---
+
+## 10. Family MCP Server (Phase 3)
+
+Source spec: `Muti_user_brief.md` (the multi-tenant foundation it depends on) and the in-repo plan at `docs/superpowers/plans/2026-05-01-family-mcp-server.md`. The MCP server exposes 9 read-only tools at `POST /api/mcp` so a parent can hold their kid-progress conversations in Claude.ai (or any MCP client) instead of in our app.
+
+### 10.1 Security model (do not violate)
+
+- **Token → family_id is the trust boundary.** Bearer token → SHA-256 hash → `map_mcp_tokens` row → `family_id`. Every tool query filters on `family_id`. No tool accepts `family_id` from the caller.
+- **Read-only.** Only writes are: `map_mcp_audit` insert and `map_mcp_tokens.last_used_at` update. The `scripts/audit-mcp-readonly.mjs` script gates this on every change.
+- **Service role on server only.** `SUPABASE_SERVICE_ROLE_KEY` is read in `api/_lib/mcp/env.ts`. Never imported into anything under `src/`.
+- **Token plaintext shown once.** RPC `map_create_mcp_token` returns it; UI displays it in a one-shot modal; `map_mcp_tokens` stores only hash + last 4.
+- **Origin allow-list.** `claude.ai`, `*.claude.ai`, `chatgpt.com`, `cursor.so` (+ `localhost` in dev). Anything else → 403.
+- **Rate limit.** 60/min, 2000/day per token, in-memory bucket (per warm Vercel instance — accepted).
+
+### 10.2 Tools (the public API)
+
+| Tool | Purpose |
+|---|---|
+| `list_kids` | Children in the family. |
+| `get_kid_overview` | Snapshot for one child: totals, accuracy by subject, streak. |
+| `list_recent_sessions` | Newest-first list of sittings. |
+| `get_session_details` | Per-question breakdown of one session. |
+| `get_recent_wrong_answers` | Recent incorrect attempts with stem/chosen/correct/tag. |
+| `get_accuracy_by_standard` | Per-TEKS accuracy, weak first. |
+| `get_top_misconceptions` | Most-frequent error tags with sample. |
+| `get_activity_calendar` | Per-day question counts. |
+| `compare_kids` | Side-by-side across kids in the family. |
+
+Inputs are validated by zod schemas in `api/_lib/mcp/schemas.ts`. Outputs are JSON.
+
+### 10.3 File map
+
+```
+api/mcp.ts                              # fetch-bridged Vercel handler (Node runtime, maxDuration 30)
+api/_lib/mcp/
+  env.ts                                # service-role supabase client
+  errors.ts                             # McpError + code strings
+  origin.ts                             # allow-list
+  auth.ts                               # resolveContextOrThrow + bumpLastUsedAt
+  rate-limit.ts                         # in-memory bucket
+  audit.ts                              # logToolCall (allow-list redaction)
+  db.ts                                 # getStudentInFamily / getSessionInFamily
+  schemas.ts                            # zod inputs
+  tools/<name>.ts                       # one file per tool
+src/pages/parent/ConnectAi.tsx          # /parent/connect-ai UI
+migrations/20260501_map_mcp_tokens.sql  # schema, RLS, RPCs
+```
+
+### 10.4 Adaptations from the original brief that are now binding
+
+- The handler exports a Node-style `(req: IncomingMessage, res: ServerResponse)` and bridges internally to the Web `Request`/`Response` shape that `WebStandardStreamableHTTPServerTransport` expects. `@vercel/node` does not auto-detect single-arg fetch-style handlers in our config; the bridge is the canonical workaround.
+- The transport runs in **stateless mode** (`sessionIdGenerator` omitted). Vercel Serverless can't guarantee session continuity across cold starts, and Claude.ai's MCP client is happy with stateless. `enableJsonResponse: true` skips SSE.
+- `auth.ts` passes the SHA-256 hash to PostgREST as a `\xHEX` string, not a Buffer. supabase-js JSON-stringifies Buffer through its toString which produces garbage for binary data; `\xHEX` is PostgREST's bytea input format.
+- pgcrypto and uuid-ossp live in the `extensions` schema, not `public`. Every SECURITY DEFINER function uses `SET search_path = ''` and fully-qualifies all references — including `extensions.gen_random_bytes` and `extensions.digest`.
+
+### 10.5 Operations
+
+- Generate a token: parent signs in → unlocks PIN → `/parent/connect-ai` → "Generate token". Plaintext shown once.
+- Revoke: same page, "Revoke" button on a token row; sets `revoked_at`. Auth from this point onward fails for that token.
+- Audit: same page shows the last N rows from `map_mcp_audit` for the family.
+- Test scripts: `scripts/test-mcp-{handshake,bad-tokens,origin,rate-limit,isolation}.mjs` and `scripts/audit-mcp-readonly.mjs`. Run all before merging any change to `api/_lib/mcp/`.
+
+### 10.6 Phase 2 (out of scope here)
+
+OAuth 2.1 + dynamic client registration, write tools, Resources/Prompts, Upstash rate limiting, multi-token-per-agent UX, push/webhooks, token rotation. Don't build these as part of this feature.
+
