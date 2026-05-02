@@ -28,9 +28,8 @@ api/
     token.ts                                      # POST /api/oauth/token (code & refresh grants)
     revoke.ts                                     # POST /api/oauth/revoke (RFC 7009)
     _cleanup.ts                                   # GET  /api/oauth/_cleanup (Vercel Cron)
-  .well-known/
-    oauth-authorization-server.ts                 # GET /.well-known/oauth-authorization-server
-    oauth-protected-resource.ts                   # GET /.well-known/oauth-protected-resource
+  oauth-authorization-server.ts                   # served at /.well-known/oauth-authorization-server via vercel.json rewrite (Vercel doesn't mount dotted dirs as functions)
+  oauth-protected-resource.ts                     # served at /.well-known/oauth-protected-resource   via vercel.json rewrite
   _lib/
     oauth/
       env.ts                                      # PUBLIC_APP_URL, allowed-hosts
@@ -454,9 +453,12 @@ git commit -m "feat(mcp-oauth): shared helpers — env, errors, hashing, token g
 
 ## Task 3: Discovery endpoints
 
+**Note:** Vercel does not mount files in dotted directories (`api/.well-known/`) as functions. Handlers live at `api/oauth-authorization-server.ts` / `api/oauth-protected-resource.ts` and the public URL `/.well-known/<name>` is wired via `vercel.json` rewrites.
+
 **Files:**
-- Create: `api/.well-known/oauth-authorization-server.ts`
-- Create: `api/.well-known/oauth-protected-resource.ts`
+- Create: `api/oauth-authorization-server.ts`
+- Create: `api/oauth-protected-resource.ts`
+- Modify: `vercel.json` (add `rewrites` block)
 - Create: `scripts/test-oauth-discovery.mjs`
 
 - [ ] **Step 1: Write the failing test `scripts/test-oauth-discovery.mjs`**
@@ -514,13 +516,13 @@ node --env-file=.env.local scripts/test-oauth-discovery.mjs
 # Expected: FAIL with 404 on first GET
 ```
 
-- [ ] **Step 3: Implement `api/.well-known/oauth-authorization-server.ts`**
+- [ ] **Step 3: Implement `api/oauth-authorization-server.ts`**
 
 ```ts
 export const config = { runtime: 'nodejs' } as const;
 
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { getAppUrl } from '../_lib/oauth/env.js';
+import { getAppUrl } from './_lib/oauth/env.js';
 
 export default function handler(_req: IncomingMessage, res: ServerResponse): void {
   const issuer = getAppUrl();
@@ -543,13 +545,13 @@ export default function handler(_req: IncomingMessage, res: ServerResponse): voi
 }
 ```
 
-- [ ] **Step 4: Implement `api/.well-known/oauth-protected-resource.ts`**
+- [ ] **Step 4: Implement `api/oauth-protected-resource.ts`**
 
 ```ts
 export const config = { runtime: 'nodejs' } as const;
 
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { getAppUrl } from '../_lib/oauth/env.js';
+import { getAppUrl } from './_lib/oauth/env.js';
 
 export default function handler(_req: IncomingMessage, res: ServerResponse): void {
   const issuer = getAppUrl();
@@ -566,17 +568,39 @@ export default function handler(_req: IncomingMessage, res: ServerResponse): voi
 }
 ```
 
-- [ ] **Step 5: Run, expect pass**
+- [ ] **Step 5: Add rewrites to `vercel.json`**
+
+Read current `vercel.json` first. Add a top-level `rewrites` array if not present, then ensure both entries are there. Final file shape:
+
+```json
+{
+  "functions": {
+    "api/mcp.ts": { "maxDuration": 30 }
+  },
+  "rewrites": [
+    { "source": "/.well-known/oauth-authorization-server", "destination": "/api/oauth-authorization-server" },
+    { "source": "/.well-known/oauth-protected-resource",   "destination": "/api/oauth-protected-resource" }
+  ]
+}
+```
+
+(Task 14 will further extend `functions` and add `crons` — leave those for then.)
+
+- [ ] **Step 6: Restart `vercel dev`**
+
+The user must `Ctrl-C` and re-run `vercel dev --listen 3000` so it picks up the new function files and the rewrites. Ask them to do this and ping back when ready.
+
+- [ ] **Step 7: Run the test, expect pass**
 
 ```
 node --env-file=.env.local scripts/test-oauth-discovery.mjs
 # Expected: PASS oauth-authorization-server / PASS oauth-protected-resource
 ```
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 8: Commit**
 
 ```bash
-git add api/.well-known/oauth-authorization-server.ts api/.well-known/oauth-protected-resource.ts scripts/test-oauth-discovery.mjs
+git add api/oauth-authorization-server.ts api/oauth-protected-resource.ts vercel.json scripts/test-oauth-discovery.mjs
 git commit -m "feat(mcp-oauth): RFC 8414 + RFC 9728 discovery endpoints"
 ```
 
@@ -2859,21 +2883,27 @@ Replace with:
 ```json
 {
   "functions": {
-    "api/mcp.ts":                                         { "maxDuration": 30 },
-    "api/oauth/register.ts":                              { "maxDuration": 30 },
-    "api/oauth/authorize.ts":                             { "maxDuration": 30 },
-    "api/oauth/consent.ts":                               { "maxDuration": 30 },
-    "api/oauth/token.ts":                                 { "maxDuration": 30 },
-    "api/oauth/revoke.ts":                                { "maxDuration": 30 },
-    "api/oauth/_cleanup.ts":                              { "maxDuration": 30 },
-    "api/.well-known/oauth-authorization-server.ts":      { "maxDuration": 30 },
-    "api/.well-known/oauth-protected-resource.ts":        { "maxDuration": 30 }
+    "api/mcp.ts":                          { "maxDuration": 30 },
+    "api/oauth/register.ts":               { "maxDuration": 30 },
+    "api/oauth/authorize.ts":              { "maxDuration": 30 },
+    "api/oauth/consent.ts":                { "maxDuration": 30 },
+    "api/oauth/token.ts":                  { "maxDuration": 30 },
+    "api/oauth/revoke.ts":                 { "maxDuration": 30 },
+    "api/oauth/_cleanup.ts":               { "maxDuration": 30 },
+    "api/oauth-authorization-server.ts":   { "maxDuration": 30 },
+    "api/oauth-protected-resource.ts":     { "maxDuration": 30 }
   },
+  "rewrites": [
+    { "source": "/.well-known/oauth-authorization-server", "destination": "/api/oauth-authorization-server" },
+    { "source": "/.well-known/oauth-protected-resource",   "destination": "/api/oauth-protected-resource" }
+  ],
   "crons": [
     { "path": "/api/oauth/_cleanup", "schedule": "0 5 * * *" }
   ]
 }
 ```
+
+(Task 3 already added the `rewrites` block; preserve and extend the file rather than overwriting.)
 
 - [ ] **Step 3: Commit**
 
