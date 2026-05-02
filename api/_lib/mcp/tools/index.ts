@@ -7,6 +7,7 @@ import { register as registerGetRecentWrongAnswers } from './get-recent-wrong-an
 import { register as registerGetAccuracyByStandard } from './get-accuracy-by-standard.js';
 import { register as registerGetTopMisconceptions } from './get-top-misconceptions.js';
 import { register as registerGetSessionDetails } from './get-session-details.js';
+import { register as registerGetActivityCalendar } from './get-activity-calendar.js';
 
 export function registerTools(server: McpServer, ctx: McpContext): void {
   registerListKids(server, ctx);
@@ -16,5 +17,6 @@ export function registerTools(server: McpServer, ctx: McpContext): void {
   registerGetAccuracyByStandard(server, ctx);
   registerGetTopMisconceptions(server, ctx);
   registerGetSessionDetails(server, ctx);
+  registerGetActivityCalendar(server, ctx);
   // Subsequent tools are registered here in Phase D.
 }
