@@ -162,11 +162,9 @@ export default function App() {
             path="/parent/connect-ai"
             element={
               <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <ConnectAi />
-                  </RequireParentPin>
-                </RequireActiveStudent>
+                <RequireParentPin>
+                  <ConnectAi />
+                </RequireParentPin>
               </RequireAuth>
             }
           />

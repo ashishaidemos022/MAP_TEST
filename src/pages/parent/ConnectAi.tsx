@@ -316,9 +316,12 @@ export default function ConnectAi() {
           className="fixed inset-0 z-50 grid place-items-center bg-ink/50 p-4"
           role="dialog"
           aria-modal="true"
+          aria-labelledby="reveal-modal-title"
+          tabIndex={-1}
+          onKeyDown={(e) => { if (e.key === 'Escape') setReveal(null); }}
         >
           <div className="card w-full max-w-lg space-y-4 p-5">
-            <h3 className="font-display text-2xl">Your token (shown only once)</h3>
+            <h3 id="reveal-modal-title" className="font-display text-2xl">Your token (shown only once)</h3>
             <p className="text-xs font-semibold uppercase tracking-widest text-smoke">
               Token
             </p>
