@@ -15,19 +15,29 @@ type RegisterBody = {
   token_endpoint_auth_method?: unknown;
 };
 
+function assertObject(parsed: unknown): RegisterBody {
+  if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new OAuthError('invalid_request', 'body must be a JSON object', 400);
+  }
+  return parsed as RegisterBody;
+}
+
 async function readJson(req: IncomingMessage): Promise<RegisterBody> {
   // @vercel/node may pre-parse JSON bodies onto req.body. Honor that first.
-  const pre = (req as IncomingMessage & { body?: unknown }).body;
-  if (pre && typeof pre === 'object') return pre as RegisterBody;
-  if (typeof pre === 'string' && pre.length > 0) {
-    try { return JSON.parse(pre) as RegisterBody; }
-    catch { throw new OAuthError('invalid_request', 'malformed JSON body', 400); }
+  // If `body` is present (even as null/string/number/array/etc.), trust the parser
+  // and validate the result rather than re-reading the stream (which is empty by then).
+  const reqWithBody = req as IncomingMessage & { body?: unknown };
+  if ('body' in reqWithBody && reqWithBody.body !== undefined) {
+    return assertObject(reqWithBody.body);
   }
   const chunks: Buffer[] = [];
   for await (const c of req) chunks.push(c as Buffer);
   if (chunks.length === 0) return {};
-  try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); }
-  catch { throw new OAuthError('invalid_request', 'malformed JSON body', 400); }
+  try { return assertObject(JSON.parse(Buffer.concat(chunks).toString('utf8'))); }
+  catch (e) {
+    if (e instanceof OAuthError) throw e;
+    throw new OAuthError('invalid_request', 'malformed JSON body', 400);
+  }
 }
 
 function validate(body: RegisterBody): {
@@ -100,6 +110,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
 
     res.statusCode = 201;
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Pragma', 'no-cache');
     res.end(JSON.stringify({
       client_id,
       ...(client_secret ? { client_secret, client_secret_last4: last4(client_secret) } : {}),
