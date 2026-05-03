@@ -30,6 +30,13 @@ export class OAuthError extends Error {
 export function buildOAuthErrorResponse(err: OAuthError): Response {
   return new Response(
     JSON.stringify({ error: err.code, error_description: err.message }),
-    { status: err.httpStatus, headers: { 'Content-Type': 'application/json' } },
+    {
+      status: err.httpStatus,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store',
+        'Pragma': 'no-cache',
+      },
+    },
   );
 }

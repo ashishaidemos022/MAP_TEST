@@ -8,23 +8,7 @@ import { verifyPkceS256 } from '../_lib/oauth/pkce.js';
 import { issueAccessToken } from '../_lib/oauth/access-tokens.js';
 import { issueRefreshToken, consumeRefreshToken } from '../_lib/oauth/refresh-tokens.js';
 import { getServiceClient } from '../_lib/mcp/env.js';
-
-async function readForm(req: IncomingMessage): Promise<URLSearchParams> {
-  // @vercel/node may pre-parse application/x-www-form-urlencoded onto req.body.
-  const pre = (req as IncomingMessage & { body?: unknown }).body;
-  if (pre && typeof pre === 'object' && !Array.isArray(pre) && !(pre instanceof Buffer)) {
-    const params = new URLSearchParams();
-    for (const [k, v] of Object.entries(pre as Record<string, unknown>)) {
-      if (typeof v === 'string') params.set(k, v);
-    }
-    return params;
-  }
-  if (typeof pre === 'string' && pre.length > 0) return new URLSearchParams(pre);
-  if (Buffer.isBuffer(pre)) return new URLSearchParams(pre.toString('utf8'));
-  const chunks: Buffer[] = [];
-  for await (const c of req) chunks.push(c as Buffer);
-  return new URLSearchParams(Buffer.concat(chunks).toString('utf8'));
-}
+import { readUrlEncodedForm } from '../_lib/oauth/form.js';
 
 function jsonResponse(res: ServerResponse, status: number, body: unknown): void {
   res.statusCode = status;
@@ -109,7 +93,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     res.statusCode = 405; res.setHeader('Allow', 'POST'); res.end('method not allowed'); return;
   }
   try {
-    const form = await readForm(req);
+    const form = await readUrlEncodedForm(req);
     const grant_type = form.get('grant_type');
     if (grant_type === 'authorization_code')        await handleCodeGrant(form, res);
     else if (grant_type === 'refresh_token')        await handleRefreshGrant(form, res);

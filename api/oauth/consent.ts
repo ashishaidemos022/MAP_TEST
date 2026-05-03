@@ -6,25 +6,7 @@ import { getClientById, assertRedirectUriRegistered } from '../_lib/oauth/client
 import { getSessionContextFromRequest } from '../_lib/oauth/session.js';
 import { upsertActiveGrant } from '../_lib/oauth/grants.js';
 import { issueAuthCode } from '../_lib/oauth/auth-codes.js';
-
-async function readForm(req: IncomingMessage): Promise<URLSearchParams> {
-  // @vercel/node may pre-parse application/x-www-form-urlencoded onto req.body.
-  const pre = (req as IncomingMessage & { body?: unknown }).body;
-  if (pre && typeof pre === 'object' && !Array.isArray(pre) && !(pre instanceof Buffer)) {
-    // Already an object — convert to URLSearchParams
-    const params = new URLSearchParams();
-    for (const [k, v] of Object.entries(pre as Record<string, unknown>)) {
-      if (typeof v === 'string') params.set(k, v);
-    }
-    return params;
-  }
-  if (typeof pre === 'string' && pre.length > 0) return new URLSearchParams(pre);
-  if (Buffer.isBuffer(pre)) return new URLSearchParams(pre.toString('utf8'));
-  // Stream fallback (no @vercel/node pre-parse)
-  const chunks: Buffer[] = [];
-  for await (const c of req) chunks.push(c as Buffer);
-  return new URLSearchParams(Buffer.concat(chunks).toString('utf8'));
-}
+import { readUrlEncodedForm } from '../_lib/oauth/form.js';
 
 function getCookie(header: string | undefined, name: string): string | null {
   if (!header) return null;
@@ -61,7 +43,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     res.statusCode = 405; res.setHeader('Allow', 'POST'); res.end('method not allowed'); return;
   }
   try {
-    const form = await readForm(req);
+    const form = await readUrlEncodedForm(req);
     const client_id    = form.get('client_id') ?? '';
     const redirect_uri = form.get('redirect_uri') ?? '';
     const state        = form.get('state') ?? '';
