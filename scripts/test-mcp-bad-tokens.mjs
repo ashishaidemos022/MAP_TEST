@@ -45,3 +45,28 @@ if (process.env.MCP_EXPIRED_TOKEN) {
 } else {
   console.log('SKIP expired check (set MCP_EXPIRED_TOKEN to enable)');
 }
+
+// New (Task 15): oat_-prefixed but unknown → 401.
+const ratStrange = await fetch(`${BASE}/api/mcp`, {
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer oat_does_not_exist',
+    'Content-Type': 'application/json',
+    Accept: 'application/json, text/event-stream',
+  },
+  body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} }),
+});
+if (ratStrange.status !== 401) {
+  console.error('FAIL oat_ unknown:', ratStrange.status); process.exit(1);
+}
+console.log('PASS oat_ unknown → 401');
+
+// New (Task 15): unknown-prefix format malformed → 401.
+const malformed = await fetch(`${BASE}/api/mcp`, {
+  method: 'POST',
+  headers: { Authorization: 'Bearer xyz_abc', 'Content-Type': 'application/json',
+             Accept: 'application/json, text/event-stream' },
+  body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} }),
+});
+if (malformed.status !== 401) { console.error('FAIL malformed:', malformed.status); process.exit(1); }
+console.log('PASS unknown-prefix → 401');

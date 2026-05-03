@@ -13,12 +13,7 @@ export type AuditInput = {
 // Whitelist: only these arg keys are persisted. Add to this list when a new
 // tool introduces a new arg name. Anything else is dropped at write time.
 const ARG_KEY_WHITELIST = new Set([
-  'student_id',
-  'session_id',
-  'subject',
-  'limit',
-  'since_days',
-  'min_questions',
+  'student_id', 'session_id', 'subject', 'limit', 'since_days', 'min_questions',
 ]);
 
 function redact(input: unknown): unknown {
@@ -28,9 +23,7 @@ function redact(input: unknown): unknown {
   const out: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(input as Record<string, unknown>)) {
     if (!ARG_KEY_WHITELIST.has(k)) continue;
-    if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
-      out[k] = v;
-    }
+    if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') out[k] = v;
   }
   return out;
 }
@@ -41,6 +34,8 @@ export async function logToolCall({ ctx, toolName, toolArgs, status, errorMessag
   const { error } = await ctx.supabase.from('map_mcp_audit').insert({
     token_id: ctx.token_id,
     family_id: ctx.family_id,
+    auth_kind: ctx.auth_kind,
+    grant_id: ctx.grant_id,
     tool_name: toolName,
     tool_args: redact(toolArgs),
     status,
