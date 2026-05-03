@@ -191,6 +191,7 @@ export default function ConnectAi() {
         <button
           type="button"
           className="flex w-full items-center justify-between text-left"
+          aria-expanded={showPatSection}
           onClick={() => setShowPatSection((v) => !v)}
         >
           <span className="font-display text-xl">Personal access tokens (advanced)</span>
