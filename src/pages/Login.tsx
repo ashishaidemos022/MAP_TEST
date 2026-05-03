@@ -3,6 +3,22 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
 import { supabase } from '../lib/supabase'
 
+// Reads ?return_to=<URL> and validates it. Only same-origin same-protocol
+// targets are honored (defends against open-redirect). Returns null if the
+// param is missing or unsafe.
+function readReturnTo(search: string): string | null {
+  const params = new URLSearchParams(search)
+  const raw = params.get('return_to')
+  if (!raw) return null
+  try {
+    const u = new URL(raw, window.location.origin)
+    if (u.origin !== window.location.origin) return null
+    return u.pathname + u.search + u.hash
+  } catch {
+    return null
+  }
+}
+
 export default function Login() {
   const { user, loading } = useAuth()
   const navigate = useNavigate()
@@ -14,6 +30,14 @@ export default function Login() {
 
   if (loading) return null
   if (user) {
+    // OAuth flow attaches ?return_to=… to bring the parent back to the
+    // /api/oauth/authorize URL after sign-in. Honor it before falling back
+    // to location.state (used by RequireAuth) and finally /.
+    const returnTo = readReturnTo(location.search)
+    if (returnTo) {
+      window.location.replace(returnTo)
+      return null
+    }
     const dest =
       (location.state as { from?: { pathname?: string } } | null)?.from?.pathname ?? '/'
     return <Navigate to={dest} replace />
@@ -27,6 +51,11 @@ export default function Login() {
     setSubmitting(false)
     if (e1) {
       setError(e1.message)
+      return
+    }
+    const returnTo = readReturnTo(location.search)
+    if (returnTo) {
+      window.location.replace(returnTo)
       return
     }
     navigate('/', { replace: true })

@@ -12,6 +12,35 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
+// supabase-js stores the session in localStorage by default. The server-side
+// OAuth handlers in api/_lib/oauth/session.ts read the session from a cookie
+// named sb-<project-ref>-auth-token, so we mirror the localStorage session
+// into that cookie on every auth state change.
+function projectRefFromUrl(): string {
+  const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
+  if (!url) return ''
+  try { return new URL(url).hostname.split('.')[0] ?? '' }
+  catch { return '' }
+}
+
+function syncSessionCookie(s: Session | null): void {
+  const ref = projectRefFromUrl()
+  if (!ref) return
+  const name = `sb-${ref}-auth-token`
+  const secure = window.location.protocol === 'https:' ? '; Secure' : ''
+  if (!s) {
+    document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax${secure}`
+    return
+  }
+  // Array form matches api/_lib/oauth/session.ts:extractAccessToken array path.
+  // Five elements mirror what supabase's getSession() returns when serialized.
+  const value = encodeURIComponent(JSON.stringify([
+    s.access_token, s.refresh_token, null, null, null,
+  ]))
+  // 1h matches access-token TTL; refreshes will rotate the cookie via onAuthStateChange.
+  document.cookie = `${name}=${value}; Path=/; Max-Age=3600; SameSite=Lax${secure}`
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
@@ -21,10 +50,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     void supabase.auth.getSession().then(({ data }) => {
       if (cancelled) return
       setSession(data.session)
+      syncSessionCookie(data.session)
       setLoading(false)
     })
     const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
       setSession(s)
+      syncSessionCookie(s)
       setLoading(false)
     })
     return () => {
