@@ -59,7 +59,15 @@ export async function consumeRefreshToken(plaintext: string): Promise<{
     .eq('token_hash', hash)
     .maybeSingle();
   if (existing && existing.used_at && !existing.revoked_at) {
-    // REUSE DETECTED: cascade revoke the grant + all under-grant tokens.
+    // Distinguish duplicate request (legitimate client retry on network
+    // timeout, ~99%+ of cases) from actual reuse (attacker presenting a
+    // token the legitimate client already consumed). Threshold is short
+    // enough that an attacker can't realistically race within it, but long
+    // enough to absorb common retry storms (cold starts, mobile flakiness).
+    const usedMsAgo = Date.now() - new Date(existing.used_at).getTime();
+    if (usedMsAgo < 5000) {
+      throw new OAuthError('invalid_grant', 'refresh token already consumed', 400);
+    }
     await cascadeRevokeGrant(existing.grant_id);
     throw new OAuthError('invalid_grant', 'refresh token reuse detected; grant revoked', 400);
   }
@@ -67,26 +75,37 @@ export async function consumeRefreshToken(plaintext: string): Promise<{
 }
 
 async function cascadeRevokeGrant(grant_id: string): Promise<void> {
+  // The three UPDATEs are intentionally NOT wrapped in a single transaction.
+  // OAuth 2.1 §4.3.1 accepts the brief inconsistency window (~50ms in practice).
+  // Order matters: revoke refresh tokens FIRST so an attacker cannot mint new
+  // access tokens via /oauth/token between statements; then access tokens
+  // (already-issued ones still have <=1h to live but can't be re-issued); then
+  // the grant itself (which the parent UI uses to show "connected agents").
+  // All three filter `revoked_at IS NULL` so the cascade is idempotent under retry.
   const sb = getServiceClient();
   const now = new Date().toISOString();
-  await sb.from('map_oauth_grants').update({ revoked_at: now }).eq('id', grant_id).is('revoked_at', null);
-  await sb.from('map_oauth_access_tokens').update({ revoked_at: now }).eq('grant_id', grant_id).is('revoked_at', null);
   await sb.from('map_oauth_refresh_tokens').update({ revoked_at: now }).eq('grant_id', grant_id).is('revoked_at', null);
+  await sb.from('map_oauth_access_tokens').update({ revoked_at: now }).eq('grant_id', grant_id).is('revoked_at', null);
+  await sb.from('map_oauth_grants').update({ revoked_at: now }).eq('id', grant_id).is('revoked_at', null);
 }
 
 // Used by /oauth/revoke (RFC 7009) for a single-token revoke.
 export async function revokeRefreshTokenByPlaintext(plaintext: string): Promise<void> {
   const sb = getServiceClient();
-  await sb.from('map_oauth_refresh_tokens')
+  const { error } = await sb.from('map_oauth_refresh_tokens')
     .update({ revoked_at: new Date().toISOString() })
     .eq('token_hash', sha256ByteaHex(plaintext))
     .is('revoked_at', null);
+  if (error) console.error('[oauth/refresh-tokens] revoke refresh failed:', error);
+  // RFC 7009 §2.2: caller still returns 200 regardless.
 }
 
 export async function revokeAccessTokenByPlaintext(plaintext: string): Promise<void> {
   const sb = getServiceClient();
-  await sb.from('map_oauth_access_tokens')
+  const { error } = await sb.from('map_oauth_access_tokens')
     .update({ revoked_at: new Date().toISOString() })
     .eq('token_hash', sha256ByteaHex(plaintext))
     .is('revoked_at', null);
+  if (error) console.error('[oauth/refresh-tokens] revoke access failed:', error);
+  // RFC 7009 §2.2: caller still returns 200 regardless.
 }
