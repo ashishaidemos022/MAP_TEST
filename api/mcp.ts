@@ -70,9 +70,18 @@ async function nodeToWebRequest(req: IncomingMessage): Promise<Request> {
   }
   let body: Buffer | undefined;
   if (req.method && req.method !== 'GET' && req.method !== 'HEAD') {
-    const chunks: Buffer[] = [];
-    for await (const chunk of req) chunks.push(chunk as Buffer);
-    body = Buffer.concat(chunks);
+    // @vercel/node auto-parses JSON bodies and exposes them on req.body, which
+    // drains the underlying stream — so for-await reads zero chunks. Prefer the
+    // pre-parsed body when present; fall back to reading the stream otherwise.
+    const reqAny = req as unknown as { body?: unknown };
+    if (reqAny.body !== undefined && reqAny.body !== null) {
+      const serialized = typeof reqAny.body === 'string' ? reqAny.body : JSON.stringify(reqAny.body);
+      body = Buffer.from(serialized, 'utf8');
+    } else {
+      const chunks: Buffer[] = [];
+      for await (const chunk of req) chunks.push(chunk as Buffer);
+      body = Buffer.concat(chunks);
+    }
   }
   return new Request(url, { method: req.method, headers, body });
 }
