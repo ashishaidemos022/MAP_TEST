@@ -1,9 +1,20 @@
 {
   "functions": {
-    "api/mcp.ts": { "maxDuration": 30 }
+    "api/mcp.ts":                          { "maxDuration": 30 },
+    "api/oauth/register.ts":               { "maxDuration": 30 },
+    "api/oauth/authorize.ts":              { "maxDuration": 30 },
+    "api/oauth/consent.ts":                { "maxDuration": 30 },
+    "api/oauth/token.ts":                  { "maxDuration": 30 },
+    "api/oauth/revoke.ts":                 { "maxDuration": 30 },
+    "api/oauth/cleanup.ts":                { "maxDuration": 30 },
+    "api/oauth-authorization-server.ts":   { "maxDuration": 30 },
+    "api/oauth-protected-resource.ts":     { "maxDuration": 30 }
   },
   "rewrites": [
     { "source": "/.well-known/oauth-authorization-server", "destination": "/api/oauth-authorization-server" },
     { "source": "/.well-known/oauth-protected-resource",   "destination": "/api/oauth-protected-resource" }
+  ],
+  "crons": [
+    { "path": "/api/oauth/cleanup", "schedule": "0 5 * * *" }
   ]
 }
