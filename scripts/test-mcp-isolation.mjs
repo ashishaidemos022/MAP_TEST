@@ -73,3 +73,9 @@ assert(/session_not_in_family|not found in this family/i.test(xfer2Text),
   'A cannot read B-session via get_session_details');
 
 console.log('\nAll isolation checks passed.');
+
+// Note (Task 15): The PAT isolation cases above prove the family-scope invariant
+// (auth.ts produces the same McpContext for both PAT and OAuth paths). The OAuth
+// path is exercised by test-mcp-oauth-handshake.mjs, which confirms tools return
+// only the connecting parent's family data via a real session round-trip.
+console.log('NOTE OAuth isolation covered by test-mcp-oauth-handshake.mjs');

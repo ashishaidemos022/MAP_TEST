@@ -58,3 +58,15 @@ for (const name of expected) {
   }
 }
 console.log(`PASS tools/list (all ${expected.length} present)`);
+
+// New (Task 15): 401 with no Authorization must include resource_metadata in WWW-Authenticate.
+const r401 = await fetch(`${BASE}/api/mcp`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+  body: JSON.stringify({ jsonrpc: '2.0', id: 99, method: 'tools/list', params: {} }),
+});
+const wwwAuth = r401.headers.get('www-authenticate') ?? '';
+if (r401.status !== 401 || !wwwAuth.includes('resource_metadata=')) {
+  console.error('FAIL no-token WWW-Authenticate:', r401.status, wwwAuth); process.exit(1);
+}
+console.log('PASS no-token 401 includes resource_metadata');

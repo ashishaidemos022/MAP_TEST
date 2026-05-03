@@ -29,16 +29,23 @@ for (const block of blocks) {
   // If ANY line in the context block names an allowed table, the write is permitted.
   if (/map_mcp_audit/.test(block)) continue;
   if (/map_mcp_tokens/.test(block)) continue;
+  if (/map_oauth_clients/.test(block)) continue;
+  if (/map_oauth_grants/.test(block)) continue;
+  if (/map_oauth_authorization_codes/.test(block)) continue;
+  if (/map_oauth_access_tokens/.test(block)) continue;
+  if (/map_oauth_refresh_tokens/.test(block)) continue;
 
   offenders.push(triggerLine);
 }
 
 if (offenders.length > 0) {
-  console.error('FAIL: write operations found against tables other than map_mcp_audit / map_mcp_tokens:');
+  console.error('FAIL: write operations found against tables outside the allow-list:');
   for (const o of offenders) console.error('  ' + o);
   process.exit(1);
 }
 
 console.log('PASS read-only audit');
-console.log('  Allowed writes only: map_mcp_audit insert + map_mcp_tokens update');
+console.log('  Allowed writes: map_mcp_audit, map_mcp_tokens, map_oauth_clients,');
+console.log('                  map_oauth_grants, map_oauth_authorization_codes,');
+console.log('                  map_oauth_access_tokens, map_oauth_refresh_tokens');
 console.log('  (filter excludes Node crypto Hash#update on createHash chains)');
