@@ -8,9 +8,7 @@ export async function upsertActiveGrant(opts: {
   scope: string;
 }): Promise<{ id: string }> {
   const sb = getServiceClient();
-  // Try to find an active grant first (the unique partial index would
-  // collide on a naive insert; conflict-on-partial-index isn't supported
-  // by upsert in a clean way, so we do select-then-insert in one txn-shape).
+  // Try to find an active grant first.
   const { data: existing, error: e1 } = await sb
     .from('map_oauth_grants')
     .select('id')
@@ -24,6 +22,10 @@ export async function upsertActiveGrant(opts: {
   }
   if (existing) return { id: existing.id };
 
+  // Race: between the SELECT above and our INSERT, a concurrent /consent
+  // for the same (family, client) could create the grant. The partial
+  // unique index `uniq_active_grant ... WHERE revoked_at IS NULL` will
+  // catch it (PG 23505); we re-SELECT and use the row that won.
   const { data: ins, error: e2 } = await sb
     .from('map_oauth_grants')
     .insert({
@@ -34,11 +36,23 @@ export async function upsertActiveGrant(opts: {
     })
     .select('id')
     .single();
-  if (e2) {
-    console.error('[oauth/grants] insert failed:', e2);
-    throw new OAuthError('server_error', 'grant insert failed', 500);
+  if (ins) return { id: ins.id };
+  if (e2 && (e2 as { code?: string }).code === '23505') {
+    const { data: again, error: e3 } = await sb
+      .from('map_oauth_grants')
+      .select('id')
+      .eq('family_id', opts.family_id)
+      .eq('client_id', opts.client_id)
+      .is('revoked_at', null)
+      .maybeSingle();
+    if (e3) {
+      console.error('[oauth/grants] re-lookup after conflict failed:', e3);
+      throw new OAuthError('server_error', 'grant lookup failed', 500);
+    }
+    if (again) return { id: again.id };
   }
-  return { id: ins.id };
+  console.error('[oauth/grants] insert failed:', e2);
+  throw new OAuthError('server_error', 'grant insert failed', 500);
 }
 
 export async function bumpGrantLastUsed(grant_id: string): Promise<void> {

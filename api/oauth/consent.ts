@@ -105,7 +105,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
 
     const u = redirectBack(redirect_uri, state, { code });
     res.statusCode = 302;
-    res.setHeader('Set-Cookie', 'oauth_csrf=; Path=/; Max-Age=0');  // clear CSRF cookie
+    const secure = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+    res.setHeader('Set-Cookie', `oauth_csrf=; Path=/; HttpOnly; SameSite=Lax${secure}; Max-Age=0`);  // clear CSRF cookie
     res.setHeader('Location', u);
     res.end();
   } catch (err) {

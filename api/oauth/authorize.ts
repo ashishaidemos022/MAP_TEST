@@ -78,7 +78,10 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     // Issue a CSRF token tied to this consent rendering. Stored in an
     // HttpOnly cookie; verified server-side at /api/oauth/consent.
     const csrf = randomBytes(16).toString('hex');
-    res.setHeader('Set-Cookie', `oauth_csrf=${csrf}; Path=/; HttpOnly; SameSite=Lax; Max-Age=600`);
+    const secure = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+    res.setHeader('Set-Cookie', `oauth_csrf=${csrf}; Path=/; HttpOnly; SameSite=Lax${secure}; Max-Age=600`);
+    res.setHeader('Content-Security-Policy', "frame-ancestors 'none'");
+    res.setHeader('X-Frame-Options', 'DENY');
     const html = renderConsentHtml({
       client_id, client_name: client.client_name, redirect_uri, state, scope,
       code_challenge, code_challenge_method, csrf_token: csrf,
