@@ -57,6 +57,7 @@ const cookieHeader = `${cookieName}=${cookieValue}`;
 
 let firstAccessToken;  // captured for the post-cascade probe at the end
 let firstRefreshToken;
+let regClientId; // for cleanup in finally
 try {
   // 3. DCR
   const reg = await fetch(`${BASE}/api/oauth/register`, {
@@ -67,6 +68,7 @@ try {
     }),
   }).then((r) => r.json());
   if (!reg.client_id || !reg.client_secret) throw new Error('FAIL DCR: ' + JSON.stringify(reg));
+  regClientId = reg.client_id;
   console.log('PASS DCR');
 
   // 4. PKCE pair
@@ -202,6 +204,11 @@ try {
   }
   console.log('PASS post-cascade /api/mcp → 401');
 } finally {
-  // Clean up the test user (cascades through families → grants → tokens)
+  // Clean up the test user (cascades through families → grants → tokens).
+  // Then explicitly delete the DCR client (no FK to families, so user-delete
+  // doesn't cascade through it).
   await sb.auth.admin.deleteUser(userId);
+  if (typeof regClientId === 'string') {
+    await sb.from('map_oauth_clients').delete().eq('client_id', regClientId);
+  }
 }

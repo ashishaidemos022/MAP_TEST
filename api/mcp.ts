@@ -74,7 +74,7 @@ async function nodeToWebRequest(req: IncomingMessage): Promise<Request> {
     // drains the underlying stream — so for-await reads zero chunks. Prefer the
     // pre-parsed body when present; fall back to reading the stream otherwise.
     const reqAny = req as unknown as { body?: unknown };
-    if (reqAny.body !== undefined && reqAny.body !== null) {
+    if (reqAny.body !== undefined) {
       const serialized = typeof reqAny.body === 'string' ? reqAny.body : JSON.stringify(reqAny.body);
       body = Buffer.from(serialized, 'utf8');
     } else {
