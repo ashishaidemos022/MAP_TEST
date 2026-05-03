@@ -32,6 +32,20 @@ type AuditRow = {
 
 const MCP_URL = `${import.meta.env.VITE_PUBLIC_BASE_URL ?? window.location.origin}/api/mcp`
 const EXPIRY_OPTIONS = [30, 90, 180, 365]
+const ACTIVE_WINDOW_MS = 24 * 60 * 60 * 1000
+
+function formatRelative(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime()
+  const minutes = Math.floor(diff / 60_000)
+  if (minutes < 1) return 'just now'
+  if (minutes < 60) return `${minutes} min ago`
+  const hours = Math.floor(minutes / 60)
+  if (hours < 24) return `${hours} hr ago`
+  const days = Math.floor(hours / 24)
+  if (days < 30) return `${days} day${days === 1 ? '' : 's'} ago`
+  const months = Math.floor(days / 30)
+  return `${months} mo ago`
+}
 
 export default function ConnectAi() {
   const [tokens, setTokens] = useState<TokenRow[]>([])
@@ -130,38 +144,60 @@ export default function ConnectAi() {
         </p>
       )}
 
-      {/* SECTION 1: Connected agents */}
+      {/* SECTION 1: Authorized agents */}
       <section className="card mb-6 p-5">
         <header>
-          <h2 className="font-display text-xl">Connected agents</h2>
+          <h2 className="font-display text-xl">Authorized agents</h2>
           <p className="text-xs text-ink/60">
-            AI agents that have an OAuth connection to your family's data. Read-only access.
+            AI agents you've authorized to read your family's data.{' '}
+            <span className="text-ink/50">
+              Removing a connector inside Claude.ai or ChatGPT doesn't always notify us — click
+              Revoke to fully disconnect.
+            </span>
           </p>
         </header>
         <div className="mt-4 space-y-2">
           {grants.length === 0 && (
             <p className="text-sm text-ink/60">
-              No agents connected yet. To connect Claude.ai or ChatGPT, see instructions below.
+              No agents authorized yet. To connect Claude.ai or ChatGPT, see instructions below.
             </p>
           )}
-          {grants.map((g) => (
-            <div key={g.grant_id} className="flex items-center justify-between rounded-xl border border-cloud bg-paper px-3 py-2">
-              <div>
-                <p className="font-semibold">{g.client_name}</p>
-                <p className="text-xs text-ink/60">
-                  Connected {new Date(g.created_at).toLocaleDateString()} · Last used{' '}
-                  {g.last_used_at ? new Date(g.last_used_at).toLocaleString() : 'never'}
-                </p>
+          {grants.map((g) => {
+            const lastUsedMs = g.last_used_at ? new Date(g.last_used_at).getTime() : 0
+            const isActive = lastUsedMs > 0 && Date.now() - lastUsedMs < ACTIVE_WINDOW_MS
+            return (
+              <div key={g.grant_id} className="flex items-center justify-between rounded-xl border border-cloud bg-paper px-3 py-2">
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`inline-block h-2.5 w-2.5 shrink-0 rounded-full ${isActive ? 'bg-leaf' : 'bg-ink/20'}`}
+                    title={isActive ? 'Active — used in the last 24 hours' : 'Inactive — no activity in the last 24 hours'}
+                    aria-label={isActive ? 'Active' : 'Inactive'}
+                  />
+                  <div>
+                    <p className="font-semibold">
+                      {g.client_name}
+                      <span className={`ml-2 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${isActive ? 'bg-leaf/15 text-leaf' : 'bg-cloud text-ink/60'}`}>
+                        {isActive ? 'Active' : 'Inactive'}
+                      </span>
+                    </p>
+                    <p className="text-xs text-ink/60">
+                      Connected {new Date(g.created_at).toLocaleDateString()} · Last used{' '}
+                      <span title={g.last_used_at ? new Date(g.last_used_at).toLocaleString() : ''}>
+                        {g.last_used_at ? formatRelative(g.last_used_at) : 'never'}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="btn-ghost text-xs"
+                  onClick={() => void handleRevokeGrant(g.grant_id, g.client_name)}
+                >
+                  Revoke
+                </button>
               </div>
-              <button
-                type="button"
-                className="btn-ghost text-xs"
-                onClick={() => void handleRevokeGrant(g.grant_id, g.client_name)}
-              >
-                Revoke
-              </button>
-            </div>
-          ))}
+            )
+          })}
         </div>
         <details className="mt-5 text-sm">
           <summary className="cursor-pointer font-semibold">How to connect Claude.ai</summary>
