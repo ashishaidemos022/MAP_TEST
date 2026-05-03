@@ -82,6 +82,8 @@ export async function resolveContextOrThrow(req: Request): Promise<McpContext> {
 
 export async function bumpLastUsedAt(ctx: McpContext): Promise<void> {
   if (ctx.auth_kind === 'pat') {
+    // Awaited (not fire-and-forget) so Vercel doesn't freeze the function mid-write.
+    // ~20-50ms cost, deterministic. Future optimization: @vercel/functions waitUntil.
     const { error } = await ctx.supabase
       .from('map_mcp_tokens')
       .update({ last_used_at: new Date().toISOString() })

@@ -10,6 +10,8 @@ export type AuditInput = {
   errorMessage?: string;
 };
 
+// Whitelist: only these arg keys are persisted. Add to this list when a new
+// tool introduces a new arg name. Anything else is dropped at write time.
 const ARG_KEY_WHITELIST = new Set([
   'student_id', 'session_id', 'subject', 'limit', 'since_days', 'min_questions',
 ]);
@@ -27,6 +29,8 @@ function redact(input: unknown): unknown {
 }
 
 export async function logToolCall({ ctx, toolName, toolArgs, status, errorMessage }: AuditInput): Promise<void> {
+  // Awaited so the row is durable before we return to the client.
+  // Failure is logged but does not fail the request.
   const { error } = await ctx.supabase.from('map_mcp_audit').insert({
     token_id: ctx.token_id,
     family_id: ctx.family_id,
