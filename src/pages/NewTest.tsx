@@ -41,7 +41,18 @@ export default function NewTest() {
             `No published custom ${subject} questions in your family bank yet. Have your AI agent author + publish some first (any grade — custom questions aren't grade-filtered).`,
           )
         } else {
-          const msg = e instanceof Error ? e.message : 'Could not start a test.'
+          // supabase-js PostgrestError is a plain object, not an Error
+          // instance. Read .message / .details from any object shape so the
+          // real reason (RLS, FK, CHECK violation, etc.) surfaces to the
+          // parent instead of a generic fallback string.
+          let msg = 'Could not start a test.'
+          if (e instanceof Error) {
+            msg = e.message
+          } else if (e && typeof e === 'object') {
+            const o = e as { message?: string; details?: string; hint?: string; code?: string }
+            msg = [o.message, o.details, o.hint, o.code].filter(Boolean).join(' — ') || msg
+          }
+          console.error('[NewTest] start failed:', e)
           setError(msg)
         }
       }

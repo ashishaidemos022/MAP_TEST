@@ -299,7 +299,7 @@ export async function createCustomTestFromMyBank(args: {
     .select('version_id, subject, grade, passage_id, passage_version_id, question_status')
     .eq('subject', subject)
     .eq('question_status', 'published')
-  if (error) throw new Error(error.message)
+  if (error) throw new Error(`reading custom_questions_resolved: ${error.message}`)
   const pool = (rows ?? []) as Array<{
     version_id: string
     subject: string
@@ -359,7 +359,11 @@ export async function createCustomTestFromMyBank(args: {
     })
     .select('id')
     .single()
-  if (insErr || !data) throw insErr ?? new Error('Failed to create custom session')
+  if (insErr || !data) {
+    // supabase-js's PostgrestError is a plain object; wrap it as a real Error
+    // so callers' `e instanceof Error` checks pick up the message.
+    throw new Error(insErr?.message ?? 'Failed to create custom session')
+  }
 
   return {
     sessionId: data.id as string,
