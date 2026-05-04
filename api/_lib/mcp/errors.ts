@@ -24,10 +24,19 @@ export type McpErrorCode = keyof typeof MCP_ERROR_CODES;
 export class McpError extends Error {
   readonly code: McpErrorCode;
   readonly httpStatus: number;
+  // The original (un-prefixed) message — useful for callers that want the
+  // human-readable detail without the redundant code prefix.
+  readonly detail: string;
   constructor(code: McpErrorCode, message: string, httpStatus = 400) {
-    super(message);
+    // Prefix the code into the message so JSON-RPC tool responses (which only
+    // surface .message) carry the structured classification too. Lets agents
+    // grep for `invalid_svg`, `passage_not_in_family`, etc. in the response
+    // text. Custom_Questions_Brief.md §12.10a requires this for SVG rejection.
+    const alreadyPrefixed = message.startsWith(`${code}:`);
+    super(alreadyPrefixed ? message : `${code}: ${message}`);
     this.name = 'McpError';
     this.code = code;
+    this.detail = message;
     this.httpStatus = httpStatus;
   }
 }
