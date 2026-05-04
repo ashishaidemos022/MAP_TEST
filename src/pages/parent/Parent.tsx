@@ -14,6 +14,9 @@ export default function Parent() {
           <h1 className="font-display text-4xl">Mastery dashboard</h1>
         </div>
         <div className="flex items-center gap-2">
+          <Link to="/parent/custom-bank" className="btn-secondary text-sm">
+            Custom bank
+          </Link>
           <Link to="/parent/connect-ai" className="btn-secondary text-sm">
             Connect AI
           </Link>

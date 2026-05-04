@@ -10,6 +10,7 @@ import Results from './pages/Results'
 import Signup from './pages/Signup'
 import TestRunner from './pages/TestRunner'
 import ConnectAi from './pages/parent/ConnectAi'
+import CustomBank from './pages/parent/CustomBank'
 import CustomTestBuilder from './pages/parent/CustomTestBuilder'
 import Parent from './pages/parent/Parent'
 import { RequireActiveStudent } from './lib/activeStudent'
@@ -153,6 +154,18 @@ export default function App() {
                 <RequireActiveStudent>
                   <RequireParentPin>
                     <CustomTestBuilder />
+                  </RequireParentPin>
+                </RequireActiveStudent>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/parent/custom-bank"
+            element={
+              <RequireAuth>
+                <RequireActiveStudent>
+                  <RequireParentPin>
+                    <CustomBank />
                   </RequireParentPin>
                 </RequireActiveStudent>
               </RequireAuth>
