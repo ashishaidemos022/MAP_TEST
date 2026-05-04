@@ -53,6 +53,8 @@ interface QuestionRow {
   stem_svg: string | null
   stem_svg_alt_text: string | null
   passage_id: string | null
+  passage_version_id: string | null // the version the question links to
+  passage_is_outdated: boolean       // true if the passage's current version moved on
   standard_code: string | null
   difficulty: number | null
   choices: ChoicePreview[]
@@ -65,8 +67,11 @@ export default function CustomBank() {
   const [questions, setQuestions] = useState<QuestionRow[] | null>(null)
   const [tab, setTab] = useState<Tab>('draft')
   const [busy, setBusy] = useState<string | null>(null)
+  const [bulkBusy, setBulkBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [openIds, setOpenIds] = useState<Set<string>>(new Set())
+  const [selectedPassageIds, setSelectedPassageIds] = useState<Set<string>>(new Set())
+  const [selectedQuestionIds, setSelectedQuestionIds] = useState<Set<string>>(new Set())
 
   async function loadAll() {
     setError(null)
@@ -100,6 +105,15 @@ export default function CustomBank() {
     if (qRes.error) {
       setError(`questions: ${qRes.error.message}`)
       return
+    }
+
+    // For stale-passage detection on questions, we need each parent passage's
+    // current_version_id. Build a lookup keyed by passage_id from the rows we
+    // already fetched (RLS scopes both queries to the same family).
+    const currentByPassageId = new Map<string, string | null>()
+    for (const row of pRes.data ?? []) {
+      const r = row as unknown as { id: string; current_version_id: string | null }
+      currentByPassageId.set(r.id, r.current_version_id)
     }
 
     const passageRows: PassageRow[] = (pRes.data ?? []).map((row) => {
@@ -150,6 +164,10 @@ export default function CustomBank() {
       }).map_custom_question_versions
       const r = row as unknown as { id: string; status: Status; source: string; current_version_id: string | null; created_at: string }
       const choices = (v?.choices ?? []).slice().sort((a, b) => a.ordinal - b.ordinal)
+      const passageId = v?.map_custom_passage_versions?.passage_id ?? null
+      const passageVid = v?.passage_version_id ?? null
+      const passageCurrent = passageId ? (currentByPassageId.get(passageId) ?? null) : null
+      const isOutdated = !!(passageVid && passageCurrent && passageCurrent !== passageVid)
       return {
         id: r.id,
         status: r.status,
@@ -161,7 +179,9 @@ export default function CustomBank() {
         stem: v?.stem ?? null,
         stem_svg: v?.stem_svg ?? null,
         stem_svg_alt_text: v?.stem_svg_alt_text ?? null,
-        passage_id: v?.map_custom_passage_versions?.passage_id ?? null,
+        passage_id: passageId,
+        passage_version_id: passageVid,
+        passage_is_outdated: isOutdated,
         standard_code: v?.standard_code ?? null,
         difficulty: v?.difficulty ?? null,
         choices,
@@ -224,6 +244,58 @@ export default function CustomBank() {
     await loadAll()
   }
 
+  function togglePassageSelection(id: string) {
+    setSelectedPassageIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id); else next.add(id)
+      return next
+    })
+  }
+  function toggleQuestionSelection(id: string) {
+    setSelectedQuestionIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id); else next.add(id)
+      return next
+    })
+  }
+
+  async function bulkPublish() {
+    const passageIds = [...selectedPassageIds]
+    const questionIds = [...selectedQuestionIds]
+    if (passageIds.length + questionIds.length === 0) return
+    if (!window.confirm(`Publish ${passageIds.length} passage(s) and ${questionIds.length} question(s)?`)) return
+    setBulkBusy(true); setError(null)
+    const errors: string[] = []
+    // Passages first so any reading question whose passage we're also
+    // publishing in this batch satisfies the "passage must be published"
+    // trigger when its publish lands.
+    for (const id of passageIds) {
+      const { error: e } = await supabase.rpc('map_publish_custom_passage', { p_passage_id: id })
+      if (e) errors.push(`passage ${id.slice(0, 8)}: ${e.message}`)
+    }
+    for (const id of questionIds) {
+      const { error: e } = await supabase.rpc('map_publish_custom_question', { p_question_id: id })
+      if (e) errors.push(`question ${id.slice(0, 8)}: ${e.message}`)
+    }
+    setBulkBusy(false)
+    if (errors.length > 0) {
+      setError(`${errors.length} of ${passageIds.length + questionIds.length} failed:\n${errors.join('\n')}`)
+    } else {
+      setSelectedPassageIds(new Set())
+      setSelectedQuestionIds(new Set())
+    }
+    await loadAll()
+  }
+
+  function selectAllVisibleDrafts() {
+    setSelectedPassageIds(new Set(visiblePassages.filter((p) => p.status === 'draft').map((p) => p.id)))
+    setSelectedQuestionIds(new Set(visibleQuestions.filter((q) => q.status === 'draft').map((q) => q.id)))
+  }
+  function clearSelection() {
+    setSelectedPassageIds(new Set())
+    setSelectedQuestionIds(new Set())
+  }
+
   const draftCount = (passages?.filter((p) => p.status === 'draft').length ?? 0) +
     (questions?.filter((q) => q.status === 'draft').length ?? 0)
 
@@ -265,7 +337,31 @@ export default function CustomBank() {
           </button>
         ))}
         {draftCount > 0 && tab !== 'draft' && (
-          <span className="ml-auto text-xs text-ink/60">{draftCount} draft{draftCount === 1 ? '' : 's'} waiting</span>
+          <span className="text-xs text-ink/60">{draftCount} draft{draftCount === 1 ? '' : 's'} waiting</span>
+        )}
+        {tab === 'draft' && (visiblePassages.length + visibleQuestions.length) > 0 && (
+          <div className="ml-auto flex flex-wrap items-center gap-2">
+            <button type="button" className="text-xs underline text-ink/70" onClick={selectAllVisibleDrafts}>
+              Select all
+            </button>
+            {(selectedPassageIds.size + selectedQuestionIds.size) > 0 && (
+              <>
+                <button type="button" className="text-xs underline text-ink/70" onClick={clearSelection}>
+                  Clear
+                </button>
+                <button
+                  type="button"
+                  className="btn-primary text-xs disabled:opacity-50"
+                  disabled={bulkBusy}
+                  onClick={() => void bulkPublish()}
+                >
+                  {bulkBusy
+                    ? 'Publishing…'
+                    : `Publish ${selectedPassageIds.size + selectedQuestionIds.size} selected`}
+                </button>
+              </>
+            )}
+          </div>
         )}
       </div>
 
@@ -281,6 +377,15 @@ export default function CustomBank() {
             return (
               <div key={p.id} className="rounded-2xl border border-cloud bg-paper">
                 <div className="flex items-start gap-3 px-4 py-3">
+                  {p.status === 'draft' && (
+                    <input
+                      type="checkbox"
+                      className="mt-1 h-4 w-4 cursor-pointer"
+                      checked={selectedPassageIds.has(p.id)}
+                      onChange={() => togglePassageSelection(p.id)}
+                      aria-label="Select for bulk publish"
+                    />
+                  )}
                   <button type="button" className="flex-1 text-left" onClick={() => toggleOpen(`p-${p.id}`)}>
                     <p className="text-xs font-semibold uppercase tracking-widest text-smoke">
                       {p.subject ?? '?'} · grade {p.grade ?? '?'} · v{p.version_number ?? '?'} · {p.genre ?? 'no genre'}
@@ -342,12 +447,29 @@ export default function CustomBank() {
             return (
               <div key={q.id} className="rounded-2xl border border-cloud bg-paper">
                 <div className="flex items-start gap-3 px-4 py-3">
+                  {q.status === 'draft' && (
+                    <input
+                      type="checkbox"
+                      className="mt-1 h-4 w-4 cursor-pointer"
+                      checked={selectedQuestionIds.has(q.id)}
+                      onChange={() => toggleQuestionSelection(q.id)}
+                      aria-label="Select for bulk publish"
+                    />
+                  )}
                   <button type="button" className="flex-1 text-left" onClick={() => toggleOpen(`q-${q.id}`)}>
                     <p className="text-xs font-semibold uppercase tracking-widest text-smoke">
                       {q.subject ?? '?'} · grade {q.grade ?? '?'}{q.standard_code ? ` · ${q.standard_code}` : ''}{q.difficulty ? ` · diff ${q.difficulty}` : ''}{q.passage_id ? ' · attached to a passage' : ''}
                     </p>
                     <p className="font-semibold">{(q.stem ?? '').slice(0, 140)}{(q.stem?.length ?? 0) > 140 ? '…' : ''}</p>
                   </button>
+                  {q.passage_is_outdated && (
+                    <span
+                      className="rounded-full bg-sun/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-ink/80"
+                      title="The passage this question references has a newer version. Have your AI agent run bulk_upgrade_passage_references to relink."
+                    >
+                      stale passage
+                    </span>
+                  )}
                   <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${
                     q.status === 'draft' ? 'bg-sun/25 text-ink/70' :
                     q.status === 'published' ? 'bg-leaf/15 text-leaf' : 'bg-cloud text-ink/60'
