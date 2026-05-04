@@ -1,16 +1,14 @@
-// Acceptance §11.8: only writes are against map_mcp_audit (insert) and map_mcp_tokens (update).
+// Acceptance §11.8 + Custom_Questions_Brief.md §12.10 — verifies the MCP tool
+// surface only writes to the allow-listed tables. Phase 4 expanded the list to
+// include the custom-question bank tables.
 // Run: node scripts/audit-mcp-readonly.mjs
 
 import { execSync } from 'node:child_process';
 
-// Strategy: grep with -B 3 context so chained Supabase calls like
-//   .from('map_mcp_tokens')
-//   .update({ ... })
-// are captured together. Each match block (separated by '--') is tested as a
-// unit: if the block contains an allowed table name it is not an offender.
-// We also exclude Node crypto Hash#update chains.
+// Cover api/_lib/mcp/ + api/_lib/custom/ + api/mcp.ts. Custom-question writes
+// live in api/_lib/custom/writes.ts (called from MCP tools), so include both.
 const grep = execSync(
-  "grep -RnEB 3 '\\.(insert|update|delete|upsert|rpc)\\(' api/_lib/mcp/ api/mcp.ts || true",
+  "grep -RnEB 3 '\\.(insert|update|delete|upsert|rpc)\\(' api/_lib/mcp/ api/_lib/custom/ api/mcp.ts || true",
 ).toString();
 
 // Split on the grep context separator '--' to get per-match blocks.
@@ -34,6 +32,12 @@ for (const block of blocks) {
   if (/map_oauth_authorization_codes/.test(block)) continue;
   if (/map_oauth_access_tokens/.test(block)) continue;
   if (/map_oauth_refresh_tokens/.test(block)) continue;
+  // Phase 4 — custom question bank writes are explicitly allowed by §12.10.
+  if (/map_custom_questions(?!_resolved|_table)/.test(block)) continue;
+  if (/map_custom_question_versions/.test(block)) continue;
+  if (/map_custom_question_choices/.test(block)) continue;
+  if (/map_custom_passages/.test(block)) continue;
+  if (/map_custom_passage_versions/.test(block)) continue;
 
   offenders.push(triggerLine);
 }
@@ -45,7 +49,7 @@ if (offenders.length > 0) {
 }
 
 console.log('PASS read-only audit');
-console.log('  Allowed writes: map_mcp_audit, map_mcp_tokens, map_oauth_clients,');
-console.log('                  map_oauth_grants, map_oauth_authorization_codes,');
-console.log('                  map_oauth_access_tokens, map_oauth_refresh_tokens');
+console.log('  Allowed writes: map_mcp_audit, map_mcp_tokens, map_oauth_*,');
+console.log('                  map_custom_questions[_versions, _choices],');
+console.log('                  map_custom_passages[_versions]');
 console.log('  (filter excludes Node crypto Hash#update on createHash chains)');

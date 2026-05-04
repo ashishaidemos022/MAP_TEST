@@ -9,6 +9,29 @@ import { enforceRateLimit, buildRateLimitedResponse } from './_lib/mcp/rate-limi
 import { registerTools } from './_lib/mcp/tools/index.js';
 import { McpError } from './_lib/mcp/errors.js';
 
+const SERVER_INSTRUCTIONS = [
+  'This MCP server represents one family\'s practice data on the MAP test prep platform.',
+  'You can read the family\'s practice history (9 read tools) and create custom practice content (write tools).',
+  '',
+  'Custom content (passages and questions) supports inline SVG illustrations on three slots:',
+  'a passage, a question stem, and each of a question\'s answer choices.',
+  'Use SVG when a figure makes the question clearer (geometry, charts, "which shape" choices).',
+  'Skip it when text alone is sufficient.',
+  '',
+  'SVG constraints (enforced server-side; violations return invalid_svg errors):',
+  '- Root must be <svg> with a viewBox. No external references, no scripts, no event handlers,',
+  '  no foreignObject, no animations, no embedded raster images.',
+  '- Use only basic geometric and text elements: path, rect, circle, line, polygon, text, g, defs,',
+  '  gradients, patterns, markers.',
+  '- Size cap: 64KB for passages and stems, 32KB for individual answer choices.',
+  '- Always include readable alt text. Every SVG must come with an alt_text field.',
+  '- On a single question, either every answer choice has an SVG or none do.',
+  '- Use neutral colors that work on light and dark backgrounds.',
+  '',
+  'All content you create lands in status="draft" and requires the parent to publish it via the',
+  'app\'s review queue. There is no auto-publish.',
+].join('\n');
+
 async function dispatch(req: Request): Promise<Response> {
   const origin = req.headers.get('origin');
   if (!isAllowedOrigin(origin)) {
@@ -42,8 +65,15 @@ async function dispatch(req: Request): Promise<Response> {
   await bumpLastUsedAt(ctx);
 
   const server = new McpServer(
-    { name: 'map-practice-family', version: '1.0.0' },
-    { capabilities: { tools: {} } },
+    {
+      name: 'map-practice-family',
+      version: '1.1.0',
+    },
+    {
+      capabilities: { tools: {} },
+      // §4.13 — capability advertisement. Agents read this on connect.
+      instructions: SERVER_INSTRUCTIONS,
+    },
   );
   registerTools(server, ctx);
 
