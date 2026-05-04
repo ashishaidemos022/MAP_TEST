@@ -38,7 +38,7 @@ export default function NewTest() {
         if (!active) return
         if (e instanceof NoQuestionsError) {
           setError(
-            `No published custom ${subject} questions for grade ${activeStudent.grade}. Have your AI agent author and publish a few first.`,
+            `No published custom ${subject} questions in your family bank yet. Have your AI agent author + publish some first (any grade — custom questions aren't grade-filtered).`,
           )
         } else {
           const msg = e instanceof Error ? e.message : 'Could not start a test.'

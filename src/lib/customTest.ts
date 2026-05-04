@@ -287,15 +287,17 @@ export async function createCustomTestFromMyBank(args: {
   if (requestedCount < CUSTOM_MIN_COUNT || requestedCount > CUSTOM_MAX_COUNT) {
     throw new Error(`requested_count out of range (${CUSTOM_MIN_COUNT}-${CUSTOM_MAX_COUNT})`)
   }
-  const grade = await fetchStudentGrade(studentId)
+  // Custom questions are intentionally GRADE-AGNOSTIC for the picker. The
+  // parent (or their AI agent) chose which grade to tag them; we trust that
+  // and let the kid practice on whatever's in the family bank for the chosen
+  // subject. session.grade still records the student's practice grade for
+  // history/dashboard rendering, but it does NOT gate the question pool.
+  const studentGrade = await fetchStudentGrade(studentId)
 
-  // Pull all published custom-question versions for this family/subject/grade.
-  // RLS on map_custom_questions restricts to the family automatically.
   const { data: rows, error } = await supabase
     .from('map_custom_questions_resolved')
     .select('version_id, subject, grade, passage_id, passage_version_id, question_status')
     .eq('subject', subject)
-    .eq('grade', grade)
     .eq('question_status', 'published')
   if (error) throw new Error(error.message)
   const pool = (rows ?? []) as Array<{
@@ -345,7 +347,7 @@ export async function createCustomTestFromMyBank(args: {
     .insert({
       student_id: studentId,
       subject,
-      grade,
+      grade: studentGrade,
       status: 'in_progress',
       question_ids: questionIds,
       current_index: 0,
