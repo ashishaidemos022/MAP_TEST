@@ -7,12 +7,19 @@
 --
 -- All existing rows have question_id non-null and custom_question_version_id
 -- null, which already satisfies the XOR check.
+--
+-- Note (2026-05-04 follow-up): question_id had a NOT NULL constraint that
+-- blocked custom-question attempts from being recorded (the XOR allows null
+-- on either side, but the column-level NOT NULL fired first). The DROP NOT
+-- NULL below was applied as a follow-on migration after the kid hit it.
 
 BEGIN;
 
 ALTER TABLE public.map_attempts
   ADD COLUMN IF NOT EXISTS custom_question_version_id uuid
     REFERENCES public.map_custom_question_versions(id) ON DELETE RESTRICT;
+
+ALTER TABLE public.map_attempts ALTER COLUMN question_id DROP NOT NULL;
 
 DO $$ BEGIN
   ALTER TABLE public.map_attempts
