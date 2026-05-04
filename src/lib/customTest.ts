@@ -336,8 +336,14 @@ export async function createCustomTestFromMyBank(args: {
   }
 
   const actualCount = questionIds.length
+  // The map_test_sessions_custom_config_shape CHECK requires both
+  // `standard_ids` and `requested_count` keys when kind='custom'. The legacy
+  // path populates standard_ids from TEKS picks; this path doesn't use
+  // standards (custom questions can carry arbitrary or no standard_code) so
+  // we ship an empty array — present-but-empty satisfies `?` operator.
   const customConfig = {
     source: 'mine',
+    standard_ids: [] as string[],
     requested_count: requestedCount,
     actual_count: actualCount,
     shortfall_reason: shortfall ? 'bank_thin' : null,
