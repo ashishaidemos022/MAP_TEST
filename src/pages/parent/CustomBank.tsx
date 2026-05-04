@@ -287,6 +287,44 @@ export default function CustomBank() {
     await loadAll()
   }
 
+  async function bulkDelete() {
+    const passageIds = [...selectedPassageIds]
+    const questionIds = [...selectedQuestionIds]
+    if (passageIds.length + questionIds.length === 0) return
+    if (!window.confirm(
+      `Delete ${passageIds.length} passage(s) and ${questionIds.length} question(s)?\n\n` +
+      `Existing kid attempts on these stay intact, but they won't appear in new tests.`,
+    )) return
+    setBulkBusy(true); setError(null)
+    const now = new Date().toISOString()
+    const errors: string[] = []
+    if (questionIds.length > 0) {
+      // Questions first — the soft-delete guard on passages refuses to
+      // tombstone a passage with non-archived referencing questions, so
+      // tombstoning the questions clears that path.
+      const { error: e } = await supabase
+        .from('map_custom_questions')
+        .update({ soft_deleted_at: now })
+        .in('id', questionIds)
+      if (e) errors.push(`questions: ${e.message}`)
+    }
+    if (passageIds.length > 0) {
+      const { error: e } = await supabase
+        .from('map_custom_passages')
+        .update({ soft_deleted_at: now })
+        .in('id', passageIds)
+      if (e) errors.push(`passages: ${e.message}`)
+    }
+    setBulkBusy(false)
+    if (errors.length > 0) {
+      setError(errors.join('\n'))
+    } else {
+      setSelectedPassageIds(new Set())
+      setSelectedQuestionIds(new Set())
+    }
+    await loadAll()
+  }
+
   function selectAllVisibleDrafts() {
     setSelectedPassageIds(new Set(visiblePassages.filter((p) => p.status === 'draft').map((p) => p.id)))
     setSelectedQuestionIds(new Set(visibleQuestions.filter((q) => q.status === 'draft').map((q) => q.id)))
@@ -358,8 +396,18 @@ export default function CustomBank() {
                   onClick={() => void bulkPublish()}
                 >
                   {bulkBusy
-                    ? 'Publishing…'
-                    : `Publish ${selectedPassageIds.size + selectedQuestionIds.size} selected`}
+                    ? 'Working…'
+                    : `Publish ${selectedPassageIds.size + selectedQuestionIds.size}`}
+                </button>
+                <button
+                  type="button"
+                  className="rounded-2xl border border-berry/40 bg-berry/10 px-3 py-1 text-xs font-semibold text-berry hover:bg-berry/20 disabled:opacity-50"
+                  disabled={bulkBusy}
+                  onClick={() => void bulkDelete()}
+                >
+                  {bulkBusy
+                    ? 'Working…'
+                    : `Delete ${selectedPassageIds.size + selectedQuestionIds.size}`}
                 </button>
               </>
             )}
