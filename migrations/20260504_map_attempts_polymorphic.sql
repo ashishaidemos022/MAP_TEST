@@ -21,6 +21,53 @@ ALTER TABLE public.map_attempts
 
 ALTER TABLE public.map_attempts ALTER COLUMN question_id DROP NOT NULL;
 
+-- selected_choice_id originally FK'd to map_question_choices (vetted only).
+-- With polymorphic attempts, the choice may live in map_custom_question_choices
+-- instead. Drop the FK and replace with a trigger that picks the right table
+-- based on which of question_id / custom_question_version_id is set.
+ALTER TABLE public.map_attempts
+  DROP CONSTRAINT IF EXISTS map_attempts_selected_choice_id_fkey;
+
+CREATE OR REPLACE FUNCTION public.map_attempts_validate_choice_ref()
+RETURNS trigger
+LANGUAGE plpgsql
+SET search_path TO ''
+AS $$
+DECLARE
+  v_ok boolean;
+BEGIN
+  IF NEW.selected_choice_id IS NULL THEN
+    RETURN NEW;
+  END IF;
+  IF NEW.question_id IS NOT NULL THEN
+    SELECT EXISTS (
+      SELECT 1 FROM public.map_question_choices c
+      WHERE c.id = NEW.selected_choice_id AND c.question_id = NEW.question_id
+    ) INTO v_ok;
+    IF NOT v_ok THEN
+      RAISE EXCEPTION 'selected_choice_id % is not a vetted choice on question %',
+        NEW.selected_choice_id, NEW.question_id;
+    END IF;
+  ELSIF NEW.custom_question_version_id IS NOT NULL THEN
+    SELECT EXISTS (
+      SELECT 1 FROM public.map_custom_question_choices c
+      WHERE c.id = NEW.selected_choice_id AND c.version_id = NEW.custom_question_version_id
+    ) INTO v_ok;
+    IF NOT v_ok THEN
+      RAISE EXCEPTION 'selected_choice_id % is not a custom choice on version %',
+        NEW.selected_choice_id, NEW.custom_question_version_id;
+    END IF;
+  END IF;
+  RETURN NEW;
+END
+$$;
+
+DROP TRIGGER IF EXISTS map_attempts_validate_choice_ref_trg ON public.map_attempts;
+CREATE TRIGGER map_attempts_validate_choice_ref_trg
+  BEFORE INSERT OR UPDATE OF selected_choice_id, question_id, custom_question_version_id
+  ON public.map_attempts
+  FOR EACH ROW EXECUTE FUNCTION public.map_attempts_validate_choice_ref();
+
 DO $$ BEGIN
   ALTER TABLE public.map_attempts
     ADD CONSTRAINT map_attempts_question_xor
