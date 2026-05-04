@@ -4,11 +4,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import ProgressDots, { type DotState } from '../components/ProgressDots'
 import SpeakerButton from '../components/SpeakerButton'
 import SvgFigure from '../components/SvgFigure'
+import SvgImage from '../components/SvgImage'
 import { stopSpeaking } from '../lib/tts'
 import { supabase } from '../lib/supabase'
 import type { Attempt, Choice, Passage, Question, Session, Standard } from '../lib/types'
 import { getNextAdaptiveQuestion } from '../lib/adaptive/picker'
 import { addNextAdaptivePassage } from '../lib/adaptive/passagePicker'
+import { loadCustomQuestionsByVersionIds, type LoadedCustomQuestion } from '../lib/customQuestionLoader'
 
 // Loading overlay only shows after this many ms — fast picks feel instant,
 // slow picks feel intentional. Per spec: 400ms.
@@ -18,6 +20,10 @@ interface LoadedQuestion extends Question {
   choices: Choice[]
   passage: Passage | null
   standard: Pick<Standard, 'teks_code' | 'teks_title'> | null
+  // Phase 4 Cycle 2 — when truthy, this question came from the parent-authored
+  // bank; rendering uses SvgImage (base64 <img>) instead of SvgFigure
+  // (dangerouslySetInnerHTML), and submit uses map_record_custom_attempt.
+  custom?: LoadedCustomQuestion
 }
 
 export default function TestRunner() {
@@ -80,12 +86,33 @@ export default function TestRunner() {
         loaded.choices = [...loaded.choices].sort((a, b) => a.sort_order - b.sort_order)
         byId.set(loaded.id, loaded)
       })
+
+      // Phase 4 Cycle 2 — any question_ids that weren't found in map_questions
+      // are treated as custom_question_version_ids and loaded from the
+      // resolved view.
+      const missingIds = s.question_ids.filter((qid) => !byId.has(qid))
+      if (missingIds.length > 0) {
+        try {
+          const customs = await loadCustomQuestionsByVersionIds(missingIds)
+          for (const c of customs) {
+            byId.set(c.version_id, customToLoadedQuestion(c))
+          }
+        } catch (e) {
+          setError(e instanceof Error ? e.message : 'Could not load custom questions.')
+          return
+        }
+      }
+
       const ordered = s.question_ids
         .map((qid) => byId.get(qid))
         .filter((x): x is LoadedQuestion => Boolean(x))
 
       const map = new Map<string, Attempt>()
-      ;(atts ?? []).forEach((a) => map.set((a as Attempt).question_id, a as Attempt))
+      ;(atts ?? []).forEach((a) => {
+        const att = a as Attempt & { custom_question_version_id?: string | null }
+        const key = att.question_id ?? att.custom_question_version_id
+        if (key) map.set(key, att as Attempt)
+      })
 
       if (cancelled) return
       setSession(s)
@@ -168,6 +195,61 @@ export default function TestRunner() {
     [],
   )
 
+  // Adapter: shape a LoadedCustomQuestion so the existing TestRunner JSX (built
+  // for vetted questions) can render it without changes. The `custom` reference
+  // is preserved so the render path knows to use SvgImage for SVG fields.
+  function customToLoadedQuestion(c: LoadedCustomQuestion): LoadedQuestion {
+    return {
+      // Question core fields
+      id: c.version_id,
+      subject: c.subject,
+      grade: c.grade,
+      stem: c.stem,
+      stem_image_svg: null, // We render via custom.stem_svg + SvgImage instead.
+      explanation: '', // Custom uses per-choice explanations; FeedbackPanel branches on `custom`.
+      created_at: '',
+      is_active: true,
+      standard_id: null,
+      rit_band: null as unknown as Question['rit_band'],
+      difficulty: (c.difficulty ?? 1) as unknown as Question['difficulty'],
+      passage_id: c.passage?.passage_id ?? null,
+      source_note: null,
+      audio_supported: false,
+      // Joined relations
+      choices: c.choices.map((ch) => ({
+        id: ch.id,
+        question_id: c.version_id,
+        label: ch.label as Choice['label'],
+        body: ch.text,
+        body_image_svg: null,
+        is_correct: ch.is_correct,
+        sort_order: ch.ordinal,
+        misconception: ch.explanation_wrong ?? null,
+      })),
+      passage: c.passage
+        ? ({
+            id: c.passage.passage_id,
+            title: c.passage.title ?? '',
+            body: c.passage.body,
+            genre: (c.passage.genre as Passage['genre']) ?? 'literary',
+            grade: c.grade,
+            subject: c.subject,
+            lexile_level: null,
+            created_at: '',
+            word_count: null,
+            lexile: null,
+            rit_band: null,
+            source: null,
+            topic: null,
+          } as unknown as Passage)
+        : null,
+      standard: c.standard_code
+        ? { teks_code: c.standard_code, teks_title: '' }
+        : null,
+      custom: c,
+    }
+  }
+
   // `total` is the canonical denominator for progress display — the number of
   // slots the test will eventually have, not the number currently loaded. Under
   // adaptive, questions.length grows from 3 → planned_length over the test.
@@ -212,13 +294,24 @@ export default function TestRunner() {
       setSubmitting(false)
       return
     }
-    const { data: attemptId, error: aErr } = await supabase.rpc('map_record_attempt', {
-      p_session_id: session.id,
-      p_student_id: session.student_id,
-      p_question_id: current.id,
-      p_choice_id: choice.id,
-      p_time_ms: elapsed,
-    })
+    // Phase 4 Cycle 2: branch on source. Custom questions write the
+    // polymorphic custom_question_version_id column; the XOR check on
+    // map_attempts ensures question_id stays NULL for these rows.
+    const { data: attemptId, error: aErr } = current.custom
+      ? await supabase.rpc('map_record_custom_attempt', {
+          p_session_id: session.id,
+          p_student_id: session.student_id,
+          p_custom_question_version_id: current.id,
+          p_choice_id: choice.id,
+          p_time_ms: elapsed,
+        })
+      : await supabase.rpc('map_record_attempt', {
+          p_session_id: session.id,
+          p_student_id: session.student_id,
+          p_question_id: current.id,
+          p_choice_id: choice.id,
+          p_time_ms: elapsed,
+        })
     if (aErr || !attemptId) {
       setError(aErr?.message ?? 'Could not save your answer.')
       setSubmitting(false)
@@ -417,15 +510,38 @@ export default function TestRunner() {
         </div>
       )}
 
-      {current.passage && <PassagePanel passage={current.passage} />}
+      {current.passage && (
+        <PassagePanel
+          passage={current.passage}
+          customSvg={current.custom?.passage?.passage_svg ?? null}
+          customSvgAlt={current.custom?.passage?.passage_svg_alt_text ?? null}
+          isCustom={!!current.custom}
+        />
+      )}
 
       <section className="mt-6 animate-slideUp">
         <div className="card p-6">
           <div className="flex items-start gap-3">
             <SpeakerButton text={current.stem} label="Read the question aloud" />
             <h2 className="font-display text-2xl leading-snug md:text-3xl">{current.stem}</h2>
+            {current.custom && (
+              <span
+                className="ml-auto rounded-full bg-sun/25 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-ink/70"
+                title="A grown-up wrote this question for you."
+              >
+                By you
+              </span>
+            )}
           </div>
-          {current.stem_image_svg && <SvgFigure svg={current.stem_image_svg} className="mt-5" />}
+          {current.custom?.stem_svg ? (
+            <SvgImage
+              svg={current.custom.stem_svg}
+              altText={current.custom.stem_svg_alt_text ?? 'Figure'}
+              className="mt-5"
+            />
+          ) : current.stem_image_svg ? (
+            <SvgFigure svg={current.stem_image_svg} className="mt-5" />
+          ) : null}
         </div>
 
         <div className="mt-5 grid gap-3">
@@ -463,25 +579,53 @@ export default function TestRunner() {
                 <span className="flex-1 text-base font-semibold leading-snug md:text-lg">
                   {c.body}
                 </span>
-                {c.body_image_svg && (
-                  <SvgFigure svg={c.body_image_svg} className="ml-auto h-24 w-24 p-2" />
-                )}
+                {(() => {
+                  const customChoice = current.custom?.choices.find((cc) => cc.id === c.id)
+                  if (customChoice?.choice_svg) {
+                    return (
+                      <SvgImage
+                        svg={customChoice.choice_svg}
+                        altText={customChoice.choice_svg_alt_text ?? 'Choice figure'}
+                        className="ml-auto h-24 w-24"
+                        maxWidth={96}
+                      />
+                    )
+                  }
+                  if (c.body_image_svg) {
+                    return <SvgFigure svg={c.body_image_svg} className="ml-auto h-24 w-24 p-2" />
+                  }
+                  return null
+                })()}
               </button>
             )
           })}
         </div>
 
-        {hasAttempt && (
-          <FeedbackPanel
-            isCorrect={!!reviewingAttempt?.is_correct}
-            explanation={current.explanation}
-            misconception={
-              current.choices.find((c) => c.id === reviewingAttempt?.selected_choice_id)
-                ?.misconception ?? null
+        {hasAttempt && (() => {
+          // Custom-question explanation lives per-choice on the chosen
+          // answer. Vetted-question explanation is one-per-question.
+          const chosenId = reviewingAttempt?.selected_choice_id
+          let explanation = current.explanation
+          let misconception =
+            current.choices.find((c) => c.id === chosenId)?.misconception ?? null
+          if (current.custom) {
+            const cc = current.custom.choices.find((c) => c.id === chosenId)
+            if (cc) {
+              explanation = reviewingAttempt?.is_correct
+                ? cc.explanation_correct ?? ''
+                : cc.explanation_wrong ?? cc.explanation_correct ?? ''
+              misconception = cc.explanation_wrong ?? null
             }
-            standardCode={current.standard?.teks_code ?? null}
-          />
-        )}
+          }
+          return (
+            <FeedbackPanel
+              isCorrect={!!reviewingAttempt?.is_correct}
+              explanation={explanation}
+              misconception={misconception}
+              standardCode={current.standard?.teks_code ?? null}
+            />
+          )
+        })()}
       </section>
 
       <div className="sticky bottom-4 mt-8 flex flex-wrap items-center justify-between gap-3">
@@ -512,7 +656,17 @@ export default function TestRunner() {
   )
 }
 
-function PassagePanel({ passage }: { passage: Passage }) {
+function PassagePanel({
+  passage,
+  customSvg,
+  customSvgAlt,
+  isCustom,
+}: {
+  passage: Passage
+  customSvg?: string | null
+  customSvgAlt?: string | null
+  isCustom?: boolean
+}) {
   return (
     <section className="mt-6">
       <div className="card p-6">
@@ -520,11 +674,19 @@ function PassagePanel({ passage }: { passage: Passage }) {
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-smoke">
               {passage.genre}
+              {isCustom && (
+                <span className="ml-2 rounded-full bg-sun/25 px-2 py-0.5 text-[10px] font-semibold text-ink/70">
+                  By you
+                </span>
+              )}
             </p>
             <h2 className="font-display text-2xl">{passage.title}</h2>
           </div>
           <SpeakerButton text={`${passage.title}. ${passage.body}`} label="Read passage aloud" />
         </div>
+        {customSvg && (
+          <SvgImage svg={customSvg} altText={customSvgAlt ?? 'Passage figure'} className="my-3" />
+        )}
         <div className="prose prose-slate max-w-none whitespace-pre-line text-base leading-relaxed text-ink/90">
           {passage.body}
         </div>
