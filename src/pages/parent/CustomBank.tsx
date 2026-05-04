@@ -298,26 +298,29 @@ export default function CustomBank() {
     setBulkBusy(true); setError(null)
     const now = new Date().toISOString()
     const errors: string[] = []
-    if (questionIds.length > 0) {
-      // Questions first — the soft-delete guard on passages refuses to
-      // tombstone a passage with non-archived referencing questions, so
-      // tombstoning the questions clears that path.
+    // Loop with .eq() per id rather than one big .in() UPDATE: PostgREST RLS
+    // returns 403 on multi-row UPDATEs in some configurations, even though
+    // each row would individually pass USING. Per-row matches the publish
+    // path and lets us collect per-id errors. Questions soft-delete first
+    // so the soft-delete guard trigger on passages has no referencing
+    // questions left to refuse.
+    for (const id of questionIds) {
       const { error: e } = await supabase
         .from('map_custom_questions')
         .update({ soft_deleted_at: now })
-        .in('id', questionIds)
-      if (e) errors.push(`questions: ${e.message}`)
+        .eq('id', id)
+      if (e) errors.push(`question ${id.slice(0, 8)}: ${e.message}`)
     }
-    if (passageIds.length > 0) {
+    for (const id of passageIds) {
       const { error: e } = await supabase
         .from('map_custom_passages')
         .update({ soft_deleted_at: now })
-        .in('id', passageIds)
-      if (e) errors.push(`passages: ${e.message}`)
+        .eq('id', id)
+      if (e) errors.push(`passage ${id.slice(0, 8)}: ${e.message}`)
     }
     setBulkBusy(false)
     if (errors.length > 0) {
-      setError(errors.join('\n'))
+      setError(`${errors.length} of ${passageIds.length + questionIds.length} failed:\n${errors.join('\n')}`)
     } else {
       setSelectedPassageIds(new Set())
       setSelectedQuestionIds(new Set())
