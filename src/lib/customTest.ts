@@ -268,6 +268,104 @@ export class CrossSubjectError extends Error {
   }
 }
 
+/**
+ * Build a test session from the family's PUBLISHED custom-question bank
+ * (Phase 4 Cycle 2). Returns the new session id; question_ids on the row
+ * are custom_question_version_ids, which the TestRunner detects and routes
+ * to the polymorphic loader + map_record_custom_attempt RPC.
+ *
+ * Reading mode picks whole passages: every published question that links to
+ * a chosen passage's current version comes along, like the vetted-reading
+ * picker, so the kid never sees a passage half-answered.
+ */
+export async function createCustomTestFromMyBank(args: {
+  studentId: string
+  subject: Subject
+  requestedCount: number
+}): Promise<CustomTestCreated> {
+  const { studentId, subject, requestedCount } = args
+  if (requestedCount < CUSTOM_MIN_COUNT || requestedCount > CUSTOM_MAX_COUNT) {
+    throw new Error(`requested_count out of range (${CUSTOM_MIN_COUNT}-${CUSTOM_MAX_COUNT})`)
+  }
+  const grade = await fetchStudentGrade(studentId)
+
+  // Pull all published custom-question versions for this family/subject/grade.
+  // RLS on map_custom_questions restricts to the family automatically.
+  const { data: rows, error } = await supabase
+    .from('map_custom_questions_resolved')
+    .select('version_id, subject, grade, passage_id, passage_version_id, question_status')
+    .eq('subject', subject)
+    .eq('grade', grade)
+    .eq('question_status', 'published')
+  if (error) throw new Error(error.message)
+  const pool = (rows ?? []) as Array<{
+    version_id: string
+    subject: string
+    grade: number
+    passage_id: string | null
+    passage_version_id: string | null
+    question_status: string
+  }>
+  if (pool.length === 0) throw new NoQuestionsError()
+
+  let questionIds: string[]
+  let shortfall = false
+  if (subject === 'reading') {
+    // Group by passage_id and pick passages whole until we reach the count.
+    const byPassage = new Map<string, string[]>()
+    for (const r of pool) {
+      const pid = r.passage_id ?? '__standalone__'
+      const list = byPassage.get(pid) ?? []
+      list.push(r.version_id)
+      byPassage.set(pid, list)
+    }
+    const passages = shuffle([...byPassage.values()])
+    questionIds = []
+    for (const p of passages) {
+      if (questionIds.length >= requestedCount) break
+      questionIds.push(...p)
+    }
+    if (questionIds.length === 0) throw new NoQuestionsError()
+    shortfall = questionIds.length < requestedCount
+  } else {
+    const shuffled = shuffle(pool.map((r) => r.version_id))
+    questionIds = shuffled.slice(0, requestedCount)
+    shortfall = questionIds.length < requestedCount
+  }
+
+  const actualCount = questionIds.length
+  const customConfig = {
+    source: 'mine',
+    requested_count: requestedCount,
+    actual_count: actualCount,
+    shortfall_reason: shortfall ? 'bank_thin' : null,
+  }
+  const { data, error: insErr } = await supabase
+    .from('map_test_sessions')
+    .insert({
+      student_id: studentId,
+      subject,
+      grade,
+      status: 'in_progress',
+      question_ids: questionIds,
+      current_index: 0,
+      correct_count: 0,
+      kind: 'custom',
+      is_adaptive: false,
+      planned_length: actualCount,
+      custom_config: customConfig,
+    })
+    .select('id')
+    .single()
+  if (insErr || !data) throw insErr ?? new Error('Failed to create custom session')
+
+  return {
+    sessionId: data.id as string,
+    actualCount,
+    shortfallReason: shortfall ? 'bank_thin' : null,
+  }
+}
+
 export async function createCustomTest(
   request: CustomTestRequest,
 ): Promise<CustomTestCreated> {

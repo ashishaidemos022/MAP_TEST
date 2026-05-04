@@ -222,6 +222,34 @@ export default function ConnectAi() {
         </details>
       </section>
 
+      {/* SECTION 1.5 — launch a test from the AI-authored bank */}
+      <section className="card mb-6 p-5">
+        <header>
+          <h2 className="font-display text-xl">Launch a test from your AI questions</h2>
+          <p className="text-xs text-ink/60">
+            Build a one-off test using only the published custom questions in your family&apos;s bank.
+            (Your AI must publish drafts — ask it: &ldquo;publish all my drafts&rdquo;.)
+          </p>
+        </header>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {(['math', 'reading', 'language'] as const).map((subj) => (
+            <Link
+              key={subj}
+              to={`/test/new?subject=${subj}&source=mine&count=10`}
+              className="btn-secondary text-sm"
+            >
+              {subj === 'math' ? '🧮' : subj === 'reading' ? '📖' : '✏️'}{' '}
+              {subj.charAt(0).toUpperCase() + subj.slice(1)} — 10 questions
+            </Link>
+          ))}
+        </div>
+        <p className="mt-3 text-xs text-ink/50">
+          The test draws from <code>map_custom_questions</code> where{' '}
+          <code>status = published</code> for your kid&apos;s practice grade.
+          Reading mode pulls whole passages.
+        </p>
+      </section>
+
       {/* SECTION 2: Personal access tokens (collapsible) */}
       <section className="card mb-6 p-5">
         <button

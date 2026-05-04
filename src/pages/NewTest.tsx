@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useActiveStudent } from '../lib/activeStudent'
 import { createSession } from '../lib/sessionBuilder'
+import { createCustomTestFromMyBank, NoQuestionsError } from '../lib/customTest'
 import type { Subject } from '../lib/types'
 
 export default function NewTest() {
@@ -9,6 +10,10 @@ export default function NewTest() {
   const navigate = useNavigate()
   const { activeStudent } = useActiveStudent()
   const subject = (params.get('subject') ?? 'math') as Subject
+  // Phase 4 Cycle 2: ?source=mine builds a test from the family's published
+  // custom-question bank rather than the vetted/adaptive pickers.
+  const source = params.get('source') ?? 'vetted'
+  const requestedCount = Number(params.get('count') ?? '10')
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -16,19 +21,35 @@ export default function NewTest() {
     let active = true
     void (async () => {
       try {
-        const id = await createSession(subject, activeStudent.id)
+        let id: string
+        if (source === 'mine') {
+          const result = await createCustomTestFromMyBank({
+            studentId: activeStudent.id,
+            subject,
+            requestedCount,
+          })
+          id = result.sessionId
+        } else {
+          id = await createSession(subject, activeStudent.id)
+        }
         if (!active) return
         navigate(`/test/${id}`, { replace: true })
       } catch (e: unknown) {
         if (!active) return
-        const msg = e instanceof Error ? e.message : 'Could not start a test.'
-        setError(msg)
+        if (e instanceof NoQuestionsError) {
+          setError(
+            `No published custom ${subject} questions for grade ${activeStudent.grade}. Have your AI agent author and publish a few first.`,
+          )
+        } else {
+          const msg = e instanceof Error ? e.message : 'Could not start a test.'
+          setError(msg)
+        }
       }
     })()
     return () => {
       active = false
     }
-  }, [subject, navigate, activeStudent])
+  }, [subject, source, requestedCount, navigate, activeStudent])
 
   return (
     <div className="mx-auto max-w-2xl text-center">
