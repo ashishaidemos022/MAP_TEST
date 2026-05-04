@@ -306,12 +306,14 @@ export default function CustomBank() {
           <p className="font-display text-lg uppercase tracking-widest text-smoke">Parent view</p>
           <h1 className="font-display text-4xl">Custom bank</h1>
           <p className="mt-1 text-sm text-ink/60">
-            Review and publish the questions + passages your AI authored.
+            Review, author, and publish the questions + passages your AI generated — or write your own from scratch.
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Link to="/parent/connect-ai" className="btn-secondary text-sm">Connect AI</Link>
-          <Link to="/parent" className="btn-ghost text-sm">Back to parent</Link>
+          <Link to="/parent/custom-bank/new-question" className="btn-primary text-sm">+ Question</Link>
+          <Link to="/parent/custom-bank/new-passage" className="btn-secondary text-sm">+ Passage</Link>
+          <Link to="/parent/connect-ai" className="btn-ghost text-sm">Connect AI</Link>
+          <Link to="/parent" className="btn-ghost text-sm">Back</Link>
         </div>
       </header>
 

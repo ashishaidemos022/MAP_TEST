@@ -12,6 +12,8 @@ import TestRunner from './pages/TestRunner'
 import ConnectAi from './pages/parent/ConnectAi'
 import CustomBank from './pages/parent/CustomBank'
 import CustomTestBuilder from './pages/parent/CustomTestBuilder'
+import NewCustomPassage from './pages/parent/NewCustomPassage'
+import NewCustomQuestion from './pages/parent/NewCustomQuestion'
 import Parent from './pages/parent/Parent'
 import { RequireActiveStudent } from './lib/activeStudent'
 import { RequireAuth } from './lib/auth'
@@ -166,6 +168,30 @@ export default function App() {
                 <RequireActiveStudent>
                   <RequireParentPin>
                     <CustomBank />
+                  </RequireParentPin>
+                </RequireActiveStudent>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/parent/custom-bank/new-question"
+            element={
+              <RequireAuth>
+                <RequireActiveStudent>
+                  <RequireParentPin>
+                    <NewCustomQuestion />
+                  </RequireParentPin>
+                </RequireActiveStudent>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/parent/custom-bank/new-passage"
+            element={
+              <RequireAuth>
+                <RequireActiveStudent>
+                  <RequireParentPin>
+                    <NewCustomPassage />
                   </RequireParentPin>
                 </RequireActiveStudent>
               </RequireAuth>
