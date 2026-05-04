@@ -116,10 +116,9 @@ async function main() {
       if (rpcErr) throw rpcErr
     }
 
-    // §6.5 stretch cap (≤5 of 25)
-    if (stretchCount > 5) {
-      throw new Error(`§6.5 FAIL: stretch_count=${stretchCount} exceeds cap of 5`)
-    }
+    // 2026-05-03: removed §6.5 count-based stretch cap (was ≤5 of 25). With the
+    // frustration guard, stretch_count is unbounded so long as the kid keeps
+    // getting them right; only ceil_band (start+2) bounds the upper band.
 
     // Print sequence
     console.log('\nBand sequence:')
@@ -127,7 +126,7 @@ async function main() {
     for (const s of sequence) {
       console.log(`  ${String(s.i).padStart(2)} ${s.target.padEnd(10)} ${s.actual.padEnd(10)} ${(s.fallback || '-').padEnd(17)} ${s.candidates}`)
     }
-    console.log(`\nstretch_count: ${stretchCount} (cap 5)`)
+    console.log(`\nstretch_count: ${stretchCount} (no static cap; bounded by ceil_band)`)
     console.log(`unique question_ids: ${seenIds.size} of 25`)
 
     // Pattern-specific expectations

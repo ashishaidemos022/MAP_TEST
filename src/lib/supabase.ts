@@ -1,7 +1,18 @@
 import { createClient } from '@supabase/supabase-js'
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+// Vite browser builds expose env via `import.meta.env`; Node test runners (tsx)
+// expose it via `process.env`. Read both so the same client works in scripts
+// like test-adaptive-simulator.mjs without divergent setup.
+const viteEnv = (import.meta as { env?: Record<string, string | undefined> }).env ?? {}
+const procEnv: Record<string, string | undefined> =
+  typeof process !== 'undefined' && process.env ? process.env : {}
+
+const SUPABASE_URL = viteEnv.VITE_SUPABASE_URL ?? procEnv.SUPABASE_URL ?? procEnv.VITE_SUPABASE_URL
+const SUPABASE_ANON_KEY =
+  viteEnv.VITE_SUPABASE_ANON_KEY ??
+  procEnv.SUPABASE_PUBLISHABLE_KEY ??
+  procEnv.VITE_SUPABASE_ANON_KEY ??
+  procEnv.SUPABASE_ANON_KEY
 
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
   throw new Error(

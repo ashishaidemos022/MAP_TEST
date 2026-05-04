@@ -86,3 +86,36 @@ export function decideBand(
 export function trimWindow(window: boolean[], max = WINDOW_MAX): boolean[] {
   return window.length <= max ? window : window.slice(-max)
 }
+
+export const FRUSTRATION_WINDOW = 3
+
+/**
+ * Frustration guard for the stretch zone (above start_band).
+ *
+ * Walks `picks` from newest to oldest, collecting up to FRUSTRATION_WINDOW
+ * answers from picks whose band is above `startIdx`. Returns true only when
+ * we have FRUSTRATION_WINDOW such answers AND every one is wrong.
+ *
+ * Picks above start_band that haven't been answered yet are skipped (the
+ * picker can be filling slot N+3 while the user is still answering N).
+ *
+ * Used by picker.ts to override an upward `decideBand` target back to
+ * start_band when the kid has demonstrated 3 consecutive failures in the
+ * stretch zone — replaces the old count-based STRETCH_FRACTION cap.
+ */
+export function isFrustrated(
+  picks: ReadonlyArray<{ id: string; rit_band: RitBand }>,
+  attemptByQid: ReadonlyMap<string, boolean>,
+  startIdx: number,
+): boolean {
+  const recent: boolean[] = []
+  for (let i = picks.length - 1; i >= 0 && recent.length < FRUSTRATION_WINDOW; i--) {
+    const pick = picks[i]
+    if (bandIndex(pick.rit_band) <= startIdx) continue
+    const ans = attemptByQid.get(pick.id)
+    if (ans === undefined) continue
+    recent.push(ans)
+  }
+  if (recent.length < FRUSTRATION_WINDOW) return false
+  return recent.every((a) => a === false)
+}

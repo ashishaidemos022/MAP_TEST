@@ -7,6 +7,9 @@ import {
   bandFloor,
   bandCeil,
   stepBand,
+  bandIndex,
+  isFrustrated,
+  FRUSTRATION_WINDOW,
   WARMUP_LENGTH,
   WINDOW_MAX,
 } from '../src/lib/adaptive/bands.ts'
@@ -99,6 +102,123 @@ eq(decideBand([false, false, false], ceil, floor, ceil), '191_200', 'at ceil + 0
 // === stepBand sanity (clamps at array ends) ===
 eq(stepBand('below_161', -1), 'below_161', 'stepBand clamps at low end')
 eq(stepBand('above_210', 1), 'above_210', 'stepBand clamps at high end')
+
+// === isFrustrated: stretch-zone failure pattern detector ===
+eq(FRUSTRATION_WINDOW, 3, 'FRUSTRATION_WINDOW constant is 3')
+
+const startIdx = bandIndex(start) // 181_190 → idx 3
+const m = (entries) => new Map(entries) // ergonomic Map literal
+
+// Empty / no above-start picks → never frustrated
+eq(isFrustrated([], m([]), startIdx), false, 'frustration: empty picks → false')
+eq(
+  isFrustrated([{ id: 'a', rit_band: start }], m([['a', false]]), startIdx),
+  false,
+  'frustration: only at-start picks → false (no stretch zone activity)',
+)
+
+// Fewer than 3 above-start picks with answers → false (not enough data)
+eq(
+  isFrustrated(
+    [{ id: 'a', rit_band: '191_200' }, { id: 'b', rit_band: '191_200' }],
+    m([['a', false], ['b', false]]),
+    startIdx,
+  ),
+  false,
+  'frustration: 2 above-start wrongs → false (need 3)',
+)
+eq(
+  isFrustrated(
+    [
+      { id: 'a', rit_band: '191_200' },
+      { id: 'b', rit_band: '191_200' },
+      { id: 'c', rit_band: '191_200' }, // unanswered
+    ],
+    m([['a', false], ['b', false]]),
+    startIdx,
+  ),
+  false,
+  'frustration: 3 above-start picks but only 2 answered → false',
+)
+
+// 3 above-start picks all wrong → TRUE
+eq(
+  isFrustrated(
+    [
+      { id: 'a', rit_band: '191_200' },
+      { id: 'b', rit_band: '201_210' },
+      { id: 'c', rit_band: '191_200' },
+    ],
+    m([['a', false], ['b', false], ['c', false]]),
+    startIdx,
+  ),
+  true,
+  'frustration: 3 above-start all wrong → true',
+)
+
+// 3 above-start picks, ANY correct → false
+eq(
+  isFrustrated(
+    [
+      { id: 'a', rit_band: '191_200' },
+      { id: 'b', rit_band: '191_200' },
+      { id: 'c', rit_band: '191_200' },
+    ],
+    m([['a', false], ['b', true], ['c', false]]),
+    startIdx,
+  ),
+  false,
+  'frustration: 3 above-start with one correct → false',
+)
+
+// At-start and below-start picks are skipped, not counted toward window
+eq(
+  isFrustrated(
+    [
+      { id: 'a', rit_band: '191_200' }, // wrong (above start)
+      { id: 'b', rit_band: start },     // skipped (at start)
+      { id: 'c', rit_band: '171_180' }, // skipped (below start)
+      { id: 'd', rit_band: '201_210' }, // wrong (above start)
+      { id: 'e', rit_band: '191_200' }, // wrong (above start)
+    ],
+    m([['a', false], ['b', true], ['c', true], ['d', false], ['e', false]]),
+    startIdx,
+  ),
+  true,
+  'frustration: skips at-start and below-start picks; 3 above-start wrongs → true',
+)
+
+// Walks newest-to-oldest; older correct doesn't save you if last 3 are all wrong
+eq(
+  isFrustrated(
+    [
+      { id: 'old1', rit_band: '191_200' }, // correct, but old
+      { id: 'old2', rit_band: '191_200' }, // correct, but old
+      { id: 'a', rit_band: '191_200' },    // wrong
+      { id: 'b', rit_band: '191_200' },    // wrong
+      { id: 'c', rit_band: '191_200' },    // wrong (most recent)
+    ],
+    m([['old1', true], ['old2', true], ['a', false], ['b', false], ['c', false]]),
+    startIdx,
+  ),
+  true,
+  'frustration: only most recent 3 above-start picks count (old correct ignored)',
+)
+
+// Recent correct stops frustration even if older were wrong
+eq(
+  isFrustrated(
+    [
+      { id: 'a', rit_band: '191_200' }, // wrong
+      { id: 'b', rit_band: '191_200' }, // wrong
+      { id: 'c', rit_band: '191_200' }, // CORRECT (most recent)
+    ],
+    m([['a', false], ['b', false], ['c', true]]),
+    startIdx,
+  ),
+  false,
+  'frustration: recent correct breaks the streak → false',
+)
 
 console.log(`\n${pass} passed, ${fail} failed`)
 if (fail > 0) {

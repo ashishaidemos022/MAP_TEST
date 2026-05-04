@@ -12,6 +12,7 @@ import {
   bandCeil,
   clampBand,
   decideBand,
+  isFrustrated,
   trimWindow,
   WARMUP_LENGTH,
 } from './bands'
@@ -47,7 +48,6 @@ export interface AdaptiveQuestionResult {
   question_index: number  // 1-based
 }
 
-const STRETCH_FRACTION = 0.20
 const GROWTH_TARGET_FRACTION = 0.25  // brief §2 pseudocode; well under the 0.40 hard cap
 
 /**
@@ -345,14 +345,8 @@ export async function getNextAdaptiveQuestion(
   // Recent window — last 5 of the picks that have a recorded answer.
   const window = buildRecentWindow(session.question_ids, attempts)
 
-  // Stretch + growth caps: count picks-so-far against start_band (NOT current_band).
+  // Growth cap: count picks-so-far against start_band (NOT current_band).
   const planned = session.planned_length
-  const stretchCap = Math.round(planned * STRETCH_FRACTION)
-  const stretchUsed = selectedDetails.filter(
-    (q) => bandIndex(q.rit_band) > startIdx,
-  ).length
-  const stretchRemaining = Math.max(0, stretchCap - stretchUsed)
-
   const growthCap = Math.min(
     Math.round(planned * GROWTH_TARGET_FRACTION),
     growthStandards.size * 2,
@@ -376,9 +370,22 @@ export async function getNextAdaptiveQuestion(
     targetBand = decideBand(window, currentBand, floorBand, ceilBand)
   }
 
-  // Stretch cap: if target > start and the cap is exhausted, clamp to start.
-  if (bandIndex(targetBand) > startIdx && stretchRemaining <= 0) {
-    targetBand = startBand
+  // Frustration guard: if the kid's last 3 above-start picks were all wrong,
+  // the engine is pushing past their actual ceiling. Force back to start_band
+  // for a recovery pick. Replaces the old 20% count-based stretch cap that
+  // capped high performers prematurely (see 2026-05-03 spec).
+  if (bandIndex(targetBand) > startIdx) {
+    const attemptByQid = new Map<string, boolean>()
+    for (const a of attempts) {
+      if (a.is_correct === null) continue
+      attemptByQid.set(a.question_id, a.is_correct)
+    }
+    const orderedPicks = session.question_ids
+      .map((id) => selectedDetails.find((q) => q.id === id))
+      .filter((q): q is CandidateQuestion => Boolean(q))
+    if (isFrustrated(orderedPicks, attemptByQid, startIdx)) {
+      targetBand = startBand
+    }
   }
 
   const standardsTouched = new Set(

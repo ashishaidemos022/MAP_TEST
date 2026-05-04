@@ -13,13 +13,17 @@ import { addNextAdaptivePassage } from '../src/lib/adaptive/passagePicker.ts'
 import { bandIndex } from '../src/lib/adaptive/bands.ts'
 
 const SUPABASE_URL = process.env.SUPABASE_URL
-const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY
-if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-  console.error('Missing env: set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY (see .env.example).')
+// Service role bypasses RLS — required since 2026-04-28 multi-tenant migration
+// enabled RLS on map_students and others. The simulator inserts throwaway test
+// rows that no auth context could legitimately create.
+const SUPABASE_KEY =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_PUBLISHABLE_KEY
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.error('Missing env: set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (see .env.example).')
   console.error('Run with: node --env-file=.env.local scripts/test-adaptive-simulator.mjs')
   process.exit(1)
 }
-const sb = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY)
 
 const N = Number(process.argv[2] ?? 100)
 const PLANNED_LENGTH = 25
@@ -78,21 +82,27 @@ function rng(seed) {
 async function runSession({ subject, patternName, patternFn, sessionIdx }) {
   const failures = []
 
-  // 1. throwaway student
+  // 1. throwaway student. school_grade and grade became NOT NULL after the
+  // multi-tenant migration; pin to grade 2 so questions exist in the bank.
   const { data: student, error: sErr } = await sb
     .from('map_students')
-    .insert({ display_name: `SIM_${sessionIdx}_${subject}_${patternName}` })
+    .insert({
+      display_name: `SIM_${sessionIdx}_${subject}_${patternName}`,
+      school_grade: 2,
+      grade: 2,
+    })
     .select('id')
     .single()
   if (sErr) throw sErr
   const studentId = student.id
 
-  // 2. empty adaptive session
+  // 2. empty adaptive session — grade became NOT NULL after migration; pin to 2
   const { data: session, error: sessErr } = await sb
     .from('map_test_sessions')
     .insert({
       student_id: studentId,
       subject,
+      grade: 2,
       status: 'in_progress',
       question_ids: [],
       current_index: 0,
@@ -207,11 +217,11 @@ async function runSession({ subject, patternName, patternFn, sessionIdx }) {
       if (aIdx > startIdx) stretchCount++
     }
 
-    // §6.5 / §4 stretch cap — different rules per subject:
-    //   math/language: ≤ 5 stretch QUESTIONS (20% of 25)
-    //   reading:       ≤ 1 stretch PASSAGE (per spec §4)
+    // §4 stretch cap — reading still uses a passage-count cap (≤ 1 above start).
+    // Math/language: the count-based 20% cap was removed 2026-05-03 in favor of
+    // a frustration guard (see docs/superpowers/specs/2026-05-03-adaptive-stretch-frustration-guard.md).
+    // No upper bound on stretch_count — the ceil_band clamp already enforces start+2.
     if (subject === 'reading') {
-      // Count unique passages above start_band by joining picked questions to passages
       const { data: qDetails } = await sb
         .from('map_questions')
         .select('id, passage_id')
@@ -226,9 +236,36 @@ async function runSession({ subject, patternName, patternFn, sessionIdx }) {
       if (passageIdsAboveStart.size > 1) {
         failures.push(`§4: reading stretch passages=${passageIdsAboveStart.size} > 1`)
       }
-    } else {
-      if (stretchCount > 5) {
-        failures.push(`§6.5: stretch_count=${stretchCount} > 5`)
+    }
+
+    // Frustration guard: any time three above-start picks in a row were all
+    // wrong, the very next pick (if any) must be at start_band.
+    if (subject !== 'reading') {
+      const aboveAttempts = []
+      for (const d of diags) {
+        if (bandIndex(d.actual_band) > startIdx) {
+          // Find the recorded answer for this pick
+          const { data: a } = await sb
+            .from('map_attempts')
+            .select('is_correct')
+            .eq('session_id', sessionId)
+            .eq('question_id', d.picked_question_id)
+            .maybeSingle()
+          aboveAttempts.push({ idx: d.question_index, correct: a?.is_correct ?? null })
+        }
+      }
+      for (let k = 2; k < aboveAttempts.length; k++) {
+        const trio = aboveAttempts.slice(k - 2, k + 1)
+        if (trio.every((x) => x.correct === false)) {
+          // Find the very next pick AFTER this third above-start failure
+          const lastIdx = trio[2].idx
+          const next = diags.find((d) => d.question_index === lastIdx + 1)
+          if (next && bandIndex(next.actual_band) > startIdx) {
+            failures.push(
+              `frustration-guard: 3 above-start picks (${trio.map((t) => t.idx).join(',')}) all wrong but next pick ${next.question_index} stayed at ${next.actual_band}`,
+            )
+          }
+        }
       }
     }
 
@@ -244,8 +281,8 @@ async function runSession({ subject, patternName, patternFn, sessionIdx }) {
       }
     }
 
-    // §6.2: all_correct → reaches the stretch cap and never above
-    //   math/language: ceiling = start+2 (5-question stretch budget allows 2 step-ups)
+    // §6.2: all_correct → reaches ceil_band and never above
+    //   math/language: ceiling = start+2 (ceil_band clamp; no count-based cap as of 2026-05-03)
     //   reading:       ceiling = start+1 (1-passage stretch cap; brief §4)
     if (patternName === 'all_correct') {
       const maxIdx = Math.max(...diags.map((d) => bandIndex(d.actual_band)))
