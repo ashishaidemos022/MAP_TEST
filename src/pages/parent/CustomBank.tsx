@@ -230,7 +230,7 @@ export default function CustomBank() {
   async function softDeletePassage(id: string) {
     if (!window.confirm('Delete this passage? Existing kid attempts that reference it stay intact, but it can no longer appear in new tests.')) return
     setBusy(`p-${id}`); setError(null)
-    const { error: e } = await supabase.from('map_custom_passages').update({ soft_deleted_at: new Date().toISOString() }).eq('id', id)
+    const { error: e } = await supabase.rpc('map_soft_delete_custom_passage', { p_passage_id: id })
     setBusy(null)
     if (e) { setError(e.message); return }
     await loadAll()
@@ -238,7 +238,7 @@ export default function CustomBank() {
   async function softDeleteQuestion(id: string) {
     if (!window.confirm('Delete this question? Existing kid attempts on it stay intact, but it can no longer appear in new tests.')) return
     setBusy(`q-${id}`); setError(null)
-    const { error: e } = await supabase.from('map_custom_questions').update({ soft_deleted_at: new Date().toISOString() }).eq('id', id)
+    const { error: e } = await supabase.rpc('map_soft_delete_custom_question', { p_question_id: id })
     setBusy(null)
     if (e) { setError(e.message); return }
     await loadAll()
@@ -296,26 +296,20 @@ export default function CustomBank() {
       `Existing kid attempts on these stay intact, but they won't appear in new tests.`,
     )) return
     setBulkBusy(true); setError(null)
-    const now = new Date().toISOString()
     const errors: string[] = []
-    // Loop with .eq() per id rather than one big .in() UPDATE: PostgREST RLS
-    // returns 403 on multi-row UPDATEs in some configurations, even though
-    // each row would individually pass USING. Per-row matches the publish
-    // path and lets us collect per-id errors. Questions soft-delete first
-    // so the soft-delete guard trigger on passages has no referencing
-    // questions left to refuse.
+    // Direct UPDATE through PostgREST returns 403 because the post-update
+    // row no longer satisfies the SELECT policy (soft_deleted_at IS NULL),
+    // so RETURNING comes back empty and PostgREST surfaces it as Forbidden.
+    // The SECURITY DEFINER RPCs match what publish already does — same
+    // family-ownership check, no RLS round-trip. Questions soft-delete
+    // first so the soft-delete guard trigger on passages has no
+    // referencing questions left to refuse.
     for (const id of questionIds) {
-      const { error: e } = await supabase
-        .from('map_custom_questions')
-        .update({ soft_deleted_at: now })
-        .eq('id', id)
+      const { error: e } = await supabase.rpc('map_soft_delete_custom_question', { p_question_id: id })
       if (e) errors.push(`question ${id.slice(0, 8)}: ${e.message}`)
     }
     for (const id of passageIds) {
-      const { error: e } = await supabase
-        .from('map_custom_passages')
-        .update({ soft_deleted_at: now })
-        .eq('id', id)
+      const { error: e } = await supabase.rpc('map_soft_delete_custom_passage', { p_passage_id: id })
       if (e) errors.push(`passage ${id.slice(0, 8)}: ${e.message}`)
     }
     setBulkBusy(false)
