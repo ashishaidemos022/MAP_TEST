@@ -8,6 +8,15 @@ export const MCP_ERROR_CODES = {
   not_found: 'not_found',
   bad_input: 'bad_input',
   internal: 'internal',
+  // Custom-question bank (Phase 4)
+  question_not_in_family: 'question_not_in_family',
+  passage_not_in_family: 'passage_not_in_family',
+  passage_version_not_in_family: 'passage_version_not_in_family',
+  invalid_question_shape: 'invalid_question_shape',
+  invalid_passage_shape: 'invalid_passage_shape',
+  invalid_svg: 'invalid_svg',
+  mixed_choice_svg_not_allowed: 'mixed_choice_svg_not_allowed',
+  write_quota_exceeded: 'write_quota_exceeded',
 } as const;
 
 export type McpErrorCode = keyof typeof MCP_ERROR_CODES;
