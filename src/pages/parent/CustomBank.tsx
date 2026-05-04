@@ -260,8 +260,16 @@ export default function CustomBank() {
   }
 
   async function bulkPublish() {
-    const passageIds = [...selectedPassageIds]
-    const questionIds = [...selectedQuestionIds]
+    // Filter to drafts only — selected published / archived items shouldn't
+    // round-trip to the publish RPC.
+    const draftPassageIds = (passages ?? [])
+      .filter((p) => selectedPassageIds.has(p.id) && p.status === 'draft')
+      .map((p) => p.id)
+    const draftQuestionIds = (questions ?? [])
+      .filter((q) => selectedQuestionIds.has(q.id) && q.status === 'draft')
+      .map((q) => q.id)
+    const passageIds = draftPassageIds
+    const questionIds = draftQuestionIds
     if (passageIds.length + questionIds.length === 0) return
     if (!window.confirm(`Publish ${passageIds.length} passage(s) and ${questionIds.length} question(s)?`)) return
     setBulkBusy(true); setError(null)
@@ -322,13 +330,27 @@ export default function CustomBank() {
     await loadAll()
   }
 
-  function selectAllVisibleDrafts() {
-    setSelectedPassageIds(new Set(visiblePassages.filter((p) => p.status === 'draft').map((p) => p.id)))
-    setSelectedQuestionIds(new Set(visibleQuestions.filter((q) => q.status === 'draft').map((q) => q.id)))
+  function selectAllVisible() {
+    // Pick everything visible that isn't already archived; archived items
+    // can't be re-deleted or re-published.
+    setSelectedPassageIds(new Set(visiblePassages.filter((p) => p.status !== 'archived').map((p) => p.id)))
+    setSelectedQuestionIds(new Set(visibleQuestions.filter((q) => q.status !== 'archived').map((q) => q.id)))
   }
   function clearSelection() {
     setSelectedPassageIds(new Set())
     setSelectedQuestionIds(new Set())
+  }
+
+  // How many of the selected items are still drafts (eligible for publish)?
+  function countSelectedDrafts(): number {
+    let n = 0
+    for (const p of passages ?? []) {
+      if (selectedPassageIds.has(p.id) && p.status === 'draft') n++
+    }
+    for (const q of questions ?? []) {
+      if (selectedQuestionIds.has(q.id) && q.status === 'draft') n++
+    }
+    return n
   }
 
   const draftCount = (passages?.filter((p) => p.status === 'draft').length ?? 0) +
@@ -376,9 +398,9 @@ export default function CustomBank() {
         {draftCount > 0 && tab !== 'draft' && (
           <span className="text-xs text-ink/60">{draftCount} draft{draftCount === 1 ? '' : 's'} waiting</span>
         )}
-        {tab === 'draft' && (visiblePassages.length + visibleQuestions.length) > 0 && (
+        {(visiblePassages.length + visibleQuestions.length) > 0 && (
           <div className="ml-auto flex flex-wrap items-center gap-2">
-            <button type="button" className="text-xs underline text-ink/70" onClick={selectAllVisibleDrafts}>
+            <button type="button" className="text-xs underline text-ink/70" onClick={selectAllVisible}>
               Select all
             </button>
             {(selectedPassageIds.size + selectedQuestionIds.size) > 0 && (
@@ -386,16 +408,16 @@ export default function CustomBank() {
                 <button type="button" className="text-xs underline text-ink/70" onClick={clearSelection}>
                   Clear
                 </button>
-                <button
-                  type="button"
-                  className="btn-primary text-xs disabled:opacity-50"
-                  disabled={bulkBusy}
-                  onClick={() => void bulkPublish()}
-                >
-                  {bulkBusy
-                    ? 'Working…'
-                    : `Publish ${selectedPassageIds.size + selectedQuestionIds.size}`}
-                </button>
+                {countSelectedDrafts() > 0 && (
+                  <button
+                    type="button"
+                    className="btn-primary text-xs disabled:opacity-50"
+                    disabled={bulkBusy}
+                    onClick={() => void bulkPublish()}
+                  >
+                    {bulkBusy ? 'Working…' : `Publish ${countSelectedDrafts()} draft${countSelectedDrafts() === 1 ? '' : 's'}`}
+                  </button>
+                )}
                 <button
                   type="button"
                   className="rounded-2xl border border-berry/40 bg-berry/10 px-3 py-1 text-xs font-semibold text-berry hover:bg-berry/20 disabled:opacity-50"
@@ -424,13 +446,13 @@ export default function CustomBank() {
             return (
               <div key={p.id} className="rounded-2xl border border-cloud bg-paper">
                 <div className="flex items-start gap-3 px-4 py-3">
-                  {p.status === 'draft' && (
+                  {p.status !== 'archived' && (
                     <input
                       type="checkbox"
                       className="mt-1 h-4 w-4 cursor-pointer"
                       checked={selectedPassageIds.has(p.id)}
                       onChange={() => togglePassageSelection(p.id)}
-                      aria-label="Select for bulk publish"
+                      aria-label="Select for bulk action"
                     />
                   )}
                   <button type="button" className="flex-1 text-left" onClick={() => toggleOpen(`p-${p.id}`)}>
@@ -494,13 +516,13 @@ export default function CustomBank() {
             return (
               <div key={q.id} className="rounded-2xl border border-cloud bg-paper">
                 <div className="flex items-start gap-3 px-4 py-3">
-                  {q.status === 'draft' && (
+                  {q.status !== 'archived' && (
                     <input
                       type="checkbox"
                       className="mt-1 h-4 w-4 cursor-pointer"
                       checked={selectedQuestionIds.has(q.id)}
                       onChange={() => toggleQuestionSelection(q.id)}
-                      aria-label="Select for bulk publish"
+                      aria-label="Select for bulk action"
                     />
                   )}
                   <button type="button" className="flex-1 text-left" onClick={() => toggleOpen(`q-${q.id}`)}>
