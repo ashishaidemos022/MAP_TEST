@@ -1,0 +1,12 @@
+-- Fix the y-axis on the G2 math bar-chart question d7e45377 — the original
+-- SVG drew bars at heights encoding 8/4/6/3 (cherry/mint/cotton/orange) at
+-- 15px-per-unit but had NO numeric tick labels, so a 2nd-grader couldn't
+-- read the values to do the +2 math (orange+2=5 → mint at 4 is least).
+--
+-- Redraw adds y-axis ticks at 0/2/4/6/8, faint gridlines across each tick
+-- level, and a "Cones sold" axis title. Bar geometry, colors, and labels
+-- are unchanged so the answer stays mint.
+
+UPDATE public.map_questions
+SET stem_image_svg = $svg$<svg viewBox="0 0 450 230" xmlns="http://www.w3.org/2000/svg"><rect width="450" height="230" fill="white"/><line x1="60" y1="40" x2="60" y2="180" stroke="#1e3a8a" stroke-width="2"/><line x1="60" y1="180" x2="420" y2="180" stroke="#1e3a8a" stroke-width="2"/><line x1="60" y1="60" x2="420" y2="60" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,3"/><line x1="60" y1="90" x2="420" y2="90" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,3"/><line x1="60" y1="120" x2="420" y2="120" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,3"/><line x1="60" y1="150" x2="420" y2="150" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,3"/><line x1="55" y1="60" x2="65" y2="60" stroke="#1e3a8a" stroke-width="2"/><line x1="55" y1="90" x2="65" y2="90" stroke="#1e3a8a" stroke-width="2"/><line x1="55" y1="120" x2="65" y2="120" stroke="#1e3a8a" stroke-width="2"/><line x1="55" y1="150" x2="65" y2="150" stroke="#1e3a8a" stroke-width="2"/><line x1="55" y1="180" x2="65" y2="180" stroke="#1e3a8a" stroke-width="2"/><g font-family="sans-serif" font-size="11" fill="#1e3a8a" text-anchor="end"><text x="50" y="64">8</text><text x="50" y="94">6</text><text x="50" y="124">4</text><text x="50" y="154">2</text><text x="50" y="184">0</text></g><rect x="85" y="60" width="40" height="120" fill="#fca5a5" stroke="#991b1b"/><rect x="155" y="120" width="40" height="60" fill="#bbf7d0" stroke="#166534"/><rect x="225" y="90" width="40" height="90" fill="#bfdbfe" stroke="#1e3a8a"/><rect x="295" y="135" width="40" height="45" fill="#fde68a" stroke="#92400e"/><g font-family="sans-serif" font-size="12" fill="#1e3a8a" text-anchor="middle"><text x="105" y="205">cherry</text><text x="175" y="205">mint</text><text x="245" y="205">cotton</text><text x="315" y="205">orange</text></g><text x="240" y="225" font-family="sans-serif" font-size="11" fill="#475569" text-anchor="middle">Cones sold</text></svg>$svg$
+WHERE id = 'd7e45377-06bc-4c61-bb2c-ac129d6d8818';
