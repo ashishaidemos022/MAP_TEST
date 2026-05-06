@@ -541,3 +541,90 @@ migrations/20260501_map_mcp_tokens.sql  # schema, RLS, RPCs
 
 OAuth 2.1 + dynamic client registration, write tools, Resources/Prompts, Upstash rate limiting, multi-token-per-agent UX, push/webhooks, token rotation. Don't build these as part of this feature.
 
+---
+
+## 11. Grade 5 expansion
+
+Source spec: `5thGradeSeedingGuide.md` (full brief). Read it before authoring Grade 5 content. The points below are the working summary; the brief stays in the repo as the canonical reference.
+
+### 11.1 Schema additions (already applied — `migrations/20260506_*`)
+
+- **`map_rit_band` enum extended:** `211_220`, `221_230`, `231_240` added after `201_210`. The legacy `above_210` and `above_230` values stay in the enum so existing Grade 2/3 questions don't break, but no new Grade 5 question should be authored into them. `bands.ts` `BAND_ORDER`, `rit.ts` `BAND_CENTROID` / `BAND_LABEL` / `gradeContext`, and `map_rit_band_ord` / `map_v_student_current_band` were updated together; the adaptive simulator stays at 41/41.
+- **`map_standards.is_synthetic boolean`:** flags non-TEKS standards (review skills, Plano-vs-TEKS gaps). The composer treats synthetic and TEKS standards identically; the flag is for the parent dashboard's TEKS heatmap and the coverage script. Only one Grade 5 row is currently synthetic (`5.review.factors`).
+- **`map_questions.target_sentence_number int`:** sentence index for Pattern D (paragraph editing) language items. Null for everything else. CHECK constraint clamps it to 1..20.
+- **`map_reading_passages.pair_id uuid`:** nullable self-reference. Used to link two passages on the same topic for the paired-passage Reading shape (§8 of the brief). Don't ship paired-passage authoring until the runner can render two passages stacked above the question.
+
+### 11.2 RIT band targets (NWEA 2020 norms)
+
+Grade 5 fall ~ 200, winter ~ 205-207, spring ~ 211-213. Above-grade-level ~ 220-230. Bank-composition weights per `(subject, band)`:
+
+| Subject  | 191_200 | 201_210 | 211_220 | 221_230 | stretch (231_240) |
+|----------|---------|---------|---------|---------|-------------------|
+| Math     | 10%     | 30%     | 35%     | 15%     | 10%               |
+| Reading  | 10%     | 25%     | 35%     | 20%     | 10%               |
+| Language | 12%     | 30%     | 33%     | 15%     | 10%               |
+
+Below `191_200` is rare for Grade 5 and not banked heavily. `above_210` is deprecated for Grade 5 authoring.
+
+### 11.3 Grade 5 names
+
+Allowed: the Grade 2 set (Maya, Ethan, Priya, Liam, Ava, Aarav, Zoe), the Grade 3 additions (Noor, Diego, Mei, Caleb), plus **Grade 5 additions: Jamal, Selena, Hiroshi, Imani, Theo, Sofia, Ravi.** No PII in passages or stems.
+
+### 11.4 Stem and content shifts from Grade 3
+
+- Stem cap rises to **≤ 45 words** (G3 was 35, G2 was 25). Patterns A, C, and D are exempt.
+- Two-step problems are required for ~30% of math. Both numbers must appear in the stem.
+- Reading passages are longer: **280–420 words literary, 240–380 informational, 60–180 poetry, 180–300 drama.** Lexile target 700L–950L.
+- Reading proportions: **≥ 40% inference / purpose / craft, ≤ 30% literal recall, the rest vocabulary and text-evidence.**
+- Tier-2 academic vocabulary expands; tier-3 (`photosynthesis`, `metamorphosis`) still belongs in science class.
+
+### 11.5 Language Pattern D (new for Grade 5)
+
+The dominant STAAR-Grade-5 language item shape: a short editing-draft passage (4–6 numbered sentences with 2–4 specific errors), attached to 3–5 questions about specific edits. Author the passage first; mark which sentence has which error; then build each question. **Don't** author six errors into a six-sentence passage — at least one sentence stays correct so kids can't game the test.
+
+Pattern D passages live in `map_reading_passages` with `subject = 'language'` and `genre = 'editing_draft'`. Sentence-targeted questions set `target_sentence_number`; revision-opportunity questions leave it null. Default Pattern D mapping: `5.11C.iii`. Any TEKS code can opt in via `--pattern d` in the author-prompt script.
+
+### 11.6 Misconception tags (§10 of the brief — 46 new tags)
+
+Already inserted via `migrations/20260506_map_grade5_misconception_tags.sql`. Math (16): decimal place value / alignment / count-zeros / division-shift, fraction unlike-denominator / mixed-regroup / div-flip-wrong, volume vs surface-area / dim-add-vs-multiply, coordinate swapped / counted-from-one, order-of-operations left-to-right, unit-conversion-wrong-direction, pattern-arithmetic-when-geometric, financial-confused-income-with-savings, estimation-didnt-round-first. Reading (11): inference overgeneralized / outside-knowledge, theme-picked-topic, summary copied-first-sentence / minor-detail, vocab wrong-sense-polysemous / antonym, purpose-confused-topic, text-structure picked-first-recognized, figurative-literal, argumentative-claim-vs-evidence. Language (19): perfect-tense wrong-helper, tense-inconsistent, pronoun unclear-antecedent / compound-subject-case, comma after-intro / compound-sentence / unnecessary-subj-verb, apostrophe its-vs-its / possessive-vs-plural, capitalization proper-noun / over-cap-common, dialogue-punctuation-inside-quotes, sentence fragment / run-on-no-punct / run-on-comma-splice, transition-wrong-relationship, homophones their-there-theyre / to-too-two / your-youre.
+
+Reuse before inventing. The author-prompt script injects the live taxonomy on every run.
+
+### 11.7 Bank targets (§11 of the brief)
+
+| Subject  | Total | Per standard avg | Notes |
+|----------|-------|------------------|-------|
+| Math     | 750   | ~19 (39 standards) | Heavier on 5.3 and 5.4 |
+| Reading  | 500   | ~23 (22 standards) | ~85 passages, 4–6 questions each; ~10 paired sets |
+| Language | 350   | ~25 (14 standards) | ~30 Pattern D passages with 3–5 questions each |
+
+Don't ship a Grade 5 toggle until **math ≥ 250, reading ≥ 200 across 35+ passages, language ≥ 140 across 12+ Pattern D passages.** A nearly-empty subject creates an empty test.
+
+### 11.8 Authoring workflow
+
+1. `node --env-file=.env.local scripts/grade5-coverage.mjs` to find the lowest-coverage `(standard, band)` cells. The §17 sub-skill list prints under each math row as a static reference (sub-skill counts aren't queryable per §17.8).
+2. `node --env-file=.env.local scripts/grade5-author-prompt.mjs --subject <s> --teks <code> --band <band> [--sub-skill <key>] [--pattern <a|b|c|d>]` prints a paste-ready prompt. The script auto-detects language patterns; `--pattern d` is the explicit opt-in for paragraph editing.
+3. Paste into a fresh Claude conversation; get back a JSON array of 5 question objects (or a `{ passage, questions }` object for Pattern D).
+4. Validate: exactly one `is_correct: true`, every distractor has both `misconception` and `misconception_tag`, every tag exists in `map_misconception_tags`, stem ≤ 45 words (or exempt), names in the §11.3 allow-list, SVGs valid.
+5. Write a migration following the `20260506_*` patterns. Apply. Re-run coverage to confirm the cell lit up.
+
+### 11.9 Hard rules (don't violate)
+
+- **No verbatim Khan Academy, NWEA, or STAAR content.** Topical references only. Original wording, original numbers, original passages.
+- **TEKS codes are canonical.** Verify each against TAC §111.7 (math) and §110.7 (ELAR).
+- **Misconception tagging is required at author time, not later.** Every distractor: `misconception` (free text) + `misconception_tag` (from `map_misconception_tags`).
+- **`above_210` is deprecated for Grade 5 authoring.** Use the new bands (`211_220`, `221_230`, `231_240`).
+- **Don't backfill Grade 2/3 misconception tags** as part of this work.
+- **No raster images.** Inline SVG only.
+- **Don't edit a published passage in place** if changes are substantive — author a new one and let the old questions die naturally.
+- **Stretch questions ≥ 2 bands above start_band don't count toward mastery.** Don't over-author the top band.
+
+### 11.10 References
+
+- TEKS Math Grade 5: TAC §111.7
+- TEKS ELAR Grade 5: TAC §110.7
+- Khan Academy Grade 5 Math (TEKS): https://www.khanacademy.org/math/cc-fifth-grade-math
+- Khan Academy Grade 5 Reading: https://www.khanacademy.org/ela/cc-5th-reading-vocab
+- NWEA RIT reference (3–5 norms): https://cdn.nwea.org/docs/RIT+Reference+Brochure_July19_CC.pdf
+
+These are reference reading; do not embed quotes from them in the app or in generated content.
