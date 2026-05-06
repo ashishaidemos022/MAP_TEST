@@ -7,7 +7,11 @@ export type RitBand =
   | '181_190'
   | '191_200'
   | '201_210'
-  | 'above_210'
+  | '211_220'
+  | '221_230'
+  | '231_240'
+  | 'above_230' // legacy catchall introduced ad-hoc; treat as 231_240 bucket
+  | 'above_210' // deprecated for G5+; kept so existing G2/G3 rows stay valid
 export type PassageGenre = 'literary' | 'informational' | 'poetry' | 'drama'
 export type SessionStatus = 'in_progress' | 'completed' | 'abandoned'
 

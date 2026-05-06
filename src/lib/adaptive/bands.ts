@@ -3,6 +3,11 @@
 
 import type { RitBand } from '../types'
 
+// Ascending RIT order. above_210 is the deprecated catchall introduced
+// for K-3 authoring; above_230 is a similar legacy catchall. Both sit at
+// the top of the order so adaptive arithmetic never tries to step into
+// them as a "real" band — they exist for backward-compat only. New
+// authoring should use 211_220 / 221_230 / 231_240. (Grade5 brief §2.)
 export const BAND_ORDER: RitBand[] = [
   'below_161',
   '161_170',
@@ -10,6 +15,10 @@ export const BAND_ORDER: RitBand[] = [
   '181_190',
   '191_200',
   '201_210',
+  '211_220',
+  '221_230',
+  '231_240',
+  'above_230',
   'above_210',
 ]
 
