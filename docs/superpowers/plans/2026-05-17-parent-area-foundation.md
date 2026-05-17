@@ -504,7 +504,7 @@ ALTER TABLE public.map_families
   ADD COLUMN IF NOT EXISTS parent_v2 boolean NOT NULL DEFAULT false;
 
 -- 6. Views.
-CREATE OR REPLACE VIEW public.map_v_classroom_roster AS
+CREATE OR REPLACE VIEW public.map_v_classroom_roster WITH (security_invoker = true) AS
 SELECT
   s.id AS student_id,
   s.family_id,
@@ -542,7 +542,7 @@ SELECT
 FROM public.map_students s
 LEFT JOIN public.map_v_student_current_band b ON b.student_id = s.id;
 
-CREATE OR REPLACE VIEW public.map_v_assignment_overview AS
+CREATE OR REPLACE VIEW public.map_v_assignment_overview WITH (security_invoker = true) AS
 SELECT
   ta.id AS assignment_id,
   ta.family_id,
@@ -574,7 +574,7 @@ JOIN public.map_test_definitions td ON td.id = ta.definition_id
 LEFT JOIN public.map_test_sessions ts ON ts.id = ta.session_id
 WHERE td.soft_deleted_at IS NULL;
 
-CREATE OR REPLACE VIEW public.map_v_library_content AS
+CREATE OR REPLACE VIEW public.map_v_library_content WITH (security_invoker = true) AS
 SELECT
   q.id AS content_id,
   'question'::text AS content_type,
