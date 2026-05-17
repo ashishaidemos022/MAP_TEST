@@ -398,7 +398,7 @@ CREATE TABLE IF NOT EXISTS public.map_test_definitions (
   family_id           uuid NOT NULL REFERENCES public.map_families(id) ON DELETE CASCADE,
   owner_user_id       uuid REFERENCES auth.users(id) ON DELETE SET NULL,
   name                text NOT NULL,
-  subject             map_subject NOT NULL,
+  subject             public.map_subject NOT NULL,
   grade               int NOT NULL,
   planned_length      int NOT NULL DEFAULT 25,
   source_mix          text NOT NULL DEFAULT 'vetted_only',
@@ -591,7 +591,7 @@ WHERE cp.soft_deleted_at IS NULL;
 
 -- 7. RPCs (mirror map_custom_questions auth pattern).
 CREATE OR REPLACE FUNCTION public.map_create_test_definition(
-  p_name text, p_subject map_subject, p_grade int, p_planned_length int,
+  p_name text, p_subject public.map_subject, p_grade int, p_planned_length int,
   p_source_mix text, p_custom_pct int, p_difficulty_mix jsonb,
   p_standard_codes text[], p_custom_question_ids uuid[],
   p_custom_passage_ids uuid[], p_is_template boolean
@@ -614,7 +614,7 @@ BEGIN
   RETURN v_id;
 END $fn$;
 GRANT EXECUTE ON FUNCTION public.map_create_test_definition(
-  text,map_subject,int,int,text,int,jsonb,text[],uuid[],uuid[],boolean) TO authenticated;
+  text,public.map_subject,int,int,text,int,jsonb,text[],uuid[],uuid[],boolean) TO authenticated;
 
 CREATE OR REPLACE FUNCTION public.map_assign_test_definition(
   p_definition_id uuid, p_student_ids uuid[],
