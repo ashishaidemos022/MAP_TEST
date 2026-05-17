@@ -38,9 +38,10 @@ try {
   assert(!re, '§9.2 revoke of assigned assignment succeeds');
 
   // §9.2 revoke of an in_progress assignment fails
-  await admin.from('map_test_assignments')
+  const { error: fue } = await admin.from('map_test_assignments')
     .update({ status: 'in_progress', session_id: ctx.customSessionId, started_at: new Date().toISOString() })
     .eq('id', aIds[1]);
+  assert(!fue, '§9.2 admin force-to-in_progress update succeeded (precondition)');
   const { error: re2 } = await ca.rpc('map_revoke_assignment', { p_assignment_id: aIds[1] });
   assert(!!re2, '§9.2 revoke of in_progress assignment is rejected');
 
@@ -56,7 +57,9 @@ try {
     '§9.3 map_v_assignment_overview family-scoped');
 
   const { data: lib, error: le } = await ca.from('map_v_library_content').select('*').limit(5);
-  assert(!le && Array.isArray(lib), '§9.3 map_v_library_content selectable');
+  assert(!le && Array.isArray(lib) && lib.length > 0
+    && lib.every((r) => ['vetted', 'my_questions', 'ai_studio'].includes(r.source_tab)),
+    '§9.3 map_v_library_content returns rows with valid source_tab');
 
   // §9.9 backfill: the legacy custom session now has a definition+assignment
   const { data: bf, error: bfe } = await admin
