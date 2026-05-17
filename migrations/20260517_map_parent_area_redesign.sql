@@ -200,7 +200,7 @@ SELECT
   'question'::text AS content_type,
   'vetted'::text AS source_tab,
   NULL::text AS source_detail,
-  q.subject, q.grade, q.rit_band,
+  q.subject::text, q.grade::int, q.rit_band::text,
   st.teks_code, st.teks_title,
   NULL::text AS status,
   NULL::uuid AS family_id,
