@@ -45,30 +45,41 @@ async function makeFamily(label) {
 }
 
 export async function setup() {
-  const A = await makeFamily('A');
-  const B = await makeFamily('B');
-  // One legacy custom session in family A's kid1 for backfill assertions.
-  const { data: sess, error: se } = await admin
-    .from('map_test_sessions')
-    .insert({
-      student_id: A.kids[0].id,
-      subject: 'math',
-      status: 'completed',
-      kind: 'custom',
-      question_ids: [],
-      current_index: 0,
-      correct_count: 3,
-      estimated_rit: 185,
-      grade: 2,
-      planned_length: 5,
-      started_at: new Date(Date.now() - 86400000).toISOString(),
-      completed_at: new Date(Date.now() - 86000000).toISOString(),
-      custom_config: { standard_ids: [], requested_count: 5, actual_count: 3, shortfall_reason: null },
-    })
-    .select('id')
-    .single();
-  if (se) throw se;
-  return { A, B, customSessionId: sess.id };
+  let A, B;
+  try {
+    A = await makeFamily('A');
+    B = await makeFamily('B');
+    // One legacy custom session in family A's kid1 for backfill assertions.
+    const { data: sess, error: se } = await admin
+      .from('map_test_sessions')
+      .insert({
+        student_id: A.kids[0].id,
+        subject: 'math',
+        status: 'completed',
+        kind: 'custom',
+        question_ids: [],
+        current_index: 0,
+        correct_count: 3,
+        estimated_rit: 185,
+        grade: 2,
+        planned_length: 5,
+        started_at: new Date(Date.now() - 86400000).toISOString(),
+        completed_at: new Date(Date.now() - 86000000).toISOString(),
+        custom_config: { standard_ids: [], requested_count: 5, actual_count: 3, shortfall_reason: null },
+      })
+      .select('id')
+      .single();
+    if (se) throw se;
+    return { A, B, customSessionId: sess.id };
+  } catch (err) {
+    if (A || B) {
+      await teardown({
+        A: A ?? { familyId: null, userId: null, kids: [] },
+        B: B ?? { familyId: null, userId: null, kids: [] },
+      }).catch(() => {});
+    }
+    throw err;
+  }
 }
 
 export async function signInClient(email, password) {
@@ -79,15 +90,29 @@ export async function signInClient(email, password) {
 }
 
 export async function teardown(ctx) {
-  const famIds = [ctx.A.familyId, ctx.B.familyId];
-  const kidIds = [...ctx.A.kids, ...ctx.B.kids].map((k) => k.id);
-  await admin.from('map_test_assignments').delete().in('family_id', famIds);
-  await admin.from('map_test_definitions').delete().in('family_id', famIds);
-  await admin.from('map_test_sessions').delete().in('student_id', kidIds);
-  await admin.from('map_students').delete().in('family_id', famIds);
-  await admin.from('map_families').delete().in('id', famIds);
-  await admin.auth.admin.deleteUser(ctx.A.userId).catch(() => {});
-  await admin.auth.admin.deleteUser(ctx.B.userId).catch(() => {});
+  const famIds = [ctx.A.familyId, ctx.B.familyId].filter(Boolean);
+  const kidIds = [...(ctx.A.kids ?? []), ...(ctx.B.kids ?? [])].map((k) => k.id).filter(Boolean);
+  if (famIds.length === 0 && kidIds.length === 0) {
+    await admin.auth.admin.deleteUser(ctx.A.userId).catch(() => {});
+    await admin.auth.admin.deleteUser(ctx.B.userId).catch(() => {});
+    return;
+  }
+  const steps = [];
+  if (famIds.length) steps.push(['assignments', admin.from('map_test_assignments').delete().in('family_id', famIds)]);
+  if (famIds.length) steps.push(['definitions', admin.from('map_test_definitions').delete().in('family_id', famIds)]);
+  if (kidIds.length) steps.push(['sessions', admin.from('map_test_sessions').delete().in('student_id', kidIds)]);
+  if (famIds.length) steps.push(['students', admin.from('map_students').delete().in('family_id', famIds)]);
+  if (famIds.length) steps.push(['families', admin.from('map_families').delete().in('id', famIds)]);
+  for (const [label, p] of steps) {
+    // map_test_assignments / map_test_definitions may not exist yet in early
+    // tasks; their errors are expected and non-fatal. Other steps surface.
+    const { error } = await p;
+    if (error && label !== 'assignments' && label !== 'definitions') {
+      console.warn(`teardown ${label} error:`, error.message);
+    }
+  }
+  if (ctx.A.userId) await admin.auth.admin.deleteUser(ctx.A.userId).catch(() => {});
+  if (ctx.B.userId) await admin.auth.admin.deleteUser(ctx.B.userId).catch(() => {});
 }
 
 export function assert(cond, label) {
