@@ -218,17 +218,35 @@ try {
     && lib.every((r) => ['vetted', 'my_questions', 'ai_studio'].includes(r.source_tab)),
     '§9.3 map_v_library_content returns rows with valid source_tab');
 
-  // §9.9 backfill: the legacy custom session now has a definition+assignment
-  const { data: bf, error: bfe } = await admin
-    .from('map_test_assignments')
-    .select('id, status, session_id, definition_id, map_test_definitions(name, source_mix, owner_user_id)')
-    .eq('session_id', ctx.customSessionId)
-    .single();
-  assert(!bfe && bf && bf.status === 'completed', '§9.9 backfilled assignment exists & completed');
-  assert(bf.map_test_definitions.source_mix === 'vetted_only'
-    && bf.map_test_definitions.owner_user_id === null
-    && bf.map_test_definitions.name.startsWith('Backfilled · '),
-    '§9.9 backfilled definition is faithful (vetted_only, system-owned, named)');
+  // §9.9 backfill invariant. The migration's backfill is a one-time step that
+  // ran at apply time; it cannot cover the harness's ephemeral custom session
+  // (created after apply). So assert the real invariant: every pre-existing
+  // kind='custom' session is backfilled — the only custom session WITHOUT a
+  // linked assignment is this harness's own ephemeral one — and a sampled
+  // backfilled definition is faithful (vetted_only, system-owned, named).
+  const { data: customSessions, error: cse } = await admin
+    .from('map_test_sessions').select('id').eq('kind', 'custom');
+  const { data: backfilledAssigns, error: bae } = await admin
+    .from('map_test_assignments').select('session_id').not('session_id', 'is', null);
+  const linked = new Set((backfilledAssigns ?? []).map((r) => r.session_id));
+  const orphaned = (customSessions ?? [])
+    .map((r) => r.id)
+    .filter((id) => id !== ctx.customSessionId && !linked.has(id));
+  assert(!cse && !bae && orphaned.length === 0,
+    '§9.9 every pre-existing kind=custom session is backfilled (only the harness ephemeral one is unlinked)');
+
+  const { data: sampleDef, error: sde } = await admin
+    .from('map_test_definitions')
+    .select('name, source_mix, owner_user_id')
+    .like('name', 'Backfilled · %')
+    .is('owner_user_id', null)
+    .limit(1)
+    .maybeSingle();
+  assert(!sde && sampleDef
+    && sampleDef.source_mix === 'vetted_only'
+    && sampleDef.owner_user_id === null
+    && sampleDef.name.startsWith('Backfilled · '),
+    '§9.9 a backfilled definition is faithful (vetted_only, system-owned, named)');
 
   console.log('\nFoundation checks complete.');
 } finally {
@@ -808,7 +826,7 @@ Expected: success, no error. If the pre-flight `RAISE EXCEPTION` fires, stop and
 - [ ] **Step 2: Run the foundation script — expect PASS**
 
 Run: `node --env-file=.env.local scripts/test-parent-redesign-foundation.mjs`
-Expected: every line prints `PASS:`, ends with `Foundation checks complete.`, exit 0. If `§9.9 backfilled assignment exists & completed` fails on a count mismatch, apply Task 4 Step 1b's per-session loop (re-apply migration) and re-run.
+Expected: every line prints `PASS:`, ends with `Foundation checks complete.`, exit 0. If `§9.9 every pre-existing kind=custom session is backfilled` fails (orphaned rows found), apply Task 4 Step 1b's per-session loop (re-apply migration) and re-run.
 
 - [ ] **Step 3: Run the isolation gate — expect PASS (show-stopper)**
 
