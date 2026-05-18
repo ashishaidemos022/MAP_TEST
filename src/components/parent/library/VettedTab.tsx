@@ -1,7 +1,8 @@
 // src/components/parent/library/VettedTab.tsx
 // Vetted platform bank (family_id IS NULL via the security_invoker view).
-// Read-only. Server-side filters + offset pagination. "Add to test" deep-links
-// to the legacy builder (no pre-fill — 2c owns pre-fill).
+// Read-only. Server-side filters + offset pagination. "Add to test" derives
+// ?subject= (single distinct subject) and ?standards= (distinct teks_codes csv)
+// from the selected rows and navigates to /parent/tests/builder.
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getLibraryContent } from '../../../lib/parent/queries'
@@ -50,6 +51,18 @@ export function VettedTab() {
     return <p className="mt-8 text-center font-display text-xl">Loading…</p>
   }
 
+  const seedQuery = (selRows: LibraryContentRow[]): string => {
+    const subjects = [...new Set(selRows.map((s) => s.subject).filter(Boolean))]
+    const teks = [...new Set(
+      selRows.map((s) => s.teks_code).filter((t): t is string => !!t),
+    )]
+    const qp = new URLSearchParams()
+    if (subjects.length === 1) qp.set('subject', subjects[0])
+    if (teks.length > 0) qp.set('standards', teks.join(','))
+    const qs = qp.toString()
+    return qs ? `?${qs}` : ''
+  }
+
   return (
     <div>
       <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -80,12 +93,8 @@ export function VettedTab() {
           <button
             type="button"
             onClick={() => {
-              const ids = [...sel.selected]
-              const qp =
-                ids.length > 0 && ids.length <= 25
-                  ? `?content=${ids.join(',')}`
-                  : ''
-              navigate(`/parent/tests/builder${qp}`)
+              const selRows = rows.filter((r) => sel.selected.has(r.content_id))
+              navigate(`/parent/tests/builder${seedQuery(selRows)}`)
             }}
             className="btn-secondary text-sm"
           >
@@ -110,7 +119,7 @@ export function VettedTab() {
                 <button
                   type="button"
                   onClick={() =>
-                    navigate(`/parent/tests/builder?content=${r.content_id}`)
+                    navigate(`/parent/tests/builder${seedQuery([r])}`)
                   }
                   className="btn-ghost text-xs"
                 >

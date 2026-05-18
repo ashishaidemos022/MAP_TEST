@@ -82,14 +82,14 @@ tests/definitions/:id    → <DefinitionDetail/>
   - **Fresh** (no `?from=`): `Assign now` → `createTestDefinition(input)` then `assignTestDefinition(newId, studentIds, dueBy, parentNote)`.
   - `Save as draft` (template, no kids): `createTestDefinition({ ...input, is_template:true })`, no assign → redirect `/parent/tests?tab=templates`.
   - `Assign now` success → toast "Assigned to N kids" → redirect `/parent/tests?tab=active`.
-- **Pre-fill — URL query params only (the decided contract; copyable, the 2a/2b hard rule):** `?from=<defId>` (template/definition reuse → assign-only), `?kid=<student_id>` (Step 2 pre-select), `?subject=&grade=&standards=a,b` (Step 1 seed; Growth "Build a boost test" passes the misconception's `related_teks`), `?content=<id,id>` (small explicit Library picks). **Mitigation for large selections:** the builder caps `?content=` at 25 ids; the Library bulk CTA, when the selection exceeds the cap, instead passes derived `?subject=&standards=` (the distinct subjects/teks of the selection) rather than raw ids. (2c uses `?content=`/`?subject=`/`?standards=` to seed Step 1's standards/subject; raw per-question test composition beyond the standard-based sampler is the composer's job, not 2c — `?content=` is treated as "seed these standards/subject", documented.)
+- **Pre-fill — URL query params only (the decided contract; copyable, the 2a/2b hard rule):** `?from=<defId>` (template/definition reuse → assign-only), `?kid=<student_id>` (Step 2 pre-select), `?subject=&grade=&standards=a,b` (Step 1 seed; Growth "Build a boost test" passes the misconception's `related_teks`). **There is no `?content=` parameter.** Library "Add to test" (per-item and bulk) derives `?subject=` (only when the selection has exactly one distinct subject) and `?standards=<distinct teks_code csv>` from the selected vetted rows and navigates to `/parent/tests/builder` with those params; TestBuilder seeds Step 1 from `?subject=`/`?standards=` (raw per-question composition remains out of scope/deferred to the composer).
 
 ## 9. Rewire the 6 interim CTAs (centralized edits; all currently `navigate('/parent/custom-test')`)
 
 - `src/components/parent/classroom/KidRosterCard.tsx` per-kid `+` → `/parent/tests/builder?kid=<row.student_id>`
 - `src/components/parent/classroom/ClassroomQuickActions.tsx` "Build test for multiple kids" → `/parent/tests/builder`; "Open content library" already → `/parent/custom-bank` (2b owns Library nav; leave unless it should be `/parent/library` — update to `/parent/library` for consistency since 2b shipped it)
 - `src/pages/parent/KidDetail.tsx` header "Assign a test" → `/parent/tests/builder?kid=<:id>`; Growth "Build a boost test for this" (if present) → `/parent/tests/builder?kid=<:id>&subject=<subject>&standards=<related_teks csv>`
-- `src/components/parent/library/VettedTab.tsx` per-item "Add to test" → `/parent/tests/builder?content=<content_id>`; bulk "Add N to test" → `?content=<ids…>` when ≤25 else `?subject=<distinct>&standards=<distinct teks>`
+- `src/components/parent/library/VettedTab.tsx` per-item "Add to test" → derives `?subject=` (single distinct subject) and `?standards=<distinct teks_codes csv>` from that one row via `seedQuery([r])` and navigates to `/parent/tests/builder`; bulk "Add N to test" → same derivation over all selected rows via `seedQuery(selRows)`; there is no `?content=` parameter
 Legacy `/parent/custom-test` remains reachable by URL (flag-off path) but is no longer referenced by any new-shell CTA.
 
 ## 10. Verification
@@ -109,7 +109,7 @@ Plus `npm run typecheck && npm run build` (both 0) and a manual-QA checklist: fl
 - **Archive-definition** — Cycle 1 has `map_soft_delete_custom_*` (questions/passages) but **no `map_soft_delete_test_definition`**; soft-deleting a definition would need a new RPC (schema/RPC change = out of 2c's no-schema scope). Deferred; documented. (Non-template one-offs are auto-archived server-side per brief §3.1's 90-day rule — not a 2c UI concern.)
 - **Kid-home "Assigned tests" panel + `map_start_assignment` wiring** — explicitly 2d.
 - **Full kid results-screen reuse on a Completed row** — best-effort link if `session_id`→`/test/:id/results` is trivially reachable; else the definition-detail per-kid card is the completion view.
-- **`?content=` raw per-question composition** — 2c seeds Step 1 standards/subject from a content selection; true per-question hand-picked test composition (beyond the standard-based sampler the RPC uses) is composer scope, not 2c.
+- **Raw per-question composition** — Library "Add to test" derives `?subject=`/`?standards=` from the selection's distinct subjects/TEKS codes and navigates to the builder; there is no `?content=` parameter. True per-question hand-picked test composition (beyond the standard-based sampler the RPC uses) is composer scope, not 2c.
 
 ## 12. Risks / open assumptions
 

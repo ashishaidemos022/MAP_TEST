@@ -769,7 +769,7 @@ export default function TestBuilder() {
 }
 ```
 
-- [ ] **Step 2: Typecheck** — `npm run typecheck` → exit 0. Imports resolve: `getTestDefinition` (Task 2), `assignTestDefinition`/`createTestDefinition` (Cycle-1 mutations), `CreateDefinitionInput`/`TestDefinitionRow` (types Task 1 + Cycle-1), the 4 Task 3/4 components. `CreateDefinitionInput` requires `custom_question_ids`/`custom_passage_ids` — passed `[]` (spec §8/§11: `?content=` is standards-seed, not raw composition). Glyphs: `…` U+2026 (busy), `’` U+2019 in "template’s content", `&amp;` is fine HTML-entity in JSX text — keep as written.
+- [ ] **Step 2: Typecheck** — `npm run typecheck` → exit 0. Imports resolve: `getTestDefinition` (Task 2), `assignTestDefinition`/`createTestDefinition` (Cycle-1 mutations), `CreateDefinitionInput`/`TestDefinitionRow` (types Task 1 + Cycle-1), the 4 Task 3/4 components. `CreateDefinitionInput` requires `custom_question_ids`/`custom_passage_ids` — passed `[]` (spec §8/§11: raw per-question composition is deferred; builder seeds Step 1 from `?subject=`/`?standards=` only). Glyphs: `…` U+2026 (busy), `’` U+2019 in "template’s content", `&amp;` is fine HTML-entity in JSX text — keep as written.
 - [ ] **Step 3: Commit**
 ```bash
 git add src/pages/parent/TestBuilder.tsx
@@ -1374,25 +1374,35 @@ git commit -m "feat(parent) wire /parent/tests* routes + ParentShell Tests nav s
               onClick={() => navigate(`/parent/tests/builder?kid=${id}`)}
 ```
 (`id` is the `:id` route param already in scope in `KidDetail`.)
-- [ ] **Step 4: `VettedTab.tsx`** — there are TWO `navigate('/parent/custom-test')` calls (the bulk "Add N to test" button and the per-item "Add to test" button). Replace:
-  - bulk button onClick:
+- [ ] **Step 4: `VettedTab.tsx`** — add `seedQuery` helper (just before `return (`; after the `rows` null guard) that derives `?subject=` (only when exactly one distinct subject) and `?standards=<distinct teks_codes csv>` from a `LibraryContentRow[]` slice. Wire both CTAs to use it — no `?content=` parameter:
+  - `seedQuery` helper:
+```tsx
+  const seedQuery = (selRows: LibraryContentRow[]): string => {
+    const subjects = [...new Set(selRows.map((s) => s.subject).filter(Boolean))]
+    const teks = [...new Set(
+      selRows.map((s) => s.teks_code).filter((t): t is string => !!t),
+    )]
+    const qp = new URLSearchParams()
+    if (subjects.length === 1) qp.set('subject', subjects[0])
+    if (teks.length > 0) qp.set('standards', teks.join(','))
+    const qs = qp.toString()
+    return qs ? `?${qs}` : ''
+  }
+```
+  - bulk button onClick (replaces `?content=` ≤25 logic entirely):
 ```tsx
             onClick={() => {
-              const ids = [...sel.selected]
-              const qp =
-                ids.length > 0 && ids.length <= 25
-                  ? `?content=${ids.join(',')}`
-                  : ''
-              navigate(`/parent/tests/builder${qp}`)
+              const selRows = rows.filter((r) => sel.selected.has(r.content_id))
+              navigate(`/parent/tests/builder${seedQuery(selRows)}`)
             }}
 ```
   - per-item button onClick:
 ```tsx
                   onClick={() =>
-                    navigate(`/parent/tests/builder?content=${r.content_id}`)
+                    navigate(`/parent/tests/builder${seedQuery([r])}`)
                   }
 ```
-  (`r` is the mapped `LibraryContentRow` in scope; `sel`/`navigate` already in scope.)
+  (`r` is the mapped `LibraryContentRow` in scope; `rows`/`sel`/`navigate` already in scope; `rows` is non-null at this render point due to the early null guard above.)
 - [ ] **Step 5: Typecheck + build** — `npm run typecheck && npm run build` → both exit 0. `grep -rn "custom-test" src/components/parent/classroom src/pages/parent/KidDetail.tsx src/components/parent/library/VettedTab.tsx` → NO matches (all rewired). `grep -n 'path="/parent/custom-test"' src/App.tsx` → still present (legacy route intact, just unreferenced by new shell).
 - [ ] **Step 6: Commit**
 ```bash
@@ -1496,7 +1506,7 @@ try {
   4. TemplatesTab: `listTestDefinitions({templatesOnly:true})`; a 0-assignment template renders; completed-count aggregates `getAssignmentOverview` by `definition_id`; "Assign to kids"→`?from=`.
   5. TestBuilder: from-template (`?from=`) → `getTestDefinition` seeds Step 1, `<fieldset disabled>`, submit calls ONLY `assignTestDefinition` (no `createTestDefinition`); fresh → `createTestDefinition` then `assignTestDefinition`; `Save as draft` → `createTestDefinition({is_template:true})` no assign; grade-gap warn chip never disables Assign; `CandidatePreview` debounced.
   6. DefinitionDetail: `getTestDefinition` + filtered assignments; foreign id → "Not found in your tests".
-  7. CTAs rewired: `grep -rn "custom-test" src/components/parent/classroom src/pages/parent/KidDetail.tsx src/components/parent/library/VettedTab.tsx` → 0; KidRosterCard→`?kid=`, KidDetail→`?kid=`, VettedTab bulk `?content=` (≤25) / item `?content=`, QuickActions→`/parent/tests/builder` & `/parent/library`.
+  7. CTAs rewired: `grep -rn "custom-test" src/components/parent/classroom src/pages/parent/KidDetail.tsx src/components/parent/library/VettedTab.tsx` → 0; KidRosterCard→`?kid=`, KidDetail→`?kid=`, VettedTab bulk and per-item→`seedQuery`-derived `?subject=`/`?standards=` (no `?content=`), QuickActions→`/parent/tests/builder` & `/parent/library`.
   8. Glyph hexdump: `Loading…`/`Counting…`/busy `'…'` = U+2026; KidPicker/CandidatePreview ` — ` = U+2014; ActiveTab `“{parent_note}”` = U+201C/U+201D; "template’s content" = U+2019. Zero ASCII `'`/`"`/`...` in user copy.
 - [ ] **Step 5: Final commit**
 ```bash
@@ -1514,10 +1524,10 @@ git commit -m "test(parent) 2c data guard; Tests+builder slice complete (definit
 - §6 Active (source-mix badge + optimistic revoke, by kid) → Task 6; Completed (by week) → Task 7; Templates (definition-grain, 0-assignment visible, Assign-to-kids `?from=`) → Task 8. ✓
 - §7 DefinitionDetail (def + per-kid, RLS not-found) → Task 9. ✓
 - §8 builder (4 sections; from-template assign-only vs fresh create+assign; Save-as-draft template; pre-fill URL params; grade-gap warn-not-block; CandidatePreview tight-pool) → Tasks 3/4/5. ✓
-- §9 rewire 4 CTA files (KidRosterCard `?kid=`, ClassroomQuickActions, KidDetail `?kid=`, VettedTab `?content=` ≤25 cap) → Task 11. Growth "Build a boost test" — not present in shipped code (2a GrowthAreas has no CTA), correctly NOT rewired (spec §9 "if present"). ✓
+- §9 rewire 4 CTA files (KidRosterCard `?kid=`, ClassroomQuickActions, KidDetail `?kid=`, VettedTab `seedQuery`-derived `?subject=`/`?standards=` — no `?content=`) → Task 11. Growth "Build a boost test" — not present in shipped code (2a GrowthAreas has no CTA), correctly NOT rewired (spec §9 "if present"). ✓
 - §10 verification (0-assignment-template gap, from-template no-new-definition both directions, RLS cross-family on new queries, candidate-count narrows) → Task 12. ✓
-- §11 deferrals honored: no Edit/Duplicate/Archive-definition (Templates card actions = only Assign/View); StandardsAutocomplete simplified to chip-entry (documented in the component header + spec §11); `?content=` = standards/subject seed not raw composition (Task 5 passes `custom_question_ids:[]`); kid-home panel/`map_start_assignment` NOT touched (2d). ✓
-- §12 risks: additive lib (Tasks 1–2 zero-caller-impact), from-template branch (Task 12 asserts no-new-def both ways), capped `?content=` (Task 11 ≤25), glyph rule (header + Task 12 step 4.8 hexdump), client-side definition_id filtering (Tasks 8/9). ✓
+- §11 deferrals honored: no Edit/Duplicate/Archive-definition (Templates card actions = only Assign/View); StandardsAutocomplete simplified to chip-entry (documented in the component header + spec §11); raw per-question composition deferred (VettedTab derives `?subject=`/`?standards=` — no `?content=`; Task 5 passes `custom_question_ids:[]`); kid-home panel/`map_start_assignment` NOT touched (2d). ✓
+- §12 risks: additive lib (Tasks 1–2 zero-caller-impact), from-template branch (Task 12 asserts no-new-def both ways), `seedQuery`-derived VettedTab params (Task 11 — no `?content=` cap concern), glyph rule (header + Task 12 step 4.8 hexdump), client-side definition_id filtering (Tasks 8/9). ✓
 
 No spec requirement without a task.
 
