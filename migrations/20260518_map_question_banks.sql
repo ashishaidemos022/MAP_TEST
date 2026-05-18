@@ -170,4 +170,131 @@ JOIN public.map_question_banks   b    ON b.id = a.bank_id
 JOIN public.map_students         s    ON s.id = a.student_id
 LEFT JOIN public.map_test_sessions sess ON sess.id = a.session_id;
 
+-- Create a bank. Vetted = recipe row. Custom = raises Phase-2 (schema only).
+CREATE OR REPLACE FUNCTION public.map_create_bank(
+  p_name           text,
+  p_subject        text,
+  p_grade          int,
+  p_lane           text,
+  p_standard_codes text[],
+  p_planned_length int,
+  p_difficulty     text
+) RETURNS uuid
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
+AS $$
+DECLARE
+  v_family uuid := public.map_current_family_id();
+  v_id     uuid;
+BEGIN
+  IF v_family IS NULL THEN
+    RAISE EXCEPTION 'no family for current user';
+  END IF;
+  IF p_lane = 'custom' THEN
+    RAISE EXCEPTION 'custom-lane banks land in Phase 2';
+  END IF;
+  IF p_lane <> 'vetted' THEN
+    RAISE EXCEPTION 'unknown lane: %', p_lane;
+  END IF;
+  INSERT INTO public.map_question_banks
+    (family_id, owner_user_id, name, subject, grade, lane,
+     standard_codes, planned_length, difficulty)
+  VALUES
+    (v_family, auth.uid(), p_name, p_subject, p_grade, 'vetted',
+     COALESCE(p_standard_codes, '{}'), p_planned_length,
+     NULLIF(p_difficulty, 'any'))
+  RETURNING id INTO v_id;
+  RETURN v_id;
+END
+$$;
+
+-- Assign a bank to one or more kids. Vetted = no snapshot.
+CREATE OR REPLACE FUNCTION public.map_assign_bank(
+  p_bank_id     uuid,
+  p_student_ids uuid[],
+  p_due_by      timestamptz,
+  p_parent_note text
+) RETURNS uuid[]
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
+AS $$
+DECLARE
+  v_family uuid := public.map_current_family_id();
+  v_lane   text;
+  v_sid    uuid;
+  v_ids    uuid[] := '{}';
+  v_new    uuid;
+BEGIN
+  SELECT lane INTO v_lane
+    FROM public.map_question_banks
+   WHERE id = p_bank_id AND family_id = v_family AND soft_deleted_at IS NULL;
+  IF v_lane IS NULL THEN
+    RAISE EXCEPTION 'bank not found or not yours';
+  END IF;
+  IF v_lane = 'custom' THEN
+    RAISE EXCEPTION 'custom-lane assignment lands in Phase 2';
+  END IF;
+  IF p_student_ids IS NULL OR array_length(p_student_ids, 1) IS NULL THEN
+    RAISE EXCEPTION 'no students given';
+  END IF;
+  FOREACH v_sid IN ARRAY p_student_ids LOOP
+    IF NOT EXISTS (
+      SELECT 1 FROM public.map_students
+       WHERE id = v_sid AND family_id = v_family
+    ) THEN
+      RAISE EXCEPTION 'student % is not in your family', v_sid;
+    END IF;
+    INSERT INTO public.map_bank_assignments
+      (family_id, bank_id, student_id, assigned_by_user_id,
+       due_by, parent_note, status)
+    VALUES
+      (v_family, p_bank_id, v_sid, auth.uid(),
+       p_due_by, p_parent_note, 'assigned')
+    RETURNING id INTO v_new;
+    v_ids := array_append(v_ids, v_new);
+  END LOOP;
+  RETURN v_ids;
+END
+$$;
+
+-- Revoke only from 'assigned'.
+CREATE OR REPLACE FUNCTION public.map_revoke_bank_assignment(p_assignment_id uuid)
+RETURNS void
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
+AS $$
+DECLARE
+  v_family uuid := public.map_current_family_id();
+BEGIN
+  UPDATE public.map_bank_assignments
+     SET status = 'revoked'
+   WHERE id = p_assignment_id
+     AND family_id = v_family
+     AND status = 'assigned';
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'assignment not found, not yours, or not in assigned state';
+  END IF;
+END
+$$;
+
+-- Link a session: assigned -> in_progress.
+CREATE OR REPLACE FUNCTION public.map_start_bank_assignment(
+  p_assignment_id uuid,
+  p_session_id    uuid
+) RETURNS void
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
+AS $$
+DECLARE
+  v_family uuid := public.map_current_family_id();
+BEGIN
+  UPDATE public.map_bank_assignments
+     SET status = 'in_progress',
+         session_id = p_session_id,
+         started_at = now()
+   WHERE id = p_assignment_id
+     AND family_id = v_family
+     AND status = 'assigned';
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'assignment not found, not yours, or not in assigned state';
+  END IF;
+END
+$$;
+
 COMMIT;
