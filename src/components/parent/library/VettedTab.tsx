@@ -79,7 +79,14 @@ export function VettedTab() {
         {sel.count > 0 && (
           <button
             type="button"
-            onClick={() => navigate('/parent/custom-test')}
+            onClick={() => {
+              const ids = [...sel.selected]
+              const qp =
+                ids.length > 0 && ids.length <= 25
+                  ? `?content=${ids.join(',')}`
+                  : ''
+              navigate(`/parent/tests/builder${qp}`)
+            }}
             className="btn-secondary text-sm"
           >
             Add {sel.count} to test
@@ -102,7 +109,9 @@ export function VettedTab() {
               actions={
                 <button
                   type="button"
-                  onClick={() => navigate('/parent/custom-test')}
+                  onClick={() =>
+                    navigate(`/parent/tests/builder?content=${r.content_id}`)
+                  }
                   className="btn-ghost text-xs"
                 >
                   Add to test
