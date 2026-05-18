@@ -15,6 +15,7 @@ import CustomTestBuilder from './pages/parent/CustomTestBuilder'
 import NewCustomPassage from './pages/parent/NewCustomPassage'
 import NewCustomQuestion from './pages/parent/NewCustomQuestion'
 import Parent from './pages/parent/Parent'
+import SaveVettedBank from './pages/parent/SaveVettedBank'
 import { RequireActiveStudent } from './lib/activeStudent'
 import { RequireAuth } from './lib/auth'
 import { RequireParentPin } from './lib/parentPin'
@@ -156,6 +157,18 @@ export default function App() {
                 <RequireActiveStudent>
                   <RequireParentPin>
                     <CustomTestBuilder />
+                  </RequireParentPin>
+                </RequireActiveStudent>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/parent/banks/new"
+            element={
+              <RequireAuth>
+                <RequireActiveStudent>
+                  <RequireParentPin>
+                    <SaveVettedBank />
                   </RequireParentPin>
                 </RequireActiveStudent>
               </RequireAuth>
