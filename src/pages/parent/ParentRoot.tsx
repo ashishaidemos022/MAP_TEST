@@ -9,6 +9,7 @@ import ParentShell from '../../components/parent/ParentShell'
 import Parent from './Parent'
 import Classroom from './Classroom'
 import KidDetail from './KidDetail'
+import Library from './Library'
 
 function DashboardRedirect() {
   const [params] = useSearchParams()
@@ -61,6 +62,7 @@ export default function ParentRoot() {
       <Route element={<ParentShell />}>
         <Route index element={<Classroom />} />
         <Route path="kids/:id" element={<KidDetail />} />
+        <Route path="library" element={<Library />} />
         <Route path="dashboard" element={<DashboardRedirect />} />
         <Route path="*" element={<Navigate to="/parent" replace />} />
       </Route>

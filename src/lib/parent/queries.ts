@@ -3,7 +3,7 @@
 // signed-in parent's family; callers do not pass family_id.
 import { supabase } from '../supabase';
 import type {
-  ClassroomRosterRow, AssignmentOverviewRow, LibraryContentRow,
+  ClassroomRosterRow, AssignmentOverviewRow, LibraryContentRow, LibraryFilters,
 } from './types';
 
 export async function getClassroomRoster(): Promise<ClassroomRosterRow[]> {
@@ -27,13 +27,22 @@ export async function getAssignmentOverview(
 
 export async function getLibraryContent(
   sourceTab: 'vetted' | 'my_questions' | 'ai_studio',
+  filters?: LibraryFilters,
 ): Promise<LibraryContentRow[]> {
-  const { data, error } = await supabase
+  let q = supabase
     .from('map_v_library_content')
     .select('*')
-    .eq('source_tab', sourceTab)
+    .eq('source_tab', sourceTab);
+  if (filters?.subject) q = q.eq('subject', filters.subject);
+  if (filters?.grade != null) q = q.eq('grade', filters.grade);
+  if (filters?.teksCode) q = q.eq('teks_code', filters.teksCode);
+  if (filters?.ritBand) q = q.eq('rit_band', filters.ritBand);
+  if (filters?.status) q = q.eq('status', filters.status);
+  const limit = filters?.limit ?? 500;
+  const offset = filters?.offset ?? 0;
+  const { data, error } = await q
     .order('created_at', { ascending: false })
-    .limit(500);
+    .range(offset, offset + limit - 1);
   if (error) throw error;
   return (data ?? []) as LibraryContentRow[];
 }
