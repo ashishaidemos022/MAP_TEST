@@ -7,7 +7,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom'
 const navItems: { to: string; label: string }[] = [
   { to: '/parent', label: 'Classroom' },
   { to: '/parent/library', label: 'Library' },
-  { to: '/parent/custom-test', label: 'Tests' },
+  { to: '/parent/tests', label: 'Tests' },
   { to: '/history', label: 'History' },
 ]
 
