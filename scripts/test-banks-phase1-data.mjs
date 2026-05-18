@@ -63,11 +63,9 @@ try {
   })
   assert(!cbErr && bankId, 'map_create_bank (vetted) returns an id')
 
-  const { error: custErr } = await A.client.rpc('map_create_bank', {
-    p_name: 'x', p_subject: 'math', p_grade: 5, p_lane: 'custom',
-    p_standard_codes: [], p_planned_length: null, p_difficulty: null,
-  })
-  assert(!!custErr, 'custom-lane map_create_bank raises Phase-2 error')
+  // (Phase 1 originally asserted custom-lane raises a "Phase-2" stub error.
+  // Phase 2 intentionally activated the custom lane, so that stub is gone —
+  // custom-lane behavior is now covered by scripts/test-banks-phase2-data.mjs.)
 
   const { data: aids, error: abErr } = await A.client.rpc('map_assign_bank', {
     p_bank_id: bankId, p_student_ids: [A.studentId], p_due_by: null, p_parent_note: 'go',
