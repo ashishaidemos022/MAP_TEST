@@ -126,7 +126,7 @@ RETURNS trigger
 LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
 AS $$
 BEGIN
-  IF NEW.status = 'completed' AND COALESCE(OLD.status,'') <> 'completed' THEN
+  IF NEW.status = 'completed' AND OLD.status IS DISTINCT FROM 'completed' THEN
     UPDATE public.map_bank_assignments
        SET status = 'completed',
            completed_at = COALESCE(NEW.completed_at, now())
