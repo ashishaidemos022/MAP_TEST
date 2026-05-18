@@ -57,3 +57,31 @@ export async function startAssignment(
   });
   if (error) throw error;
 }
+
+export async function publishCustomQuestion(questionId: string): Promise<void> {
+  const { error } = await supabase.rpc('map_publish_custom_question', {
+    p_question_id: questionId,
+  });
+  if (error) throw error;
+}
+
+export async function publishCustomPassage(passageId: string): Promise<void> {
+  const { error } = await supabase.rpc('map_publish_custom_passage', {
+    p_passage_id: passageId,
+  });
+  if (error) throw error;
+}
+
+export async function archiveCustomQuestion(questionId: string): Promise<void> {
+  const { error } = await supabase.rpc('map_soft_delete_custom_question', {
+    p_question_id: questionId,
+  });
+  if (error) throw error;
+}
+
+export async function archiveCustomPassage(passageId: string): Promise<void> {
+  const { error } = await supabase.rpc('map_soft_delete_custom_passage', {
+    p_passage_id: passageId,
+  });
+  if (error) throw error;
+}
