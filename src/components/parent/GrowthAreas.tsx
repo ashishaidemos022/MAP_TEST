@@ -20,7 +20,7 @@ export function GrowthAreas({ signals }: { signals: SignalWithTag[] }) {
       {activeSignals.length === 0 ? (
         <p className="rounded-2xl bg-leaf/10 p-4 text-sm text-ink/80 ring-1 ring-leaf/30">
           No active weakness signals right now. The student is clearing misconceptions or
-          hasn't accumulated enough evidence yet.
+          hasn’t accumulated enough evidence yet.
         </p>
       ) : (
         <div className="space-y-3">
