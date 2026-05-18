@@ -945,7 +945,7 @@ git commit -m "feat(parent) Classroom landing: roster cards, cross-kid strip, qu
 // src/pages/parent/KidDetail.tsx
 // Kid-scoped detail. Kid context is ALWAYS the URL :id (never activeStudent).
 // Tabs via ?tab= so any URL is copyable/deep-linkable.
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getAssignmentOverview, getClassroomRoster } from '../../lib/parent/queries'
 import { revokeAssignment } from '../../lib/parent/mutations'
@@ -1068,13 +1068,31 @@ function AssignmentsTab({ studentId }: { studentId: string }) {
   const [rows, setRows] = useState<AssignmentOverviewRow[] | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState<string | null>(null)
+  const mountedRef = useRef(true)
+
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
 
   const load = () => {
     void getAssignmentOverview()
-      .then((all) => setRows(all.filter((r) => r.student_id === studentId)))
-      .catch((e) => setError(e?.message ?? 'Failed to load assignments.'))
+      .then((all) => {
+        if (!mountedRef.current) return
+        setRows(all.filter((r) => r.student_id === studentId))
+      })
+      .catch((e) => {
+        if (!mountedRef.current) return
+        setError(e?.message ?? 'Failed to load assignments.')
+      })
   }
-  useEffect(load, [studentId])
+  useEffect(() => {
+    setRows(null)
+    setError(null)
+    load()
+  }, [studentId])
 
   if (error) return <div className="card p-6 text-sm text-ink/60">{error}</div>
   if (!rows) return <p className="mt-8 text-center font-display text-xl">Loading…</p>
