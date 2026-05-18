@@ -585,7 +585,7 @@ git commit -m "feat(parent) Library MyQuestionsTab: archive + create-editor link
 // other source_tab; no other tab calls 'ai_studio'. Bulk publish/archive run
 // per item; the publish RPC enforces §4.7 invariants server-side and raises —
 // failures are surfaced inline by id, the batch continues for the rest.
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getLibraryContent } from '../../../lib/parent/queries'
 import {
@@ -606,13 +606,25 @@ export function AiStudioTab() {
   const [error, setError] = useState<string | null>(null)
   const [failures, setFailures] = useState<string[]>([])
   const [bulkBusy, setBulkBusy] = useState(false)
+  const mountedRef = useRef(true)
+
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
 
   const load = () => {
     setRows(null)
     setError(null)
     void getLibraryContent('ai_studio', status ? { status } : undefined)
-      .then(setRows)
-      .catch((e) => setError(e?.message ?? 'Failed to load AI Studio.'))
+      .then((r) => {
+        if (mountedRef.current) setRows(r)
+      })
+      .catch((e) => {
+        if (mountedRef.current) setError(e?.message ?? 'Failed to load AI Studio.')
+      })
   }
   useEffect(load, [status])
 
@@ -636,6 +648,7 @@ export function AiStudioTab() {
         failed.push(`${r.teks_code ?? r.content_type} (${r.content_id.slice(0, 8)}): ${(e as Error)?.message ?? 'failed'}`)
       }
     }
+    if (!mountedRef.current) return
     setFailures(failed)
     sel.clear()
     setBulkBusy(false)
@@ -743,6 +756,13 @@ function AiItemActions({
   onError: (m: string) => void
 }) {
   const [busy, setBusy] = useState<'publish' | 'archive' | null>(null)
+  const mountedRef = useRef(true)
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
   const run = async (action: 'publish' | 'archive') => {
     setBusy(action)
     try {
@@ -754,11 +774,11 @@ function AiItemActions({
       } else {
         await archiveCustomQuestion(row.content_id)
       }
-      onDone()
+      if (mountedRef.current) onDone()
     } catch (e) {
-      onError((e as Error)?.message ?? `${action} failed.`)
+      if (mountedRef.current) onError((e as Error)?.message ?? `${action} failed.`)
     } finally {
-      setBusy(null)
+      if (mountedRef.current) setBusy(null)
     }
   }
   return (
