@@ -8,7 +8,7 @@ export function KidRosterCard({ row }: { row: ClassroomRosterRow }) {
   const needsAttention = (row.active_misconceptions ?? 0) > 0 || noPractice
   const unseen = 0 // unseen-standard count is not in the roster view; segment shows 0 in 2a
   const distTotal =
-    row.standards_mastered + row.standards_developing + row.standards_growth + unseen || 1
+    (row.standards_mastered + row.standards_developing + row.standards_growth + unseen) || 1
   const seg = (n: number) => `${(n / distTotal) * 100}%`
   return (
     <div className="card relative flex flex-col gap-3 p-5">

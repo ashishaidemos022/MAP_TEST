@@ -721,15 +721,15 @@ import type { ClassroomRosterRow } from '../../../lib/parent/types'
 export function CrossKidStrip({ rows }: { rows: ClassroomRosterRow[] }) {
   const questions = rows.reduce((a, r) => a + (r.questions_this_week ?? 0), 0)
   const activeDays = rows.reduce((a, r) => a + (r.active_days_this_week ?? 0), 0)
-  const growth = rows.reduce((a, r) => a + (r.active_misconceptions ?? 0), 0)
+  const misconceptionCount = rows.reduce((a, r) => a + (r.active_misconceptions ?? 0), 0)
   return (
     <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
       <Tile label="Questions this week" value={questions} />
       <Tile label="Active days" value={activeDays} />
       <Tile
         label="Growth areas needing attention"
-        value={growth}
-        warn={growth > 0}
+        value={misconceptionCount}
+        warn={misconceptionCount > 0}
       />
     </div>
   )
@@ -758,7 +758,7 @@ export function KidRosterCard({ row }: { row: ClassroomRosterRow }) {
   const needsAttention = (row.active_misconceptions ?? 0) > 0 || noPractice
   const unseen = 0 // unseen-standard count is not in the roster view; segment shows 0 in 2a
   const distTotal =
-    row.standards_mastered + row.standards_developing + row.standards_growth + unseen || 1
+    (row.standards_mastered + row.standards_developing + row.standards_growth + unseen) || 1
   const seg = (n: number) => `${(n / distTotal) * 100}%`
   return (
     <div className="card relative flex flex-col gap-3 p-5">
