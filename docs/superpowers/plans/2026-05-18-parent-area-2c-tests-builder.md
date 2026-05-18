@@ -840,7 +840,7 @@ export function ActiveTab() {
 
   const onRevoke = async (id: string) => {
     const prev = rows
-    setRows(rows.filter((r) => r.assignment_id !== id)) // optimistic
+    setRows((r) => (r ?? []).filter((row) => row.assignment_id !== id)) // optimistic
     try {
       await revokeAssignment(id)
       load()
