@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useActiveStudent } from '../lib/activeStudent'
+import { AssignedBanksPanel } from '../components/AssignedBanksPanel'
 import { fetchStudentGrades, supabase } from '../lib/supabase'
 import type { Session } from '../lib/types'
 
@@ -172,6 +173,8 @@ export default function Home() {
           question if you’d like it read out loud.
         </p>
       </section>
+
+      <AssignedBanksPanel />
 
       {inProgress.length > 0 && (
         <section className="mb-8 animate-slideUp">
