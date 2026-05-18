@@ -16,6 +16,8 @@ import NewCustomPassage from './pages/parent/NewCustomPassage'
 import NewCustomQuestion from './pages/parent/NewCustomQuestion'
 import Parent from './pages/parent/Parent'
 import SaveVettedBank from './pages/parent/SaveVettedBank'
+import NewCustomBank from './pages/parent/NewCustomBank'
+import BankDetail from './pages/parent/BankDetail'
 import { RequireActiveStudent } from './lib/activeStudent'
 import { RequireAuth } from './lib/auth'
 import { RequireParentPin } from './lib/parentPin'
@@ -169,6 +171,30 @@ export default function App() {
                 <RequireActiveStudent>
                   <RequireParentPin>
                     <SaveVettedBank />
+                  </RequireParentPin>
+                </RequireActiveStudent>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/parent/banks/new-custom"
+            element={
+              <RequireAuth>
+                <RequireActiveStudent>
+                  <RequireParentPin>
+                    <NewCustomBank />
+                  </RequireParentPin>
+                </RequireActiveStudent>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/parent/banks/:id"
+            element={
+              <RequireAuth>
+                <RequireActiveStudent>
+                  <RequireParentPin>
+                    <BankDetail />
                   </RequireParentPin>
                 </RequireActiveStudent>
               </RequireAuth>
