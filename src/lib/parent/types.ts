@@ -82,3 +82,13 @@ export interface CreateDefinitionInput {
   custom_passage_ids: string[];
   is_template: boolean;
 }
+
+export interface LibraryFilters {
+  subject?: string;
+  grade?: number;
+  teksCode?: string;
+  ritBand?: string;
+  status?: string;
+  limit?: number;
+  offset?: number;
+}
