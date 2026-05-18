@@ -120,4 +120,54 @@ CREATE POLICY ba_insert_own ON public.map_bank_assignments FOR INSERT WITH CHECK
 CREATE POLICY ba_update_own ON public.map_bank_assignments FOR UPDATE USING (family_id = public.map_current_family_id()) WITH CHECK (family_id = public.map_current_family_id());
 CREATE POLICY ba_delete_own ON public.map_bank_assignments FOR DELETE USING (family_id = public.map_current_family_id());
 
+-- When a session linked to a bank assignment completes, flip the assignment.
+CREATE OR REPLACE FUNCTION public.map_bank_assignment_on_session_complete()
+RETURNS trigger
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
+AS $$
+BEGIN
+  IF NEW.status = 'completed' AND COALESCE(OLD.status,'') <> 'completed' THEN
+    UPDATE public.map_bank_assignments
+       SET status = 'completed',
+           completed_at = COALESCE(NEW.completed_at, now())
+     WHERE session_id = NEW.id
+       AND status = 'in_progress';
+  END IF;
+  RETURN NEW;
+END
+$$;
+
+DROP TRIGGER IF EXISTS trg_map_bank_assignment_complete ON public.map_test_sessions;
+CREATE TRIGGER trg_map_bank_assignment_complete
+AFTER UPDATE OF status ON public.map_test_sessions
+FOR EACH ROW
+EXECUTE FUNCTION public.map_bank_assignment_on_session_complete();
+
+-- Parent-facing read view (security_invoker → inherits caller RLS).
+DROP VIEW IF EXISTS public.map_v_bank_assignment_overview;
+CREATE VIEW public.map_v_bank_assignment_overview
+WITH (security_invoker = true) AS
+SELECT
+  a.id                AS assignment_id,
+  a.family_id         AS family_id,
+  a.bank_id           AS bank_id,
+  b.name              AS bank_name,
+  b.lane              AS lane,
+  b.subject           AS subject,
+  b.grade             AS grade,
+  a.student_id        AS student_id,
+  s.display_name      AS student_name,
+  a.status            AS status,
+  a.due_by            AS due_by,
+  a.parent_note       AS parent_note,
+  a.assigned_at       AS assigned_at,
+  a.completed_at      AS completed_at,
+  a.session_id        AS session_id,
+  sess.correct_count  AS questions_correct,
+  sess.planned_length AS questions_total
+FROM public.map_bank_assignments a
+JOIN public.map_question_banks   b    ON b.id = a.bank_id
+JOIN public.map_students         s    ON s.id = a.student_id
+LEFT JOIN public.map_test_sessions sess ON sess.id = a.session_id;
+
 COMMIT;
