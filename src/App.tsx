@@ -9,15 +9,7 @@ import ProfilePicker from './pages/ProfilePicker'
 import Results from './pages/Results'
 import Signup from './pages/Signup'
 import TestRunner from './pages/TestRunner'
-import ConnectAi from './pages/parent/ConnectAi'
-import CustomBank from './pages/parent/CustomBank'
-import CustomTestBuilder from './pages/parent/CustomTestBuilder'
-import NewCustomPassage from './pages/parent/NewCustomPassage'
-import NewCustomQuestion from './pages/parent/NewCustomQuestion'
-import Parent from './pages/parent/Parent'
-import SaveVettedBank from './pages/parent/SaveVettedBank'
-import NewCustomBank from './pages/parent/NewCustomBank'
-import BankDetail from './pages/parent/BankDetail'
+import ParentArea from './pages/parent/ParentArea'
 import { RequireActiveStudent } from './lib/activeStudent'
 import { RequireAuth } from './lib/auth'
 import { RequireParentPin } from './lib/parentPin'
@@ -141,107 +133,11 @@ export default function App() {
             }
           />
           <Route
-            path="/parent"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <Parent />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/custom-test"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <CustomTestBuilder />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/banks/new"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <SaveVettedBank />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/banks/new-custom"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <NewCustomBank />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/banks/:id"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <BankDetail />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/custom-bank"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <CustomBank />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/custom-bank/new-question"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <NewCustomQuestion />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/custom-bank/new-passage"
-            element={
-              <RequireAuth>
-                <RequireActiveStudent>
-                  <RequireParentPin>
-                    <NewCustomPassage />
-                  </RequireParentPin>
-                </RequireActiveStudent>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/parent/connect-ai"
+            path="/parent/*"
             element={
               <RequireAuth>
                 <RequireParentPin>
-                  <ConnectAi />
+                  <ParentArea />
                 </RequireParentPin>
               </RequireAuth>
             }
