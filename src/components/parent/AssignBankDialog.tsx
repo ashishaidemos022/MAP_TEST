@@ -15,7 +15,7 @@ export function AssignBankDialog(props: {
   const [note, setNote] = useState('')
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState<string | null>(null)
-  const [doneCount, setDoneCount] = useState<number | null>(null)
+  const [doneNames, setDoneNames] = useState<string[] | null>(null)
 
   const toggle = (id: string) =>
     setPicked((p) => {
@@ -28,14 +28,14 @@ export function AssignBankDialog(props: {
   const submit = async () => {
     setBusy(true); setErr(null)
     try {
-      const ids = await assignBank({
+      await assignBank({
         bankId: props.bankId,
         studentIds: [...picked],
         dueBy: due ? new Date(due).toISOString() : null,
         parentNote: note.trim() || null,
       })
       setBusy(false)
-      setDoneCount(ids.length)
+      setDoneNames(students.filter((s) => picked.has(s.id)).map((s) => s.display_name))
     } catch (e) {
       setErr(e instanceof Error ? e.message : 'Could not assign.')
       setBusy(false)
@@ -46,10 +46,10 @@ export function AssignBankDialog(props: {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="w-full max-w-md rounded-lg bg-white p-5 shadow-xl">
         <h2 className="font-display text-xl">Assign “{props.bankName}”</h2>
-        {doneCount !== null ? (
+        {doneNames !== null ? (
           <div className="mt-4">
             <p className="rounded-lg bg-leaf/15 p-3 text-sm font-semibold text-ink">
-              ✓ Assigned “{props.bankName}” to {doneCount} kid{doneCount === 1 ? '' : 's'}.
+              ✓ Assigned “{props.bankName}” to {doneNames.join(', ')}.
             </p>
             <p className="mt-2 text-xs text-smoke">
               It now shows under Assignments, and on the kid’s home as “Assigned to you”.
