@@ -618,6 +618,7 @@ export function AiStudioTab() {
   const load = () => {
     setRows(null)
     setError(null)
+    setFailures([])
     void getLibraryContent('ai_studio', status ? { status } : undefined)
       .then((r) => {
         if (mountedRef.current) setRows(r)
@@ -704,7 +705,7 @@ export function AiStudioTab() {
 
       {failures.length > 0 && (
         <div className="mb-4 rounded-2xl bg-red/10 p-4 text-xs text-ink/80 ring-1 ring-red/40">
-          <p className="font-semibold">Some items could not be published:</p>
+          <p className="font-semibold">Some items could not be processed:</p>
           <ul className="mt-1 list-disc pl-5">
             {failures.map((f) => (
               <li key={f}>{f}</li>
@@ -736,7 +737,16 @@ export function AiStudioTab() {
                 </span>
               }
               actions={
-                <AiItemActions row={r} onDone={load} onError={setError} />
+                <AiItemActions
+                  row={r}
+                  onDone={load}
+                  onItemError={(m) =>
+                    setFailures((prev) => [
+                      ...prev,
+                      `${r.teks_code ?? r.content_type} (${r.content_id.slice(0, 8)}): ${m}`,
+                    ])
+                  }
+                />
               }
             />
           ))}
@@ -749,11 +759,11 @@ export function AiStudioTab() {
 function AiItemActions({
   row,
   onDone,
-  onError,
+  onItemError,
 }: {
   row: LibraryContentRow
   onDone: () => void
-  onError: (m: string) => void
+  onItemError: (m: string) => void
 }) {
   const [busy, setBusy] = useState<'publish' | 'archive' | null>(null)
   const mountedRef = useRef(true)
@@ -776,7 +786,7 @@ function AiItemActions({
       }
       if (mountedRef.current) onDone()
     } catch (e) {
-      if (mountedRef.current) onError((e as Error)?.message ?? `${action} failed.`)
+      if (mountedRef.current) onItemError((e as Error)?.message ?? `${action} failed.`)
     } finally {
       if (mountedRef.current) setBusy(null)
     }
