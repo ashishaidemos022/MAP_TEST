@@ -92,3 +92,18 @@ export interface LibraryFilters {
   limit?: number;
   offset?: number;
 }
+
+export interface TestDefinitionRow {
+  id: string;
+  family_id: string;
+  name: string;
+  subject: string;
+  grade: number;
+  planned_length: number;
+  source_mix: 'vetted_only' | 'custom_only' | 'mixed';
+  custom_pct: number | null;
+  standard_codes: string[];
+  is_template: boolean;
+  created_at: string;
+  updated_at: string;
+}
