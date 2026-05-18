@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import SvgFigure from '../components/SvgFigure'
 import { estimateRit, gradeContext } from '../lib/rit'
 import { supabase } from '../lib/supabase'
+import { loadCustomQuestionsByVersionIds } from '../lib/customQuestionLoader'
 import type { Attempt, Choice, Question, RitBand, Session, Standard } from '../lib/types'
 
 interface QuestionFull extends Question {
@@ -53,6 +54,47 @@ export default function Results() {
           x.question.choices = [...x.question.choices].sort((p, q) => p.sort_order - q.sort_order)
         }
       })
+      // Custom-question attempts have question_id NULL + custom_question_version_id
+      // set, so the map_questions join above leaves them with question === null.
+      // Backfill them from the resolved custom view so By-skill and the
+      // tricky-ones review render (score already uses session.correct_count).
+      const customVids = a
+        .filter((x) => !x.question)
+        .map((x) => (x as unknown as { custom_question_version_id: string | null }).custom_question_version_id)
+        .filter((v): v is string => !!v)
+      if (customVids.length > 0) {
+        const customs = await loadCustomQuestionsByVersionIds(customVids)
+        const byVid = new Map(customs.map((c) => [c.version_id, c]))
+        for (const x of a) {
+          if (x.question) continue
+          const vid = (x as unknown as { custom_question_version_id: string | null })
+            .custom_question_version_id
+          const c = vid ? byVid.get(vid) : undefined
+          if (!c) continue
+          const correctChoice = c.choices.find((ch) => ch.is_correct)
+          x.question = {
+            id: c.version_id,
+            stem: c.stem,
+            stem_image_svg: null,
+            explanation: correctChoice?.explanation_correct ?? null,
+            rit_band: null as unknown as Question['rit_band'],
+            standard: c.standard_code
+              ? { teks_code: c.standard_code, teks_title: c.standard_code }
+              : null,
+            choices: c.choices.map((ch) => ({
+              id: ch.id,
+              question_id: c.version_id,
+              label: ch.label as Choice['label'],
+              body: ch.text,
+              body_image_svg: null,
+              is_correct: ch.is_correct,
+              misconception: ch.explanation_wrong,
+              sort_order: ch.ordinal,
+            })),
+          } as unknown as QuestionFull
+        }
+      }
+      if (cancelled) return
       setSession(s)
       setAttempts(a)
       setSavedRit(s.estimated_rit)
@@ -69,7 +111,7 @@ export default function Results() {
     // attempts.length or question_ids.length would drift.
     const total = session.planned_length
     const correctBands = attempts
-      .filter((a) => a.is_correct && a.question)
+      .filter((a) => a.is_correct && a.question && a.question.rit_band)
       .map((a) => a.question!.rit_band as RitBand)
     const rit = estimateRit(correctBands, total)
     const accuracy = total > 0 ? session.correct_count / total : 0
