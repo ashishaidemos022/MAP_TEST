@@ -22,6 +22,7 @@ export default function ParentRoot() {
   const [resolved, setResolved] = useState(false)
 
   useEffect(() => {
+    setResolved(false)
     if (studentLoading) return
     let cancelled = false
     if (!familyId) {
