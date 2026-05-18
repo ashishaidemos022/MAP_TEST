@@ -486,6 +486,8 @@ export default function TestBuilder() {
 
   useEffect(() => {
     if (!fromId) return
+    setTemplate(null)
+    setTemplateLoadErr(null)
     void getTestDefinition(fromId)
       .then((d) => {
         if (!mountedRef.current) return
@@ -554,12 +556,17 @@ export default function TestBuilder() {
           custom_passage_ids: [],
           is_template: saveTemplate,
         }
+        // NOTE: map_create_test_definition is not idempotent (plain INSERT, no
+        // idempotency key). The busy-guard prevents UI double-submit; a network
+        // failure AFTER server commit but before response could orphan a
+        // definition on manual retry. A client idempotency key is a Cycle-1 RPC
+        // concern (out of 2c's no-schema scope) — documented carry-over risk.
         defId = await createTestDefinition(input)
       }
       await assignTestDefinition(
         defId,
         [...kids],
-        dueBy ? new Date(dueBy).toISOString() : null,
+        dueBy ? new Date(dueBy + 'T23:59:59').toISOString() : null,
         note || null,
       )
       if (mountedRef.current) navigate('/parent/tests?tab=active')
@@ -580,7 +587,16 @@ export default function TestBuilder() {
           {fromTemplate ? 'Assign a template' : 'Build a test'}
         </h1>
         {templateLoadErr && (
-          <p className="mt-2 text-sm text-ink/60">{templateLoadErr}</p>
+          <div className="mt-2 text-sm text-ink/60">
+            <p>{templateLoadErr}</p>
+            <button
+              type="button"
+              onClick={() => navigate('/parent/tests')}
+              className="btn-ghost mt-2 text-xs"
+            >
+              Back to tests
+            </button>
+          </div>
         )}
       </header>
 
@@ -618,6 +634,8 @@ export default function TestBuilder() {
               Grade
               <input
                 type="number"
+                min={1}
+                max={12}
                 value={grade}
                 onChange={(e) => setGrade(Number(e.target.value))}
                 className="w-16 rounded-full bg-cream px-2 py-1 ring-1 ring-cloud"
