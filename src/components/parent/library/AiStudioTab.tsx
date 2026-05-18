@@ -193,6 +193,12 @@ function AiItemActions({
     }
   }, [])
   const run = async (action: 'publish' | 'archive') => {
+    if (
+      action === 'publish' &&
+      !window.confirm('Publish this AI-generated item? Once published it can appear in the kid’s tests.')
+    ) {
+      return
+    }
     setBusy(action)
     try {
       if (action === 'publish') {

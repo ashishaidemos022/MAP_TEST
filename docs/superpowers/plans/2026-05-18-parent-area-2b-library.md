@@ -774,6 +774,12 @@ function AiItemActions({
     }
   }, [])
   const run = async (action: 'publish' | 'archive') => {
+    if (
+      action === 'publish' &&
+      !window.confirm('Publish this AI-generated item? Once published it can appear in the kid’s tests.')
+    ) {
+      return
+    }
     setBusy(action)
     try {
       if (action === 'publish') {
@@ -1067,7 +1073,7 @@ git commit -m "test(parent) 2b data guard; Library slice complete (boundary+publ
 - §6 Library page + shared components (`LibraryItemCard`, `useLibrarySelection`, 3 tabs) → Tasks 4/5/6/7/8/9. ✓
 - §7 Vetted (server filters, offset paging, Add-to-test→legacy no pre-fill) → Task 6. ✓
 - §8 AI Studio (only `ai_studio`; amber pill+banner+badge; default draft; per-item + bulk publish/archive surfacing server-side failures; Ask AI → /parent/connect-ai) → Task 8 + Task 9 (amber pill). ✓
-- §9 deferrals: no Edit action (Task 7 explicit), Add-to-test no pre-fill (Task 6), difficulty filter omitted (not in card/filters). ✓
+- §9 deferrals: no Edit action (Task 7 explicit), Add-to-test no pre-fill (Task 6), difficulty filter omitted (not in card/filters). ✓ Preview affordance also explicitly deferred (metadata-only card; content-render path out of 2b scope).
 - §10 verification (boundary both directions, publish lifecycle incl. re-publish rejection, archive, filters, cross-family) → Task 10 data script + manual QA. ✓
 - §11 risks: additive getLibraryContent (Task 2 backward-compat note), structural boundary (Tasks 6-8 + Task 10 §10.1), glyph fidelity (header rule + Task 10 Step 4.8). ✓
 
