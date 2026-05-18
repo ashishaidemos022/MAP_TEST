@@ -9,7 +9,7 @@ import { supabase, fetchStudentGrade } from './supabase'
 import type { Subject, Difficulty } from './types'
 
 export const CUSTOM_MIN_COUNT = 5
-export const CUSTOM_MAX_COUNT = 50
+export const CUSTOM_MAX_COUNT = 60
 const RECENT_CORRECT_DAYS = 7
 
 export interface CustomTestRequest {
