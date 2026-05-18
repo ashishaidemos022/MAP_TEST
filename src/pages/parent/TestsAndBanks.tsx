@@ -27,7 +27,10 @@ export default function TestsAndBanks() {
     <section className="my-8">
       <div className="flex items-center justify-between">
         <h2 className="font-display text-2xl">Tests &amp; Banks</h2>
-        <Link to="/parent/banks/new" className="btn-primary text-sm">+ New vetted test</Link>
+        <div className="flex gap-2">
+          <Link to="/parent/banks/new" className="btn-primary text-sm">+ New vetted test</Link>
+          <Link to="/parent/banks/new-custom" className="btn-secondary text-sm">+ New question bank</Link>
+        </div>
       </div>
       {err && <p className="mt-2 text-sm text-rust">{err}</p>}
 
@@ -45,9 +48,14 @@ export default function TestsAndBanks() {
                 {b.lane === 'vetted' && ` · ${b.standard_codes.length} std · ${b.planned_length} Q · ${b.difficulty}`}
               </span>
             </div>
-            <button type="button" className="btn-secondary text-sm" onClick={() => setAssignFor(b)}>
-              Assign
-            </button>
+            <div className="flex gap-2">
+              {b.lane === 'custom' && (
+                <Link to={`/parent/banks/${b.id}`} className="btn-ghost text-sm">Open</Link>
+              )}
+              <button type="button" className="btn-secondary text-sm" onClick={() => setAssignFor(b)}>
+                Assign
+              </button>
+            </div>
           </div>
         ))}
       </div>

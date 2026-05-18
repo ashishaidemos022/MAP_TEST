@@ -28,7 +28,7 @@ export function AssignedBanksPanel() {
       .then((all) => {
         if (!mounted.current) return
         setRows(all.filter((r) =>
-          r.student_id === sid && r.status === 'assigned' && r.lane === 'vetted'))
+          r.student_id === sid && r.status === 'assigned'))
       })
       .catch(() => { if (mounted.current) setRows([]) })
   }, [activeStudent?.id])
