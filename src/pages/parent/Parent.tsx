@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import CustomTestList from './CustomTestList'
+import TestsAndBanks from './TestsAndBanks'
 import ParentDashboard from './ParentDashboard'
 import ParentSettings from './ParentSettings'
 
@@ -27,6 +28,7 @@ export default function Parent() {
       </header>
       <ParentSettings />
       <CustomTestList />
+      <TestsAndBanks />
       <ParentDashboard />
     </div>
   )
