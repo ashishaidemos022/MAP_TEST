@@ -83,8 +83,14 @@ function subjectFillClass(have: number, target: number): string {
   return 'bg-cloud'
 }
 
-export default function ParentSettings() {
+export default function ParentSettings({
+  studentId: studentIdProp,
+  displayName: displayNameProp,
+}: { studentId?: string; displayName?: string } = {}) {
   const { activeStudent } = useActiveStudent()
+  const resolvedStudentId = studentIdProp ?? activeStudent?.id ?? null
+  const resolvedDisplayName =
+    displayNameProp ?? activeStudent?.display_name ?? 'your child'
   const [practiceGrade, setPracticeGrade] = useState<number | null>(null)
   const [schoolGrade, setSchoolGrade] = useState<number | null>(null)
   const [testLength, setTestLength] = useState<number | null>(null)
@@ -99,8 +105,8 @@ export default function ParentSettings() {
   const [open, setOpen] = useState(false)
 
   const reload = async () => {
-    if (!activeStudent) return
-    const studentId = activeStudent.id
+    if (!resolvedStudentId) return
+    const studentId = resolvedStudentId
     setError(null)
     try {
       // One head-only count query per (grade, subject) cell. Running them in
@@ -184,12 +190,12 @@ export default function ParentSettings() {
   useEffect(() => {
     void reload()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeStudent?.id])
+  }, [resolvedStudentId])
 
   const lockedByInProgress = liveInProgress.length > 0
 
   const confirmAndSave = async (g: number) => {
-    if (!activeStudent) return
+    if (!resolvedStudentId) return
     if (g === practiceGrade) {
       setPendingGrade(null)
       return
@@ -199,7 +205,7 @@ export default function ParentSettings() {
     const { error: updErr } = await supabase
       .from('map_students')
       .update({ grade: g })
-      .eq('id', activeStudent.id)
+      .eq('id', resolvedStudentId)
     setSaving(false)
     if (updErr) {
       setError(updErr.message)
@@ -213,13 +219,13 @@ export default function ParentSettings() {
   // independent so a parent can change one without resetting the other. If the
   // parent wants them aligned, they can click the matching practice card.
   const saveSchoolGrade = async (g: number) => {
-    if (!activeStudent || g === schoolGrade) return
+    if (!resolvedStudentId || g === schoolGrade) return
     setSavingSchool(true)
     setError(null)
     const { error: updErr } = await supabase
       .from('map_students')
       .update({ school_grade: g })
-      .eq('id', activeStudent.id)
+      .eq('id', resolvedStudentId)
     setSavingSchool(false)
     if (updErr) {
       setError(updErr.message)
@@ -232,13 +238,13 @@ export default function ParentSettings() {
   // value does not affect any in-progress test (its planned_length is locked).
   // It only changes the next test the kid starts.
   const saveTestLength = async (n: number) => {
-    if (!activeStudent || n === testLength) return
+    if (!resolvedStudentId || n === testLength) return
     setSavingLength(true)
     setError(null)
     const { error: updErr } = await supabase
       .from('map_students')
       .update({ default_test_length: n })
-      .eq('id', activeStudent.id)
+      .eq('id', resolvedStudentId)
     setSavingLength(false)
     if (updErr) {
       setError(updErr.message)
@@ -318,7 +324,7 @@ export default function ParentSettings() {
                   School grade
                 </p>
                 <p className="mt-0.5 text-sm text-ink/70">
-                  The grade {activeStudent?.display_name ?? 'your child'} is in at school.
+                  The grade {resolvedDisplayName} is in at school.
                 </p>
               </div>
               <div className="flex items-center gap-2">
