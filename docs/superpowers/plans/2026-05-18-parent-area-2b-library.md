@@ -457,7 +457,7 @@ git commit -m "feat(parent) Library VettedTab: filtered browse + interim Add-to-
 // source_tab='my_questions'). Archive via soft-delete RPC wrappers. New
 // question/passage link to the existing create editors. No Edit action —
 // the editors are create-only; a revise editor is out of 2b scope (spec §9).
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getLibraryContent } from '../../../lib/parent/queries'
 import { archiveCustomPassage, archiveCustomQuestion } from '../../../lib/parent/mutations'
@@ -472,12 +472,24 @@ export function MyQuestionsTab() {
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState<string | null>(null)
 
+  const mountedRef = useRef(true)
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
+
   const load = () => {
     setRows(null)
     setError(null)
     void getLibraryContent('my_questions', status ? { status } : undefined)
-      .then(setRows)
-      .catch((e) => setError(e?.message ?? 'Failed to load your questions.'))
+      .then((r) => {
+        if (mountedRef.current) setRows(r)
+      })
+      .catch((e) => {
+        if (mountedRef.current) setError(e?.message ?? 'Failed to load your questions.')
+      })
   }
   useEffect(load, [status])
 
@@ -491,9 +503,9 @@ export function MyQuestionsTab() {
       else await archiveCustomQuestion(row.content_id)
       load()
     } catch (e) {
-      setError((e as Error)?.message ?? 'Archive failed.')
+      if (mountedRef.current) setError((e as Error)?.message ?? 'Archive failed.')
     } finally {
-      setBusy(null)
+      if (mountedRef.current) setBusy(null)
     }
   }
 
