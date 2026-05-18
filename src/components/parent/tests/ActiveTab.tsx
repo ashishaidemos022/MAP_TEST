@@ -89,7 +89,7 @@ export function ActiveTab() {
                       : ''}
                   </p>
                   {r.parent_note && (
-                    <p className="mt-1 text-xs text-ink/50">"{r.parent_note}"</p>
+                    <p className="mt-1 text-xs text-ink/50">“{r.parent_note}”</p>
                   )}
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
