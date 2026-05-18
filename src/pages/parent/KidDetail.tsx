@@ -171,7 +171,7 @@ function AssignmentsTab({ studentId }: { studentId: string }) {
                       : ''}
                   </p>
                   {r.parent_note && (
-                    <p className="mt-1 text-xs text-ink/50">"{r.parent_note}"</p>
+                    <p className="mt-1 text-xs text-ink/50">“{r.parent_note}”</p>
                   )}
                 </div>
                 {r.status === 'assigned' && (
