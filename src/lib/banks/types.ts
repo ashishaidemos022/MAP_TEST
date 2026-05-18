@@ -35,3 +35,21 @@ export interface BankAssignmentOverviewRow {
   questions_correct: number | null
   questions_total: number | null
 }
+
+export interface BankItemRow {
+  item_id: string
+  bank_id: string
+  sort_order: number
+  custom_question_id: string
+  question_status: 'draft' | 'published' | 'archived'
+  question_source: string
+  stem: string | null
+  is_ready: boolean
+}
+
+export interface PublishableCustomQuestion {
+  id: string
+  stem: string | null
+  source: string
+  status: 'draft' | 'published' | 'archived'
+}
