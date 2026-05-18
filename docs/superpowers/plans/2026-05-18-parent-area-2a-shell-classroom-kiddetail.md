@@ -1384,9 +1384,10 @@ try {
   const { data: ids2 } = await ca.rpc('map_assign_test_definition', {
     p_definition_id: def, p_student_ids: [ctx.A.kids[1].id], p_due_by: null, p_parent_note: null,
   });
-  await admin.from('map_test_assignments')
+  const { error: fueErr } = await admin.from('map_test_assignments')
     .update({ status: 'in_progress', session_id: ctx.customSessionId, started_at: new Date().toISOString() })
     .eq('id', ids2[0]);
+  assert(!fueErr, 'admin force-to-in_progress update succeeded (precondition)');
   const { error: rvBad } = await ca.rpc('map_revoke_assignment', { p_assignment_id: ids2[0] });
   assert(!!rvBad, 'revoke of in_progress assignment is rejected');
 
