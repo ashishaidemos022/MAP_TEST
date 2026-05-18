@@ -81,6 +81,8 @@ export function useKidDashboardData(studentId: string | undefined): KidDashboard
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    // Caller contract: do not mount consumers until studentId is defined —
+    // an undefined id intentionally keeps loading:true (no error, no fetch).
     if (!studentId) return
     let cancelled = false
     setLoading(true)
