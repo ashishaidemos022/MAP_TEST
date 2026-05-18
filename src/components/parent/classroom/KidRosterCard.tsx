@@ -61,7 +61,7 @@ export function KidRosterCard({ row }: { row: ClassroomRosterRow }) {
         <button
           type="button"
           title="Assign a test"
-          onClick={() => navigate('/parent/custom-test')}
+          onClick={() => navigate(`/parent/tests/builder?kid=${row.student_id}`)}
           className="btn-ghost px-3 text-sm"
         >
           +

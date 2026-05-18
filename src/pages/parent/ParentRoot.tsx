@@ -10,6 +10,9 @@ import Parent from './Parent'
 import Classroom from './Classroom'
 import KidDetail from './KidDetail'
 import Library from './Library'
+import Tests from './Tests'
+import TestBuilder from './TestBuilder'
+import DefinitionDetail from './DefinitionDetail'
 
 function DashboardRedirect() {
   const [params] = useSearchParams()
@@ -63,6 +66,9 @@ export default function ParentRoot() {
         <Route index element={<Classroom />} />
         <Route path="kids/:id" element={<KidDetail />} />
         <Route path="library" element={<Library />} />
+        <Route path="tests" element={<Tests />} />
+        <Route path="tests/builder" element={<TestBuilder />} />
+        <Route path="tests/definitions/:id" element={<DefinitionDetail />} />
         <Route path="dashboard" element={<DashboardRedirect />} />
         <Route path="*" element={<Navigate to="/parent" replace />} />
       </Route>

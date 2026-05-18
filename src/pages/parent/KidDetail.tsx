@@ -71,7 +71,7 @@ export default function KidDetail() {
           <div className="flex gap-2">
             <button
               type="button"
-              onClick={() => navigate('/parent/custom-test')}
+              onClick={() => navigate(`/parent/tests/builder?kid=${id}`)}
               className="btn-secondary text-sm"
             >
               Assign a test

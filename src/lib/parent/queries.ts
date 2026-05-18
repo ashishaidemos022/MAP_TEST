@@ -4,6 +4,7 @@
 import { supabase } from '../supabase';
 import type {
   ClassroomRosterRow, AssignmentOverviewRow, LibraryContentRow, LibraryFilters,
+  TestDefinitionRow,
 } from './types';
 
 export async function getClassroomRoster(): Promise<ClassroomRosterRow[]> {
@@ -55,4 +56,52 @@ export async function getParentV2(familyId: string): Promise<boolean> {
     .single();
   if (error) throw error;
   return Boolean(data?.parent_v2);
+}
+
+export async function listTestDefinitions(
+  opts?: { templatesOnly?: boolean },
+): Promise<TestDefinitionRow[]> {
+  let q = supabase.from('map_test_definitions').select('*');
+  if (opts?.templatesOnly) q = q.eq('is_template', true);
+  const { data, error } = await q.order('updated_at', { ascending: false });
+  if (error) throw error;
+  return (data ?? []) as TestDefinitionRow[];
+}
+
+export async function getTestDefinition(
+  id: string,
+): Promise<TestDefinitionRow | null> {
+  const { data, error } = await supabase
+    .from('map_test_definitions')
+    .select('*')
+    .eq('id', id)
+    .maybeSingle();
+  if (error) throw error;
+  return (data ?? null) as TestDefinitionRow | null;
+}
+
+export async function getCandidateCount(args: {
+  subject: string;
+  grade: number;
+  standardCodes: string[];
+  sourceMix: 'vetted_only' | 'custom_only' | 'mixed';
+}): Promise<number> {
+  let q = supabase
+    .from('map_v_library_content')
+    .select('*', { count: 'exact', head: true })
+    .eq('subject', args.subject)
+    .eq('grade', args.grade);
+  if (args.sourceMix === 'vetted_only') {
+    q = q.eq('source_tab', 'vetted');
+  } else if (args.sourceMix === 'custom_only') {
+    q = q.in('source_tab', ['my_questions', 'ai_studio']).eq('status', 'published');
+  } else {
+    q = q.or('source_tab.eq.vetted,status.eq.published');
+  }
+  if (args.standardCodes.length > 0) {
+    q = q.in('teks_code', args.standardCodes);
+  }
+  const { count, error } = await q;
+  if (error) throw error;
+  return count ?? 0;
 }
