@@ -20,7 +20,7 @@ export default function ParentDashboard() {
   if (error) {
     return (
       <div className="card p-8 text-center">
-        <p className="font-display text-2xl">Couldn't load the dashboard.</p>
+        <p className="font-display text-2xl">Couldn’t load the dashboard.</p>
         <p className="mt-2 text-sm text-ink/60">{error}</p>
       </div>
     )
