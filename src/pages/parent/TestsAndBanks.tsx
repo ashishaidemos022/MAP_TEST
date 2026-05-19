@@ -2,7 +2,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { listBanks, getBankAssignmentOverview } from '../../lib/banks/queries'
-import { revokeBankAssignment, deleteBank } from '../../lib/banks/mutations'
+import { revokeBankAssignment, deleteBank, dismissBankAssignment } from '../../lib/banks/mutations'
 import { AssignBankDialog } from '../../components/parent/AssignBankDialog'
 import type { BankRow, BankAssignmentOverviewRow } from '../../lib/banks/types'
 
@@ -27,6 +27,11 @@ export default function TestsAndBanks() {
     if (!window.confirm(`Delete “${b.name}”? This can’t be undone.`)) return
     try { await deleteBank(b.id); reload() }
     catch (e) { setErr(e instanceof Error ? e.message : 'Could not delete.') }
+  }
+
+  const dismiss = async (id: string) => {
+    try { await dismissBankAssignment(id); reload() }
+    catch (e) { setErr(e instanceof Error ? e.message : 'Could not dismiss.') }
   }
 
   return (
@@ -84,6 +89,11 @@ export default function TestsAndBanks() {
             {r.status === 'assigned' && (
               <button type="button" className="btn-ghost text-xs" onClick={() => revoke(r.assignment_id)}>
                 Revoke
+              </button>
+            )}
+            {(r.status === 'completed' || r.status === 'revoked') && (
+              <button type="button" className="btn-ghost text-xs" onClick={() => dismiss(r.assignment_id)}>
+                Dismiss
               </button>
             )}
           </div>
