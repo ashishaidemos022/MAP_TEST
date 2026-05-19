@@ -13,8 +13,10 @@ export default function ParentShell() {
   return (
     <div className="mx-auto max-w-6xl">
       <header className="mb-6 mt-2 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-6">
-          <span className="font-display text-2xl">Parent</span>
+        <div className="flex items-center gap-5">
+          <span className="text-xs font-semibold uppercase tracking-wider text-smoke">
+            Parent
+          </span>
           <nav className="flex items-center gap-1 text-sm">
             {navItems.map((n) => (
               <NavLink
@@ -22,10 +24,10 @@ export default function ParentShell() {
                 to={n.to}
                 end={n.end}
                 className={({ isActive }) =>
-                  `rounded-full px-3 py-1.5 font-semibold transition ${
+                  `rounded-full px-3 py-1.5 transition ${
                     isActive
-                      ? 'bg-white text-ink shadow ring-1 ring-cloud'
-                      : 'text-ink/60 hover:text-ink'
+                      ? 'bg-white font-semibold text-ink ring-1 ring-cloud'
+                      : 'text-smoke hover:text-ink'
                   }`
                 }
               >
