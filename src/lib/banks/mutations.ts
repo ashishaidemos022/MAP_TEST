@@ -46,6 +46,13 @@ export async function revokeBankAssignment(assignmentId: string): Promise<void> 
   if (error) throw error
 }
 
+export async function deleteBank(bankId: string): Promise<void> {
+  const { error } = await supabase.rpc('map_soft_delete_bank', {
+    p_bank_id: bankId,
+  })
+  if (error) throw error
+}
+
 export async function createCustomBank(args: {
   name: string
   subject: Subject
