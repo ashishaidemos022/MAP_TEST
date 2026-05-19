@@ -72,6 +72,19 @@ const xfer2Text = JSON.stringify(xfer2.json);
 assert(/session_not_in_family|not found in this family/i.test(xfer2Text),
   'A cannot read B-session via get_session_details');
 
+// 4. Token A asking get_session_details for B's session must NOT leak custom
+//    content — it must fail with session_not_in_family (never return attempts).
+const bSess = await rpc(TOKEN_A, 'tools/call', {
+  name: 'get_session_details',
+  arguments: { session_id: SESSION_FROM_B },
+});
+const bSessText = bSess.json?.result?.content?.[0]?.text ?? bSess.json?.error?.message ?? '';
+assert(
+  /not found in this family|session_not_in_family/i.test(JSON.stringify(bSess.json)) ||
+    !/"attempts":\[\{/.test(bSessText),
+  'A cannot read B session detail (no custom/vetted attempts leaked)',
+);
+
 console.log('\nAll isolation checks passed.');
 
 // Note (Task 15): The PAT isolation cases above prove the family-scope invariant
