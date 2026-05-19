@@ -99,7 +99,7 @@ export async function getCustomPassageVersionInFamily(
   const { data, error } = await ctx.supabase
     .from('map_custom_passage_versions')
     .select(
-      'id, passage_id, version_number, subject, grade, map_custom_passages!inner(family_id, soft_deleted_at)',
+      'id, passage_id, version_number, subject, grade, map_custom_passages!map_custom_passage_versions_passage_id_fkey!inner(family_id, soft_deleted_at)',
     )
     .eq('id', passageVersionId)
     .maybeSingle()

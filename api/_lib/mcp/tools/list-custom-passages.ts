@@ -38,15 +38,16 @@ export function register(server: McpServer, ctx: McpContext): void {
         const passageIds = (data ?? []).map((r) => (r as unknown as { id: string }).id);
         const refCounts = new Map<string, { total: number; outdated: number }>();
         if (passageIds.length > 0) {
-          const { data: refs } = await ctx.supabase
+          const { data: refs, error: refsErr } = await ctx.supabase
             .from('map_custom_question_versions')
             .select(
               'passage_version_id, ' +
-                'map_custom_passage_versions!inner(passage_id, id, map_custom_passages!inner(current_version_id)), ' +
-                'map_custom_questions!inner(status)',
+                'map_custom_passage_versions!inner(passage_id, id, map_custom_passages!map_custom_passage_versions_passage_id_fkey!inner(current_version_id)), ' +
+                'map_custom_questions!map_custom_question_versions_question_id_fkey!inner(status)',
             )
             .in('map_custom_passage_versions.passage_id', passageIds)
             .eq('map_custom_questions.status', 'published');
+          if (refsErr) throw new McpError('internal', refsErr.message, 500);
           for (const r of refs ?? []) {
             const pvJoin = (r as unknown as { map_custom_passage_versions: unknown }).map_custom_passage_versions as
               | { passage_id: string; id: string; map_custom_passages: { current_version_id: string | null } | { current_version_id: string | null }[] }

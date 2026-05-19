@@ -52,15 +52,16 @@ export function register(server: McpServer, ctx: McpContext): void {
         if (!v) throw new McpError('not_found', 'version row missing');
 
         // Find referencing questions across all family versions of this passage.
-        const { data: refs } = await ctx.supabase
+        const { data: refs, error: refsErr } = await ctx.supabase
           .from('map_custom_question_versions')
           .select(
             'version_number, passage_version_id, ' +
-              'map_custom_questions!inner(id, status, current_version_id, family_id), ' +
+              'map_custom_questions!map_custom_question_versions_question_id_fkey!inner(id, status, current_version_id, family_id), ' +
               'map_custom_passage_versions!inner(passage_id)',
           )
           .eq('map_custom_passage_versions.passage_id', args.passage_id)
           .eq('map_custom_questions.family_id', ctx.family_id);
+        if (refsErr) throw new McpError('internal', refsErr.message, 500);
         const seen = new Set<string>();
         const questions: Array<{ question_id: string; status: string; references_version_number: number; is_outdated_reference: boolean }> = [];
         for (const r of refs ?? []) {

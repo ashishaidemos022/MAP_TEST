@@ -46,7 +46,7 @@ export function register(server: McpServer, ctx: McpContext): void {
           .select(
             'id, version_number, subject, grade, stem, stem_svg, stem_svg_alt_text, ' +
               'standard_code, difficulty, question_focus, ai_metadata, passage_version_id, ' +
-              'map_custom_passage_versions(id, passage_id, version_number, subject, grade, title, body, passage_svg, passage_svg_alt_text, genre, estimated_grade_level, standard_codes, map_custom_passages(current_version_id))',
+              'map_custom_passage_versions(id, passage_id, version_number, subject, grade, title, body, passage_svg, passage_svg_alt_text, genre, estimated_grade_level, standard_codes, map_custom_passages!map_custom_passage_versions_passage_id_fkey(current_version_id))',
           )
           .eq('id', versionId)
           .maybeSingle();
