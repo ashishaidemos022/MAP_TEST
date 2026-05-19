@@ -2,7 +2,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { listBanks, getBankAssignmentOverview } from '../../lib/banks/queries'
-import { revokeBankAssignment } from '../../lib/banks/mutations'
+import { revokeBankAssignment, deleteBank } from '../../lib/banks/mutations'
 import { AssignBankDialog } from '../../components/parent/AssignBankDialog'
 import type { BankRow, BankAssignmentOverviewRow } from '../../lib/banks/types'
 
@@ -21,6 +21,12 @@ export default function TestsAndBanks() {
   const revoke = async (id: string) => {
     try { await revokeBankAssignment(id); reload() }
     catch (e) { setErr(e instanceof Error ? e.message : 'Could not revoke.') }
+  }
+
+  const del = async (b: BankRow) => {
+    if (!window.confirm(`Delete “${b.name}”? This can’t be undone.`)) return
+    try { await deleteBank(b.id); reload() }
+    catch (e) { setErr(e instanceof Error ? e.message : 'Could not delete.') }
   }
 
   return (
@@ -54,6 +60,9 @@ export default function TestsAndBanks() {
               )}
               <button type="button" className="btn-secondary text-sm" onClick={() => setAssignFor(b)}>
                 Assign
+              </button>
+              <button type="button" className="btn-ghost text-sm" onClick={() => del(b)}>
+                Delete
               </button>
             </div>
           </div>
