@@ -17,7 +17,7 @@ export default function History() {
         .select('*')
         .eq('student_id', activeStudent.id)
         .eq('status', 'completed')
-        .eq('kind', 'test')
+        .in('kind', ['test', 'custom'])
         .order('completed_at', { ascending: false })
       setSessions((data ?? []) as Session[])
     })()
@@ -65,6 +65,11 @@ export default function History() {
                     <div>
                       <div className="flex items-center gap-2">
                         <p className="font-display text-lg capitalize">{s.subject}</p>
+                        {s.kind === 'custom' && (
+                          <span className="rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-ink/60 ring-1 ring-cloud">
+                            🎯 Custom
+                          </span>
+                        )}
                         <span className="rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-ink/60 ring-1 ring-cloud">
                           Grade {s.grade}
                         </span>
