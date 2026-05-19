@@ -21,7 +21,7 @@ export function register(server: McpServer, ctx: McpContext): void {
         .order('answered_at', { ascending: true });
       if (error) throw new Error(error.message);
 
-      const raw = (attempts ?? []).map((a) => ({
+      const rawAttempts = (attempts ?? []).map((a) => ({
         key: a.id as string,
         question_id: a.question_id as string | null,
         custom_question_version_id: a.custom_question_version_id as string | null,
@@ -29,7 +29,7 @@ export function register(server: McpServer, ctx: McpContext): void {
         is_correct: a.is_correct as boolean | null,
         time_spent_ms: a.time_spent_ms as number | null,
       }));
-      const resolved = await resolveAttempts(ctx, raw);
+      const resolved = await resolveAttempts(ctx, rawAttempts);
       const bankNames = await getSessionBankNames(ctx, [session.id]);
 
       const out = {
