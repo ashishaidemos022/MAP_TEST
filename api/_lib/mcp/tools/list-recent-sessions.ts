@@ -1,6 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
-import { getStudentInFamily } from '../db.js';
+import { getStudentInFamily, getSessionBankNames } from '../db.js';
 import { logToolCall } from '../audit.js';
 import { ListRecentSessionsInput } from '../schemas.js';
 
@@ -15,7 +15,7 @@ export function register(server: McpServer, ctx: McpContext): void {
 
       let q = ctx.supabase
         .from('map_test_sessions')
-        .select('id, subject, started_at, completed_at, question_ids, correct_count')
+        .select('id, subject, kind, started_at, completed_at, question_ids, correct_count')
         .eq('student_id', args.student_id)
         .order('started_at', { ascending: false })
         .limit(args.limit);
@@ -41,6 +41,7 @@ export function register(server: McpServer, ctx: McpContext): void {
         const m = Math.floor(s.length / 2);
         return s.length % 2 ? s[m] : Math.round((s[m - 1] + s[m]) / 2);
       };
+      const bankNames = await getSessionBankNames(ctx, sessionIds);
 
       const out = {
         sessions: (sessions ?? []).map((s) => {
@@ -49,6 +50,8 @@ export function register(server: McpServer, ctx: McpContext): void {
           return {
             session_id: s.id,
             subject: s.subject,
+            kind: s.kind,
+            bank_name: bankNames.get(s.id) ?? null,
             started_at: s.started_at,
             completed_at: s.completed_at,
             question_count: total,
