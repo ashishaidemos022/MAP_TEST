@@ -1,6 +1,7 @@
 // src/components/parent/KidAssignmentsList.tsx
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { getBankAssignmentOverview } from '../../lib/banks/queries'
+import { dismissBankAssignment } from '../../lib/banks/mutations'
 import type { BankAssignmentOverviewRow } from '../../lib/banks/types'
 
 export function KidAssignmentsList({ studentId }: { studentId: string }) {
@@ -15,7 +16,7 @@ export function KidAssignmentsList({ studentId }: { studentId: string }) {
     }
   }, [])
 
-  useEffect(() => {
+  const load = useCallback(() => {
     getBankAssignmentOverview()
       .then((all) => {
         if (!mounted.current) return
@@ -26,6 +27,21 @@ export function KidAssignmentsList({ studentId }: { studentId: string }) {
         setError(e instanceof Error ? e.message : 'Failed to load assignments.')
       })
   }, [studentId])
+
+  useEffect(() => {
+    load()
+  }, [load])
+
+  const dismiss = async (id: string) => {
+    try {
+      await dismissBankAssignment(id)
+      if (mounted.current) load()
+    } catch (e) {
+      if (mounted.current) {
+        setError(e instanceof Error ? e.message : 'Could not dismiss.')
+      }
+    }
+  }
 
   if (error) return <p className="card p-5 text-sm text-rust">{error}</p>
   if (!rows) return <p className="mt-6 text-center font-display text-xl">Loading…</p>
@@ -60,6 +76,15 @@ export function KidAssignmentsList({ studentId }: { studentId: string }) {
               </span>
             )}
           </span>
+          {(r.status === 'completed' || r.status === 'revoked') && (
+            <button
+              type="button"
+              className="btn-ghost text-xs"
+              onClick={() => dismiss(r.assignment_id)}
+            >
+              Dismiss
+            </button>
+          )}
         </div>
       ))}
     </div>
