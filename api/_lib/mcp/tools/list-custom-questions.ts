@@ -22,7 +22,8 @@ export function register(server: McpServer, ctx: McpContext): void {
           .select(
             'id, status, source, current_version_id, created_at, updated_at, ' +
               'map_custom_question_versions!current_version_id(subject, grade, stem, standard_code, difficulty, passage_version_id, ' +
-              'map_custom_passage_versions(passage_id, version_number, map_custom_passages(current_version_id)))',
+              'map_custom_passage_versions(passage_id, version_number, ' +
+              'map_custom_passages!map_custom_passage_versions_passage_id_fkey(current_version_id)))',
           )
           .eq('family_id', ctx.family_id)
           .is('soft_deleted_at', null)
