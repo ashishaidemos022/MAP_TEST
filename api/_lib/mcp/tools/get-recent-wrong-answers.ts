@@ -16,6 +16,14 @@ export function register(server: McpServer, ctx: McpContext): void {
 
       const since = new Date(Date.now() - args.since_days * 86_400_000).toISOString();
 
+      // When a subject filter is requested the SQL query can't join to the
+      // question to filter by subject (custom rows have no map_questions row),
+      // so we over-fetch within bounds and slice to args.limit after the
+      // resolver derives each row's subject. No subject filter → limit as-is.
+      const fetchLimit = args.subject
+        ? Math.min(Math.max(args.limit * 5, 100), 500)
+        : args.limit;
+
       const { data: rows, error } = await ctx.supabase
         .from('map_attempts')
         .select('id, answered_at, question_id, custom_question_version_id, selected_choice_id, time_spent_ms, is_correct')
@@ -23,7 +31,7 @@ export function register(server: McpServer, ctx: McpContext): void {
         .eq('is_correct', false)
         .gte('answered_at', since)
         .order('answered_at', { ascending: false })
-        .limit(args.limit);
+        .limit(fetchLimit);
       if (error) throw new Error(error.message);
 
       const attempts = (rows ?? []) as Array<{
@@ -53,10 +61,13 @@ export function register(server: McpServer, ctx: McpContext): void {
         })),
       );
 
-      // subject filter moved from the (removed) SQL inner join to here.
-      const filtered = args.subject
+      // subject filter moved from the (removed) SQL inner join to here;
+      // slice enforces args.limit after filtering so a subject-filtered
+      // call still returns up to args.limit matching rows.
+      const filtered = (args.subject
         ? resolved.filter((r) => r.subject === args.subject)
-        : resolved;
+        : resolved
+      ).slice(0, args.limit);
 
       // Passage excerpts: vetted reading rows only.
       const passageIds = [...new Set(filtered.map((r) => r.passage_id).filter((x): x is string => !!x))];

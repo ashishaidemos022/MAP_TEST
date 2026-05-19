@@ -1,4 +1,5 @@
 import type { McpContext } from './auth.js';
+import { McpError } from './errors.js';
 
 /** One raw map_attempts row plus the session subject fallback. */
 export type RawAttemptRow = {
@@ -58,6 +59,7 @@ export async function resolveAttempts(
   ctx: McpContext,
   rows: RawAttemptRow[],
 ): Promise<ResolvedAttempt[]> {
+  if (!ctx.family_id) throw new McpError('internal', 'family_id missing from auth context', 500);
   const vetted = rows.filter((r) => r.question_id);
   const custom = rows.filter((r) => !r.question_id && r.custom_question_version_id);
 
@@ -131,6 +133,7 @@ export async function resolveAttempts(
     const inFamilyVIds = new Set(okVersions.map((v) => v.id));
     const vById = new Map(okVersions.map((v) => [v.id, v]));
 
+    // DB errors here degrade to empty rows per the resolver's no-throw contract.
     const { data: cChoices } = await ctx.supabase
       .from('map_custom_question_choices')
       .select('id, version_id, label, text, is_correct, misconception_tag')
