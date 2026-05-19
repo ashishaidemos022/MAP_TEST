@@ -143,32 +143,6 @@ function IconHelp({ className }: IconProps) {
     </svg>
   )
 }
-function IconCalculator({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <rect x="5" y="3" width="14" height="18" rx="2" />
-      <path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0M8 19h2M12 19h2M16 19h0" />
-    </svg>
-  )
-}
-function IconBook({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2V5Z" />
-      <path d="M4 19a2 2 0 0 0 2 2h12" />
-    </svg>
-  )
-}
-function IconPencil({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <path d="M16 4l4 4-11 11H5v-4L16 4Z" />
-    </svg>
-  )
-}
 function IconChevronRight({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
@@ -459,103 +433,6 @@ export default function ConnectAi() {
         </button>
       </div>
 
-      {/* ---------- QUICK LAUNCH ---------- */}
-      <div className="mt-8">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-smoke">Quick launch</h2>
-        <div className="mt-3 rounded-2xl bg-white p-4 ring-1 ring-cloud/70">
-          <p className="text-xs text-smoke">
-            Run a one-off test using only your family&apos;s published custom questions.
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <Link
-              to="/test/new?subject=math&source=mine&count=10"
-              className="btn-secondary text-xs"
-            >
-              <IconCalculator className="h-4 w-4" />
-              Math · 10 questions
-            </Link>
-            <Link
-              to="/test/new?subject=reading&source=mine&count=10"
-              className="btn-secondary text-xs"
-            >
-              <IconBook className="h-4 w-4" />
-              Reading · 10 questions
-            </Link>
-            <Link
-              to="/test/new?subject=language&source=mine&count=10"
-              className="btn-secondary text-xs"
-            >
-              <IconPencil className="h-4 w-4" />
-              Language · 10 questions
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* ---------- RECENT ACTIVITY ---------- */}
-      <div className="mt-8 flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-smoke">
-          Recent activity <span className="opacity-70">· {audit.length}</span>
-        </h2>
-        <div className="flex flex-wrap gap-1">
-          <Chip active={auditFilter === 'all'} onClick={() => setAuditFilter('all')}>All</Chip>
-          {grants.map((g) => (
-            <Chip key={g.grant_id} active={auditFilter === g.grant_id}
-              onClick={() => setAuditFilter(g.grant_id)}>{g.client_name}</Chip>
-          ))}
-          <Chip active={auditFilter === 'pat'} onClick={() => setAuditFilter('pat')}>Personal tokens</Chip>
-        </div>
-      </div>
-
-      <div className="mt-3 overflow-hidden rounded-2xl bg-white ring-1 ring-cloud/70">
-        {audit.length === 0 && (
-          <p className="p-5 text-sm text-smoke">Nothing yet.</p>
-        )}
-        {audit.map((r, idx) => {
-          const src = sourceLabel(r)
-          const kid = kidForRow(r)
-          const sentence = describeTool(r.tool_name, kid)
-          const ok = statusOk(r.status)
-          return (
-            <div
-              key={r.id}
-              className={`flex items-center gap-3 px-4 py-3 ${idx < audit.length - 1 ? 'border-b border-cloud/70' : ''}`}
-            >
-              <span
-                className="h-1.5 w-1.5 shrink-0 rounded-full"
-                style={{ background: ok ? '#639922' : '#B42318' }}
-                aria-label={ok ? 'success' : 'failed'}
-              />
-              <div className="min-w-0 flex-1 text-[13px]">
-                <span className="font-semibold">{src.name}</span>
-                {src.tag && (
-                  <span
-                    className="ml-1.5 rounded px-1.5 py-0.5 text-[11px] text-smoke"
-                    style={{ background: '#EAEEF3' }}
-                  >
-                    {src.tag}
-                  </span>
-                )}{' '}
-                <span className="text-smoke">{sentence}</span>
-              </div>
-              <span className="shrink-0 text-xs text-smoke" title={new Date(r.created_at).toLocaleString()}>
-                {prettyTime(r.created_at)}
-              </span>
-            </div>
-          )
-        })}
-      </div>
-
-      <div className="py-2 text-center">
-        <button
-          type="button"
-          className="text-xs text-smoke hover:text-ink"
-          onClick={() => setAuditLimit((n) => n + 50)}
-        >
-          Load more activity →
-        </button>
-      </div>
-
       {/* ---------- PERSONAL ACCESS TOKENS (collapsed advanced) ---------- */}
       <div className="mt-8">
         <button
@@ -660,6 +537,70 @@ export default function ConnectAi() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* ---------- RECENT ACTIVITY ---------- */}
+      <div className="mt-8 flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-smoke">
+          Recent activity <span className="opacity-70">· {audit.length}</span>
+        </h2>
+        <div className="flex flex-wrap gap-1">
+          <Chip active={auditFilter === 'all'} onClick={() => setAuditFilter('all')}>All</Chip>
+          {grants.map((g) => (
+            <Chip key={g.grant_id} active={auditFilter === g.grant_id}
+              onClick={() => setAuditFilter(g.grant_id)}>{g.client_name}</Chip>
+          ))}
+          <Chip active={auditFilter === 'pat'} onClick={() => setAuditFilter('pat')}>Personal tokens</Chip>
+        </div>
+      </div>
+
+      <div className="mt-3 overflow-hidden rounded-2xl bg-white ring-1 ring-cloud/70">
+        {audit.length === 0 && (
+          <p className="p-5 text-sm text-smoke">Nothing yet.</p>
+        )}
+        {audit.map((r, idx) => {
+          const src = sourceLabel(r)
+          const kid = kidForRow(r)
+          const sentence = describeTool(r.tool_name, kid)
+          const ok = statusOk(r.status)
+          return (
+            <div
+              key={r.id}
+              className={`flex items-center gap-3 px-4 py-3 ${idx < audit.length - 1 ? 'border-b border-cloud/70' : ''}`}
+            >
+              <span
+                className="h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ background: ok ? '#639922' : '#B42318' }}
+                aria-label={ok ? 'success' : 'failed'}
+              />
+              <div className="min-w-0 flex-1 text-[13px]">
+                <span className="font-semibold">{src.name}</span>
+                {src.tag && (
+                  <span
+                    className="ml-1.5 rounded px-1.5 py-0.5 text-[11px] text-smoke"
+                    style={{ background: '#EAEEF3' }}
+                  >
+                    {src.tag}
+                  </span>
+                )}{' '}
+                <span className="text-smoke">{sentence}</span>
+              </div>
+              <span className="shrink-0 text-xs text-smoke" title={new Date(r.created_at).toLocaleString()}>
+                {prettyTime(r.created_at)}
+              </span>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="py-2 text-center">
+        <button
+          type="button"
+          className="text-xs text-smoke hover:text-ink"
+          onClick={() => setAuditLimit((n) => n + 50)}
+        >
+          Load more activity →
+        </button>
       </div>
 
       {/* ---------- MODALS ---------- */}
