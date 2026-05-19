@@ -115,21 +115,28 @@ export async function resolveAttempts(
   // ---- Custom branch (family-scoped) ----
   if (custom.length) {
     const vIds = [...new Set(custom.map((r) => r.custom_question_version_id as string))];
-    // Versions joined to parent map_custom_questions for the family filter.
+    // Two separate queries instead of an embedded join: there are TWO FKs
+    // between map_custom_question_versions and map_custom_questions
+    // (version.question_id -> question.id AND question.current_version_id ->
+    // version.id), so a PostgREST `map_custom_questions!inner(...)` embed is
+    // ambiguous and errors out. Fetch versions, then their parent questions,
+    // and apply the family + soft-delete filter in JS.
+    type V = { id: string; subject: string | null; stem: string | null; standard_code: string | null; question_id: string };
     const { data: versions } = await ctx.supabase
       .from('map_custom_question_versions')
-      .select('id, subject, stem, standard_code, map_custom_questions!inner(family_id, soft_deleted_at)')
-      .in('id', vIds)
-      .eq('map_custom_questions.family_id', ctx.family_id);
-    type V = {
-      id: string; subject: string | null; stem: string | null; standard_code: string | null;
-      map_custom_questions: { family_id: string; soft_deleted_at: string | null } | { family_id: string; soft_deleted_at: string | null }[];
-    };
-    const okVersions = (versions ?? []).filter((v) => {
-      const j = (v as V).map_custom_questions;
-      const p = Array.isArray(j) ? j[0] : j;
-      return p && p.family_id === ctx.family_id && p.soft_deleted_at === null;
-    }) as V[];
+      .select('id, subject, stem, standard_code, question_id')
+      .in('id', vIds);
+    const parentQIds = [...new Set(((versions ?? []) as V[]).map((v) => v.question_id).filter((x): x is string => !!x))];
+    const { data: parents } = await ctx.supabase
+      .from('map_custom_questions')
+      .select('id, family_id, soft_deleted_at')
+      .in('id', parentQIds.length ? parentQIds : [PLACEHOLDER]);
+    const inFamilyParents = new Set(
+      ((parents ?? []) as Array<{ id: string; family_id: string; soft_deleted_at: string | null }>)
+        .filter((p) => p.family_id === ctx.family_id && p.soft_deleted_at === null)
+        .map((p) => p.id),
+    );
+    const okVersions = ((versions ?? []) as V[]).filter((v) => inFamilyParents.has(v.question_id));
     const inFamilyVIds = new Set(okVersions.map((v) => v.id));
     const vById = new Map(okVersions.map((v) => [v.id, v]));
 
