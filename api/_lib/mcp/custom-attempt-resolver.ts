@@ -67,11 +67,15 @@ export async function resolveAttempts(
   // ---- Vetted branch ----
   if (vetted.length) {
     const qIds = [...new Set(vetted.map((r) => r.question_id as string))];
-    const [{ data: questions }, { data: choices }, { data: standards }] = await Promise.all([
+    const [{ data: questions }, { data: choices }] = await Promise.all([
       ctx.supabase.from('map_questions').select('id, subject, stem, standard_id, passage_id').in('id', qIds),
       ctx.supabase.from('map_question_choices').select('id, question_id, label, body, is_correct, misconception_tag').in('question_id', qIds),
-      ctx.supabase.from('map_standards').select('id, teks_code'),
     ]);
+    const stdIds = [...new Set((questions ?? []).map((q) => q.standard_id).filter((x): x is string => !!x))];
+    const { data: standards } = await ctx.supabase
+      .from('map_standards')
+      .select('id, teks_code')
+      .in('id', stdIds.length ? stdIds : [PLACEHOLDER]);
     const qById = new Map((questions ?? []).map((q) => [q.id, q]));
     const stdById = new Map((standards ?? []).map((s) => [s.id, s.teks_code]));
     type C = { id: string; question_id: string; label: string; body: string; is_correct: boolean; misconception_tag: string | null };
@@ -164,5 +168,6 @@ export async function resolveAttempts(
     }
   }
 
+  // Every key was pre-seeded by emptyResolved; get() is always defined.
   return rows.map((r) => byKey.get(r.key)!);
 }
