@@ -1,6 +1,7 @@
 // src/components/AssignedBanksPanel.tsx
 // Additive kid-home affordance. Renders nothing unless the active kid has a
-// vetted bank assignment in 'assigned' state. Mount-guarded.
+// bank assignment in 'assigned' (Start) or 'in_progress' (Resume) state.
+// Mount-guarded.
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useActiveStudent } from '../lib/activeStudent'
@@ -28,7 +29,9 @@ export function AssignedBanksPanel() {
       .then((all) => {
         if (!mounted.current) return
         setRows(all.filter((r) =>
-          r.student_id === sid && r.status === 'assigned'))
+          r.student_id === sid &&
+          (r.status === 'assigned' ||
+            (r.status === 'in_progress' && r.session_id != null))))
       })
       .catch(() => { if (mounted.current) setRows([]) })
   }, [activeStudent?.id])
@@ -48,6 +51,11 @@ export function AssignedBanksPanel() {
     }
   }
 
+  const resume = (r: BankAssignmentOverviewRow) => {
+    if (!r.session_id) return
+    navigate(`/test/${r.session_id}`)
+  }
+
   return (
     <section className="mb-6">
       <p className="mb-2 font-display text-lg uppercase tracking-widest text-smoke">
@@ -63,10 +71,17 @@ export function AssignedBanksPanel() {
               {r.parent_note && <span className="text-smoke"> — “{r.parent_note}”</span>}
               {r.due_by && <span className="text-smoke"> · due {new Date(r.due_by).toLocaleDateString()}</span>}
             </div>
-            <button type="button" className="btn-primary text-sm disabled:opacity-50"
-              disabled={busy === r.assignment_id} onClick={() => start(r)}>
-              {busy === r.assignment_id ? 'Starting…' : 'Start'}
-            </button>
+            {r.status === 'in_progress' ? (
+              <button type="button" className="btn-primary text-sm"
+                onClick={() => resume(r)}>
+                Resume
+              </button>
+            ) : (
+              <button type="button" className="btn-primary text-sm disabled:opacity-50"
+                disabled={busy === r.assignment_id} onClick={() => start(r)}>
+                {busy === r.assignment_id ? 'Starting…' : 'Start'}
+              </button>
+            )}
           </div>
         ))}
       </div>
