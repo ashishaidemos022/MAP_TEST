@@ -132,3 +132,10 @@ export async function createManualBankQuestion(args: {
   if (pErr) throw pErr
   await setBankItems(args.bankId, [...args.currentItemIds, newId])
 }
+
+export async function dismissBankAssignment(assignmentId: string): Promise<void> {
+  const { error } = await supabase.rpc('map_dismiss_bank_assignment', {
+    p_assignment_id: assignmentId,
+  })
+  if (error) throw error
+}
