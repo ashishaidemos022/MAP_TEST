@@ -175,10 +175,29 @@ export default function ParentSettings({
     // diagnostic rows from the client fails with 401 because anon doesn't
     // hold DELETE on map_pick_diagnostics (only INSERT/SELECT).
     const ids = stubSessions.map((s) => s.id)
+    // A stub that is a bank-assignment's linked session is NOT dead: deleting
+    // it fires map_bank_assignments.session_id ON DELETE SET NULL on an
+    // in_progress row, violating map_ba_status_coherent (Postgres 23514) and
+    // aborting the whole delete. Skip those — they belong to a real, live
+    // assignment, not an abandoned test.
+    const { data: linked } = await supabase
+      .from('map_bank_assignments')
+      .select('session_id')
+      .in('session_id', ids)
+    const linkedSet = new Set(
+      (linked ?? [])
+        .map((r) => r.session_id as string | null)
+        .filter((v): v is string => !!v),
+    )
+    const deletable = ids.filter((id) => !linkedSet.has(id))
+    if (deletable.length === 0) {
+      setCleaningStubs(false)
+      return
+    }
     const { error: sErr } = await supabase
       .from('map_test_sessions')
       .delete()
-      .in('id', ids)
+      .in('id', deletable)
     setCleaningStubs(false)
     if (sErr) {
       setError(sErr.message)
