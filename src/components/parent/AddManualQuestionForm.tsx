@@ -9,7 +9,6 @@ export function AddManualQuestionForm(props: {
   bankId: string
   subject: Subject
   grade: number
-  currentItemIds: string[]
   onAdded: () => void
   onClose: () => void
 }) {
@@ -44,7 +43,6 @@ export function AddManualQuestionForm(props: {
           explanation_correct: null,
           explanation_wrong: null,
         })),
-        currentItemIds: props.currentItemIds,
       })
       props.onAdded()
     } catch (e) {

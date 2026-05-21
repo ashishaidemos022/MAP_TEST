@@ -102,7 +102,6 @@ export default function BankDetail() {
       {showManual && bank && (
         <AddManualQuestionForm
           bankId={id} subject={bank.subject} grade={bank.grade}
-          currentItemIds={itemIds}
           onAdded={() => { setShowManual(false); reload() }}
           onClose={() => setShowManual(false)}
         />
