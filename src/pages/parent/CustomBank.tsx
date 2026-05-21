@@ -13,6 +13,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import SvgImage from '../../components/SvgImage'
 import { supabase } from '../../lib/supabase'
+import { errorMessage } from '../../lib/errorMessage'
 import { renameBank } from '../../lib/banks/mutations'
 import { AssignBankDialog } from '../../components/parent/AssignBankDialog'
 
@@ -575,7 +576,7 @@ export default function CustomBank() {
                         setBankMeta((m) => m ? { ...m, name: renameValue.trim() } : m)
                         setRenaming(false)
                       } catch (e) {
-                        alert(e instanceof Error ? e.message : 'Rename failed')
+                        alert(errorMessage(e, 'Rename failed'))
                       }
                     }}
                   >

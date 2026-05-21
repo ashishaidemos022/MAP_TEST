@@ -5,6 +5,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabase'
 import { createOrFindCustomBank } from '../../lib/banks/mutations'
+import { errorMessage } from '../../lib/errorMessage'
 import type { Subject } from '../../lib/types'
 
 interface BankRow { id: string; name: string; subject: Subject; grade: number }
@@ -56,7 +57,7 @@ export function BankPicker(props: {
       setShowCreate(false)
       setNewName('')
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : 'Failed to create bank')
+      setError(errorMessage(e, 'Failed to create bank'))
     } finally {
       setCreating(false)
     }

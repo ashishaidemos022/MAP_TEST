@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import { createVettedBank } from '../../lib/banks/mutations'
 import { CUSTOM_MIN_COUNT, CUSTOM_MAX_COUNT } from '../../lib/customTest'
+import { errorMessage } from '../../lib/errorMessage'
 import type { Subject } from '../../lib/types'
 
 type Std = { id: string; subject: Subject; grade: number; teks_code: string; teks_title: string }
@@ -77,7 +78,7 @@ export default function SaveVettedBank() {
       })
       navigate('/parent')
     } catch (e) {
-      setErr(e instanceof Error ? e.message : 'Could not save the bank.')
+      setErr(errorMessage(e, 'Could not save the bank.'))
       setBusy(false)
     }
   }

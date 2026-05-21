@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useActiveStudent } from '../lib/activeStudent'
 import { createBoostSession } from '../lib/sessionBuilder'
 import { supabase } from '../lib/supabase'
+import { errorMessage } from '../lib/errorMessage'
 import type { MisconceptionSignal, MisconceptionTag } from '../lib/types'
 
 interface BoostCard {
@@ -46,7 +47,7 @@ export default function Boost() {
       const sessionId = await createBoostSession(tag, activeStudent.id)
       navigate(`/test/${sessionId}`)
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : 'Could not start a boost.'
+      const msg = errorMessage(e, 'Could not start a boost.')
       setError(msg)
       setStartingTag(null)
     }

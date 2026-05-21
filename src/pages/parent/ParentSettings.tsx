@@ -6,6 +6,7 @@ import {
   recommendedTestLengthForGrade,
   supabase,
 } from '../../lib/supabase'
+import { errorMessage } from '../../lib/errorMessage'
 import type { Subject } from '../../lib/types'
 
 const SUPPORTED_GRADES = [1, 2, 3, 4] as const
@@ -154,7 +155,7 @@ export default function ParentSettings({
       setCounts(tally)
       setInProgress((ipRes.data ?? []) as InProgressRow[])
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : 'Could not load grade settings.')
+      setError(errorMessage(e, 'Could not load grade settings.'))
     }
   }
 

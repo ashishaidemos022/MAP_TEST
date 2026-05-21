@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useActiveStudent } from '../../lib/activeStudent'
+import { errorMessage } from '../../lib/errorMessage'
 import {
   CUSTOM_MAX_COUNT,
   CUSTOM_MIN_COUNT,
@@ -200,7 +201,7 @@ export default function CustomTestBuilder() {
       } else if (e instanceof CrossSubjectError) {
         setError('Selected topics span multiple subjects. Please restart and pick one subject.')
       } else {
-        setError(e instanceof Error ? e.message : 'Could not start the test.')
+        setError(errorMessage(e, 'Could not start the test.'))
       }
       setSubmitting(false)
     }

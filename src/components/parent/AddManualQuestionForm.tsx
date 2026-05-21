@@ -1,6 +1,7 @@
 // src/components/parent/AddManualQuestionForm.tsx
 import { useState } from 'react'
 import { createManualBankQuestion } from '../../lib/banks/mutations'
+import { errorMessage } from '../../lib/errorMessage'
 import type { Subject } from '../../lib/types'
 
 const LABELS = ['A', 'B', 'C', 'D'] as const
@@ -46,7 +47,7 @@ export function AddManualQuestionForm(props: {
       })
       props.onAdded()
     } catch (e) {
-      setErr(e instanceof Error ? e.message : 'Could not add the question.')
+      setErr(errorMessage(e, 'Could not add the question.'))
       setBusy(false)
     }
   }

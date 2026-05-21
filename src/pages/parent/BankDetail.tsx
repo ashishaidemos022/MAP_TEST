@@ -6,6 +6,7 @@ import { listBankItems, listAddablePublishedCustomQuestions } from '../../lib/ba
 import { setBankItems } from '../../lib/banks/mutations'
 import { AddManualQuestionForm } from '../../components/parent/AddManualQuestionForm'
 import { AssignBankDialog } from '../../components/parent/AssignBankDialog'
+import { errorMessage } from '../../lib/errorMessage'
 import type { BankItemRow, PublishableCustomQuestion } from '../../lib/banks/types'
 import type { Subject } from '../../lib/types'
 
@@ -36,11 +37,11 @@ export default function BankDetail() {
 
   const addExisting = async (qid: string) => {
     try { await setBankItems(id, [...itemIds, qid]); reload() }
-    catch (e) { setErr(e instanceof Error ? e.message : 'Could not add.') }
+    catch (e) { setErr(errorMessage(e, 'Could not add.')) }
   }
   const remove = async (qid: string) => {
     try { await setBankItems(id, itemIds.filter((x) => x !== qid)); reload() }
-    catch (e) { setErr(e instanceof Error ? e.message : 'Could not remove.') }
+    catch (e) { setErr(errorMessage(e, 'Could not remove.')) }
   }
 
   return (

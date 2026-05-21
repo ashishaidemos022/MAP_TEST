@@ -7,6 +7,7 @@ import SvgFigure from '../components/SvgFigure'
 import SvgImage from '../components/SvgImage'
 import { stopSpeaking } from '../lib/tts'
 import { supabase } from '../lib/supabase'
+import { errorMessage } from '../lib/errorMessage'
 import type { Attempt, Choice, Passage, Question, Session, Standard } from '../lib/types'
 import { getNextAdaptiveQuestion } from '../lib/adaptive/picker'
 import { addNextAdaptivePassage } from '../lib/adaptive/passagePicker'
@@ -98,7 +99,7 @@ export default function TestRunner() {
             byId.set(c.version_id, customToLoadedQuestion(c))
           }
         } catch (e) {
-          setError(e instanceof Error ? e.message : 'Could not load custom questions.')
+          setError(errorMessage(e, 'Could not load custom questions.'))
           return
         }
       }
@@ -371,7 +372,7 @@ export default function TestRunner() {
           }
         }
       } catch (e) {
-        const msg = e instanceof Error ? e.message : 'Could not pick the next question.'
+        const msg = errorMessage(e, 'Could not pick the next question.')
         setError(msg)
       }
     }

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useActiveStudent } from '../lib/activeStudent'
 import { getBankAssignmentOverview } from '../lib/banks/queries'
 import { startAssignedBank } from '../lib/banks/startAssignedBank'
+import { errorMessage } from '../lib/errorMessage'
 import type { BankAssignmentOverviewRow } from '../lib/banks/types'
 
 export function AssignedBanksPanel() {
@@ -46,7 +47,7 @@ export function AssignedBanksPanel() {
       navigate(`/test/${sessionId}`)
     } catch (e) {
       if (!mounted.current) return
-      setErr(e instanceof Error ? e.message : 'Could not start.')
+      setErr(errorMessage(e, 'Could not start.'))
       setBusy(null)
     }
   }

@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useActiveStudent } from '../../lib/activeStudent'
 import { assignBank } from '../../lib/banks/mutations'
+import { errorMessage } from '../../lib/errorMessage'
 
 export function AssignBankDialog(props: {
   bankId: string
@@ -37,7 +38,7 @@ export function AssignBankDialog(props: {
       setBusy(false)
       setDoneNames(students.filter((s) => picked.has(s.id)).map((s) => s.display_name))
     } catch (e) {
-      setErr(e instanceof Error ? e.message : 'Could not assign.')
+      setErr(errorMessage(e, 'Could not assign.'))
       setBusy(false)
     }
   }

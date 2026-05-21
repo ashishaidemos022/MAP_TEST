@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { getBankAssignmentOverview } from '../../lib/banks/queries'
 import { dismissBankAssignment } from '../../lib/banks/mutations'
+import { errorMessage } from '../../lib/errorMessage'
 import type { BankAssignmentOverviewRow } from '../../lib/banks/types'
 
 export function KidAssignmentsList({ studentId }: { studentId: string }) {
@@ -24,7 +25,7 @@ export function KidAssignmentsList({ studentId }: { studentId: string }) {
       })
       .catch((e) => {
         if (!mounted.current) return
-        setError(e instanceof Error ? e.message : 'Failed to load assignments.')
+        setError(errorMessage(e, 'Failed to load assignments.'))
       })
   }, [studentId])
 
@@ -38,7 +39,7 @@ export function KidAssignmentsList({ studentId }: { studentId: string }) {
       if (mounted.current) load()
     } catch (e) {
       if (mounted.current) {
-        setError(e instanceof Error ? e.message : 'Could not dismiss.')
+        setError(errorMessage(e, 'Could not dismiss.'))
       }
     }
   }

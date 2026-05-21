@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { listBanks, getBankAssignmentOverview } from '../../lib/banks/queries'
 import { revokeBankAssignment, deleteBank, dismissBankAssignment } from '../../lib/banks/mutations'
 import { AssignBankDialog } from '../../components/parent/AssignBankDialog'
+import { errorMessage } from '../../lib/errorMessage'
 import type { BankRow, BankAssignmentOverviewRow, BankLane } from '../../lib/banks/types'
 
 /* ---------- inline SVG icons (no dependency) ---------- */
@@ -117,18 +118,18 @@ export default function TestsAndBanks() {
 
   const revoke = async (id: string) => {
     try { await revokeBankAssignment(id); reload() }
-    catch (e) { setErr(e instanceof Error ? e.message : 'Could not revoke.') }
+    catch (e) { setErr(errorMessage(e, 'Could not revoke.')) }
   }
 
   const del = async (b: BankRow) => {
     if (!window.confirm(`Delete “${b.name}”? This can’t be undone.`)) return
     try { await deleteBank(b.id); reload() }
-    catch (e) { setErr(e instanceof Error ? e.message : 'Could not delete.') }
+    catch (e) { setErr(errorMessage(e, 'Could not delete.')) }
   }
 
   const dismiss = async (id: string) => {
     try { await dismissBankAssignment(id); reload() }
-    catch (e) { setErr(e instanceof Error ? e.message : 'Could not dismiss.') }
+    catch (e) { setErr(errorMessage(e, 'Could not dismiss.')) }
   }
 
   // "Assigned to N kids" — derived from the already-fetched assignment rows.

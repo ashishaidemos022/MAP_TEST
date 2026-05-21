@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createCustomBank } from '../../lib/banks/mutations'
+import { errorMessage } from '../../lib/errorMessage'
 import type { Subject } from '../../lib/types'
 
 const SUBJECTS: Subject[] = ['math', 'reading', 'language']
@@ -20,7 +21,7 @@ export default function NewCustomBank() {
       const id = await createCustomBank({ name: name.trim(), subject, grade })
       navigate(`/parent/banks/${id}`)
     } catch (e) {
-      setErr(e instanceof Error ? e.message : 'Could not create the bank.')
+      setErr(errorMessage(e, 'Could not create the bank.'))
       setBusy(false)
     }
   }
