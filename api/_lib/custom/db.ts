@@ -306,6 +306,9 @@ export async function resolveCreateOrFindBank(
     p_name: name,
     p_subject: subject,
     p_grade: grade,
+    // Service-role calls have no auth.uid(), so map_current_family_id()
+    // inside the RPC returns NULL. Pass our resolved family explicitly.
+    p_family_id: ctx.family_id,
   });
   if (error) {
     // The Postgres function raises explicit exceptions for these validation
@@ -331,6 +334,8 @@ export async function addItemsToBank(
     p_bank_id: bankId,
     p_question_ids: questionIds,
     p_passage_ids: passageIds,
+    // Same reason as resolveCreateOrFindBank above.
+    p_family_id: ctx.family_id,
   });
   if (!error) return;
   if (/at most 60 items/.test(error.message)) {
