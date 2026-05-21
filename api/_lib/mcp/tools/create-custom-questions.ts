@@ -1,7 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { McpContext } from '../auth.js';
 import { logToolCall } from '../audit.js';
-import { CreateCustomQuestionsInput } from '../schemas.js';
+import { CreateCustomQuestionsInput, CreateCustomQuestionsShape } from '../schemas.js';
 import { McpError } from '../errors.js';
 import { composeWriteToolDescription } from '../../svg/capability-blurb.js';
 import { resolveCurrentPassageVersionInFamily, getCustomPassageVersionInFamily, enforceWriteQuota, refundWriteQuota } from '../../custom/db.js';
@@ -16,7 +16,7 @@ export function register(server: McpServer, ctx: McpContext): void {
   server.tool(
     'create_custom_questions',
     CREATE_CUSTOM_QUESTIONS_DESCRIPTION,
-    CreateCustomQuestionsInput.shape,
+    CreateCustomQuestionsShape.shape,
     async (rawArgs) => {
       const args = CreateCustomQuestionsInput.parse(rawArgs ?? {});
       try {

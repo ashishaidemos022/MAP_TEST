@@ -161,15 +161,30 @@ export const GetCustomPassageInput = z.object({
 }).strict();
 export type GetCustomPassageInput = z.infer<typeof GetCustomPassageInput>;
 
+// Refine helpers shared by both creation schemas.
+const bankTargetRefine = (b: { bank_id?: string; bank_name?: string }) =>
+  (Boolean(b.bank_id) !== Boolean(b.bank_name));
+const bankTargetMsg = 'Provide exactly one of bank_id or bank_name';
+
 // 5.5 create_custom_questions
-export const CreateCustomQuestionsInput = z.object({
+// The inner ZodObject is exported separately so tool registrations can access
+// .shape for SDK parameter derivation (ZodEffects doesn't expose .shape).
+// Tasks 6 & 7 will switch tool files from Schema.shape to SchemaShape.shape.
+export const CreateCustomQuestionsShape = z.object({
+  bank_id:   z.string().uuid().optional(),
+  bank_name: z.string().min(1).max(120).optional(),
   questions: z.array(QuestionInputSchema).min(1).max(25),
 }).strict();
+export const CreateCustomQuestionsInput = CreateCustomQuestionsShape
+  .refine(bankTargetRefine, { message: bankTargetMsg });
 export type CreateCustomQuestionsInput = z.infer<typeof CreateCustomQuestionsInput>;
 
 // 5.6 create_custom_passage_and_questions
-export const CreateCustomPassageAndQuestionsInput = z.object({
-  passage: PassageInputSchema,
+// Same pattern: inner shape exported for .shape access; refined schema for .parse().
+export const CreateCustomPassageAndQuestionsShape = z.object({
+  bank_id:   z.string().uuid().optional(),
+  bank_name: z.string().min(1).max(120).optional(),
+  passage:   PassageInputSchema,
   questions: z.array(
     QuestionInputSchema.omit({ passage_id: true, passage_version_id: true }).extend({
       // Inside this composite call, math is invalid (the questions auto-attach).
@@ -177,6 +192,8 @@ export const CreateCustomPassageAndQuestionsInput = z.object({
     }),
   ).min(1).max(8),
 }).strict();
+export const CreateCustomPassageAndQuestionsInput = CreateCustomPassageAndQuestionsShape
+  .refine(bankTargetRefine, { message: bankTargetMsg });
 export type CreateCustomPassageAndQuestionsInput = z.infer<typeof CreateCustomPassageAndQuestionsInput>;
 
 // 5.7 update_custom_question
