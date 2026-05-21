@@ -267,3 +267,78 @@ export function refundWriteQuota(
 export const __test_resetQuotaBuckets = (): void => {
   QUOTA_BUCKETS.clear()
 }
+
+/** Resolve a bank_id, asserting it belongs to the family, is custom-lane,
+ *  not soft-deleted, and matches the call's subject + grade. */
+export async function resolveBankById(
+  ctx: McpContext,
+  bankId: string,
+  subject: 'math' | 'reading' | 'language',
+  grade: number,
+): Promise<{ id: string; name: string }> {
+  const { data, error } = await ctx.supabase
+    .from('map_question_banks')
+    .select('id, name, lane, subject, grade, soft_deleted_at')
+    .eq('id', bankId)
+    .maybeSingle();
+  if (error) throw error;
+  if (!data || data.soft_deleted_at)
+    throw new McpError('bank_target_mismatch', `bank ${bankId} not found in your family`);
+  if (data.lane !== 'custom')
+    throw new McpError('bank_not_custom_lane', `bank ${bankId} is a vetted recipe; AI authoring only targets custom banks`);
+  if (data.subject !== subject || data.grade !== grade)
+    throw new McpError(
+      'bank_target_mismatch',
+      `bank ${bankId} is ${data.subject} G${data.grade}; this call is ${subject} G${grade}`,
+    );
+  return { id: data.id, name: data.name };
+}
+
+/** Create-or-find a custom bank by (name, subject, grade) within the family.
+ *  Returns the resolved (possibly suffixed) name. */
+export async function resolveCreateOrFindBank(
+  ctx: McpContext,
+  name: string,
+  subject: 'math' | 'reading' | 'language',
+  grade: number,
+): Promise<{ id: string; name: string; wasCreated: boolean }> {
+  const { data, error } = await ctx.supabase.rpc('map_create_or_find_custom_bank', {
+    p_name: name,
+    p_subject: subject,
+    p_grade: grade,
+  });
+  if (error) throw error;
+  const row = (data ?? [])[0];
+  if (!row) throw new McpError('bank_target_mismatch', 'create-or-find returned no row');
+  return { id: row.bank_id, name: row.resolved_name, wasCreated: row.was_created };
+}
+
+/** Append items to a custom bank. Maps DB cap errors to bank_capacity_exceeded. */
+export async function addItemsToBank(
+  ctx: McpContext,
+  bankId: string,
+  questionIds: string[],
+  passageIds: string[],
+): Promise<void> {
+  const { error } = await ctx.supabase.rpc('map_add_items_to_bank', {
+    p_bank_id: bankId,
+    p_question_ids: questionIds,
+    p_passage_ids: passageIds,
+  });
+  if (error) {
+    if (/at most 60 items/.test(error.message)) {
+      throw new McpError('bank_capacity_exceeded', error.message);
+    }
+    throw error;
+  }
+}
+
+/** Count items currently in a bank (used to short-circuit cap errors before insert). */
+export async function getBankItemCount(ctx: McpContext, bankId: string): Promise<number> {
+  const { count, error } = await ctx.supabase
+    .from('map_question_bank_items')
+    .select('id', { count: 'exact', head: true })
+    .eq('bank_id', bankId);
+  if (error) throw error;
+  return count ?? 0;
+}
