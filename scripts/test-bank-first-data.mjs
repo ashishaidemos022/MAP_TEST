@@ -1,7 +1,7 @@
 // scripts/test-bank-first-data.mjs
 // Bank-first authoring data guard. Verifies:
 //   * map_create_or_find_custom_bank reuse vs suffix paths
-//   * map_add_items_to_bank ownership, cap (60), subject/grade match
+//   * map_add_items_to_bank ownership and subject/grade match
 //   * map_rename_bank collision check
 //   * map_v_custom_bank_overview counts
 //   * cross-family RLS isolation (family A can't see family B's bank)
@@ -67,7 +67,7 @@ async function makeCustomQuestion(client, subject, grade) {
 
 async function cleanup() {
   for (const id of made.families) await admin.from('map_families').delete().eq('id', id)
-  for (const id of made.users)    await admin.auth.admin.deleteUser(id)
+  for (const id of made.users)    await admin.auth.admin.deleteUser(id).catch(() => {})
 }
 
 try {
@@ -81,13 +81,15 @@ try {
   assert(r1[0].was_created === true, 'A first call created bank')
   const bankId = r1[0].bank_id
 
-  const { data: r2 } = await A.client.rpc('map_create_or_find_custom_bank',
+  const { data: r2, error: e2 } = await A.client.rpc('map_create_or_find_custom_bank',
     { p_name: 'Fractions on a number line — Math G3', p_subject: 'math', p_grade: 3 })
+  if (e2) throw e2
   assert(r2[0].bank_id === bankId && r2[0].was_created === false, 'A second call reused bank')
 
   // 2. Suffix path: same name but different subject → '(2)'.
-  const { data: r3 } = await A.client.rpc('map_create_or_find_custom_bank',
+  const { data: r3, error: e3 } = await A.client.rpc('map_create_or_find_custom_bank',
     { p_name: 'Fractions on a number line — Math G3', p_subject: 'reading', p_grade: 3 })
+  if (e3) throw e3
   assert(r3[0].resolved_name === 'Fractions on a number line — Math G3 (2)' && r3[0].was_created === true,
     'A same name + different subject → suffix (2)')
 
@@ -101,8 +103,7 @@ try {
   const qA = await makeCustomQuestion(A.client, 'math', 3)
   const { error: addErr } = await A.client.rpc('map_add_items_to_bank',
     { p_bank_id: bankId, p_question_ids: [qA], p_passage_ids: [] })
-  if (addErr) throw addErr
-  assert(true, 'A added own math/G3 question to math/G3 bank')
+  assert(!addErr, `A added own math/G3 question to math/G3 bank${addErr ? ': ' + addErr.message : ''}`)
 
   const qWrongGrade = await makeCustomQuestion(A.client, 'math', 2)
   const { error: gradeErr } = await A.client.rpc('map_add_items_to_bank',
@@ -115,8 +116,9 @@ try {
   assert(crossErr !== null, 'A cannot add B-owned question to A bank')
 
   // 5. Rename collision: create a sibling bank then try to rename onto it.
-  const { data: sib } = await A.client.rpc('map_create_or_find_custom_bank',
+  const { data: sib, error: sibErr } = await A.client.rpc('map_create_or_find_custom_bank',
     { p_name: 'Sibling — Math G3', p_subject: 'math', p_grade: 3 })
+  if (sibErr) throw sibErr
   const { error: renameErr } = await A.client.rpc('map_rename_bank',
     { p_bank_id: sib[0].bank_id, p_name: 'Fractions on a number line — Math G3' })
   assert(renameErr !== null, 'rename refuses collision with sibling bank')
@@ -125,9 +127,10 @@ try {
   assert(renameOk === null, 'rename accepts non-colliding name')
 
   // 6. Overview counts: A's primary bank should have question_count = 1, ready_question_count = 0 (draft).
-  const { data: ov } = await A.client.from('map_v_custom_bank_overview')
+  const { data: ov, error: ovErr } = await A.client.from('map_v_custom_bank_overview')
     .select('question_count, ready_question_count, draft_question_count')
     .eq('id', bankId).single()
+  if (ovErr) throw ovErr
   assert(ov.question_count === 1 && ov.draft_question_count === 1 && ov.ready_question_count === 0,
     `overview counts: q=${ov.question_count} draft=${ov.draft_question_count} ready=${ov.ready_question_count}`)
 
