@@ -98,7 +98,6 @@ export async function createManualBankQuestion(args: {
     explanation_correct: string | null
     explanation_wrong: string | null
   }>
-  currentItemIds: string[]
 }): Promise<void> {
   const choicesPayload = args.choices.map((c, i) => ({
     label: c.label,
@@ -130,12 +129,49 @@ export async function createManualBankQuestion(args: {
     p_question_id: newId,
   })
   if (pErr) throw pErr
-  await setBankItems(args.bankId, [...args.currentItemIds, newId])
+  await addItemsToBank({ bankId: args.bankId, questionIds: [newId], passageIds: [] })
 }
 
 export async function dismissBankAssignment(assignmentId: string): Promise<void> {
   const { error } = await supabase.rpc('map_dismiss_bank_assignment', {
     p_assignment_id: assignmentId,
+  })
+  if (error) throw error
+}
+
+export async function createOrFindCustomBank(args: {
+  name: string
+  subject: Subject
+  grade: number
+}): Promise<{ bankId: string; resolvedName: string; wasCreated: boolean }> {
+  const { data, error } = await supabase.rpc('map_create_or_find_custom_bank', {
+    p_name: args.name,
+    p_subject: args.subject,
+    p_grade: args.grade,
+  })
+  if (error) throw error
+  const row = (data ?? [])[0]
+  if (!row) throw new Error('create_or_find returned no row')
+  return { bankId: row.bank_id, resolvedName: row.resolved_name, wasCreated: row.was_created }
+}
+
+export async function addItemsToBank(args: {
+  bankId: string
+  questionIds: string[]
+  passageIds: string[]
+}): Promise<void> {
+  const { error } = await supabase.rpc('map_add_items_to_bank', {
+    p_bank_id: args.bankId,
+    p_question_ids: args.questionIds,
+    p_passage_ids: args.passageIds,
+  })
+  if (error) throw error
+}
+
+export async function renameBank(args: { bankId: string; name: string }): Promise<void> {
+  const { error } = await supabase.rpc('map_rename_bank', {
+    p_bank_id: args.bankId,
+    p_name: args.name,
   })
   if (error) throw error
 }

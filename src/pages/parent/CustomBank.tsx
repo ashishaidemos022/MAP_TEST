@@ -1,17 +1,20 @@
-// /parent/custom-bank — review + publish queue for the family's custom-question bank.
-// Now rendered as the default view inside /parent/ai-studio (the duplicate sub-tab
-// nav is gone; Connect AI is reached via a settings-style button on the action bar
-// that sets ?tab=connect, which AiStudio.tsx then routes to ConnectAi).
+// /parent/custom-bank — per-bank review + publish queue (requires ?bank=<uuid>).
+// When ?bank= is present, loads only items belonging to that bank via
+// map_question_bank_items and shows bank-scoped header with rename + bulk-publish.
+// Without ?bank= renders an empty-state pointing back to /parent/ai-studio.
 //
-// Visual redesign only — all handlers, RPCs, queries, and state machine identical
-// to before. Bulk-select preserved. Per-card "Publish" label kept (passage publish
-// does NOT cascade to attached questions, so "Publish all" would have been
-// misleading).
+// Connect AI is reached via a settings-style button on the action bar that sets
+// ?tab=connect, which AiStudio.tsx then routes to ConnectAi.
+//
+// Bulk-select preserved. Per-card "Publish" label kept (passage publish does NOT
+// cascade to attached questions).
 
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import SvgImage from '../../components/SvgImage'
 import { supabase } from '../../lib/supabase'
+import { renameBank } from '../../lib/banks/mutations'
+import { AssignBankDialog } from '../../components/parent/AssignBankDialog'
 
 type Status = 'draft' | 'published' | 'archived'
 
@@ -165,12 +168,17 @@ function statusPillStyle(status: Status): { bg: string; fg: string } {
 }
 
 export default function CustomBank() {
-  // ----- routing helper for the action-bar Connect AI button -----
-  const [, setParams] = useSearchParams()
+  // ----- search params -----
+  const [params, setParams] = useSearchParams()
+  const bankId = params.get('bank')
 
-  // ----- state (unchanged except added typeFilter and menuFor for ⋮) -----
+  // ----- state -----
   const [passages, setPassages] = useState<PassageRow[] | null>(null)
   const [questions, setQuestions] = useState<QuestionRow[] | null>(null)
+  const [bankMeta, setBankMeta] = useState<{ name: string; subject: 'math' | 'reading' | 'language'; grade: number } | null>(null)
+  const [renaming, setRenaming] = useState(false)
+  const [renameValue, setRenameValue] = useState('')
+  const [showAssign, setShowAssign] = useState(false)
   const [tab, setTab] = useState<Tab>('draft')
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all')
   const [busy, setBusy] = useState<string | null>(null)
@@ -181,32 +189,64 @@ export default function CustomBank() {
   const [selectedQuestionIds, setSelectedQuestionIds] = useState<Set<string>>(new Set())
   const [menuFor, setMenuFor] = useState<string | null>(null)
 
-  // ===== data loading (unchanged) =====
+  // ===== data loading =====
   async function loadAll() {
+    if (!bankId) return
     setError(null)
-    const [pRes, qRes] = await Promise.all([
-      supabase
-        .from('map_custom_passages')
-        .select(
-          'id, status, source, current_version_id, created_at, ' +
-            'map_custom_passage_versions!current_version_id(version_number, subject, grade, title, body, passage_svg, passage_svg_alt_text, genre)',
-        )
-        .is('soft_deleted_at', null)
-        .order('created_at', { ascending: false })
-        .limit(200),
-      supabase
-        .from('map_custom_questions')
-        .select(
-          'id, status, source, current_version_id, created_at, ' +
-            'map_custom_question_versions!current_version_id(' +
-              'subject, grade, stem, stem_svg, stem_svg_alt_text, passage_version_id, standard_code, difficulty, ' +
-              'map_custom_passage_versions(passage_id), ' +
-              'choices:map_custom_question_choices(id, label, text, is_correct, ordinal, choice_svg, choice_svg_alt_text, explanation_correct, explanation_wrong))',
-        )
-        .is('soft_deleted_at', null)
-        .order('created_at', { ascending: false })
-        .limit(200),
-    ])
+
+    // Step 1: Fetch bank meta
+    const { data: bMeta } = await supabase
+      .from('map_question_banks')
+      .select('name, subject, grade')
+      .eq('id', bankId)
+      .maybeSingle()
+    if (bMeta) setBankMeta(bMeta as { name: string; subject: 'math' | 'reading' | 'language'; grade: number })
+
+    // Step 2: Fetch item rows for this bank
+    const { data: itemRows } = await supabase
+      .from('map_question_bank_items')
+      .select('custom_question_id, custom_passage_id')
+      .eq('bank_id', bankId)
+    const questionIdsInBank = (itemRows ?? []).map((r) => (r as { custom_question_id: string | null }).custom_question_id).filter(Boolean) as string[]
+    const passageIdsInBank  = (itemRows ?? []).map((r) => (r as { custom_passage_id: string | null }).custom_passage_id).filter(Boolean) as string[]
+
+    // If both arrays are empty, set [] on both lists and skip the rest of the load.
+    if (questionIdsInBank.length === 0 && passageIdsInBank.length === 0) {
+      setQuestions([])
+      setPassages([])
+      return
+    }
+
+    const passageQuery = passageIdsInBank.length > 0
+      ? supabase
+          .from('map_custom_passages')
+          .select(
+            'id, status, source, current_version_id, created_at, ' +
+              'map_custom_passage_versions!current_version_id(version_number, subject, grade, title, body, passage_svg, passage_svg_alt_text, genre)',
+          )
+          .in('id', passageIdsInBank)
+          .is('soft_deleted_at', null)
+          .order('created_at', { ascending: false })
+          .limit(200)
+      : Promise.resolve({ data: [], error: null })
+
+    const questionQuery = questionIdsInBank.length > 0
+      ? supabase
+          .from('map_custom_questions')
+          .select(
+            'id, status, source, current_version_id, created_at, ' +
+              'map_custom_question_versions!current_version_id(' +
+                'subject, grade, stem, stem_svg, stem_svg_alt_text, passage_version_id, standard_code, difficulty, ' +
+                'map_custom_passage_versions(passage_id), ' +
+                'choices:map_custom_question_choices(id, label, text, is_correct, ordinal, choice_svg, choice_svg_alt_text, explanation_correct, explanation_wrong))',
+          )
+          .in('id', questionIdsInBank)
+          .is('soft_deleted_at', null)
+          .order('created_at', { ascending: false })
+          .limit(200)
+      : Promise.resolve({ data: [], error: null })
+
+    const [pRes, qRes] = await Promise.all([passageQuery, questionQuery])
     if (pRes.error) {
       setError(`passages: ${pRes.error.message}`)
       return
@@ -298,7 +338,7 @@ export default function CustomBank() {
     setQuestions(questionRows)
   }
 
-  useEffect(() => { void loadAll() }, [])
+  useEffect(() => { void loadAll() }, [bankId]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function filterByTab<T extends { status: Status }>(rows: T[] | null): T[] {
     if (!rows) return []
@@ -451,6 +491,10 @@ export default function CustomBank() {
     (questions?.filter((q) => q.status === 'published').length ?? 0)
   const totalCount = (passages?.length ?? 0) + (questions?.length ?? 0)
 
+  // Bank-scoped counts for bulk-publish and assign CTA
+  const bankDraftQuestionIds = (questions ?? []).filter((q) => q.status === 'draft').map((q) => q.id)
+  const bankReadyCount = (questions ?? []).filter((q) => q.status === 'published').length
+
   // Questions per passage (for the "passage + N questions" type pill).
   const questionsByPassage = useMemo(() => {
     const m = new Map<string, number>()
@@ -481,25 +525,105 @@ export default function CustomBank() {
   const anyLoaded = passages !== null && questions !== null
   const selCount = selectedPassageIds.size + selectedQuestionIds.size
 
+  // ----- missing ?bank= early return -----
+  if (!bankId) {
+    return (
+      <div className="mx-auto max-w-3xl p-6">
+        <p className="text-sm text-zinc-500">
+          No bank selected. <Link to="/parent/ai-studio" className="underline">Go to all banks</Link>.
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="mx-auto max-w-5xl">
-      {/* ---------- page intro ---------- */}
-      <header className="mb-2 mt-2">
-        <h1 className="font-display text-2xl">AI Studio</h1>
-        <p className="mt-1 max-w-2xl text-sm text-smoke">
-          Review and publish AI-generated drafts, or author your own. Nothing here
-          reaches your kids until you publish it.
-        </p>
+      {/* ---------- bank-scoped header ---------- */}
+      <header className="mb-6 mt-2">
+        <div className="mb-2">
+          <Link to="/parent/ai-studio" className="text-sm text-zinc-500 hover:underline">← All banks</Link>
+        </div>
+        {bankMeta && (
+          <div className="flex items-center justify-between">
+            <div>
+              {!renaming ? (
+                <h1 className="font-display text-3xl flex items-center gap-2">
+                  {bankMeta.name}
+                  <button
+                    type="button"
+                    className="text-zinc-400 hover:text-zinc-700 text-base"
+                    onClick={() => { setRenameValue(bankMeta.name); setRenaming(true) }}
+                    title="Edit name"
+                  >
+                    ✎
+                  </button>
+                </h1>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <input
+                    value={renameValue}
+                    onChange={(e) => setRenameValue(e.target.value)}
+                    maxLength={120}
+                    className="border rounded px-2 py-1 text-lg"
+                  />
+                  <button
+                    type="button"
+                    className="btn-primary text-sm"
+                    onClick={async () => {
+                      try {
+                        await renameBank({ bankId, name: renameValue.trim() })
+                        setBankMeta((m) => m ? { ...m, name: renameValue.trim() } : m)
+                        setRenaming(false)
+                      } catch (e) {
+                        alert(e instanceof Error ? e.message : 'Rename failed')
+                      }
+                    }}
+                  >
+                    Save
+                  </button>
+                  <button type="button" className="btn-ghost text-sm" onClick={() => setRenaming(false)}>
+                    Cancel
+                  </button>
+                </div>
+              )}
+              <p className="text-sm text-zinc-500 mt-1">{bankMeta.subject} · G{bankMeta.grade}</p>
+            </div>
+            <div className="flex gap-2">
+              {bankDraftQuestionIds.length > 0 && (
+                <button
+                  type="button"
+                  className="btn-secondary text-sm disabled:opacity-50"
+                  disabled={bulkBusy}
+                  onClick={async () => {
+                    setBulkBusy(true)
+                    setError(null)
+                    for (const id of bankDraftQuestionIds) {
+                      await publishQuestion(id)
+                    }
+                    setBulkBusy(false)
+                  }}
+                >
+                  {bulkBusy ? 'Publishing…' : `Publish all drafts (${bankDraftQuestionIds.length})`}
+                </button>
+              )}
+              {bankDraftQuestionIds.length === 0 && bankReadyCount >= 5 && (
+                <button type="button" className="btn-primary text-sm" onClick={() => setShowAssign(true)}>
+                  Assign to kid →
+                </button>
+              )}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* ---------- action bar ---------- */}
       <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
         <div className="flex gap-2">
-          <Link to="/parent/custom-bank/new-question" className="btn-primary text-sm">
+          <Link to={`/parent/custom-bank/new-question?bank=${bankId}`} className="btn-primary text-sm">
             <IconPlus className="h-4 w-4" />
             New question
           </Link>
-          <Link to="/parent/custom-bank/new-passage" className="btn-secondary text-sm">
+          <Link to={`/parent/custom-bank/new-passage?bank=${bankId}`} className="btn-secondary text-sm">
             <IconPlus className="h-4 w-4" />
             New passage
           </Link>
@@ -854,6 +978,16 @@ export default function CustomBank() {
         <IconInfo className="h-4 w-4 shrink-0 text-[#854F0B]" />
         <span>Drafts are unvetted — preview before publishing. Kids can only see published items.</span>
       </div>
+
+      {/* ---------- assign bank dialog ---------- */}
+      {showAssign && bankMeta && (
+        <AssignBankDialog
+          bankId={bankId}
+          bankName={bankMeta.name}
+          onClose={() => setShowAssign(false)}
+          onAssigned={() => setShowAssign(false)}
+        />
+      )}
     </div>
   )
 }

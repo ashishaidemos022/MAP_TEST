@@ -17,6 +17,11 @@ export const MCP_ERROR_CODES = {
   invalid_svg: 'invalid_svg',
   mixed_choice_svg_not_allowed: 'mixed_choice_svg_not_allowed',
   write_quota_exceeded: 'write_quota_exceeded',
+  // Bank-first authoring (Phase 4.1)
+  bank_capacity_exceeded: 'bank_capacity_exceeded',
+  bank_not_custom_lane: 'bank_not_custom_lane',
+  bank_target_mismatch: 'bank_target_mismatch',
+  mixed_subjects_in_call: 'mixed_subjects_in_call',
 } as const;
 
 export type McpErrorCode = keyof typeof MCP_ERROR_CODES;

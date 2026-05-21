@@ -38,6 +38,11 @@ for (const block of blocks) {
   if (/map_custom_question_choices/.test(block)) continue;
   if (/map_custom_passages/.test(block)) continue;
   if (/map_custom_passage_versions/.test(block)) continue;
+  // Phase 4.1 — bank-first authoring writes (RPC-mediated, family-scoped).
+  // map_create_or_find_custom_bank → map_question_banks
+  // map_add_items_to_bank          → map_question_bank_items
+  if (/map_create_or_find_custom_bank|map_question_banks/.test(block)) continue;
+  if (/map_add_items_to_bank|map_question_bank_items/.test(block)) continue;
 
   offenders.push(triggerLine);
 }

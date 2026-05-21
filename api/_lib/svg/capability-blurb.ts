@@ -27,6 +27,16 @@ export const SVG_TOOL_HINTS = {
     'On this tool: replacing or adding SVG follows the same rules as creation. Pass passage_svg = null explicitly to remove an existing SVG.',
 } as const
 
+export const BANK_NAMING_GUIDANCE = [
+  'Every item created by this tool must belong to a custom Bank.',
+  'Pass exactly one of bank_id (to reuse a bank from a previous tool result in this conversation) or bank_name (to create-or-find a bank by name in the family).',
+  'When creating a new Bank, name it "{Topic} — {Subject} G{Grade}".',
+  'Examples: "Fractions on a number line — Math G3", "Main idea — Reading G3", "Commas in compound sentences — Language G3".',
+  'Use the topic phrasing the parent used in plain English; capitalize like a title; do not include the kid\'s name (banks are kid-agnostic and assignable to anyone).',
+  'If the parent asks to add more to the same set, reuse the bank.id from the previous tool result, not bank_name (this avoids name-typo collisions).',
+  'The tool may return a slightly different bank.name than you requested — if a same-name bank already existed in a different subject or grade, the server appends "(2)", "(3)", … and returns the resolved name.',
+].join(' ');
+
 /**
  * Compose a write tool's description with the shared SVG capability blurb
  * and a per-tool hint. Read tools that don't accept SVG don't need this.
@@ -35,5 +45,9 @@ export function composeWriteToolDescription(
   baseDescription: string,
   toolKey: keyof typeof SVG_TOOL_HINTS,
 ): string {
-  return `${baseDescription}\n\n${SVG_CAPABILITY_BLURB}\n\n${SVG_TOOL_HINTS[toolKey]}`
+  // Only the two creation tools take bank targets; update/publish/others don't.
+  const includesBank = toolKey === 'create_custom_questions' || toolKey === 'create_custom_passage_and_questions';
+  const parts = [baseDescription, SVG_CAPABILITY_BLURB, SVG_TOOL_HINTS[toolKey]];
+  if (includesBank) parts.push(BANK_NAMING_GUIDANCE);
+  return parts.join('\n\n');
 }

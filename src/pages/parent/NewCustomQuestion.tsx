@@ -9,8 +9,10 @@
 // brief §13 — manual UI never authors SVG. Only the AI loop does that.
 
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
+import { BankPicker } from '../../components/parent/BankPicker'
+import { addItemsToBank } from '../../lib/banks/mutations'
 
 type Subject = 'math' | 'reading' | 'language'
 type Label = 'A' | 'B' | 'C' | 'D' | 'E'
@@ -39,6 +41,15 @@ const emptyChoice = (label: Label): ChoiceForm => ({
 
 export default function NewCustomQuestion() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const initialBankFromQuery = searchParams.get('bank')
+  const [bankId, setBankId] = useState<string | null>(initialBankFromQuery)
+  const [lockToBank, setLockToBank] = useState<boolean>(Boolean(initialBankFromQuery))
+
+  const cancelPath = lockToBank && initialBankFromQuery
+    ? `/parent/ai-studio?bank=${initialBankFromQuery}`
+    : '/parent/ai-studio'
+
   const [subject, setSubject] = useState<Subject>('math')
   const [grade, setGrade] = useState(2)
   const [stem, setStem] = useState('')
@@ -50,6 +61,28 @@ export default function NewCustomQuestion() {
   const [passageOptions, setPassageOptions] = useState<PassageOption[]>([])
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // When the picker is locked from ?bank=, fetch that bank's subject + grade
+  // and lock the form's selectors to match.
+  useEffect(() => {
+    if (!initialBankFromQuery) return
+    let alive = true
+    supabase
+      .from('map_question_banks')
+      .select('subject, grade')
+      .eq('id', initialBankFromQuery)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!alive || !data) return
+        setSubject(data.subject as Subject)
+        setGrade(data.grade as number)
+      })
+    return () => { alive = false }
+  }, [initialBankFromQuery])
+
+  // When subject/grade change unlocked, clear the bank selection
+  // because the previously-picked bank may no longer match.
+  useEffect(() => { if (!lockToBank) setBankId(null) }, [subject, grade, lockToBank])
 
   // Load published passages for the optional attachment dropdown.
   useEffect(() => {
@@ -152,8 +185,11 @@ export default function NewCustomQuestion() {
       setError(rpcErr.message)
       return
     }
-    void data
-    navigate('/parent/custom-bank')
+    const newId = data as string | null
+    if (newId && bankId) {
+      await addItemsToBank({ bankId, questionIds: [newId], passageIds: [] })
+    }
+    navigate(cancelPath)
   }
 
   return (
@@ -163,24 +199,36 @@ export default function NewCustomQuestion() {
           <p className="font-display text-lg uppercase tracking-widest text-smoke">Parent view</p>
           <h1 className="font-display text-4xl">New question</h1>
           <p className="mt-1 text-sm text-ink/60">
-            Lands as a <strong>draft</strong> — review and publish from the custom bank.
+            Lands as a <strong>draft</strong> — review and publish from the bank's page in AI Studio.
           </p>
         </div>
-        <Link to="/parent/custom-bank" className="btn-ghost text-sm">Cancel</Link>
+        <Link to={cancelPath} className="btn-ghost text-sm">Cancel</Link>
       </header>
 
       {error && (
         <p className="mb-4 rounded-xl bg-berry/10 px-3 py-2 text-sm text-berry ring-1 ring-berry/30 whitespace-pre-line">{error}</p>
       )}
 
+      <div className="mb-4">
+        <BankPicker
+          subject={subject}
+          grade={grade}
+          value={bankId}
+          onChange={setBankId}
+          locked={lockToBank}
+          onUnlock={() => { setLockToBank(false); setBankId(null) }}
+        />
+      </div>
+
       <form onSubmit={handleSubmit} className="card space-y-5 p-5">
         <div className="grid grid-cols-2 gap-3">
           <label className="flex flex-col text-sm">
             <span className="mb-1 text-xs font-semibold uppercase tracking-widest text-smoke">Subject</span>
             <select
-              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none"
+              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               value={subject}
               onChange={(e) => setSubject(e.target.value as Subject)}
+              disabled={lockToBank}
             >
               <option value="math">Math</option>
               <option value="reading">Reading</option>
@@ -190,9 +238,10 @@ export default function NewCustomQuestion() {
           <label className="flex flex-col text-sm">
             <span className="mb-1 text-xs font-semibold uppercase tracking-widest text-smoke">Grade</span>
             <select
-              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none"
+              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               value={grade}
               onChange={(e) => setGrade(Number(e.target.value))}
+              disabled={lockToBank}
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map((g) => (
                 <option key={g} value={g}>Grade {g}</option>
@@ -253,7 +302,7 @@ export default function NewCustomQuestion() {
             </span>
             {filteredPassages.length === 0 ? (
               <p className="rounded-xl bg-cream px-3 py-2 text-xs text-ink/60">
-                No published {subject} passages yet. Create one from the custom bank, or leave this blank.
+                No published {subject} passages yet. Create one from AI Studio, or leave this blank.
               </p>
             ) : (
               <select
@@ -347,10 +396,15 @@ export default function NewCustomQuestion() {
         </div>
 
         <div className="flex flex-wrap items-center justify-end gap-2">
-          <Link to="/parent/custom-bank" className="btn-ghost text-sm">Cancel</Link>
-          <button type="submit" className="btn-primary text-sm disabled:opacity-50" disabled={submitting}>
-            {submitting ? 'Saving…' : 'Save as draft'}
-          </button>
+          <Link to={cancelPath} className="btn-ghost text-sm">Cancel</Link>
+          <div className="flex flex-col items-end">
+            <button type="submit" className="btn-primary text-sm disabled:opacity-50" disabled={submitting || !bankId}>
+              {submitting ? 'Saving…' : 'Save as draft'}
+            </button>
+            {!bankId && (
+              <p className="text-xs text-zinc-500 mt-1">Pick a bank above before saving.</p>
+            )}
+          </div>
         </div>
       </form>
     </div>

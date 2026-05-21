@@ -4,9 +4,11 @@
 //
 // SVG fields are intentionally absent per brief §13 (no SVG authoring in UI).
 
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
+import { BankPicker } from '../../components/parent/BankPicker'
+import { addItemsToBank } from '../../lib/banks/mutations'
 
 type Subject = 'reading' | 'language'
 type Genre = 'fiction' | 'nonfiction' | 'poetry' | 'drama' | 'informational' | 'editing_draft'
@@ -22,6 +24,37 @@ export default function NewCustomPassage() {
   const [standardCodes, setStandardCodes] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const [searchParams] = useSearchParams()
+  const initialBankFromQuery = searchParams.get('bank')
+  const [bankId, setBankId] = useState<string | null>(initialBankFromQuery)
+  const [lockToBank, setLockToBank] = useState<boolean>(Boolean(initialBankFromQuery))
+  const cancelPath = lockToBank && initialBankFromQuery
+    ? `/parent/ai-studio?bank=${initialBankFromQuery}`
+    : '/parent/ai-studio'
+
+  // When ?bank= is present, lock the form to that bank's subject + grade.
+  useEffect(() => {
+    if (!initialBankFromQuery) return
+    let alive = true
+    supabase
+      .from('map_question_banks')
+      .select('subject, grade')
+      .eq('id', initialBankFromQuery)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!alive || !data) return
+        // Reject the wider Subject — passages only support reading|language.
+        if (data.subject === 'reading' || data.subject === 'language') {
+          setSubject(data.subject as Subject)
+        }
+        setGrade(data.grade as number)
+      })
+    return () => { alive = false }
+  }, [initialBankFromQuery])
+
+  // Clear bank selection when subject/grade change unlocked.
+  useEffect(() => { if (!lockToBank) setBankId(null) }, [subject, grade, lockToBank])
 
   function validate(): string | null {
     if (body.length < 50) return 'Body must be at least 50 characters.'
@@ -48,7 +81,7 @@ export default function NewCustomPassage() {
       return
     }
 
-    const { error: rpcErr } = await supabase.rpc('map_create_custom_passage', {
+    const { data, error: rpcErr } = await supabase.rpc('map_create_custom_passage', {
       p_source: 'parent_manual',
       p_created_via: 'ui',
       p_subject: subject,
@@ -67,7 +100,11 @@ export default function NewCustomPassage() {
       setError(rpcErr.message)
       return
     }
-    navigate('/parent/custom-bank')
+    const newPassageId = data as string | null
+    if (newPassageId && bankId) {
+      await addItemsToBank({ bankId, questionIds: [], passageIds: [newPassageId] })
+    }
+    navigate(cancelPath)
   }
 
   return (
@@ -80,21 +117,33 @@ export default function NewCustomPassage() {
             Lands as a <strong>draft</strong>. After publishing, attach reading or language questions to it.
           </p>
         </div>
-        <Link to="/parent/custom-bank" className="btn-ghost text-sm">Cancel</Link>
+        <Link to={cancelPath} className="btn-ghost text-sm">Cancel</Link>
       </header>
 
       {error && (
         <p className="mb-4 rounded-xl bg-berry/10 px-3 py-2 text-sm text-berry ring-1 ring-berry/30">{error}</p>
       )}
 
+      <div className="mb-4">
+        <BankPicker
+          subject={subject}
+          grade={grade}
+          value={bankId}
+          onChange={setBankId}
+          locked={lockToBank}
+          onUnlock={() => { setLockToBank(false); setBankId(null) }}
+        />
+      </div>
+
       <form onSubmit={handleSubmit} className="card space-y-5 p-5">
         <div className="grid grid-cols-2 gap-3">
           <label className="flex flex-col text-sm">
             <span className="mb-1 text-xs font-semibold uppercase tracking-widest text-smoke">Subject</span>
             <select
-              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none"
+              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               value={subject}
               onChange={(e) => setSubject(e.target.value as Subject)}
+              disabled={lockToBank}
             >
               <option value="reading">Reading</option>
               <option value="language">Language</option>
@@ -103,9 +152,10 @@ export default function NewCustomPassage() {
           <label className="flex flex-col text-sm">
             <span className="mb-1 text-xs font-semibold uppercase tracking-widest text-smoke">Grade</span>
             <select
-              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none"
+              className="rounded-xl border border-cloud bg-paper px-3 py-2 text-sm font-semibold text-ink focus:border-sky focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               value={grade}
               onChange={(e) => setGrade(Number(e.target.value))}
+              disabled={lockToBank}
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map((g) => (
                 <option key={g} value={g}>Grade {g}</option>
@@ -182,10 +232,15 @@ export default function NewCustomPassage() {
         </div>
 
         <div className="flex flex-wrap items-center justify-end gap-2">
-          <Link to="/parent/custom-bank" className="btn-ghost text-sm">Cancel</Link>
-          <button type="submit" className="btn-primary text-sm disabled:opacity-50" disabled={submitting}>
-            {submitting ? 'Saving…' : 'Save as draft'}
-          </button>
+          <Link to={cancelPath} className="btn-ghost text-sm">Cancel</Link>
+          <div className="flex flex-col items-end">
+            <button type="submit" className="btn-primary text-sm disabled:opacity-50" disabled={submitting || !bankId}>
+              {submitting ? 'Saving…' : 'Save as draft'}
+            </button>
+            {!bankId && (
+              <p className="text-xs text-zinc-500 mt-1">Pick a bank above before saving.</p>
+            )}
+          </div>
         </div>
       </form>
     </div>
