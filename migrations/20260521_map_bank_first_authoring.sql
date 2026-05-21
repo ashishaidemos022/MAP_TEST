@@ -116,14 +116,16 @@ CREATE OR REPLACE FUNCTION public.map_add_items_to_bank(
 LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
 AS $$
 DECLARE
-  v_family    uuid := public.map_current_family_id();
-  v_lane      text;
-  v_subject   text;
-  v_grade     int;
-  v_existing  int;
-  v_to_add_q  int := COALESCE(array_length(p_question_ids, 1), 0);
-  v_to_add_p  int := COALESCE(array_length(p_passage_ids,  1), 0);
-  v_next_sort int;
+  v_family     uuid := public.map_current_family_id();
+  v_lane       text;
+  v_subject    text;
+  v_grade      int;
+  v_existing   int;
+  v_to_add_q   int := COALESCE(array_length(p_question_ids, 1), 0);
+  v_to_add_p   int := COALESCE(array_length(p_passage_ids,  1), 0);
+  v_net_new_q  int;
+  v_net_new_p  int;
+  v_next_sort  int;
 BEGIN
   IF v_family IS NULL THEN
     RAISE EXCEPTION 'no family for current user';
@@ -172,9 +174,31 @@ BEGIN
     FROM public.map_question_bank_items
    WHERE bank_id = p_bank_id;
 
-  IF v_existing + v_to_add_q + v_to_add_p > 60 THEN
+  IF v_to_add_q > 0 THEN
+    SELECT count(*) INTO v_net_new_q
+      FROM unnest(p_question_ids) AS t(qid)
+     WHERE NOT EXISTS (
+       SELECT 1 FROM public.map_question_bank_items
+        WHERE bank_id = p_bank_id AND custom_question_id = t.qid
+     );
+  ELSE
+    v_net_new_q := 0;
+  END IF;
+
+  IF v_to_add_p > 0 THEN
+    SELECT count(*) INTO v_net_new_p
+      FROM unnest(p_passage_ids) AS t(pid)
+     WHERE NOT EXISTS (
+       SELECT 1 FROM public.map_question_bank_items
+        WHERE bank_id = p_bank_id AND custom_passage_id = t.pid
+     );
+  ELSE
+    v_net_new_p := 0;
+  END IF;
+
+  IF v_existing + v_net_new_q + v_net_new_p > 60 THEN
     RAISE EXCEPTION 'a bank can hold at most 60 items (current %, adding %)',
-      v_existing, v_to_add_q + v_to_add_p;
+      v_existing, v_net_new_q + v_net_new_p;
   END IF;
 
   SELECT COALESCE(MAX(sort_order), -1) + 1 INTO v_next_sort
@@ -195,7 +219,7 @@ BEGIN
       (bank_id, custom_passage_id, sort_order)
     SELECT p_bank_id, pid, v_next_sort + (ord - 1)
       FROM unnest(p_passage_ids) WITH ORDINALITY AS t(pid, ord)
-    ON CONFLICT (bank_id, custom_passage_id) DO NOTHING;
+    ON CONFLICT (bank_id, custom_passage_id) WHERE custom_passage_id IS NOT NULL DO NOTHING;
   END IF;
 END
 $$;
@@ -212,6 +236,9 @@ DECLARE
   v_subject text;
   v_grade   int;
 BEGIN
+  IF v_family IS NULL THEN
+    RAISE EXCEPTION 'no family for current user';
+  END IF;
   IF p_name IS NULL OR char_length(p_name) NOT BETWEEN 1 AND 120 THEN
     RAISE EXCEPTION 'name must be 1..120 chars';
   END IF;
