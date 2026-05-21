@@ -38,11 +38,28 @@ export default {
           from: { opacity: '0', transform: 'translateY(8px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
+        // Soft pulsing halo for kid-facing attention. Stays gentle —
+        // opacity floor is 0.35 so it never feels like a strobe.
+        attentionHalo: {
+          '0%, 100%': { opacity: '0.35', transform: 'scale(1)' },
+          '50%':      { opacity: '0.75', transform: 'scale(1.03)' },
+        },
+        // Periodic wiggle: stays still for ~3.6s of every 4s cycle, then
+        // does one quick wave — draws the eye back without being annoying.
+        attentionWiggle: {
+          '0%, 90%, 100%': { transform: 'rotate(0deg)' },
+          '92%':           { transform: 'rotate(-4deg)' },
+          '94%':           { transform: 'rotate(4deg)' },
+          '96%':           { transform: 'rotate(-3deg)' },
+          '98%':           { transform: 'rotate(2deg)' },
+        },
       },
       animation: {
         pop: 'pop 220ms ease-out',
         wiggle: 'wiggle 280ms ease-in-out',
         slideUp: 'slideUp 220ms ease-out',
+        attentionHalo: 'attentionHalo 2.4s ease-in-out infinite',
+        attentionWiggle: 'attentionWiggle 4s ease-in-out infinite',
       },
     },
   },

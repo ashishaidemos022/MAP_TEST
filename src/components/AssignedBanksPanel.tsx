@@ -58,31 +58,54 @@ export function AssignedBanksPanel() {
   }
 
   return (
-    <section className="mb-6">
-      <p className="mb-2 font-display text-lg uppercase tracking-widest text-smoke">
-        Assigned to you
+    <section className="mb-8">
+      <p className="mb-3 flex items-center gap-2 font-display text-xl font-bold text-ink">
+        <span aria-hidden="true" className="text-2xl">⭐</span>
+        <span>Just for you!</span>
       </p>
-      {err && <p className="mb-2 text-sm text-rust">{err}</p>}
-      <div className="space-y-2">
+      {err && <p className="mb-2 text-sm text-berry">{err}</p>}
+      <div className="space-y-3">
         {rows.map((r) => (
-          <div key={r.assignment_id}
-            className="flex items-center justify-between rounded-lg border border-cloud p-3">
-            <div className="text-sm">
-              <span className="font-semibold">{r.bank_name}</span>
-              {r.parent_note && <span className="text-smoke"> — “{r.parent_note}”</span>}
-              {r.due_by && <span className="text-smoke"> · due {new Date(r.due_by).toLocaleDateString()}</span>}
+          <div key={r.assignment_id} className="relative animate-slideUp">
+            {/* Gentle pulsing halo — sits behind the card and softly glows */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-1 rounded-2xl bg-sun blur-md animate-attentionHalo"
+            />
+            {/* The card itself stays steady so text is always crisp */}
+            <div className="relative flex items-center gap-3 rounded-2xl border-2 border-sun bg-gradient-to-br from-paper to-sun/15 p-4 shadow-card">
+              <div aria-hidden="true" className="text-3xl leading-none">📌</div>
+              <div className="min-w-0 flex-1">
+                <div className="truncate font-display text-lg font-bold text-ink">
+                  {r.bank_name}
+                </div>
+                {(r.parent_note || r.due_by) && (
+                  <div className="mt-0.5 text-xs text-smoke">
+                    {r.parent_note && <span>“{r.parent_note}”</span>}
+                    {r.parent_note && r.due_by && <span> · </span>}
+                    {r.due_by && <span>due {new Date(r.due_by).toLocaleDateString()}</span>}
+                  </div>
+                )}
+              </div>
+              {r.status === 'in_progress' ? (
+                <button
+                  type="button"
+                  className="btn-primary animate-attentionWiggle px-5 py-2 text-base font-bold"
+                  onClick={() => resume(r)}
+                >
+                  Resume →
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn-primary animate-attentionWiggle px-5 py-2 text-base font-bold disabled:opacity-50"
+                  disabled={busy === r.assignment_id}
+                  onClick={() => start(r)}
+                >
+                  {busy === r.assignment_id ? 'Starting…' : 'Start →'}
+                </button>
+              )}
             </div>
-            {r.status === 'in_progress' ? (
-              <button type="button" className="btn-primary text-sm"
-                onClick={() => resume(r)}>
-                Resume
-              </button>
-            ) : (
-              <button type="button" className="btn-primary text-sm disabled:opacity-50"
-                disabled={busy === r.assignment_id} onClick={() => start(r)}>
-                {busy === r.assignment_id ? 'Starting…' : 'Start'}
-              </button>
-            )}
           </div>
         ))}
       </div>
