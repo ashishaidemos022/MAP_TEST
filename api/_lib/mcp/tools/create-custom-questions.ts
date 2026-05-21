@@ -127,11 +127,21 @@ export function register(server: McpServer, ctx: McpContext): void {
           }],
         };
       } catch (err) {
-        const msg = err instanceof Error ? err.message : String(err);
+        // Defensive: helpers should throw Error/McpError. If a plain object
+        // ever slips through (e.g. an un-wrapped supabase-js PostgrestError),
+        // pull .message off before falling back to String() so the audit row
+        // and the JSON-RPC error body don't say "[object Object]".
+        const msg = err instanceof Error
+          ? err.message
+          : (err && typeof err === 'object' && 'message' in err
+              ? String((err as { message?: unknown }).message)
+              : String(err));
         await logToolCall({
           ctx, toolName: 'create_custom_questions', toolArgs: args, status: 'error', errorMessage: msg, mode: 'write',
         });
-        throw err;
+        // Re-throw as an Error so the SDK's downstream JSON-RPC formatter
+        // serializes .message instead of toString-ing a plain object.
+        throw err instanceof Error ? err : new Error(msg);
       }
     },
   );

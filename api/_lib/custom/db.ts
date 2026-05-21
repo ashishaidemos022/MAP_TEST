@@ -281,7 +281,7 @@ export async function resolveBankById(
     .select('id, name, lane, subject, grade, soft_deleted_at')
     .eq('id', bankId)
     .maybeSingle();
-  if (error) throw error;
+  if (error) throw new McpError('internal', `bank lookup failed: ${error.message}`, 500);
   if (!data || data.soft_deleted_at)
     throw new McpError('bank_target_mismatch', `bank ${bankId} not found in your family`);
   if (data.lane !== 'custom')
@@ -307,13 +307,20 @@ export async function resolveCreateOrFindBank(
     p_subject: subject,
     p_grade: grade,
   });
-  if (error) throw error;
+  if (error) {
+    // The Postgres function raises explicit exceptions for these validation
+    // cases — surface them as bad_input rather than internal.
+    if (/name must be 1\.\.120 chars|unknown subject|grade out of range/.test(error.message)) {
+      throw new McpError('bad_input', error.message);
+    }
+    throw new McpError('internal', `bank create-or-find failed: ${error.message}`, 500);
+  }
   const row = (data ?? [])[0];
   if (!row) throw new McpError('bank_target_mismatch', 'create-or-find returned no row');
   return { id: row.bank_id, name: row.resolved_name, wasCreated: row.was_created };
 }
 
-/** Append items to a custom bank. Maps DB cap errors to bank_capacity_exceeded. */
+/** Append items to a custom bank. Maps DB exceptions to structured codes. */
 export async function addItemsToBank(
   ctx: McpContext,
   bankId: string,
@@ -325,12 +332,17 @@ export async function addItemsToBank(
     p_question_ids: questionIds,
     p_passage_ids: passageIds,
   });
-  if (error) {
-    if (/at most 60 items/.test(error.message)) {
-      throw new McpError('bank_capacity_exceeded', error.message);
-    }
-    throw error;
+  if (!error) return;
+  if (/at most 60 items/.test(error.message)) {
+    throw new McpError('bank_capacity_exceeded', error.message);
   }
+  if (/bank not found or not yours|only custom banks accept items/.test(error.message)) {
+    throw new McpError('bank_target_mismatch', error.message);
+  }
+  if (/one or more (questions|passages) are not yours, are deleted, or do not match the bank/.test(error.message)) {
+    throw new McpError('bank_target_mismatch', error.message);
+  }
+  throw new McpError('internal', `bank add-items failed: ${error.message}`, 500);
 }
 
 /** Count items currently in a bank (used to short-circuit cap errors before insert). */
@@ -339,6 +351,6 @@ export async function getBankItemCount(ctx: McpContext, bankId: string): Promise
     .from('map_question_bank_items')
     .select('id', { count: 'exact', head: true })
     .eq('bank_id', bankId);
-  if (error) throw error;
+  if (error) throw new McpError('internal', `bank item-count failed: ${error.message}`, 500);
   return count ?? 0;
 }
