@@ -1,11 +1,14 @@
 // src/pages/parent/ReviewBanks.tsx
-// AI Studio default view. Lists custom Banks the family owns. Drilling into a
-// bank navigates to /parent/ai-studio?bank=<uuid>, which AiStudio.tsx routes
-// to <CustomBank /> (the per-bank review screen). Read-only — assignment goes
-// through the bank-detail "Assign to kid" CTA inside CustomBank.
+// AI Studio default view. Lists custom Banks the family owns. Clicking a bank's
+// name navigates to /parent/ai-studio?bank=<uuid>, which AiStudio.tsx routes to
+// <CustomBank /> (the per-bank review screen). A bank that is fully ready
+// (no drafts, >=5 published questions — the threshold map_assign_bank enforces
+// server-side for custom-lane banks) gets an "Assign →" button that opens the
+// AssignBankDialog inline; everything else gets a "Review →" link into the bank.
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
+import { AssignBankDialog } from '../../components/parent/AssignBankDialog'
 
 interface BankOverview {
   id: string
@@ -23,6 +26,7 @@ export default function ReviewBanks() {
   const [banks, setBanks] = useState<BankOverview[] | null>(null)
   const [legacyCount, setLegacyCount] = useState<number>(0)
   const [err, setErr] = useState<string | null>(null)
+  const [assignFor, setAssignFor] = useState<BankOverview | null>(null)
 
   useEffect(() => {
     let alive = true
@@ -62,24 +66,27 @@ export default function ReviewBanks() {
       ) : (
         <ul className="divide-y rounded border bg-white dark:bg-zinc-900">
           {banks.map(b => {
-            const allReady = b.draft_question_count === 0 && b.ready_question_count > 0
+            const canAssign = b.draft_question_count === 0 && b.ready_question_count >= 5
             return (
               <li key={b.id} className="p-4 flex items-center gap-4">
-                <div className="flex-1 min-w-0">
-                  <div className="font-medium truncate">{b.name}</div>
+                <Link to={`/parent/ai-studio?bank=${b.id}`} className="flex-1 min-w-0 group">
+                  <div className="font-medium truncate group-hover:underline">{b.name}</div>
                   <div className="text-xs text-zinc-500 mt-1">
                     {b.subject} · G{b.grade} ·
                     {' '}{b.question_count} {b.question_count === 1 ? 'question' : 'questions'}
                     {b.passage_count > 0 && ` · ${b.passage_count} passage${b.passage_count === 1 ? '' : 's'}`}
                     {' · '}{b.draft_question_count} draft · {b.ready_question_count} ready
                   </div>
-                </div>
-                <Link
-                  to={`/parent/ai-studio?bank=${b.id}`}
-                  className={allReady ? 'btn-primary text-sm' : 'btn-secondary text-sm'}
-                >
-                  {allReady ? 'Assign →' : 'Review →'}
                 </Link>
+                {canAssign ? (
+                  <button type="button" className="btn-primary text-sm" onClick={() => setAssignFor(b)}>
+                    Assign →
+                  </button>
+                ) : (
+                  <Link to={`/parent/ai-studio?bank=${b.id}`} className="btn-secondary text-sm">
+                    Review →
+                  </Link>
+                )}
               </li>
             )
           })}
@@ -92,6 +99,15 @@ export default function ReviewBanks() {
             ℓ Legacy items ({legacyCount} not in any bank) →
           </Link>
         </div>
+      )}
+
+      {assignFor && (
+        <AssignBankDialog
+          bankId={assignFor.id}
+          bankName={assignFor.name}
+          onClose={() => setAssignFor(null)}
+          onAssigned={() => setAssignFor(null)}
+        />
       )}
     </div>
   )
