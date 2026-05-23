@@ -216,13 +216,13 @@ function AddKidModal({
           </label>
           <div>
             <span className="block text-sm font-semibold text-ink/80">Grade</span>
-            <div className="mt-2 flex gap-2">
+            <div className="mt-2 grid grid-cols-5 gap-2">
               {GRADES.map((g) => (
                 <button
                   key={g}
                   type="button"
                   onClick={() => setGrade(g)}
-                  className={`flex-1 rounded-2xl border px-4 py-3 font-display text-xl ${
+                  className={`rounded-2xl border px-2 py-3 text-center leading-tight font-display text-lg ${
                     grade === g
                       ? 'border-sky bg-sky/10 text-ink'
                       : 'border-cloud bg-paper text-ink/70'
