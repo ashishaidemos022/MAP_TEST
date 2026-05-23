@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grade 5 Language Preview - 10 Questions</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #122033;
+      --muted: #5c6b7a;
+      --line: #d7dee8;
+      --soft: #f6f8fb;
+      --accent: #1e40af;
+      --accent-soft: #dbeafe;
+      --correct: #0f766e;
+      --wrong: #b42318;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #eef3f8;
+      color: var(--ink);
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 18px 48px;
+    }
+
+    header {
+      display: grid;
+      gap: 10px;
+      padding: 22px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 780px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border: 1px solid #bfdbfe;
+      background: var(--accent-soft);
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .summary div {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .summary span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 5px;
+    }
+
+    .summary strong {
+      font-size: 19px;
+    }
+
+    .question {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 14px 0;
+      box-shadow: 0 8px 24px rgba(16, 24, 40, .05);
+    }
+
+    .q-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .q-num {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      border-radius: 999px;
+      color: #334155;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .stem {
+      font-size: 18px;
+      line-height: 1.45;
+      margin: 0 0 14px;
+      font-weight: 700;
+    }
+
+    .choices {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .choice {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfdff;
+    }
+
+    .choice.correct {
+      border-color: #5eead4;
+      background: #ecfdf5;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .choice.correct .label {
+      background: var(--correct);
+      color: white;
+    }
+
+    .choice-body {
+      min-width: 0;
+      line-height: 1.45;
+    }
+
+    .misconception {
+      margin-top: 5px;
+      color: var(--wrong);
+      font-size: 13px;
+    }
+
+    .answer {
+      margin: 13px 0 0;
+      border-left: 4px solid var(--correct);
+      background: #f0fdfa;
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      line-height: 1.48;
+    }
+
+    .answer strong {
+      color: var(--correct);
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 18px 12px 36px;
+      }
+
+      .summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .q-head {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="status">Review preview - not seeded</span>
+      <h1>Grade 5 Language Questions</h1>
+      <p class="subtitle">
+        Ten original Grade 5 language usage questions drafted from the 5th grade seeding guide.
+        Review the stems, answer choices, correct answers, explanations, and misconception tags before database seeding.
+      </p>
+    </header>
+
+    <section class="summary" aria-label="Preview summary">
+      <div><span>Questions</span><strong>10</strong></div>
+      <div><span>Subject</span><strong>Language</strong></div>
+      <div><span>Grade</span><strong>5</strong></div>
+      <div><span>Status</span><strong>Draft</strong></div>
+    </section>
+
+    <section id="questions" aria-label="Question preview"></section>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        teks: "5.11D.x",
+        rit: "201_210",
+        difficulty: "medium",
+        format: "mcq",
+        stem: "Which sentence uses a comma correctly after an introductory phrase?",
+        explanation: "After the final bell rang is an introductory phrase. A comma belongs after the phrase, before the main sentence begins.",
+        choices: [
+          { label: "A", body: "After the final bell rang students hurried to the buses.", correct: false, tag: "comma_after_introductory_phrase_missing", misconception: "Missed the comma after the introductory phrase." },
+          { label: "B", body: "After the final bell rang, students hurried to the buses.", correct: true },
+          { label: "C", body: "After, the final bell rang students hurried to the buses.", correct: false, tag: "punctuation_rules", misconception: "Placed the comma inside the introductory phrase instead of after it." },
+          { label: "D", body: "After the final bell rang students, hurried to the buses.", correct: false, tag: "comma_unnecessary_between_subject_and_verb", misconception: "Inserted a comma between the subject and verb." }
+        ]
+      },
+      {
+        teks: "5.11D.x",
+        rit: "211_220",
+        difficulty: "hard",
+        format: "mcq",
+        stem: "Which sentence correctly punctuates dialogue?",
+        explanation: "In dialogue, the spoken words are inside quotation marks, and the comma before the dialogue tag goes inside the closing quotation mark.",
+        choices: [
+          { label: "A", body: "\"Bring your notebook\", said Ms. Rivera.", correct: false, tag: "punctuation_rules", misconception: "Placed the comma outside the closing quotation mark." },
+          { label: "B", body: "\"Bring your notebook,\" said Ms. Rivera.", correct: true },
+          { label: "C", body: "\"Bring your notebook\" said Ms. Rivera.", correct: false, tag: "punctuation_rules", misconception: "Omitted the comma that separates the spoken words from the dialogue tag." },
+          { label: "D", body: "Bring your notebook,\" said Ms. Rivera.", correct: false, tag: "punctuation_rules", misconception: "Left off the opening quotation mark." }
+        ]
+      },
+      {
+        teks: "5.11C.ii",
+        rit: "201_210",
+        difficulty: "medium",
+        format: "mcq",
+        stem: "Which revision fixes the run-on sentence? The trail was muddy we turned back.",
+        explanation: "The original has two complete thoughts. A comma plus the conjunction so correctly joins the reason and result.",
+        choices: [
+          { label: "A", body: "The trail was muddy, we turned back.", correct: false, tag: "sentence_run_on_comma_splice", misconception: "Used a comma splice instead of proper punctuation or a conjunction." },
+          { label: "B", body: "The trail was muddy, so we turned back.", correct: true },
+          { label: "C", body: "The trail was muddy we turned back.", correct: false, tag: "sentence_run_on_no_punctuation", misconception: "Left two complete thoughts joined with no punctuation." },
+          { label: "D", body: "Because the trail was muddy.", correct: false, tag: "sentence_completeness", misconception: "Changed the sentence into a fragment." }
+        ]
+      },
+      {
+        teks: "5.11D.vii",
+        rit: "211_220",
+        difficulty: "hard",
+        format: "mcq",
+        stem: "Which revision fixes the pronoun error? Me and Jamal volunteered at the food drive.",
+        explanation: "The pronoun is part of the subject, so use I. It is also more formal to name the other person first: Jamal and I.",
+        choices: [
+          { label: "A", body: "Jamal and I volunteered at the food drive.", correct: true },
+          { label: "B", body: "Jamal and me volunteered at the food drive.", correct: false, tag: "pronoun_mismatch", misconception: "Used an object pronoun as part of the subject." },
+          { label: "C", body: "Me and him volunteered at the food drive.", correct: false, tag: "pronoun_mismatch", misconception: "Used object pronouns where subject pronouns are needed." },
+          { label: "D", body: "Jamal and myself volunteered at the food drive.", correct: false, tag: "pronoun_mismatch", misconception: "Used a reflexive pronoun without a correct antecedent use." }
+        ]
+      },
+      {
+        teks: "5.11D.ii",
+        rit: "211_220",
+        difficulty: "hard",
+        format: "mcq",
+        stem: "Which sentence keeps the verb tense consistent?",
+        explanation: "Packed and walked are both past tense, so the actions stay in the same time frame.",
+        choices: [
+          { label: "A", body: "Sofia packed her telescope and walks to the backyard.", correct: false, tag: "verb_tense_confusion", misconception: "Mixed past tense with present tense." },
+          { label: "B", body: "Sofia packs her telescope and walked to the backyard.", correct: false, tag: "verb_tense_confusion", misconception: "Mixed present tense with past tense." },
+          { label: "C", body: "Sofia packed her telescope and walked to the backyard.", correct: true },
+          { label: "D", body: "Sofia will pack her telescope and walked to the backyard.", correct: false, tag: "verb_tense_confusion", misconception: "Mixed future tense with past tense." }
+        ]
+      },
+      {
+        teks: "5.11D.ix",
+        rit: "201_210",
+        difficulty: "medium",
+        format: "mcq",
+        stem: "Which sentence uses capitalization correctly?",
+        explanation: "Monday and Texas State Capitol are proper nouns and need capitals. The common noun class stays lowercase.",
+        choices: [
+          { label: "A", body: "On monday, our class visited the Texas State Capitol.", correct: false, tag: "capitalization_proper_noun", misconception: "Did not capitalize the proper noun Monday." },
+          { label: "B", body: "On Monday, our class visited the Texas State Capitol.", correct: true },
+          { label: "C", body: "On Monday, our Class visited the Texas State Capitol.", correct: false, tag: "capitalization_overcapitalization_common_noun", misconception: "Capitalized the common noun class." },
+          { label: "D", body: "On Monday, our class visited the texas state capitol.", correct: false, tag: "capitalization_proper_noun", misconception: "Did not capitalize the proper noun Texas State Capitol." }
+        ]
+      },
+      {
+        teks: "5.11D.xi",
+        rit: "201_210",
+        difficulty: "medium",
+        format: "mcq",
+        stem: "Which word correctly completes the sentence? Please put ___ notebook on the table.",
+        explanation: "Your shows ownership and comes before a noun. You're means you are.",
+        choices: [
+          { label: "A", body: "your", correct: true },
+          { label: "B", body: "you're", correct: false, tag: "homophone_your_youre", misconception: "Chose the contraction meaning you are instead of the possessive word." },
+          { label: "C", body: "youre", correct: false, tag: "homophone_your_youre", misconception: "Used a misspelled form instead of the possessive word your." },
+          { label: "D", body: "yours", correct: false, tag: "pronoun_mismatch", misconception: "Used a possessive pronoun that does not fit before a noun." }
+        ]
+      },
+      {
+        teks: "5.11C.i",
+        rit: "211_220",
+        difficulty: "hard",
+        format: "sentence_combine",
+        stem: "Which sentence best combines these ideas? Imani studied the map. She found a shorter route.",
+        explanation: "A comma and the conjunction and correctly combine the two complete thoughts.",
+        choices: [
+          { label: "A", body: "Imani studied the map, and she found a shorter route.", correct: true },
+          { label: "B", body: "Imani studied the map she found a shorter route.", correct: false, tag: "sentence_run_on_no_punctuation", misconception: "Joined two complete thoughts without punctuation." },
+          { label: "C", body: "Imani studied the map, she found a shorter route.", correct: false, tag: "sentence_run_on_comma_splice", misconception: "Joined two complete thoughts with only a comma." },
+          { label: "D", body: "Studying the map, and found a shorter route.", correct: false, tag: "sentence_completeness", misconception: "Created a fragment without a clear subject for the second action." }
+        ]
+      },
+      {
+        teks: "5.11D.viii",
+        rit: "221_230",
+        difficulty: "hard",
+        format: "mcq",
+        stem: "Which sentence uses a subordinating conjunction correctly?",
+        explanation: "Although begins a dependent clause and shows contrast. It does not need but in the same sentence.",
+        choices: [
+          { label: "A", body: "Although the wind was strong, Theo kept flying the kite.", correct: true },
+          { label: "B", body: "And the wind was strong, Theo kept flying the kite.", correct: false, tag: "conjunction_use", misconception: "Used a coordinating conjunction where a subordinating conjunction is needed." },
+          { label: "C", body: "The wind was strong, although and Theo kept flying the kite.", correct: false, tag: "conjunction_use", misconception: "Combined conjunctions in a way that does not make a grammatical sentence." },
+          { label: "D", body: "Although the wind was strong, but Theo kept flying the kite.", correct: false, tag: "conjunction_use", misconception: "Used although and but together for the same contrast." }
+        ]
+      },
+      {
+        teks: "5.11D.x",
+        rit: "221_230",
+        difficulty: "hard",
+        format: "mcq",
+        stem: "What change should be made to this sentence? The hikers rested, near the creek after lunch.",
+        explanation: "The comma after rested incorrectly separates the verb from the phrase that follows it. The sentence should read: The hikers rested near the creek after lunch.",
+        choices: [
+          { label: "A", body: "Remove the comma after rested.", correct: true },
+          { label: "B", body: "Add a comma after creek.", correct: false, tag: "punctuation_rules", misconception: "Added a comma where the sentence does not need one." },
+          { label: "C", body: "Change rested to resting.", correct: false, tag: "sentence_completeness", misconception: "Changed the complete verb into an incomplete verb form." },
+          { label: "D", body: "Capitalize hikers.", correct: false, tag: "capitalization_overcapitalization_common_noun", misconception: "Capitalized a common noun that should stay lowercase." }
+        ]
+      }
+    ];
+
+    const questionsEl = document.querySelector("#questions");
+
+    function renderChoice(choice) {
+      const item = document.createElement("li");
+      item.className = `choice${choice.correct ? " correct" : ""}`;
+
+      const label = document.createElement("span");
+      label.className = "label";
+      label.textContent = choice.label;
+
+      const body = document.createElement("div");
+      body.className = "choice-body";
+      body.append(document.createTextNode(choice.body));
+
+      if (!choice.correct) {
+        const note = document.createElement("div");
+        note.className = "misconception";
+        note.textContent = `${choice.tag}: ${choice.misconception}`;
+        body.append(note);
+      }
+
+      item.append(label, body);
+      return item;
+    }
+
+    questions.forEach((question, index) => {
+      const article = document.createElement("article");
+      article.className = "question";
+
+      const head = document.createElement("div");
+      head.className = "q-head";
+      head.innerHTML = `
+        <div class="q-num">Question ${index + 1}</div>
+        <div class="chips">
+          <span class="chip">TEKS ${question.teks}</span>
+          <span class="chip">${question.rit}</span>
+          <span class="chip">${question.difficulty}</span>
+          <span class="chip">${question.format}</span>
+        </div>
+      `;
+
+      const stem = document.createElement("p");
+      stem.className = "stem";
+      stem.textContent = question.stem;
+
+      const choices = document.createElement("ol");
+      choices.className = "choices";
+      question.choices.forEach((choice) => choices.append(renderChoice(choice)));
+
+      const correct = question.choices.find((choice) => choice.correct);
+      const answer = document.createElement("p");
+      answer.className = "answer";
+      answer.innerHTML = `<strong>Correct answer: ${correct.label}.</strong> ${question.explanation}`;
+
+      article.append(head, stem, choices, answer);
+      questionsEl.append(article);
+    });
+  </script>
+</body>
+</html>

@@ -5,7 +5,7 @@ import { useAuth } from '../lib/auth'
 import { recommendedTestLengthForGrade, supabase } from '../lib/supabase'
 
 const EMOJIS = ['🦊', '🐶', '🐱', '🐼', '🐯', '🦁', '🐸', '🐙', '🦄', '🐢', '🐧', '🦉']
-const GRADES = [1, 2, 3, 4] as const
+const GRADES = [1, 2, 3, 4, 5] as const
 
 type Step = 'family' | 'pin' | 'child'
 

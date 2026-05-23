@@ -28,7 +28,7 @@ interface StandardRow {
 
 type Step = 'subject' | 'topics' | 'config'
 
-const SUPPORTED_GRADES = [1, 2, 3, 4] as const
+const SUPPORTED_GRADES = [1, 2, 3, 4, 5] as const
 
 function teksPrefix(code: string): string {
   return code.replace(/[A-Za-z.]+$/, '').replace(/\.$/, '') || code

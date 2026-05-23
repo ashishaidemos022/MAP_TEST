@@ -9,7 +9,7 @@ import {
 import { errorMessage } from '../../lib/errorMessage'
 import type { Subject } from '../../lib/types'
 
-const SUPPORTED_GRADES = [1, 2, 3, 4] as const
+const SUPPORTED_GRADES = [1, 2, 3, 4, 5] as const
 
 // CLAUDE.md §9.8: don't expose a grade to a kid until the bank is past these
 // per-subject thresholds. We surface readiness per grade so the parent can see
