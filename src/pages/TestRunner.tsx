@@ -2,6 +2,7 @@ import confetti from 'canvas-confetti'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import ProgressDots, { type DotState } from '../components/ProgressDots'
+import ReportQuestionButton from '../components/ReportQuestionButton'
 import SpeakerButton from '../components/SpeakerButton'
 import SvgFigure from '../components/SvgFigure'
 import SvgImage from '../components/SvgImage'
@@ -627,6 +628,17 @@ export default function TestRunner() {
             />
           )
         })()}
+
+        {!current.custom && (
+          <div className="mt-4 flex justify-end">
+            <ReportQuestionButton
+              questionId={current.id}
+              sessionId={session.id}
+              studentId={session.student_id}
+              selectedChoiceId={reviewingAttempt?.selected_choice_id ?? selected}
+            />
+          </div>
+        )}
       </section>
 
       <div className="sticky bottom-4 mt-8 flex flex-wrap items-center justify-between gap-3">
