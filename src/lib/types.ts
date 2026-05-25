@@ -139,3 +139,37 @@ export interface QuestionWithChoices extends Question {
   passage: Passage | null
   standard: Pick<Standard, 'teks_code' | 'teks_title'> | null
 }
+
+// --- Question reporting ("Report a problem") ---
+export type ReportReason =
+  | 'confusing_wording'
+  | 'wrong_answer'
+  | 'typo_or_error'
+  | 'image_problem'
+  | 'off_topic_or_hard'
+  | 'other'
+
+export type ReportStatus = 'new' | 'triaged' | 'resolved' | 'dismissed'
+
+export interface QuestionReport {
+  id: string
+  question_id: string
+  family_id: string
+  student_id: string | null
+  session_id: string | null
+  selected_choice_id: string | null
+  reason: ReportReason
+  reason_text: string | null
+  status: ReportStatus
+  created_at: string
+}
+
+// Order here drives the radio list in ReportQuestionButton.
+export const REPORT_REASON_OPTIONS: { value: ReportReason; label: string }[] = [
+  { value: 'confusing_wording', label: 'The question is confusing' },
+  { value: 'wrong_answer', label: 'The right answer looks wrong' },
+  { value: 'typo_or_error', label: "There's a typo or mistake" },
+  { value: 'image_problem', label: 'The picture is broken or wrong' },
+  { value: 'off_topic_or_hard', label: "This doesn't fit / too hard" },
+  { value: 'other', label: 'Something else' },
+]
