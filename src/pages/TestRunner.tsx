@@ -535,6 +535,7 @@ export default function TestRunner() {
               </span>
             ) : (
               <ReportQuestionButton
+                key={current.id}
                 className="ml-auto shrink-0"
                 questionId={current.id}
                 sessionId={session.id}
