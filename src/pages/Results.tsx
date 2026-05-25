@@ -306,7 +306,19 @@ export default function Results() {
               const picked = a.question.choices.find((c) => c.id === a.selected_choice_id)
               return (
                 <div key={a.id} className="card p-5">
-                  <p className="font-display text-lg">{a.question.stem}</p>
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-display text-lg">{a.question.stem}</p>
+                    {!(a as unknown as { custom_question_version_id?: string | null })
+                      .custom_question_version_id && (
+                      <ReportQuestionButton
+                        className="shrink-0"
+                        questionId={a.question.id}
+                        sessionId={a.session_id}
+                        studentId={a.student_id}
+                        selectedChoiceId={a.selected_choice_id}
+                      />
+                    )}
+                  </div>
                   {a.question.stem_image_svg && (
                     <SvgFigure svg={a.question.stem_image_svg} className="mt-3" />
                   )}
@@ -330,17 +342,6 @@ export default function Results() {
                       <p className="rounded-2xl bg-cream p-3 text-ink/85">{a.question.explanation}</p>
                     )}
                   </div>
-                  {!(a as unknown as { custom_question_version_id?: string | null })
-                    .custom_question_version_id && (
-                    <div className="mt-3 flex justify-end">
-                      <ReportQuestionButton
-                        questionId={a.question.id}
-                        sessionId={a.session_id}
-                        studentId={a.student_id}
-                        selectedChoiceId={a.selected_choice_id}
-                      />
-                    </div>
-                  )}
                 </div>
               )
             })}

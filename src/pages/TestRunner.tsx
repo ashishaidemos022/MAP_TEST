@@ -526,13 +526,21 @@ export default function TestRunner() {
           <div className="flex items-start gap-3">
             <SpeakerButton text={current.stem} label="Read the question aloud" />
             <h2 className="font-display text-2xl leading-snug md:text-3xl">{current.stem}</h2>
-            {current.custom && (
+            {current.custom ? (
               <span
                 className="ml-auto rounded-full bg-sun/25 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-ink/70"
                 title="A grown-up wrote this question for you."
               >
                 By you
               </span>
+            ) : (
+              <ReportQuestionButton
+                className="ml-auto shrink-0"
+                questionId={current.id}
+                sessionId={session.id}
+                studentId={session.student_id}
+                selectedChoiceId={reviewingAttempt?.selected_choice_id ?? selected}
+              />
             )}
           </div>
           {current.custom?.stem_svg ? (
@@ -628,17 +636,6 @@ export default function TestRunner() {
             />
           )
         })()}
-
-        {!current.custom && (
-          <div className="mt-4 flex justify-end">
-            <ReportQuestionButton
-              questionId={current.id}
-              sessionId={session.id}
-              studentId={session.student_id}
-              selectedChoiceId={reviewingAttempt?.selected_choice_id ?? selected}
-            />
-          </div>
-        )}
       </section>
 
       <div className="sticky bottom-4 mt-8 flex flex-wrap items-center justify-between gap-3">

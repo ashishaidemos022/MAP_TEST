@@ -59,7 +59,11 @@ export default function ReportQuestionButton({
 
   if (reported) {
     return (
-      <span className={`text-xs font-semibold text-leaf ${className ?? ''}`}>Reported ✓</span>
+      <span
+        className={`inline-flex items-center gap-1 rounded-full bg-leaf/15 px-3 py-1.5 text-xs font-bold text-leaf ${className ?? ''}`}
+      >
+        ✓ Reported
+      </span>
     )
   }
 
@@ -68,7 +72,7 @@ export default function ReportQuestionButton({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`text-xs font-semibold text-ink/45 underline-offset-2 hover:text-ink/70 hover:underline ${className ?? ''}`}
+        className={`inline-flex items-center gap-1.5 rounded-full border border-sun/60 bg-sun/15 px-3 py-1.5 text-xs font-bold text-ink/80 transition-colors hover:bg-sun/30 ${className ?? ''}`}
         title="Tell us this question has a problem"
       >
         ⚐ Report a problem
