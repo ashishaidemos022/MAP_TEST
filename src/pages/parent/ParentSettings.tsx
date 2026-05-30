@@ -108,6 +108,7 @@ export default function ParentSettings({
   const [open, setOpen] = useState(false)
   const [confirmingDelete, setConfirmingDelete] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
 
   const reload = async () => {
     if (!resolvedStudentId) return
@@ -283,16 +284,18 @@ export default function ParentSettings({
   // and bounce to the profile picker (which shows the empty state for the
   // last-kid case).
   const deleteStudent = async () => {
-    if (!resolvedStudentId) return
+    if (!resolvedStudentId || deleting) return
     setDeleting(true)
-    setError(null)
+    setDeleteError(null)
     const { error: delErr } = await supabase.rpc('map_delete_student', {
       p_student_id: resolvedStudentId,
     })
     if (delErr) {
+      // Keep the dialog open and show the error inside it — the Danger zone
+      // lives outside the collapsible grade panel, so the shared `error`
+      // banner up there may not even be visible from here.
       setDeleting(false)
-      setConfirmingDelete(false)
-      setError(errorMessage(delErr, 'Could not delete this student.'))
+      setDeleteError(errorMessage(delErr, 'Could not delete this student.'))
       return
     }
     if (activeStudent?.id === resolvedStudentId) {
@@ -537,8 +540,12 @@ export default function ParentSettings({
           </div>
           <button
             type="button"
-            onClick={() => setConfirmingDelete(true)}
-            className="rounded-full bg-berry px-4 py-2 text-sm font-semibold text-white shadow-card transition hover:bg-berry/90"
+            onClick={() => {
+              setDeleteError(null)
+              setConfirmingDelete(true)
+            }}
+            disabled={deleting}
+            className="rounded-full bg-berry px-4 py-2 text-sm font-semibold text-white shadow-card transition hover:bg-berry/90 disabled:opacity-50"
           >
             Delete {resolvedDisplayName}
           </button>
@@ -549,7 +556,11 @@ export default function ParentSettings({
         <DeleteStudentDialog
           name={resolvedDisplayName}
           deleting={deleting}
-          onCancel={() => setConfirmingDelete(false)}
+          error={deleteError}
+          onCancel={() => {
+            setConfirmingDelete(false)
+            setDeleteError(null)
+          }}
           onConfirm={() => void deleteStudent()}
         />
       )}
@@ -560,11 +571,13 @@ export default function ParentSettings({
 function DeleteStudentDialog({
   name,
   deleting,
+  error,
   onCancel,
   onConfirm,
 }: {
   name: string
   deleting: boolean
+  error: string | null
   onCancel: () => void
   onConfirm: () => void
 }) {
@@ -580,6 +593,11 @@ function DeleteStudentDialog({
           This permanently erases {name} and all of their tests, answers, and
           progress. This can&apos;t be undone.
         </p>
+        {error && (
+          <p className="mt-3 rounded-xl bg-berry/10 px-3 py-2 text-sm text-berry ring-1 ring-berry/30">
+            {error}
+          </p>
+        )}
         <div className="mt-4 flex justify-end gap-2">
           <button
             type="button"
