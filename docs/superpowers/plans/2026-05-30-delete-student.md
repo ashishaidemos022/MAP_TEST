@@ -46,10 +46,10 @@ Create `migrations/20260530_map_delete_student.sql` with exactly this content:
 -- transaction. Models 20260520_map_delete_bank.sql.
 --
 -- Blast radius (confirmed against migrations):
---   map_test_sessions       student_id CASCADE  -> deleted (cascades attempts, pick_diagnostics)
---   map_misconception_signals student_id CASCADE -> deleted
---   map_bank_assignments    student_id CASCADE  -> deleted (explicitly, first)
---   map_question_reports    student_id SET NULL -> survives, anonymized
+--   map_test_sessions         student_id CASCADE  -> deleted (cascades attempts, pick_diagnostics)
+--   map_misconception_signals student_id CASCADE  -> deleted
+--   map_bank_assignments      student_id CASCADE  -> deleted (explicitly, first)
+--   map_question_reports      student_id SET NULL -> survives, anonymized
 -- =========================================================================
 
 BEGIN;
@@ -119,10 +119,18 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 **Files:**
 - Create: `scripts/test-delete-student.mjs`
 
-This test seeds two throwaway families (A, B), gives A's kid a bank assignment
-**started into an in_progress session** (the trap case) plus a question report,
-deletes the kid via the RPC, and asserts the full cascade + report survival +
-isolation. It cleans up by deleting the families/users it created.
+This test seeds two throwaway families (A, B). For A's kid it builds a real bank
+assignment, admin-inserts a session and one attempt (service role bypasses RLS),
+links the assignment via `map_start_bank_assignment` so it becomes
+**in_progress** (the cascade trap), and files a question report through the
+`map_report_question` RPC (the reports table is SELECT-only under RLS — all
+writes go through that RPC). It then deletes the kid via `map_delete_student` and
+asserts the full cascade, anonymized report survival, and cross-family
+isolation. Cleanup deletes the families/users it created.
+
+API shapes used here are taken verbatim from `scripts/test-banks-phase1-data.mjs`
+(assign/start), `src/pages/TestRunner.tsx` (`map_record_attempt` args), and
+`migrations/20260525_map_question_reports.sql` (`map_report_question` args).
 
 - [ ] **Step 1: Write the test script**
 
@@ -177,53 +185,64 @@ try {
   const A = await makeFamily('A')
   const B = await makeFamily('B')
 
-  // Standards to build a bank from (math grade 5).
-  const { data: stds } = await admin.from('map_standards')
-    .select('teks_code').eq('subject', 'math').eq('grade', 5).limit(3)
-  assert(stds && stds.length > 0, 'have math grade-5 standards to build a bank')
-  const codes = stds.map((s) => s.teks_code)
+  // A vetted math/G5 standard to build a bank from.
+  const { data: std } = await admin.from('map_standards')
+    .select('teks_code').eq('subject', 'math').eq('grade', 5).limit(1).single()
+  assert(std?.teks_code, 'a vetted math/G5 standard exists')
 
-  // A creates + assigns + STARTS a bank → in_progress assignment w/ linked session (the trap).
+  // A real active question + one of its choices, to make the attempt meaningful.
+  const { data: q } = await admin.from('map_questions')
+    .select('id').eq('is_active', true).limit(1).single()
+  assert(q?.id, 'an active question exists')
+  const { data: ch } = await admin.from('map_question_choices')
+    .select('id').eq('question_id', q.id).limit(1).single()
+  assert(ch?.id, 'the question has a choice')
+
+  // A creates + assigns a bank (assign returns an array of assignment ids).
   const { data: bankId, error: cErr } = await A.client.rpc('map_create_bank', {
     p_name: 'DelStu Set', p_subject: 'math', p_grade: 5, p_lane: 'vetted',
-    p_standard_codes: codes, p_planned_length: 5, p_difficulty: 'any',
+    p_standard_codes: [std.teks_code], p_planned_length: 5, p_difficulty: 'any',
   })
   assert(!cErr && bankId, 'map_create_bank returns a bank id')
-  const { error: aErr } = await A.client.rpc('map_assign_bank', {
+  const { data: aids, error: aErr } = await A.client.rpc('map_assign_bank', {
     p_bank_id: bankId, p_student_ids: [A.studentId], p_due_by: null, p_parent_note: null,
   })
-  assert(!aErr, 'map_assign_bank succeeds')
-  const { data: started, error: stErr } = await A.client.rpc('map_start_bank_assignment', {
-    p_assignment_id: null, p_bank_id: bankId, p_student_id: A.studentId,
+  assert(!aErr && Array.isArray(aids) && aids.length === 1, 'map_assign_bank creates one assignment')
+  const assignmentId = aids[0]
+
+  // Admin-insert a session for the kid (same shape as test-banks-phase1-data.mjs).
+  const { data: sess, error: seErr } = await admin.from('map_test_sessions').insert({
+    student_id: A.studentId, subject: 'math', grade: 5, status: 'in_progress',
+    question_ids: [q.id], current_index: 0, correct_count: 0, kind: 'custom',
+    is_adaptive: false, planned_length: 5,
+    custom_config: { standard_ids: [], requested_count: 5, actual_count: 5, shortfall_reason: null },
+  }).select('id').single()
+  assert(!seErr && sess?.id, 'composed a session row for the kid')
+  const sessionId = sess.id
+
+  // Admin-insert one attempt in that session (proves the session-cascade path).
+  const { error: atErr } = await admin.from('map_attempts').insert({
+    session_id: sessionId, student_id: A.studentId, question_id: q.id,
+    selected_choice_id: ch.id, is_correct: false, time_spent_ms: 1000,
   })
-  assert(!stErr && started?.session_id, 'map_start_bank_assignment composes an in_progress session')
-  const sessionId = started.session_id
+  assert(!atErr, 'inserted one attempt in the session')
 
-  // A files a question report tied to the kid + session (must survive, anonymized).
-  const { data: firstQ } = await admin.from('map_attempts')
-    .select('question_id').eq('session_id', sessionId).limit(1).maybeSingle()
-  const reportQid = firstQ?.question_id ?? null
-  // Fall back to any active question if the freshly-started session has no attempt yet.
-  let qid = reportQid
-  if (!qid) {
-    const { data: anyQ } = await admin.from('map_questions')
-      .select('id').eq('is_active', true).limit(1).single()
-    qid = anyQ.id
-  }
-  const { data: report, error: rErr } = await A.client.from('map_question_reports')
-    .insert({ question_id: qid, family_id: A.familyId, student_id: A.studentId,
-              session_id: sessionId, reason: 'wrong_answer' })
-    .select('id').single()
-  assert(!rErr && report?.id, 'A files a question report tied to the kid')
-  const reportId = report.id
+  // Link the assignment to the session -> in_progress (this is the trap case).
+  const { error: startErr } = await A.client.rpc('map_start_bank_assignment', {
+    p_assignment_id: assignmentId, p_session_id: sessionId,
+  })
+  assert(!startErr, 'map_start_bank_assignment links session (assigned -> in_progress)')
+  const { data: aRow } = await admin.from('map_bank_assignments')
+    .select('status, session_id').eq('id', assignmentId).single()
+  assert(aRow.status === 'in_progress' && aRow.session_id === sessionId, 'assignment is in_progress + linked')
 
-  // Sanity: per-student rows exist before delete.
-  const beforeSessions = await admin.from('map_test_sessions')
-    .select('id', { count: 'exact', head: true }).eq('student_id', A.studentId)
-  assert((beforeSessions.count ?? 0) > 0, 'kid has >=1 session before delete')
-  const beforeAssign = await admin.from('map_bank_assignments')
-    .select('id', { count: 'exact', head: true }).eq('student_id', A.studentId)
-  assert((beforeAssign.count ?? 0) > 0, 'kid has >=1 bank assignment before delete')
+  // A files a question report tied to the kid + session, via the RPC (reports
+  // are SELECT-only under RLS; writes only through map_report_question).
+  const { data: reportId, error: rErr } = await A.client.rpc('map_report_question', {
+    p_question_id: q.id, p_reason: 'wrong_answer',
+    p_session_id: sessionId, p_student_id: A.studentId,
+  })
+  assert(!rErr && reportId, 'A files a question report tied to the kid')
 
   // 1. Cross-family: B cannot delete A's kid.
   const { error: dX } = await B.client.rpc('map_delete_student', { p_student_id: A.studentId })
@@ -232,7 +251,7 @@ try {
     .select('id').eq('id', A.studentId).maybeSingle()
   assert(!!stillThere, "A's kid untouched by B's delete attempt")
 
-  // 2. A deletes its own kid → succeeds despite the in_progress assignment (trap case).
+  // 2. A deletes its own kid -> succeeds despite the in_progress assignment (trap case).
   const { error: d1 } = await A.client.rpc('map_delete_student', { p_student_id: A.studentId })
   assert(!d1, 'map_delete_student succeeds with an in_progress bank assignment (trap handled)')
 
@@ -262,7 +281,7 @@ try {
   assert(!!survived, 'question report survives the kid delete')
   assert(survived.student_id === null, 'surviving report is anonymized (student_id NULL)')
 
-  // 5. Deleting an already-deleted kid → raises.
+  // 5. Deleting an already-deleted kid -> raises.
   const { error: d2 } = await A.client.rpc('map_delete_student', { p_student_id: A.studentId })
   assert(!!d2, 'deleting an already-deleted kid raises')
 
@@ -277,7 +296,9 @@ try {
 Run: `node --env-file=.env.local scripts/test-delete-student.mjs`
 Expected: a list of `PASS:` lines ending with `Delete-student data checks complete.` and exit code 0.
 
-If `map_start_bank_assignment`'s argument shape differs in this codebase, fix the call to match `scripts/test-banks-phase1-data.mjs` (the canonical example) — do not change the assertions.
+If `map_start_bank_assignment`'s or `map_assign_bank`'s argument shape differs,
+reconcile against `scripts/test-banks-phase1-data.mjs` (the canonical example) —
+do not change the assertions.
 
 - [ ] **Step 3: Commit**
 
@@ -296,12 +317,12 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 - Modify: `src/pages/parent/ParentSettings.tsx`
 
 `ParentSettings` renders under `KidDetail`'s `settings` tab and receives
-`studentId` + `displayName` props. It already calls `useActiveStudent()` (for
-`activeStudent`). We add: `setActiveStudent` + `refreshStudents` from that hook,
-`useNavigate`, delete state, a handler, a Danger-zone section, and a confirm
-dialog component.
+`studentId` + `displayName` props (resolved into `resolvedStudentId` /
+`resolvedDisplayName`). It already calls `useActiveStudent()` for `activeStudent`.
+We add: `setActiveStudent` + `refreshStudents` from that hook, `useNavigate`,
+delete state, a handler, a Danger-zone section, and a confirm dialog component.
 
-- [ ] **Step 1: Add imports — `useNavigate`**
+- [ ] **Step 1: Add the `useNavigate` import**
 
 In `src/pages/parent/ParentSettings.tsx`, the first import line is currently:
 
@@ -316,7 +337,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 ```
 
-- [ ] **Step 2: Pull the extra values from `useActiveStudent` and add navigate + delete state**
+- [ ] **Step 2: Pull extra values from the hook and add navigate + delete state**
 
 Find this line (~91):
 
@@ -349,8 +370,7 @@ Replace it with (adds two delete-related state vars):
 
 - [ ] **Step 3: Add the delete handler**
 
-Insert this handler immediately before the `summary` `useMemo` (the line
-`const summary = useMemo(() => {`):
+Insert this handler immediately before the line `const summary = useMemo(() => {`:
 
 ```ts
   // Hard delete: the RPC erases the kid and all their data (sessions, attempts,
@@ -381,8 +401,7 @@ Insert this handler immediately before the `summary` `useMemo` (the line
 
 - [ ] **Step 4: Render the Danger-zone section and confirm dialog**
 
-Find the closing of the grade-settings card — the final lines of the returned
-JSX are:
+The final lines of the returned JSX are currently:
 
 ```tsx
       {pendingGrade != null && (
@@ -399,8 +418,8 @@ JSX are:
 }
 ```
 
-Replace that block with (adds the Danger-zone card after the grade card's
-closing `</div>`, plus the delete confirm dialog):
+Replace that block with (adds the Danger-zone card and the delete confirm dialog
+inside the root `<div>`, then defines the dialog component):
 
 ```tsx
       {pendingGrade != null && (
@@ -496,12 +515,10 @@ function DeleteStudentDialog({
 - [ ] **Step 5: Typecheck**
 
 Run: `npm run typecheck`
-Expected: exit code 0, no errors. (If `setActiveStudent`/`refreshStudents` are
-reported as missing on the hook's type, confirm they exist in
-`src/lib/activeStudent.tsx`'s `ActiveStudentContextValue` — they do: lines ~27,
-30.)
+Expected: exit code 0, no errors. (`setActiveStudent`/`refreshStudents` exist on
+`ActiveStudentContextValue` in `src/lib/activeStudent.tsx` — lines ~27, 30.)
 
-- [ ] **Step 6: Manual smoke (optional but recommended)**
+- [ ] **Step 6: Manual smoke (recommended)**
 
 Run `npm run dev`, sign in, open a kid → Settings tab → Danger zone → Delete →
 confirm. Expect to land on the profile picker with that kid gone. Deleting the
@@ -520,7 +537,8 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 
 ## Self-Review Notes
 
-- **Spec coverage:** RPC + controlled-order trap fix (Task 1) ✓; blast radius incl. anonymized report survival (Task 2 asserts each) ✓; UI placement in settings tab Danger zone + simple confirm dialog (Task 3) ✓; post-delete clear-active + redirect-to-picker, last-kid empty state (Task 3 Step 3/6) ✓; verification script + typecheck (Tasks 2/3) ✓.
-- **Type consistency:** `deleteStudent`, `DeleteStudentDialog`, `confirmingDelete`, `deleting` are defined and referenced consistently. `setActiveStudent`/`refreshStudents` come from `ActiveStudentContextValue` (already exported). The RPC param is `p_student_id` everywhere (migration, test, UI).
-- **`berry` color** is already used in this file for error text (line ~307), so the Danger-zone styling reuses an existing palette token.
+- **Spec coverage:** RPC + controlled-order trap fix (Task 1) ✓; blast radius incl. anonymized report survival, each asserted (Task 2) ✓; UI placement in settings-tab Danger zone + simple confirm dialog (Task 3) ✓; post-delete clear-active + redirect-to-picker, last-kid empty state (Task 3 Steps 3/6) ✓; verification script + typecheck (Tasks 2/3) ✓.
+- **Type consistency:** `deleteStudent`, `DeleteStudentDialog`, `confirmingDelete`, `deleting` defined and referenced consistently. `setActiveStudent`/`refreshStudents` come from `ActiveStudentContextValue` (already exported). RPC param is `p_student_id` everywhere (migration, test, UI).
+- **API fidelity:** `map_assign_bank` returns an id array (→ `aids[0]`); `map_start_bank_assignment` takes `{ p_assignment_id, p_session_id }`; reports are written via the `map_report_question` RPC (table is SELECT-only). All taken from existing code, not invented.
+- **`berry`** is a real Tailwind token (`tailwind.config.js`: `#E11D48`) already used for error text in this file.
 - **No placeholders.**
