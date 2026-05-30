@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useActiveStudent } from '../../lib/activeStudent'
 import {
   TEST_LENGTH_OPTIONS,
@@ -88,7 +89,8 @@ export default function ParentSettings({
   studentId: studentIdProp,
   displayName: displayNameProp,
 }: { studentId?: string; displayName?: string } = {}) {
-  const { activeStudent } = useActiveStudent()
+  const { activeStudent, setActiveStudent, refreshStudents } = useActiveStudent()
+  const navigate = useNavigate()
   const resolvedStudentId = studentIdProp ?? activeStudent?.id ?? null
   const resolvedDisplayName =
     displayNameProp ?? activeStudent?.display_name ?? 'your child'
@@ -104,6 +106,8 @@ export default function ParentSettings({
   const [cleaningStubs, setCleaningStubs] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
+  const [confirmingDelete, setConfirmingDelete] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   const reload = async () => {
     if (!resolvedStudentId) return
@@ -271,6 +275,31 @@ export default function ParentSettings({
       return
     }
     setTestLength(n)
+  }
+
+  // Hard delete: the RPC erases the kid and all their data (sessions, attempts,
+  // diagnostics, signals, bank assignments). Question reports survive,
+  // anonymized. After it lands we drop the active student if it was this kid
+  // and bounce to the profile picker (which shows the empty state for the
+  // last-kid case).
+  const deleteStudent = async () => {
+    if (!resolvedStudentId) return
+    setDeleting(true)
+    setError(null)
+    const { error: delErr } = await supabase.rpc('map_delete_student', {
+      p_student_id: resolvedStudentId,
+    })
+    if (delErr) {
+      setDeleting(false)
+      setConfirmingDelete(false)
+      setError(errorMessage(delErr, 'Could not delete this student.'))
+      return
+    }
+    if (activeStudent?.id === resolvedStudentId) {
+      setActiveStudent(null)
+    }
+    await refreshStudents()
+    navigate('/')
   }
 
   const summary = useMemo(() => {
@@ -494,6 +523,82 @@ export default function ParentSettings({
           onConfirm={() => void confirmAndSave(pendingGrade)}
         />
       )}
+
+      <div className="mt-6 rounded-2xl border border-berry/30 bg-berry/5 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-berry">
+              Danger zone
+            </p>
+            <p className="mt-0.5 text-sm text-ink/70">
+              Permanently delete {resolvedDisplayName} and all of their tests,
+              answers, and progress. This can&apos;t be undone.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setConfirmingDelete(true)}
+            className="rounded-full bg-berry px-4 py-2 text-sm font-semibold text-white shadow-card transition hover:bg-berry/90"
+          >
+            Delete {resolvedDisplayName}
+          </button>
+        </div>
+      </div>
+
+      {confirmingDelete && (
+        <DeleteStudentDialog
+          name={resolvedDisplayName}
+          deleting={deleting}
+          onCancel={() => setConfirmingDelete(false)}
+          onConfirm={() => void deleteStudent()}
+        />
+      )}
+    </div>
+  )
+}
+
+function DeleteStudentDialog({
+  name,
+  deleting,
+  onCancel,
+  onConfirm,
+}: {
+  name: string
+  deleting: boolean
+  onCancel: () => void
+  onConfirm: () => void
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-50 grid place-items-center bg-ink/50 p-4"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="card w-full max-w-md p-5">
+        <h3 className="font-display text-2xl">Delete {name}?</h3>
+        <p className="mt-2 text-sm text-ink/70">
+          This permanently erases {name} and all of their tests, answers, and
+          progress. This can&apos;t be undone.
+        </p>
+        <div className="mt-4 flex justify-end gap-2">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="btn-ghost text-sm"
+            disabled={deleting}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            disabled={deleting}
+            className="rounded-full bg-berry px-4 py-2 text-sm font-semibold text-white shadow-card transition hover:bg-berry/90 disabled:opacity-50"
+          >
+            {deleting ? 'Deleting…' : `Yes, delete ${name}`}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
