@@ -16,8 +16,10 @@ const SUPABASE_URL = process.env.SUPABASE_URL
 // Service role bypasses RLS — required since 2026-04-28 multi-tenant migration
 // enabled RLS on map_students and others. The simulator inserts throwaway test
 // rows that no auth context could legitimately create.
-const SUPABASE_KEY =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_PUBLISHABLE_KEY
+// Service role only (no publishable fallback): teardown deletes throwaway
+// students via this client, and map_students RLS (students_delete_own) makes an
+// anon delete of a family-less row a silent no-op that leaks orphans.
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
 if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.error('Missing env: set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (see .env.example).')
   console.error('Run with: node --env-file=.env.local scripts/test-adaptive-simulator.mjs')

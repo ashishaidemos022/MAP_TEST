@@ -18,6 +18,17 @@ if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
   process.exit(1)
 }
 const sb = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
+// Teardown deletes go through the service role. map_students has RLS
+// (students_delete_own requires family_id = map_current_family_id()), so an
+// anon delete of a family-less throwaway student silently no-ops and leaks
+// orphan rows. The service role bypasses RLS. Required since the 2026-04-28
+// multi-tenant migration.
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
+if (!SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('Missing env: set SUPABASE_SERVICE_ROLE_KEY (needed to clean up throwaway test rows under RLS).')
+  process.exit(1)
+}
+const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
 const subject = process.argv[2] || 'math'
 
@@ -42,7 +53,7 @@ async function main() {
     console.log(`Session created: ${sessionId}`)
   } catch (e) {
     console.error('createSession failed:', e.message)
-    await sb.from('map_students').delete().eq('id', studentId)
+    await admin.from('map_students').delete().eq('id', studentId)
     process.exit(1)
   }
 
@@ -128,12 +139,11 @@ async function main() {
 
     console.log('\n✓ end-to-end smoke test PASSED')
   } finally {
-    await sb.from('map_pick_diagnostics').delete().eq('session_id', sessionId)
-    await sb.from('map_attempts').delete().eq('session_id', sessionId)
-    await sb.from('map_test_sessions').delete().eq('id', sessionId)
-    // Don't delete the throwaway student here since createSession used the real
-    // STUDENT_ID; just clean any signals it accidentally created.
-    await sb.from('map_students').delete().eq('id', studentId)
+    await admin.from('map_pick_diagnostics').delete().eq('session_id', sessionId)
+    await admin.from('map_attempts').delete().eq('session_id', sessionId)
+    await admin.from('map_test_sessions').delete().eq('id', sessionId)
+    await admin.from('map_misconception_signals').delete().eq('student_id', studentId)
+    await admin.from('map_students').delete().eq('id', studentId)
     console.log('cleaned up')
   }
 }
